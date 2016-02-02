@@ -1,0 +1,9 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    i18n_domain="procon.portal">
+
+  <include package="sc.social.like" />
+  <include package="plone.app.contenttypes" />
+  <include package="Products.CMFPlone" />
+
+</configure>

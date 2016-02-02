@@ -1,0 +1,16 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:gs="http://namespaces.zope.org/genericsetup"
+    i18n_domain="procon.portal">
+
+  <!-- Profiles -->
+  <gs:registerProfile
+      name="default"
+      title="procon.portal"
+      directory="profiles/default"
+      description="procon.portal"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+</configure>
