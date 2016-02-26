@@ -1,0 +1,55 @@
+<div id="footer">
+<!-- WRAP MENU FOOTER -->
+    <div class="wrap">
+      <div class="menuFooter">
+        <ul>
+          <li class="sobre">
+              <ul>
+                <li class="tituloMenu"><a href="#" title="SOBRE O PROCON">SOBRE O PROCON</a></li>
+                <li><a href="#" title="Quem somos">Quem somos</a></li>
+                <li><a href="#" title="Formas de atendimento">Formas de atendimento</a></li>
+              <ul>
+          </li>
+          <li class="informacoes">
+              <ul>
+                <li class="tituloMenu"><a href="#" title="INFORMAÇÕES">INFORMAÇÕES</a></li>
+                <li><a href="#" title="Quem somos">Código de Defesa do Consumidor</a></li>
+                <li><a href="#" title="Recall">Recall</a></li>
+              <ul>
+          </li>
+          <li class="reclamacoes">
+              <ul>
+                <li class="tituloMenu"><a href="#" title="RECLAMAÇÕES FUNDAMENTADAS">RECLAMAÇÕES FUNDAMENTADAS</a></li>
+                <li class="tituloMenu"><a href="#" title="RORIENTAÇÕES DE CONSUMO">ORIENTAÇÕES DE CONSUMO</a></li>
+                <li class="tituloMenu"><a href="#" title="SITES ÚTEIS">SITES ÚTEIS</a></li>
+                <li class="tituloMenu"><a href="#" title="FAÇA SUA RECLAMAÇÃO">FAÇA SUA RECLAMAÇÃO</a></li>
+                <li class="tituloMenu"><a href="#" title="TIRE SUAS DÚVIDAS">TIRE SUAS DÚVIDAS</a></li>
+              <ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- FIM WRAP MENU FOOTER -->
+
+	<div class="wrap">
+		<div class="logoFooter"><a href="http://prefeitura.sp.gov.br" target="_blank"></a></div>
+		<p class="textoFooter">
+		  Secretaria de Negócios Jurídicos<br>
+		  Prefeitura de São Paulo<br>
+		  Viaduto do Chá, 15 - 12º andar - Centro<br>
+		  CEP 01002-020 - São Paulo - SP<br>
+		  Telefone 156
+		</p>
+	</div>
+
+	<div class="footerBottom">
+		 <div class="wrap">
+		    <p class="copyright">Todo o conteúdo do site está disponível sob licença Creative Commons. O código deste site é livre, consulte.|  <a href="#" target="_blank">Políticas do site</a></p>
+		    <div class="divProdam">
+		      <p>Hospedagem<br> e Desenvolvimento</p>
+		      <div class="logoProdam"><a href="http://www.prodam.sp.gov.br/" target="_blank"></a></div>
+		    </div>
+		    <div class="logoGrx"></div>
+		</div>
+	</div>
+</div>
