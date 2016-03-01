@@ -3,27 +3,36 @@
     <div class="wrap">
       <div class="menuFooter">
         <ul>
-          <li class="sobre">
+          <li>
               <ul>
-                <li class="tituloMenu"><a href="#" title="SOBRE O PROCON">SOBRE O PROCON</a></li>
-                <li><a href="#" title="Quem somos">Quem somos</a></li>
-                <li><a href="#" title="Formas de atendimento">Formas de atendimento</a></li>
+                <li class="tituloMenu"><a href="#" title="Quem somos">Quem somos</a></li>
               <ul>
           </li>
-          <li class="informacoes">
+          <li>
               <ul>
-                <li class="tituloMenu"><a href="#" title="INFORMAÇÕES">INFORMAÇÕES</a></li>
-                <li><a href="#" title="Quem somos">Código de Defesa do Consumidor</a></li>
+               <li class="tituloMenu"><a href="#" title="INFORMAÇÕES">Informações</a></li>
+                <li><a href="#" title="Código de Defesa do Consumidor">Código de Defesa do Consumidor</a></li>
                 <li><a href="#" title="Recall">Recall</a></li>
+                <li><a href="#" title="Legislação">Legislação</a></li>
+                <li><a href="#" title="Juízados especiais Cíveis">Juízados especiais Cíveis</a></li>
+                <li><a href="#" title="Evite esses sites">Evite esses sites</a></li>
               <ul>
           </li>
-          <li class="reclamacoes">
+          <li>
               <ul>
-                <li class="tituloMenu"><a href="#" title="RECLAMAÇÕES FUNDAMENTADAS">RECLAMAÇÕES FUNDAMENTADAS</a></li>
-                <li class="tituloMenu"><a href="#" title="RORIENTAÇÕES DE CONSUMO">ORIENTAÇÕES DE CONSUMO</a></li>
-                <li class="tituloMenu"><a href="#" title="SITES ÚTEIS">SITES ÚTEIS</a></li>
-                <li class="tituloMenu"><a href="#" title="FAÇA SUA RECLAMAÇÃO">FAÇA SUA RECLAMAÇÃO</a></li>
-                <li class="tituloMenu"><a href="#" title="TIRE SUAS DÚVIDAS">TIRE SUAS DÚVIDAS</a></li>
+                <li class="tituloMenu"><a href="#" title="Fornecedor">Fornecedor</a></li>
+                <li><a href="#" title="Perguntas frequentes">Perguntas frequentes</a></li>
+                <li><a href="#" title="Pedidos de certidão">Pedidos de certidão</a></li>
+                <li><a href="#" title="Processos sacionatórios">Processos sacionatórios</a></li>
+              <ul>
+          </li>
+          <li>
+              <ul>
+                <li class="tituloMenu"><a href="#" title="Estatísticas de atendimento">Estatísticas de atendimento</a></li>
+                <li class="tituloMenu"><a href="#" title="Sites úteis">Sites úteis</a></li>
+                <li class="tituloMenu"><a href="#" title="Tire suas dúvidas">Tire suas dúvidas</a></li>
+                <li class="tituloMenu"><a href="#" title="Faça sua reclamação">Faça sua reclamação</a></li>
+                <li class="tituloMenu"><a href="#" title="Envie uma dúvida">Envie uma dúvida</a></li>
               <ul>
           </li>
         </ul>
