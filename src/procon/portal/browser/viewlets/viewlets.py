@@ -5,4 +5,3 @@ from plone.app.layout.viewlets import ViewletBase
 
 class DefaultViewlet(ViewletBase):
     pass
-

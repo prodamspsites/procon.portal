@@ -6,6 +6,7 @@
   <order manager="plone.portalheader" skinname="*">
     <viewlet name="procon.logo.principal" />
     <viewlet name="procon.logo.negocios" />
+    <viewlet name="procon.navegacao.horizontal" />
   </order>
    <order manager="plone.portalfooter" skinname="*">
     <viewlet name="procon.footer" />
