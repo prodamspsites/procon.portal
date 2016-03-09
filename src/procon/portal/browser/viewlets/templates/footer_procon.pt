@@ -40,25 +40,25 @@
     </div>
     <!-- FIM WRAP MENU FOOTER -->
 
-	<div class="wrap">
-		<div class="logoFooter"><a href="http://prefeitura.sp.gov.br" target="_blank"></a></div>
-		<p class="textoFooter">
-		  Secretaria de Negócios Jurídicos<br>
-		  Prefeitura de São Paulo<br>
-		  Viaduto do Chá, 15 - 12º andar - Centro<br>
-		  CEP 01002-020 - São Paulo - SP<br>
-		  Telefone 156
-		</p>
-	</div>
+  <div class="wrap">
+    <div class="logoFooter"><a href="http://prefeitura.sp.gov.br" target="_blank"></a></div>
+    <p class="textoFooter">
+      Secretaria de Negócios Jurídicos<br>
+      Prefeitura de São Paulo<br>
+      Viaduto do Chá, 15 - 12º andar - Centro<br>
+      CEP 01002-020 - São Paulo - SP<br>
+      Telefone 156
+    </p>
+  </div>
 
-	<div class="footerBottom">
-		 <div class="wrap">
-		    <p class="copyright">Todo o conteúdo do site está disponível sob licença Creative Commons. O código deste site é livre, consulte.|  <a href="#" target="_blank">Políticas do site</a></p>
-		    <div class="divProdam">
-		      <p>Hospedagem<br> e Desenvolvimento</p>
-		      <div class="logoProdam"><a href="http://www.prodam.sp.gov.br/" target="_blank"></a></div>
-		    </div>
-		    <div class="logoGrx"></div>
-		</div>
-	</div>
+  <div class="footerBottom">
+     <div class="wrap">
+        <p class="copyright">Todo o conteúdo do site está disponível sob licença Creative Commons. O código deste site é livre, consulte.|  <a href="#" target="_blank">Políticas do site</a></p>
+        <div class="divProdam">
+          <p>Hospedagem<br> e Desenvolvimento</p>
+          <div class="logoProdam"><a href="http://www.prodam.sp.gov.br/" target="_blank"></a></div>
+        </div>
+        <div class="logoGrx"></div>
+    </div>
+  </div>
 </div>
