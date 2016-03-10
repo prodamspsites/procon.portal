@@ -1,0 +1,14 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="procon.portal">
+
+    <browser:page
+      name="busca"
+      class="plone.app.search.browser.Search"
+      permission="zope2.View"
+      for="*"
+      template="templates/search.pt"
+      />
+
+</configure>

@@ -1,0 +1,94 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="prodam.portal">
+
+  <body>
+    <metal:content-core fill-slot="main">
+      <metal:block define-macro="main">
+        <header class="titulo_principal">
+          <h1>Notícias</h1>
+        </header>
+        <article>
+          <header tal:define="portal_url context/portal_url;">
+            <div class="btn_voltar">
+              <a href="#" tal:attributes="href python:portal_url + '/noticia'"><span></span> Voltar</a>
+            </div>
+            <h1 tal:content="context/Title | nothing">Template de notícias</h1>
+            <h2 tal:content="context/Description | nothing">Descrição</h2>
+            <div class="noticias_media">
+
+              <tal:published tal:define="wtool context/portal_workflow;
+                                         state context/review_state | python: wtool.getInfoFor(context, 'review_state', '')"
+                             tal:condition="python:state == 'published'">
+                <time tal:define="date context/EffectiveDate;
+                                  data python:DateTime(date).strftime('%d/%m/%Y');
+                                  hora python:DateTime(date).strftime('%H:%M')"
+                      tal:content="python:hora + ' ' + data" />
+              </tal:published>
+
+              <div class="autor">De <strong tal:content="context/autor | nothing" /></div>
+              <div class="noticias_media_col2">
+                <div class="noticias_actions">
+                  <ul>
+                    <li><a href="#" class="aumentar_fonte">A+</a></li>
+                    <li><a href="#" class="diminuir_fonte">A-</a></li>
+                  </ul>
+                </div>
+                <div class="social_share">
+                  <div tal:replace="structure provider:plone.belowcontenttitle" />
+                </div>
+              </div>
+            </div>
+          </header>
+          <div class="contentBody" tal:define="texto context/text/raw | nothing">
+            <p tal:replace="structure texto">Conteúdo</p>
+          </div>
+          <div id="galeriaImagem" tal:define="catalog python:context.portal_catalog;
+                                              path python:'/'.join(context.getPhysicalPath());
+                                              images python:catalog(path=path,portal_type='Image')"
+                                  tal:condition="images">
+            <div id="image_links">
+              <h4>Imagens para download</h4>
+              <tal:links tal:repeat="img images">
+                <a href="" tal:attributes="href python:img.getObject().absolute_url() + '/view'" tal:content="string:Foto ${repeat/img/number}" />
+                <span tal:condition="not:repeat/img/end" tal:content="string: |" />
+              </tal:links>
+            </div>
+            <div id="rg-gallery" class="rg-gallery">
+              <div class="rg-thumbs">
+                <div class="es-carousel-wrapper">
+                  <div class="es-nav">
+                    <span class="es-nav-prev">Previous</span>
+                    <span class="es-nav-next">Next</span>
+                  </div>
+                  <div class="es-carousel">
+                    <ul>
+                      <tal:images tal:repeat="img images">
+                        <li><a href="#" tal:define="scales python:img.getObject().restrictedTraverse('@@images');
+                                                    thumbnail python:scales.scale('image', width=65, height=65);
+                                                    large python:scales.scale('image', scale='large')">
+                          <img src="" tal:attributes="src python:img.getObject().absolute_url()" width='600' />
+                          <img src="thumbs.png" data-large="large.jpg" alt="image01" data-description=""
+                               tal:attributes="src thumbnail/url;
+                                               data-large large/url;
+                                               alt img/Title;
+                                               data-description img/Description" />
+                        </a></li>
+                      </tal:images>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div tal:replace="structure provider:plone.belowcontentbody" />
+        </article>
+      </metal:block>
+    </metal:content-core>
+  </body>
+
+</html>
