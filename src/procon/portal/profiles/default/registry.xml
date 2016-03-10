@@ -4,6 +4,7 @@
     <value purge="false">
       <element>page_template</element>
       <element>collection_news</element>
+      <element>capa_collection_news</element>
       <element>basic_tile</element>
     </value>
   </record>
@@ -13,6 +14,7 @@
     <value purge="false">
       <element>page_template</element>
       <element>collection_news</element>
+      <element>capa_collection_news</element>
       <element>basic_tile</element>
     </value>
   </record>
