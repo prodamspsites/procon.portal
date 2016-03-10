@@ -8,13 +8,10 @@
     <viewlet name="procon.logo.negocios" />
     <viewlet name="nfe.searchbox"/>
     <viewlet name="procon.navegacao.horizontal" />
-  </order>
-
-  <order manager="plone.abovecontent" skinname="*">
     <viewlet name="procon.path_bar" />
   </order>
 
-   <order manager="plone.portalfooter" skinname="*">
+  <order manager="plone.portalfooter" skinname="*">
     <viewlet name="procon.footer" />
   </order>
 
@@ -24,6 +21,5 @@
 
   <hidden manager="plone.abovecontent" skinname="*">
     <viewlet name="plone.path_bar" />
-
   </hidden>
 </object>
