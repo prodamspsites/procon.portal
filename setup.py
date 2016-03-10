@@ -45,6 +45,7 @@ setup(
     install_requires=[
         'procon.tema',
         'collective.nitf',
+        'collective.cover',
         'sc.social.like',
         'five.pt',
         'Pillow',
