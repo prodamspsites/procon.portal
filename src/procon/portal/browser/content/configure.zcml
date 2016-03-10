@@ -1,0 +1,14 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:browser="http://namespaces.zope.org/browser"
+  i18n_domain="procon.portal">
+
+  <browser:page
+    name="emails"
+    for="*"
+    permission="zope2.View"
+    class=".mail.DisparaEmail"
+    layer="procon.portal.interfaces.IProdamPortal"
+    template="templates/mail.pt"
+    />
+</configure>
