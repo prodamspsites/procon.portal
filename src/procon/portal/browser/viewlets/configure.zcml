@@ -30,5 +30,21 @@
         template="templates/footer_procon.pt"
     />
 
+    <browser:viewlet
+        name="procon.navegacao.horizontal"
+        manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+        class=".nav.Navegacao"
+        permission="zope2.View"
+        layer="procon.portal.interfaces.IProdamPortal"
+        template="templates/navegacao_horizontal.pt"
+    />
+
+    <browser:viewlet
+        name="procon.path_bar"
+        manager="plone.app.layout.viewlets.interfaces.IAboveContent"
+        class="plone.app.layout.viewlets.common.PathBarViewlet"
+        template="templates/breadcrumbs.pt"
+        permission="zope2.View"
+        />
 
 </configure>
