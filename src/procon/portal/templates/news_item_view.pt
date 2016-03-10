@@ -1,0 +1,51 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="prodam.portal">
+
+  <body>
+    <metal:content-core fill-slot="main">
+      <metal:block define-macro="main">
+          <h1 class="tituloNoticias">Notícias</h1>
+        <article>
+            <h2 class="subTitNoticias" tal:content="context/Title | nothing">Template de notícias</h2>
+            <h3 class="titLinhaFinaNot" tal:content="context/Description | nothing">Descrição</h3>
+            <div class="noticias_media">
+              <tal:published tal:define="wtool context/portal_workflow;
+                                         state context/review_state | python: wtool.getInfoFor(context, 'review_state', '')"
+                             tal:condition="python:state == 'published'">
+                <time tal:define="date context/EffectiveDate;
+                                  modificationDate context/ModificationDate;
+                                  data python:DateTime(date).strftime('%d/%m/%Y');
+                                  dataModificada python:DateTime(modificationDate).strftime('%d/%m/%Y');
+                                  hora python:DateTime(date).strftime('%H:%M');
+                                  horaModificada python:DateTime(modificationDate).strftime('%H:%M') "
+                      tal:content="python:data + ' às ' + hora + ' Atualizado em ' + dataModificada + ' - '+ horaModificada"
+                />
+                  <tal:modified tal:condition="python: context.EffectiveDate() != context.ModificationDate()">
+                  </tal:modified>
+              </tal:published>
+
+              <div class="autor">Por
+                <strong tal:content="context/autor | string:Redação" />
+              </div>
+              <tal:hasImage condition="python:context.image">
+                <div tal:define="scales python:context.restrictedTraverse('@@images');
+                                  imageLarge python:scales.scale('image', width=705, height=400)">
+                  <img tal:attributes="src imageLarge/url;" />
+                </div>
+              </tal:hasImage>
+            </div>
+          <div class="contentBody" tal:define="texto context/text/raw | nothing">
+            <p tal:replace="structure texto">Conteúdo</p>
+          </div>
+          <div tal:replace="structure provider:plone.belowcontentbody" />
+        </article>
+      </metal:block>
+    </metal:content-core>
+  </body>
+
+</html>
