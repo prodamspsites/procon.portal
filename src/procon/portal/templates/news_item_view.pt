@@ -33,9 +33,10 @@
                 <strong tal:content="context/autor | string:Redação" />
               </div>
               <tal:hasImage condition="python:context.image">
-                <div tal:define="scales python:context.restrictedTraverse('@@images');
+                <div class="imgNoticia" tal:define="scales python:context.restrictedTraverse('@@images');
                                   imageLarge python:scales.scale('image', width=705, height=400)">
                   <img tal:attributes="src imageLarge/url;" />
+                  <span class="legenda"></span>
                 </div>
               </tal:hasImage>
             </div>

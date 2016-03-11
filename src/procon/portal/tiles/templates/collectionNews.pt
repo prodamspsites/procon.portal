@@ -23,147 +23,158 @@
       </div>
 
       <div class="divNoticias" tal:condition="view/show_header">
-          <tal:fields repeat="field view/configured_fields">
-            <tal:title define="htmltag python:field.get('htmltag', 'h1')"
-                       condition="python:field['id'] == 'header'">
-
-                <h1 tal:condition="python:htmltag == 'h1'" tal:content="view/data/header">
-                </h1>
-
-                <h2 tal:condition="python:htmltag == 'h2'" tal:content="view/data/header">
-                </h2>
-
-                <h3 tal:condition="python:htmltag == 'h3'" tal:content="view/data/header">
-                </h3>
-
-                <h4 tal:condition="python:htmltag == 'h4'" tal:content="view/data/header">
-                </h4>
-
-            </tal:title>
-          </tal:fields>
-          <a href="#" title="Ver todas" class="verTodas">Ver todas</a>
-      </div>
-
-      <div class="blocoNoticias">
-        <!-- Primeira notícia de destaque -->
-        <div class="firstItem" tal:condition="results" tal:define="obj python:results[0].getObject()">
-                        <tal:image define="thumbnail python:view.thumbnail(obj)"
-                         >
-                <a tal:attributes="href obj/absolute_url">
-                  <img tal:attributes="src thumbnail/url;
-                                       width thumbnail/width;
-                                       height thumbnail/height;
-                                       class view/get_image_position;
-                                       alt python:view.get_alt(obj);" />
-                </a>
-              </tal:image>
-              <tal:fields repeat="field view/configured_fields">
-
-              <tal:title define="htmltag python:field.get('htmltag', 'h1')"
-                         condition="python:field['id'] == 'title'">
-
-                  <h1 tal:condition="python:htmltag == 'h1'">
-                      <a tal:attributes="href obj/absolute_url"
-                         tal:content="obj/Title" />
-                  </h1>
-
-                  <h2 tal:condition="python:htmltag == 'h2'">
-                      <a tal:attributes="href obj/absolute_url"
-                         tal:content="obj/Title" />
-                  </h2>
-
-                  <h3 tal:condition="python:htmltag == 'h3'">
-                      <a tal:attributes="href obj/absolute_url"
-                         tal:content="obj/Title" />
-                  </h3>
-
-                  <h4 tal:condition="python:htmltag == 'h4'">
-                      <a tal:attributes="href obj/absolute_url"
-                         tal:content="obj/Title" />
-                  </h4>
-
-              </tal:title>
-
-              <p class="description"
-                 tal:condition="python:field['id'] == 'description'"
-                 tal:content="obj/Description" />
-
-              <tal:datetime condition="python:field['id'] == 'date'">
-              <time
-                  tal:define="datetime python:view.Date(obj);
-                              format python:field.get('format', 'datetime');
-                              dateformat python:view.get_localized_time(datetime, format);
-                              data python:dateformat.split(' ')[0];
-                              hora python:dateformat.split(' ')[1];
-                              datefinal python:data + ' - ' + hora"
-
-                  tal:attributes="datetime datetime"
-                  tal:content="datefinal">
-                Jul 15, 2015 01:23 PM
-              </time>
-              </tal:datetime>
-            </tal:fields>
-
-        </div>
-        <!--Demais noticias de destaque-->
-        <div class="collection-item" class="noticiasColuna" tal:repeat="item results">
-          <tal:items define="obj item/getObject;
-                             current repeat/item/number"
-                             condition="python:current != 1">
+          <div class="wrap">
             <tal:fields repeat="field view/configured_fields">
-
               <tal:title define="htmltag python:field.get('htmltag', 'h1')"
-                         condition="python:field['id'] == 'title'">
+                         condition="python:field['id'] == 'header'">
 
-                  <h1 tal:condition="python:htmltag == 'h1'">
-                      <a tal:attributes="href obj/absolute_url"
-                         tal:content="obj/Title" />
+                  <h1 tal:condition="python:htmltag == 'h1'" tal:content="view/data/header">
                   </h1>
 
-                  <h2 tal:condition="python:htmltag == 'h2'">
-                      <a tal:attributes="href obj/absolute_url"
-                         tal:content="obj/Title" />
+                  <h2 tal:condition="python:htmltag == 'h2'" tal:content="view/data/header">
                   </h2>
 
-                  <h3 tal:condition="python:htmltag == 'h3'">
-                      <a tal:attributes="href obj/absolute_url"
-                         tal:content="obj/Title" />
+                  <h3 tal:condition="python:htmltag == 'h3'" tal:content="view/data/header">
                   </h3>
 
-                  <h4 tal:condition="python:htmltag == 'h4'">
-                      <a tal:attributes="href obj/absolute_url"
-                         tal:content="obj/Title" />
+                  <h4 tal:condition="python:htmltag == 'h4'" tal:content="view/data/header">
                   </h4>
 
               </tal:title>
-
-              <p class="description"
-                 tal:condition="python:field['id'] == 'description'"
-                 tal:content="obj/Description" />
-
-              <tal:datetime condition="python:field['id'] == 'date'">
-              <time
-                  tal:define="datetime python:view.Date(item);
-                              format python:field.get('format', 'datetime');
-                              dateformat python:view.get_localized_time(datetime, format);
-                              data python:dateformat.split(' ')[0];
-                              hora python:dateformat.split(' ')[1];
-                              datefinal python:data + ' - ' + hora"
-
-                  tal:attributes="datetime datetime"
-                  tal:content="datefinal">
-                Jul 15, 2015 01:23 PM
-              </time>
-              </tal:datetime>
             </tal:fields>
-          </tal:items>
-          <div class="visualClear"><!-- --></div>
+            <a href="#" title="Ver todas" class="verTodas">Ver todas</a>
+         </div>
+      </div>
+
+      <div class="wrap">
+
+        <div class="blocoNoticias">
+
+          <div class="noticiasColuna">
+          <!-- Primeira notícia de destaque -->
+          <div class="firstItem" tal:condition="results" tal:define="obj python:results[0].getObject()">
+                          <tal:image define="thumbnail python:view.thumbnail(obj)"
+                           >
+                  <a tal:attributes="href obj/absolute_url">
+                    <img tal:attributes="src thumbnail/url;
+                                         width thumbnail/width;
+                                         height thumbnail/height;
+                                         class view/get_image_position;
+                                         alt python:view.get_alt(obj);" />
+                  </a>
+                </tal:image>
+                <tal:fields repeat="field view/configured_fields">
+
+                <tal:title define="htmltag python:field.get('htmltag', 'h1')"
+                           condition="python:field['id'] == 'title'">
+
+                    <h1 tal:condition="python:htmltag == 'h1'">
+                        <a tal:attributes="href obj/absolute_url"
+                           tal:content="obj/Title" />
+                    </h1>
+
+                    <h2 tal:condition="python:htmltag == 'h2'">
+                        <a tal:attributes="href obj/absolute_url"
+                           tal:content="obj/Title" />
+                    </h2>
+
+                    <h3 tal:condition="python:htmltag == 'h3'">
+                        <a tal:attributes="href obj/absolute_url"
+                           tal:content="obj/Title" />
+                    </h3>
+
+                    <h4 tal:condition="python:htmltag == 'h4'">
+                        <a tal:attributes="href obj/absolute_url"
+                           tal:content="obj/Title" />
+                    </h4>
+
+                </tal:title>
+
+                <p class="description"
+                   tal:condition="python:field['id'] == 'description'"
+                   tal:content="obj/Description" />
+
+                <tal:datetime condition="python:field['id'] == 'date'">
+                <time
+                    tal:define="datetime python:view.Date(obj);
+                                format python:field.get('format', 'datetime');
+                                dateformat python:view.get_localized_time(datetime, format);
+                                data python:dateformat.split(' ')[0];
+                                hora python:dateformat.split(' ')[1];
+                                datefinal python:data + ' - ' + hora"
+
+                    tal:attributes="datetime datetime"
+                    tal:content="datefinal">
+                  Jul 15, 2015 01:23 PM
+                </time>
+                </tal:datetime>
+              </tal:fields>
+
+          </div>
+          </div>
+
+          <div class="noticiasColuna">
+            <!--Demais noticias de destaque-->
+            <div class="collection-item" class="noticiasColuna" tal:repeat="item results">
+              <tal:items define="obj item/getObject;
+                                 current repeat/item/number"
+                                 condition="python:current != 1">
+                <tal:fields repeat="field view/configured_fields">
+
+                  <tal:title define="htmltag python:field.get('htmltag', 'h1')"
+                             condition="python:field['id'] == 'title'">
+
+                      <h1 tal:condition="python:htmltag == 'h1'">
+                          <a tal:attributes="href obj/absolute_url"
+                             tal:content="obj/Title" />
+                      </h1>
+
+                      <h2 tal:condition="python:htmltag == 'h2'">
+                          <a tal:attributes="href obj/absolute_url"
+                             tal:content="obj/Title" />
+                      </h2>
+
+                      <h3 tal:condition="python:htmltag == 'h3'">
+                          <a tal:attributes="href obj/absolute_url"
+                             tal:content="obj/Title" />
+                      </h3>
+
+                      <h4 tal:condition="python:htmltag == 'h4'">
+                          <a tal:attributes="href obj/absolute_url"
+                             tal:content="obj/Title" />
+                      </h4>
+
+                  </tal:title>
+
+                  <p class="description"
+                     tal:condition="python:field['id'] == 'description'"
+                     tal:content="obj/Description" />
+
+                  <tal:datetime condition="python:field['id'] == 'date'">
+                  <time
+                      tal:define="datetime python:view.Date(item);
+                                  format python:field.get('format', 'datetime');
+                                  dateformat python:view.get_localized_time(datetime, format);
+                                  data python:dateformat.split(' ')[0];
+                                  hora python:dateformat.split(' ')[1];
+                                  datefinal python:data + ' - ' + hora"
+
+                      tal:attributes="datetime datetime"
+                      tal:content="datefinal">
+                    Jul 15, 2015 01:23 PM
+                  </time>
+                  </tal:datetime>
+                </tal:fields>
+              </tal:items>
+              <div class="visualClear"><!-- --></div>
+            </div>
+        </div>
+
+        </div>
+        <div class="tile-footer" tal:condition="view/show_footer">
+          <a tal:attributes="href view/collection_url" tal:content="view/data/footer" />
         </div>
       </div>
-      <div class="tile-footer" tal:condition="view/show_footer">
-        <a tal:attributes="href view/collection_url" tal:content="view/data/footer" />
-      </div>
-
       <div class="visualClear"><!-- --></div>
     </tal:results>
   </div>
