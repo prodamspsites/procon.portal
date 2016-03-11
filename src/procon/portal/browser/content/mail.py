@@ -7,8 +7,8 @@ class DisparaEmail(BrowserView):
 
     def enviaEmail(self):
         """classe responsavel por gerenciar I/O E-mails"""
-        sender = 'from@fromdomain.com'
-        receivers = ['wellington.braga@ctis.com.br']
+        sender = 'teste@teste.com.br'
+        receivers = ['vbalvares@prodam.sp.gov.br']
         message = """From: From Person <from@fromdomain.com>
         To: To Person <to@todomain.com>
         MIME-Version: 1.0
@@ -21,7 +21,7 @@ class DisparaEmail(BrowserView):
         <h1>This is headline.</h1>
         """
         try:
-            smtpObj = smtplib.SMTP('localhost', 25)
+            smtpObj = smtplib.SMTP('smtpcorp.prodam', 25)
             smtpObj.sendmail(sender, receivers, message)
             print "Successfully sent email"
         except Exception, e:

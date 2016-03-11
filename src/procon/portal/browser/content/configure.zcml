@@ -11,4 +11,13 @@
     layer="procon.portal.interfaces.IProdamPortal"
     template="templates/mail.pt"
     />
+
+  <browser:page
+    name="consumidor"
+    for="*"
+    permission="zope2.View"
+    class=".consumidor.Consumidor"
+    layer="procon.portal.interfaces.IProdamPortal"
+    template="templates/consumidor.pt"
+    />
 </configure>
