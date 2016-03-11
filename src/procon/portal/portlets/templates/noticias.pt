@@ -8,29 +8,28 @@
   <h3 class="noticiasTitulo"><span tal:content="view/getTitle" /></h3>
   <ul class="lstNoticias">
     <tal:noticias tal:define="noticias view/getNewsItems" tal:repeat="noticia noticias">
-      <tal:hasImage tal:define="obj python:noticia.getObject()"
+      <li class="itemNoticias">
+        <tal:hasImage tal:define="obj python:noticia.getObject()"
                     tal:condition="python:obj.image">
-        <div class="imgNoticia" tal:define="scales python:obj.restrictedTraverse('@@images');
+        <span class="imgNoticia" tal:define="scales python:obj.restrictedTraverse('@@images');
                           imageLarge python:scales.scale('image', width=97, height=73)">
           <img tal:attributes="src imageLarge/url;" />
           <span class="legenda"></span>
-        </div>
+        </span>
       </tal:hasImage>
-
-      <li class="itemNoticias">
                 <time tal:define="date noticia/EffectiveDate"
                       tal:content="python:view.getDate(date)" />
-        <a href="#" tal:attributes="href python:noticia.getObject().absolute_url();
+        <a href="#" class="titNotPortlet" tal:attributes="href python:noticia.getObject().absolute_url();
                                     title noticia/Title"
                     tal:content="noticia/Title">Notícia 1</a>
       </li>
     </tal:noticias>
-    <tal:footer tal:condition="view/showFooter">
+  </ul>
+  <tal:footer tal:condition="view/showFooter">
       <div class="footerNoticias">
         <h3><a href="" tal:attributes="href view/getFooterUrl" tal:content="view/getFooterText" /></h3>
       </div>
     </tal:footer>
-  </ul>
 </div></dl>
 </html>
 
