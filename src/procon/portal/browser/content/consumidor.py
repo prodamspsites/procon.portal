@@ -20,7 +20,8 @@ class Consumidor(BrowserView):
 
     def consultaDiretorio(self):
         """ consulta diretorios para consumidor """
-        self.consulta()
+        self.request.response.setHeader("Content-type", "application/json")
+        return self.consulta()
 
     def montaEstrutura(self):
             portal = api.portal.get()
@@ -56,15 +57,10 @@ class Consumidor(BrowserView):
         portal = api.portal.get()
         catalog = portal.portal_catalog
         links = catalog(portal_type="Link")
-        dados = {}
+        dados = []
         if links:
             for i in links:
                 result = i.getObject()
-                dados[result.id] = {
-                    "url": result.remoteUrl,
-                    "categoria": result.categoria,
-                    "titulo": result.title
-                }
-                dados_to_json = json.dumps(dados, ensure_ascii=False)
-        print dados_to_json
-        print type(dados_to_json)
+                dados.append(result.title)
+            dados_to_json = json.dumps(dados, ensure_ascii=False)
+            return dados_to_json

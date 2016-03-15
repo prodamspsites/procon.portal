@@ -12,6 +12,15 @@
     template="templates/mail.pt"
     />
 
+    <browser:page
+      name="consumidorjson"
+      for="*"
+      permission="zope2.View"
+      class=".consumidor.Consumidor"
+      layer="procon.portal.interfaces.IProdamPortal"
+      template="templates/consumidor_json.pt"
+      />
+
   <browser:page
     name="consumidor"
     for="*"
