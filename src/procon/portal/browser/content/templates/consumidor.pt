@@ -1,0 +1,2 @@
+<!-- <tal:consumidor tal:content="view/criaDiretorio" /> -->
+<tal:consumidor tal:content="view/consultaDiretorio" />
