@@ -12,7 +12,8 @@
 
       <div class="form-group">
         <label for="usr">Categoria:</label>
-        <input type="text" class="form-control" id="autocomplete_categoria">
+        <input id="project">
+        <input type="hidden" id="project-id">
       </div>
     </tal:main-macro>
 </metal:main>
