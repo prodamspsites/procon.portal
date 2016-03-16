@@ -58,9 +58,14 @@ class Consumidor(BrowserView):
         catalog = portal.portal_catalog
         links = catalog(portal_type="Link")
         dados = []
+        cont = 0
         if links:
             for i in links:
                 result = i.getObject()
-                dados.append(result.title)
+                dados.append({'titulo': result.title,
+                              'categoria': result.categoria,
+                              'url': result.remoteUrl
+                              })
+                cont = cont + 1
             dados_to_json = json.dumps(dados, ensure_ascii=False)
             return dados_to_json
