@@ -21,7 +21,7 @@
       <div tal:condition="not:results">
         <p i18n:translate="">The collection doesn't have any results.</p>
       </div>
-
+    <div class="internaNoticias">
       <div class="tituloNoticia" tal:condition="view/show_header">
           <tal:fields repeat="field view/configured_fields">
             <tal:title define="htmltag python:field.get('htmltag', 'h1')"
@@ -111,7 +111,7 @@
       <div class="tile-footer" tal:condition="view/show_footer">
         <a tal:attributes="href view/collection_url" tal:content="view/data/footer" />
       </div>
-
+    </div>
       <div class="visualClear"><!-- --></div>
     </tal:results>
   </div>
