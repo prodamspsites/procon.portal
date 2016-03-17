@@ -42,7 +42,7 @@
 
               </tal:title>
             </tal:fields>
-            <a href="/Procon/noticias" title="Ver todas" class="verTodas">Ver todas</a>
+            <a href="/procon/noticias" title="ver todas" class="verTodas">Ver todas</a>
          </div>
       </div>
 
