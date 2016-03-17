@@ -1,0 +1,50 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+<body>
+
+<metal:content-core fill-slot="content-core">
+<metal:block use-macro="context/standard_view/macros/content-core">
+
+    <metal:entries fill-slot="entries">
+
+      <div class="divAccordeon">
+        <metal:block use-macro="context/standard_view/macros/entries">
+        <metal:entry fill-slot="entry">
+
+         <div class="tileItem visualIEFloatFix"
+               tal:define="obj item/getObject"
+               tal:condition="python:item.portal_type=='pergunta'">
+
+                  <h3><span tal:content="structure python:item.getObject().pergunta.output" /></h3>
+                  <div class="textoAccordeon" tal:define="itempath python:'/'.join(obj.getPhysicalPath());
+                                                          resposta python:obj.portal_catalog(path=itempath, portal_type='resposta')"
+                                              tal:condition="resposta">
+                    <span tal:replace="structure python:resposta[0].getObject().resposta.output" />
+                    <form class="respostaUtil">
+                      <fieldset><legend>Resposta foi útil</legend>
+                        <label>Esta resposta foi útil: <input type="radio"><span>Sim</span><input type="radio"><span>Não</span></label>
+                      </fieldset>
+                    </form>
+                    <p class="agradece">O Procon Paulistano agradece sua colaboração. <strong>Você pode enviar uma dúvida usando o formulário no final da página.</strong></p>
+                  </div>
+
+          </div>
+
+
+        </metal:entry>
+        </metal:block>
+      </div>
+
+    </metal:entries>
+
+</metal:block>
+</metal:content-core>
+
+</body>
+</html>

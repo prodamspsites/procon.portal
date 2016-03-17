@@ -17,6 +17,9 @@
       zcml:condition="have plone-4"
       package="Products.CMFCore" file="permissions.zcml" />
 
+  <adapter name="SearchableText" factory=".indexers.PerguntaSearchableIndex" />
+  <adapter name="SearchableText" factory=".indexers.RespostaSearchableIndex" />
+
   <!-- Profiles de Generic Setup -->
   <include file='profiles.zcml' />
 

@@ -11,4 +11,12 @@
       template="templates/search.pt"
       />
 
+    <browser:page
+      name="duvidas_view"
+      permission="zope2.View"
+      for="plone.app.contenttypes.interfaces.ICollection"
+      template="templates/duvidas.pt"
+      class=".colecao.Colecao"
+      />
+
 </configure>
