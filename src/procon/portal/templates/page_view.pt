@@ -9,6 +9,7 @@
   <body>
     <metal:content-core fill-slot="main">
       <metal:block define-macro="main">
+        <div class="wrap">
         <article>
             <h2 class="subTitNoticias" tal:content="context/Title | nothing">Template de notícias</h2>
             <h3 class="titLinhaFinaNot" tal:content="context/Description | nothing">Descrição</h3>
@@ -23,6 +24,7 @@
           </div>
           <div tal:replace="structure provider:plone.belowcontentbody" />
         </article>
+        </div>
       </metal:block>
     </metal:content-core>
   </body>
