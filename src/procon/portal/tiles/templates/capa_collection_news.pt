@@ -48,8 +48,8 @@
         <div class="collection-item" class="noticiasColuna" tal:repeat="item results">
           <tal:items define="obj item/getObject;
                              current repeat/item/number">
-                        <tal:image define="thumbnail python:view.thumbnail(obj)"
-                         >
+            <tal:hasImage condition="python:view.thumbnail(obj)">
+              <tal:image define="thumbnail python:view.thumbnail(obj)">
                 <a tal:attributes="href obj/absolute_url">
                   <img tal:attributes="src thumbnail/url;
                                        width thumbnail/width;
@@ -58,6 +58,7 @@
                                        alt python:view.get_alt(obj);" />
                 </a>
               </tal:image>
+            </tal:hasImage>
             <tal:fields repeat="field view/configured_fields">
 
               <tal:title define="htmltag python:field.get('htmltag', 'h1')"

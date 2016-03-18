@@ -53,16 +53,17 @@
           <div class="noticiasColuna">
           <!-- Primeira notícia de destaque -->
           <div class="firstItem" tal:condition="results" tal:define="obj python:results[0].getObject()">
-                          <tal:image define="thumbnail python:view.thumbnail(obj)"
-                           >
-                  <a tal:attributes="href obj/absolute_url">
-                    <img tal:attributes="src thumbnail/url;
-                                         width thumbnail/width;
-                                         height thumbnail/height;
-                                         class view/get_image_position;
-                                         alt python:view.get_alt(obj);" />
-                  </a>
-                </tal:image>
+            <tal:hasImage condition="python:view.thumbnail(obj)">
+              <tal:image define="thumbnail python:view.thumbnail(obj)">
+                <a tal:attributes="href obj/absolute_url">
+                  <img tal:attributes="src thumbnail/url;
+                                       width thumbnail/width;
+                                       height thumbnail/height;
+                                       class view/get_image_position;
+                                       alt python:view.get_alt(obj);" />
+                </a>
+              </tal:image>
+            </tal:hasImage>
                 <tal:fields repeat="field view/configured_fields">
 
                 <tal:title define="htmltag python:field.get('htmltag', 'h1')"
