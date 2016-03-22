@@ -3,6 +3,10 @@
   <order manager="plone.plonefooter" skinname="*">
   </order>
 
+  <order manager="plone.belowcontenttitle" skinname="*">
+    <viewlet name="procon.duvidas" />
+  </order>
+
   <order manager="plone.portalheader" skinname="*">
     <viewlet name="procon.logo.principal" />
     <viewlet name="procon.logo.negocios" />

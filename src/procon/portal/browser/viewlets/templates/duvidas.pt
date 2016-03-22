@@ -1,0 +1,5 @@
+<div class="form-group">
+  <label for="usr">Categoria:</label>
+  <input id="project">
+  <input type="hidden" id="project-id">
+</div>
