@@ -1,0 +1,5 @@
+<div class="form-group">
+  <input id="project" placeholder="Digite o nome da empresa que deseja reclamar">
+  <input type="hidden" id="project-id">
+  <input type="submit" class="btnBuscar" value="BUSCAR" />
+</div>

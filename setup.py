@@ -46,6 +46,7 @@ setup(
         'procon.tema',
         'collective.cover',
         'collective.nitf',
+        'collective.cover',
         'sc.social.like',
         'five.pt',
         'Pillow',
