@@ -1,0 +1,35 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      tal:omit-tag=""
+      i18n:domain="prodam.portal">
+<dl class="portlet" tal:condition="view/getNewsItems">
+<div id="divSidebar">
+  <h3 class="noticiasTitulo"><span tal:content="view/getTitle" /></h3>
+  <ul class="lstNoticias">
+    <tal:noticias tal:define="noticias view/getNewsItems" tal:repeat="noticia noticias">
+      <li class="itemNoticias">
+        <tal:hasImage tal:define="obj python:noticia.getObject()"
+                    tal:condition="python:obj.image">
+        <span class="imgNoticia" tal:define="scales python:obj.restrictedTraverse('@@images');
+                          imageLarge python:scales.scale('image', width=97, height=73)">
+          <img tal:attributes="src imageLarge/url;" />
+          <span class="legenda"></span>
+        </span>
+      </tal:hasImage>
+                <time tal:define="date noticia/EffectiveDate"
+                      tal:content="python:view.getDate(date)" />
+        <a href="#" class="titNotPortlet" tal:attributes="href python:noticia.getObject().absolute_url();
+                                    title noticia/Title"
+                    tal:content="noticia/Title">Notícia 1</a>
+      </li>
+    </tal:noticias>
+  </ul>
+  <tal:footer tal:condition="view/showFooter">
+      <div class="footerNoticias">
+        <h3><a href="" tal:attributes="href view/getFooterUrl" tal:content="view/getFooterText" /></h3>
+      </div>
+    </tal:footer>
+</div></dl>
+</html>
+

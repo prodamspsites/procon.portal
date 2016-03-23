@@ -29,4 +29,21 @@
     layer="procon.portal.interfaces.IProdamPortal"
     template="templates/consumidor.pt"
     />
+
+    <browser:page
+      name="busca"
+      class="plone.app.search.browser.Search"
+      permission="zope2.View"
+      for="*"
+      template="templates/search.pt"
+      />
+
+    <browser:page
+      name="duvidas_view"
+      permission="zope2.View"
+      for="plone.app.contenttypes.interfaces.ICollection"
+      template="templates/duvidas.pt"
+      class=".colecao.Colecao"
+      />
+
 </configure>

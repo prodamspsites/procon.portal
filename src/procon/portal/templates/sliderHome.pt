@@ -1,0 +1,18 @@
+<div class="listaHome">
+    <div class="wrap">
+      <ul>
+          <li>
+            <span class="item1"></span>
+            <a href="#" title="FAÇA SUA RECLAMAÇÃO">FAÇA SUA <br />RECLAMAÇÃO</a>
+          </li>
+          <li>
+            <span class="item2"></span>
+            <a href="#" title="TIRE SUAS DÚVIDAS">TIRE SUAS <br />DÚVIDAS</a>
+          </li>
+          <li>
+            <span class="item3"></span>
+            <a href="#" title="RECLAMAÇÕES FUNDAMENTADAS">RECLAMAÇÕES <br />FUNDAMENTADAS</a>
+          </li>
+      </ul>
+    </div>
+</div>

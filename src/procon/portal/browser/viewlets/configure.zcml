@@ -41,7 +41,7 @@
 
     <browser:viewlet
         name="procon.path_bar"
-        manager="plone.app.layout.viewlets.interfaces.IAboveContent"
+        manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
         class="plone.app.layout.viewlets.common.PathBarViewlet"
         template="templates/breadcrumbs.pt"
         permission="zope2.View"

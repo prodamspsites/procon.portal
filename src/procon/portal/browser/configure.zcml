@@ -6,7 +6,13 @@
     <!-- Viewlets -->
     <include package='.viewlets' />
 
+<<<<<<< HEAD
     <!-- Contents -->
     <include package='.content' />
 
 </configure>
+=======
+    <!-- Conteudos -->
+    <include package='.content' />
+</configure>
+>>>>>>> fb7a27254e2b21d92b617f9f535916852887ed1d

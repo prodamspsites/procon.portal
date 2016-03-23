@@ -44,6 +44,7 @@ setup(
     zip_safe=False,
     install_requires=[
         'procon.tema',
+        'collective.cover',
         'collective.nitf',
         'collective.cover',
         'sc.social.like',
