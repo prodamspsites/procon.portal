@@ -7,7 +7,7 @@ from pymongo import MongoClient
 
 
 class Consumidor(BrowserView):
-    diretorio = "Consumidor"
+    diretorio = "Categorias"
 
     def criaDiretorio(self):
         """ cria diretorios para consumidor """
@@ -36,21 +36,24 @@ class Consumidor(BrowserView):
                 url = categoria['url']
                 categoria = categoria['category']
                 print 'criado objeto de url' + url
-                createContentInContainer(folder,
-                                         'Link',
-                                         title=nome,
-                                         remoteUrl=url,
-                                         categoria=categoria
-                                         )
+                objeto = createContentInContainer(folder,
+                                                  'Link',
+                                                  title=nome,
+                                                  remoteUrl=url,
+                                                  categoria=categoria
+                                                  )
+                self.portal.portal_workflow.doActionFor(objeto, 'publish')
 
     def categorias(self):
         """ categorias do site consumidor.gov.br """
-        client = MongoClient()
-        db = client.consumidor
-
-        client = MongoClient()
-        db = client.consumidor
-        categorias = db.empresas.find()
+        try:
+            # client = MongoClient("prodam.mongodb", 80)
+            client = MongoClient()
+            db = client.consumidor
+            categorias = db.empresas.find()
+        except Exception, ex:
+            print ex
+        print categorias
         return categorias
 
     def consulta(self):

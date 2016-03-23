@@ -22,7 +22,7 @@
       />
 
   <browser:page
-    name="consumidor"
+    name="categorias"
     for="*"
     permission="zope2.View"
     class=".consumidor.Consumidor"
