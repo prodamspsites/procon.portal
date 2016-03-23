@@ -42,7 +42,7 @@ class Consumidor(BrowserView):
                                                   remoteUrl=url,
                                                   categoria=categoria
                                                   )
-                self.portal.portal_workflow.doActionFor(objeto, 'publish')
+                portal.portal_workflow.doActionFor(objeto, 'publish')
 
     def categorias(self):
         """ categorias do site consumidor.gov.br """
