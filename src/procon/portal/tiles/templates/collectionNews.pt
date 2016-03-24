@@ -53,6 +53,11 @@
           <div class="noticiasColuna">
           <!-- Primeira notícia de destaque -->
           <div class="firstItem" tal:condition="results" tal:define="obj python:results[0].getObject()">
+            <tal:notImage condition="not:python:view.thumbnail(obj) ">
+              <a tal:attributes="href obj/absolute_url">
+                <img src="++theme++procon/img/imgNoticiasPadra.jpg"/>
+              </a>
+            </tal:notImage>
             <tal:hasImage condition="python:view.thumbnail(obj)">
               <tal:image define="thumbnail python:view.thumbnail(obj)">
                 <a tal:attributes="href obj/absolute_url">
