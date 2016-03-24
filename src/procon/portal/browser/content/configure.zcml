@@ -26,7 +26,6 @@
     for="*"
     permission="zope2.View"
     class=".consumidor.Consumidor"
-    layer="procon.portal.interfaces.IProdamPortal"
     template="templates/consumidor.pt"
     />
 
