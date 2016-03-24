@@ -47,4 +47,13 @@
         permission="zope2.View"
         />
 
+    <browser:viewlet
+        name="procon.duvidas"
+        manager="plone.app.layout.viewlets.interfaces.IBelowContentTitle"
+        class=".duvidas.Duvidas"
+        permission="zope2.View"
+        layer="procon.portal.interfaces.IProdamPortal"
+        template="templates/duvidas.pt"
+    />
+
 </configure>

@@ -26,6 +26,7 @@
   <include package=".browser" />
   <include package=".portlets" />
   <include package=".tiles" />
+  <include package=".scheduler" />
 
   <!-- Registra pasta de elementos estaticos -->
   <browser:resourceDirectory
