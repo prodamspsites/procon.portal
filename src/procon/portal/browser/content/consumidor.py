@@ -25,10 +25,15 @@ class Consumidor(BrowserView):
 
     def montaEstrutura(self):
             portal = api.portal.get()
-            portal.invokeFactory('Folder', self.diretorio)
-            consumidor = portal[self.diretorio]
-            print "criado diretorio" + self.diretorio
-            consumidor.reindexObject()
+            ids = portal[self.diretorio].objectIds()
+            ids = portal[self.diretorio].keys()
+            ids = list(ids)
+            portal[self.diretorio].manage_delObjects(ids)
+
+            # portal.invokeFactory('Folder', self.diretorio)
+            # consumidor = portal[self.diretorio]
+            # print "criado diretorio" + self.diretorio
+            # consumidor.reindexObject()
             folder = portal[self.diretorio]
             categorias = self.categorias()
             for categoria in categorias:
