@@ -47,9 +47,6 @@ class Duvidas(ViewletBase):
         """ categorias do site consumidor.gov.br """
         client = MongoClient()
         db = client.consumidor
-
-        client = MongoClient()
-        db = client.consumidor
         categorias = db.empresas.find()
         return categorias
 

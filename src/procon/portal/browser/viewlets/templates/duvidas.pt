@@ -4,4 +4,15 @@
   <input type="hidden" id="project-id">
   <input type="submit" class="btnBuscar" value="BUSCAR" />
 </div>
+<div class="divRedireciona">
+   <p>A empresa que você buscou está cadastrada no site consumidor.gov.br onde você pode se comunicar diretamente com as empresas participantes que se comprometeram a receber, analisar e responder as reclamações de seus consumidores em até 10 dias.</p>
+   <p><strong>Clique no botão abaixo para ser redirecionado no site e continuar com a sua reclamação.</strong></p>
+   <a href="#" target="_blank" class="linkRedireciona">CLIQUE AQUI PARA SER REDIRECIONADO</a>
+   <span class="imgSeta"></span>
+   <span class="imgConsumidor"></span>
+   <p><strong>Caso você já tenha reclmado no site do consumidor.gov.br e seu problema não tenha sido solucionado, preencha o campo abaixo com o númedo do protocolo do consumidor.gov.br e prossiga com a reclamação no Procon Paulistano.</strong></p>
+   <div class="divProtocolo">
+      <input class="inputProtocolo" /><input type="submit"  class="btnProsseguir" />
+   </div>
+</div>
 </tal:Form>
