@@ -2,7 +2,7 @@
 <div class="form-group">
   <input id="project" placeholder="Digite o nome da empresa que deseja reclamar">
   <input type="hidden" id="project-id">
-  <input type="submit" class="btnBuscar" value="BUSCAR" />
+  <input type="submit" class="btnBuscar disabled" value="BUSCAR"  disabled />
 </div>
 <div class="divRedireciona">
    <p>A empresa que você buscou está cadastrada no site consumidor.gov.br onde você pode se comunicar diretamente com as empresas participantes que se comprometeram a receber, analisar e responder as reclamações de seus consumidores em até 10 dias.</p>
