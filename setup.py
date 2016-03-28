@@ -44,6 +44,7 @@ setup(
     zip_safe=False,
     install_requires=[
 	'Products.PloneFormGen',        
+	'collective.schedule',        
 	'procon.tema',
         'collective.cover',
         'collective.nitf',
