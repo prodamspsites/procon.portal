@@ -1,0 +1,19 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      tal:omit-tag=""
+      i18n:domain="prodam.portal">
+<dl class="portlet">
+<div id="divSidebar">
+  <h2>Serviços</h2>
+  <ul class="lstServicos">
+    <tal:duvidas tal:condition="view/getDuvidas">
+      <li class="itemDuvidas"><a href="#" tal:attributes="href view/getDuvidasUrl" title="Tire suas dúvidas">Tire suas dúvidas</a></li>
+    </tal:duvidas>
+    <tal:reclamacoes tal:condition="view/getReclamacoes">
+      <li class="itemReclamacao"><a href="#" tal:attributes="href view/getReclamacoesUrl" title="Faça sua reclamação">Faça sua reclamação</a></li>
+    </tal:reclamacoes>
+  </ul>
+</div></dl>
+</html>
+

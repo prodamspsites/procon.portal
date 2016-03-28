@@ -45,6 +45,10 @@ setup(
     install_requires=[
         'procon.tema',
         'pymongo',
+	'Products.PloneFormGen',        
+	'collective.schedule',        
+	'procon.tema',
+        'collective.cover',
         'collective.nitf',
         'collective.cover',
         'sc.social.like',

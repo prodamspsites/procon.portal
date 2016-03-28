@@ -1,0 +1,25 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      tal:omit-tag=""
+      i18n:domain="prodam.portal">
+<dl class="portlet" tal:condition="view/getNewsItems">
+<div id="divSidebar">
+  <h3 class="noticiasTitulo"><span tal:content="view/getTitle" /></h3>
+  <ul class="lstNoticias">
+    <tal:noticias tal:define="noticias view/getNewsItems" tal:repeat="noticia noticias">
+      <li class="itemNoticias">
+        <a href="#" tal:attributes="href python:noticia.getObject().absolute_url();
+                                    title noticia/Title"
+                    tal:content="noticia/Title">Notícia 1</a>
+      </li>
+    </tal:noticias>
+    <tal:footer tal:condition="view/showFooter">
+      <div class="footerNoticias">
+        <h3><a href="" tal:attributes="href view/getFooterUrl" tal:content="view/getFooterText" /></h3>
+      </div>
+    </tal:footer>
+  </ul>
+</div></dl>
+</html>
+
