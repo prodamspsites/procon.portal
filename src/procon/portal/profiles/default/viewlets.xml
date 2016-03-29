@@ -9,6 +9,7 @@
 
   <order manager="plone.portalheader" skinname="*">
     <viewlet name="procon.logo.principal" />
+    <viewlet name="procon.social" />
     <viewlet name="procon.logo.negocios" />
     <viewlet name="procon.navegacao.horizontal" />
     <viewlet name="procon.path_bar" />
