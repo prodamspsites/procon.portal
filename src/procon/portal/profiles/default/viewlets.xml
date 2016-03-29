@@ -5,6 +5,7 @@
 
   <order manager="plone.belowcontenttitle" skinname="*">
     <viewlet name="procon.duvidas" />
+    <viewlet name="procon.socialShare" />
   </order>
 
   <order manager="plone.portalheader" skinname="*">

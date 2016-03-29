@@ -63,4 +63,13 @@
         template="templates/duvidas.pt"
     />
 
+    <browser:viewlet
+        name="procon.socialShare"
+        manager="plone.app.layout.viewlets.interfaces.IBelowContentTitle"
+        class=".viewlets.DefaultViewlet"
+        permission="zope2.View"
+        layer="procon.portal.interfaces.IProdamPortal"
+        template="templates/socialShare.pt"
+    />
+
 </configure>
