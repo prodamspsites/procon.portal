@@ -11,9 +11,6 @@
       <metal:block define-macro="main">
         <div class="wrap">
           <h1 class="tituloNoticias">Notícias</h1>
-          <div class="wrapSocial">
-            <div tal:replace="structure provider:plone.belowcontenttitle" />
-          </div>
         <article>
             <h2 class="subTitNoticias" tal:content="context/Title | nothing">Template de notícias</h2>
             <h3 class="titLinhaFinaNot" tal:content="context/Description | nothing">Descrição</h3>
@@ -35,6 +32,9 @@
 
               <div class="autor">Por
                 <strong tal:content="context/autor | string:Redação" />
+              </div>
+              <div class="wrapSocial">
+                <div tal:replace="structure provider:plone.belowcontenttitle" />
               </div>
               <tal:hasImage condition="python:context.image">
                 <div class="imgNoticia" tal:define="scales python:context.restrictedTraverse('@@images');
