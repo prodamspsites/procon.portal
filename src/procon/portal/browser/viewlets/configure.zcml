@@ -11,7 +11,14 @@
         layer="procon.portal.interfaces.IProdamPortal"
         template="templates/logo.pt"
     />
-
+     <browser:viewlet
+        name="procon.social"
+        manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+        class=".viewlets.DefaultViewlet"
+        permission="zope2.View"
+        layer="procon.portal.interfaces.IProdamPortal"
+        template="templates/social.pt"
+    />
      <browser:viewlet
         name="procon.logo.negocios"
         manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
