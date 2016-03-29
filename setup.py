@@ -46,6 +46,7 @@ setup(
         'procon.tema',
         'pymongo',
         'collective.schedule',
+        'collective.cover',
         'collective.nitf',
         'sc.social.like',
         'five.pt',
