@@ -44,6 +44,8 @@ setup(
     zip_safe=False,
     install_requires=[
         'procon.tema',
+        'pymongo',
+        'collective.schedule',
         'collective.nitf',
         'sc.social.like',
         'five.pt',
