@@ -27,6 +27,10 @@
  <property
     name="model_source">&lt;model xmlns:i18n="http://xml.zope.org/namespaces/i18n" xmlns:security="http://namespaces.plone.org/supermodel/security" xmlns:marshal="http://namespaces.plone.org/supermodel/marshal" xmlns:form="http://namespaces.plone.org/supermodel/form" xmlns="http://namespaces.plone.org/supermodel/schema"&gt;
     &lt;schema&gt;
+      &lt;field name="pergunta" type="plone.app.textfield.RichText"&gt;
+        &lt;description/&gt;
+        &lt;title&gt;Pergunta&lt;/title&gt;
+      &lt;/field&gt;
       &lt;field name="resposta" type="plone.app.textfield.RichText"&gt;
         &lt;description/&gt;
         &lt;title&gt;Resposta&lt;/title&gt;

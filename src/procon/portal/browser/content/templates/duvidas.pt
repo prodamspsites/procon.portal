@@ -22,10 +22,8 @@
                tal:condition="python:item.portal_type=='pergunta'">
 
                   <h3><span tal:content="structure python:item.getObject().pergunta.output" /></h3>
-                  <div class="textoAccordeon" tal:define="itempath python:'/'.join(obj.getPhysicalPath());
-                                                          resposta python:obj.portal_catalog(path=itempath, portal_type='resposta')"
-                                              tal:condition="resposta">
-                    <span tal:replace="structure python:resposta[0].getObject().resposta.output" />
+                  <div class="textoAccordeon">
+                    <span tal:replace="structure python:obj.resposta.output" />
                     <form class="respostaUtil">
                       <fieldset><legend>Resposta foi útil</legend>
                         <label>Esta resposta foi útil: <input type="radio"><span>Sim</span><input type="radio"><span>Não</span></label>
