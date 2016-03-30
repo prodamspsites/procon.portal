@@ -14,6 +14,7 @@
     <viewlet name="procon.logo.negocios" />
     <viewlet name="procon.navegacao.horizontal" />
     <viewlet name="procon.path_bar" />
+    <viewlet name="procon.searchbox"/>
   </order>
 
   <order manager="plone.portalfooter" skinname="*">
@@ -21,7 +22,7 @@
   </order>
 
   <hidden manager="plone.portalheader" skinname="*" remove="True" purge="True">
-    <viewlet name="plone.searchbox" remove="True" />
+      <viewlet name="plone.searchbox" />
   </hidden>
 
   <hidden manager="plone.abovecontent" skinname="*">
