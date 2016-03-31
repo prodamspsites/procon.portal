@@ -7,47 +7,40 @@ from pymongo import MongoClient
 
 
 class Consumidor(BrowserView):
-    diretorio = "Categorias"
+    diretorio = "categoria"
 
     def criaDiretorio(self):
         """ cria diretorios para consumidor """
         portal = api.portal.get()
         if self.diretorio not in portal.objectIds():
-            self.montaEstrutura()
+            self.montaEstrutura(portal)
         else:
             del portal[self.diretorio]
-            self.montaEstrutura()
+            self.montaEstrutura(portal)
 
     def consultaDiretorio(self):
         """ consulta diretorios para consumidor """
         self.request.response.setHeader("Content-type", "application/json")
         return self.consulta()
 
-    def montaEstrutura(self):
-            portal = api.portal.get()
-            ids = portal[self.diretorio].objectIds()
-            ids = portal[self.diretorio].keys()
-            ids = list(ids)
-            portal[self.diretorio].manage_delObjects(ids)
-
-            # portal.invokeFactory('Folder', self.diretorio)
-            # consumidor = portal[self.diretorio]
-            # print "criado diretorio" + self.diretorio
-            # consumidor.reindexObject()
-            folder = portal[self.diretorio]
-            categorias = self.categorias()
-            for categoria in categorias:
-                nome = categoria['name']
-                url = categoria['url']
-                categoria = categoria['category']
-                print 'criado objeto de url' + url
-                objeto = createContentInContainer(folder,
-                                                  'Link',
-                                                  title=nome,
-                                                  remoteUrl=url,
-                                                  categoria=categoria
-                                                  )
-                portal.portal_workflow.doActionFor(objeto, 'publish')
+    def montaEstrutura(self, portal):
+        portal.invokeFactory('Folder', self.diretorio)
+        diretorio = portal[self.diretorio]
+        diretorio.reindexObject()
+        categorias = self.categorias()
+        folder = portal[self.diretorio]
+        for categoria in categorias:
+            nome = categoria['name']
+            url = categoria['url']
+            categoria = categoria['category']
+            print 'criado objeto de url' + url
+            objeto = createContentInContainer(folder,
+                                              'Link',
+                                              title=nome,
+                                              remoteUrl=url,
+                                              categoria=categoria
+                                              )
+            portal.portal_workflow.doActionFor(objeto, 'publish')
 
     def categorias(self):
         """ categorias do site consumidor.gov.br """
