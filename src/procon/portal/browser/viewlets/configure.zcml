@@ -11,7 +11,14 @@
         layer="procon.portal.interfaces.IProdamPortal"
         template="templates/logo.pt"
     />
-
+     <browser:viewlet
+        name="procon.social"
+        manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+        class=".viewlets.DefaultViewlet"
+        permission="zope2.View"
+        layer="procon.portal.interfaces.IProdamPortal"
+        template="templates/social.pt"
+    />
      <browser:viewlet
         name="procon.logo.negocios"
         manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
@@ -55,5 +62,22 @@
         layer="procon.portal.interfaces.IProdamPortal"
         template="templates/duvidas.pt"
     />
+
+    <browser:viewlet
+        name="procon.socialShare"
+        manager="plone.app.layout.viewlets.interfaces.IBelowContentTitle"
+        class=".viewlets.DefaultViewlet"
+        permission="zope2.View"
+        layer="procon.portal.interfaces.IProdamPortal"
+        template="templates/socialShare.pt"
+    />
+
+    <browser:viewlet
+        name="procon.searchbox"
+        manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+        class="plone.app.layout.viewlets.common.SearchBoxViewlet"
+        permission="zope2.View"
+        template="templates/searchbox.pt"
+        />
 
 </configure>

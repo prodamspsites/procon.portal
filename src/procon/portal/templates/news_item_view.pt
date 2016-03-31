@@ -33,6 +33,9 @@
               <div class="autor">Por
                 <strong tal:content="context/autor | string:Redação" />
               </div>
+              <div class="wrapSocial">
+                <div tal:replace="structure provider:plone.belowcontenttitle" />
+              </div>
               <tal:hasImage condition="python:context.image">
                 <div class="imgNoticia" tal:define="scales python:context.restrictedTraverse('@@images');
                                   imageLarge python:scales.scale('image', width=705, height=400)">
