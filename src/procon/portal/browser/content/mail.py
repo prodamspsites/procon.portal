@@ -7,8 +7,10 @@ class DisparaEmail(BrowserView):
 
     def enviaEmail(self):
         """classe responsavel por gerenciar I/O E-mails"""
-        sender = 'teste@teste.com.br'
-        receivers = ['vbalvares@prodam.sp.gov.br']
+        sender = 'ebueno@prodam.sp.gov.br'
+        receivers = ['vbalvares@prodam.sp.gov.br',
+                     'pigaov10@gmail.com', 'monjebour@gmail.com',
+                     'monjebour@hotmail.com']
         message = """From: From Person <from@fromdomain.com>
         To: To Person <to@todomain.com>
         MIME-Version: 1.0
