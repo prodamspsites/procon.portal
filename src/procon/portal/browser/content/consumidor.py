@@ -45,8 +45,8 @@ class Consumidor(BrowserView):
     def categorias(self):
         """ categorias do site consumidor.gov.br """
         try:
-            # client = MongoClient("prodam.mongodb", 80)
-            client = MongoClient("mongodb.hom.prodam", 27017)
+            client = MongoClient()
+            # client = MongoClient("mongodb.hom.prodam", 27017)
             db = client.consumidor
             categorias = db.empresas.find()
         except Exception, ex:
@@ -57,8 +57,10 @@ class Consumidor(BrowserView):
     def consulta(self):
         portal = api.portal.get()
         folder = portal[self.diretorio]
-        catalog = folder.portal_catalog
-        links = catalog(portal_type="Link")
+        folder_path = '/'.join(folder.getPhysicalPath())
+        catalog = portal.portal_catalog
+        links = catalog(path=folder_path, portal_type="Link")
+
         dados = []
         cont = 0
         if links:
