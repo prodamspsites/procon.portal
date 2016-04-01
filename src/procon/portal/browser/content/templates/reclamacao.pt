@@ -1,0 +1,6 @@
+
+<tal:noticias tal:define="reclamacoes view/buscaReclamacao" tal:repeat="reclamacao reclamacoes">
+    <tal:reclamacao tal:define="obj python:reclamacao.getObject()">
+      <span tal:content="python:obj.Title()"/> <br>
+    </tal:reclamacao>
+</tal:noticias>

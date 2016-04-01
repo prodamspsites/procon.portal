@@ -45,4 +45,13 @@
       class=".colecao.Colecao"
       />
 
+      <browser:page
+        name="reclamacao"
+        permission="zope2.View"
+        for="*"
+        layer="procon.portal.interfaces.IProdamPortal"
+        template="templates/reclamacao.pt"
+        class=".reclamacao.Reclamacao"
+        />
+
 </configure>
