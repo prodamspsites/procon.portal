@@ -7,21 +7,13 @@ class DisparaEmail(BrowserView):
 
     def enviaEmail(self):
         """classe responsavel por gerenciar I/O E-mails"""
-        sender = 'ebueno@prodam.sp.gov.br'
-        receivers = ['vbalvares@prodam.sp.gov.br',
-                     'pigaov10@gmail.com', 'monjebour@gmail.com',
-                     'monjebour@hotmail.com']
-        message = """From: From Person <from@fromdomain.com>
-        To: To Person <to@todomain.com>
-        MIME-Version: 1.0
-        Content-type: text/html
-        Subject: SMTP HTML e-mail test
-
-        Teste E-mail
-
-        <b>This is HTML message.</b>
-        <h1>This is headline.</h1>
-        """
+        sender = 'pp9810@prefeitura.sp.gov.br'
+        receivers = ['pigaov10@gmail.com',
+                     'eabueno@gmail.com']
+        message = """From: PP9810 <pp9810@prefeitura.sp.gov.br>
+                     \nSubject: SMTP HTML e-mail test
+                    \n\nTeste E-mail
+                  """
         try:
             smtpObj = smtplib.SMTP('smtpcorp.prodam', 25)
             smtpObj.sendmail(sender, receivers, message)
