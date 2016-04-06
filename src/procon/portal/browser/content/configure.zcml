@@ -54,4 +54,13 @@
         class=".reclamacao.Reclamacao"
         />
 
+        <browser:page
+          name="pergunta"
+          permission="zope2.View"
+          for="*"
+          layer="procon.portal.interfaces.IProdamPortal"
+          template="templates/pergunta.pt"
+          class=".pergunta.Pergunta"
+          />
+
 </configure>
