@@ -27,15 +27,21 @@
                     <form class="respostaUtil">
                       <fieldset><legend>Resposta foi útil</legend>
                         <label>Esta resposta foi útil: <input type="radio" name="duvidas_util" class="duvida_util" value='sim'><span>Sim</span><input type="radio" name="duvidas_util" class="duvida_util" value='nao'><span>Não</span></label>
-                        <label>assunto
+                        <label class="labelMotivo">Qual o motivo?
                           <select>
-                            <option value="assunto1">Assunto 1</option>
-                            <option value="assunto2">Assunto 2</option>
+                            <option>Selecione uma opção</option>
+                            <option value="assunto1">A resposta não está completa</option>
+                            <option value="assunto2">A resposta é incompatível com a pergunta</option>
+                            <option value="assunto3">A resposta está incorreta</option>
+                            <option value="assunto5">A resposta está confusa</option>
+                            <option value="assunto5">A resposta usa muitos termos técnicos</option>
                           </select>
                         </label>
-                        <label>
+                        <label class="labelComent">
+                          Se desejar, envie comentários adicionais:
                           <textarea class="mensagem" />
                         </label>
+                        <input type="submit" id="enviarDuvida" class="enviaDuvida" value="ENVIAR" />
                       </fieldset>
                     </form>
                     <p class="agradece">O Procon Paulistano agradece sua colaboração. <strong>Você pode enviar uma dúvida usando o formulário no final da página.</strong></p>
