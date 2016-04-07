@@ -4,17 +4,20 @@ from pymongo import MongoClient
 from datetime import datetime
 
 
-class Pergunta(BrowserView):
+class BuscarDuvidas(BrowserView):
 
-    def buscarPerguntaRespostaMongoDb(self):
+    def buscarPerguntaResposta(self):
         """ buscar registros mongodb do tire suas dúvidas """
         try:
             client = MongoClient()
             db = client.consumidor
-            perguntas = db.perguntas.find()
+            perguntas = db.tbl_replica.find()
             return perguntas
         except Exception, ex:
             print ex
+
+
+class SalvarDuvidas(BrowserView):
 
     def salvarPerguntaResposta(self, id_plone,
                                util,

@@ -29,15 +29,15 @@
                         <label>Esta resposta foi útil: <input type="radio" name="duvidas_util" class="duvida_util" value='sim'><span>Sim</span><input type="radio" name="duvidas_util" class="duvida_util" value='nao'><span>Não</span></label>
                         <div class="replica" style="display:none;">
                           <label class="labelMotivo">Qual o motivo?
-                            <select class="assunto_opcao">
-                              <option value="0">Selecione uma opção</option>
+                            <select id="assunto_opcao">
+                              <option value="assunto0">Selecione uma opção</option>
                               <option value="assunto1">A resposta não está completa</option>
                               <option value="assunto2">A resposta é incompatível com a pergunta</option>
                               <option value="assunto3">A resposta está incorreta</option>
                               <option value="assunto5">A resposta está confusa</option>
                               <option value="assunto5">A resposta usa muitos termos técnicos</option>
                             </select>
-                            <input type="hidden" value="" id="form_usuario_duvida" tal:attributes="value python:view.getUser" />
+                            <input type="hidden" value="" id="form_usuario_duvida" tal:attributes="value python:view.getUser()" />
                           </label>
                           <label class="labelComent">
                             Se desejar, envie comentários adicionais:

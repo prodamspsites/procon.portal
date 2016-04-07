@@ -1,0 +1,34 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="plone">
+
+<body>
+
+  <div id="content-core" metal:fill-slot="main">
+    <!-- iteração de reclamação retorna lista de inputs -->
+    <table class="table table-striped" border="1" style="font-size:18px">
+      <tr>
+        <th>PERGUNTA</th>
+        <th>RESPOSTA</th>
+        <th>ASSUNTO</th>
+        <th>COMENTARIO</th>
+        <th>USUARIO</th>
+      </tr>
+      <tal:dados tal:define="perguntas view/buscarPerguntaResposta" tal:repeat="pergunta perguntas">
+          <tr>
+            <td><tal:inputs tal:content="structure python:pergunta['pergunta']"></td>
+            <td><tal:inputs tal:content="structure python:pergunta['resposta']"></td>
+            <td><tal:inputs tal:content="structure python:pergunta['assunto']"></td>
+            <td><tal:inputs tal:content="structure python:pergunta['mensagem']"></td>
+            <td><tal:inputs tal:content="structure python:pergunta['usuario']"></td>
+          </tr>
+      </tal:dados>
+    </table>
+  </div>
+
+</body>
+</html>
