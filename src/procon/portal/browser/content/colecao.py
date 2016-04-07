@@ -23,6 +23,13 @@ class Colecao(BrowserView):
         except:
             filtro = None
 
-        items = self.context.portal_catalog(path=path, portal_type="pergunta", SearchableText=filtro)
+        items = self.context.portal_catalog(path=path,
+                                            portal_type="pergunta",
+                                            SearchableText=filtro)
 
         return items
+
+    def getUser(self):
+        user = api.user.get_current()
+        user.getProperty('name')
+        return user

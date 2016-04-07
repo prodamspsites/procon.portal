@@ -16,20 +16,27 @@ class Pergunta(BrowserView):
         except Exception, ex:
             print ex
 
-    def salvarPerguntaRespostaMongoDb(self, id_plone, util, pergunta, usuario, resposta, assunto, mensagem):
+    def salvarPerguntaResposta(self, id_plone,
+                               util,
+                               pergunta,
+                               usuario,
+                               resposta,
+                               assunto,
+                               mensagem):
+
         """ salvar registros mongodb do tire suas duvidas """
         data = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
         try:
             client = MongoClient()
             db = client.consumidor
-            db.replica.insert({"id_plone": id_plone,
-                               "util": util,
-                               "pergunta": pergunta,
-                               "resposta": resposta,
-                               "data": data,
-                               "assunto": assunto,
-                               "mensagem": mensagem,
-                               "usuario": usuario})
+            db.tbl_replica.insert({"id_plone": id_plone,
+                                   "util": util,
+                                   "pergunta": pergunta,
+                                   "resposta": resposta,
+                                   "data": data,
+                                   "assunto": assunto,
+                                   "mensagem": mensagem,
+                                   "usuario": usuario})
         except Exception, ex:
             print ex
 
@@ -37,15 +44,16 @@ class Pergunta(BrowserView):
         radio_util = self.getRadio()
         pergunta = self.getPergunta()
         resposta = self.getResposta()
+        assunto = self.getAssunto()
+        mensagem = self.getMensagem()
+        usuario = self.getUsuario()
 
-        print radio_util
-        print pergunta
-        print resposta
-
-        if radio_util and pergunta and resposta:
-            self.buscarPerguntaRespostaMongoDb()
-        else:
-            self.salvarPerguntaRespostaMongoDb("id-3", 1, "perg", "pato", "resp", "assu", "msg")
+        self.salvarPerguntaResposta("id-all", radio_util,
+                                    pergunta,
+                                    usuario,
+                                    resposta,
+                                    assunto,
+                                    mensagem)
 
     def getRadio(self):
         try:
@@ -64,6 +72,27 @@ class Pergunta(BrowserView):
     def getResposta(self):
         try:
             req = self.request.form['resposta']
+        except:
+            req = None
+        return req
+
+    def getAssunto(self):
+        try:
+            req = self.request.form['assunto']
+        except:
+            req = None
+        return req
+
+    def getMensagem(self):
+        try:
+            req = self.request.form['mensagem']
+        except:
+            req = None
+        return req
+
+    def getUsuario(self):
+        try:
+            req = self.request.form['usuario']
         except:
             req = None
         return req
