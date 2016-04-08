@@ -21,12 +21,30 @@
                tal:define="obj item/getObject"
                tal:condition="python:item.portal_type=='pergunta'">
 
-                  <h3><span tal:content="structure python:item.getObject().pergunta.output" /></h3>
+                  <h3 data-id="" tal:attributes="data-id item/id; data-categoria python:context.aq_parent.id"><span tal:content="structure python:item.getObject().pergunta.output" /></h3>
                   <div class="textoAccordeon">
-                    <span tal:replace="structure python:obj.resposta.output" />
+                    <span class="resposta_duvida" tal:content="structure python:obj.resposta.output" />
                     <form class="respostaUtil">
                       <fieldset><legend>Resposta foi útil</legend>
-                        <label>Esta resposta foi útil: <input type="radio"><span>Sim</span><input type="radio"><span>Não</span></label>
+                        <label>Esta resposta foi útil: <input type="radio" name="duvidas_util" class="duvida_util" value='sim'><span>Sim</span><input type="radio" name="duvidas_util" class="duvida_util" value='nao'><span>Não</span></label>
+                        <div class="replica" style="display:none;">
+                          <label class="labelMotivo">Qual o motivo?
+                            <select id="assunto_opcao">
+                              <option value="assunto0">Selecione uma opção</option>
+                              <option value="assunto1">A resposta não está completa</option>
+                              <option value="assunto2">A resposta é incompatível com a pergunta</option>
+                              <option value="assunto3">A resposta está incorreta</option>
+                              <option value="assunto5">A resposta está confusa</option>
+                              <option value="assunto5">A resposta usa muitos termos técnicos</option>
+                            </select>
+                            <input type="hidden" value="" id="form_usuario_duvida" tal:attributes="value python:view.getUser()" />
+                          </label>
+                          <label class="labelComent">
+                            Se desejar, envie comentários adicionais:
+                            <textarea class="mensagem" />
+                          </label>
+                          <input type="button" id="enviarDuvida" class="enviaDuvida" value="ENVIAR" />
+                        </div>
                       </fieldset>
                     </form>
                     <p class="agradece">O Procon Paulistano agradece sua colaboração. <strong>Você pode enviar uma dúvida usando o formulário no final da página.</strong></p>

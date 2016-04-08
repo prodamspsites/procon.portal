@@ -25,28 +25,30 @@ class Consumidor(BrowserView):
 
     def montaEstrutura(self, portal):
         portal.invokeFactory('Folder', self.diretorio)
-        diretorio = portal[self.diretorio]
-        diretorio.reindexObject()
-        categorias = self.categorias()
-        folder = portal[self.diretorio]
-        for categoria in categorias:
-            nome = categoria['name']
-            url = categoria['url']
-            categoria = categoria['category']
-            print 'criado objeto de url' + url
-            objeto = createContentInContainer(folder,
-                                              'Link',
-                                              title=nome,
-                                              remoteUrl=url,
-                                              categoria=categoria
-                                              )
-            portal.portal_workflow.doActionFor(objeto, 'publish')
+        if self.diretorio in portal.objectIds():
+            diretorio = portal[self.diretorio]
+            diretorio.reindexObject()
+            portal.portal_workflow.doActionFor(diretorio, 'publish')
+            categorias = self.categorias()
+            folder = portal[self.diretorio]
+            for categoria in categorias:
+                nome = categoria['name']
+                url = categoria['url']
+                categoria = categoria['category']
+                print 'criado objeto de url' + url
+                objeto = createContentInContainer(folder,
+                                                  'Link',
+                                                  title=nome,
+                                                  remoteUrl=url,
+                                                  categoria=categoria
+                                                  )
+                portal.portal_workflow.doActionFor(objeto, 'publish')
 
     def categorias(self):
         """ categorias do site consumidor.gov.br """
         try:
-            # client = MongoClient("prodam.mongodb", 80)
             client = MongoClient()
+            # client = MongoClient("mongodb.hom.prodam", 27017)
             db = client.consumidor
             categorias = db.empresas.find()
         except Exception, ex:
@@ -56,17 +58,21 @@ class Consumidor(BrowserView):
 
     def consulta(self):
         portal = api.portal.get()
-        catalog = portal.portal_catalog
-        links = catalog(portal_type="Link")
-        dados = []
-        cont = 0
-        if links:
-            for i in links:
-                result = i.getObject()
-                dados.append({'titulo': result.title,
-                              'categoria': result.categoria,
-                              'url': result.remoteUrl
-                              })
-                cont = cont + 1
-            dados_to_json = json.dumps(dados, ensure_ascii=False)
-            return dados_to_json
+        if self.diretorio in portal.objectIds():
+            folder = portal[self.diretorio]
+            folder_path = '/'.join(folder.getPhysicalPath())
+            catalog = portal.portal_catalog
+            links = catalog(path=folder_path, portal_type="Link")
+
+            dados = []
+            cont = 0
+            if links:
+                for i in links:
+                    result = i.getObject()
+                    dados.append({'titulo': result.title,
+                                  'categoria': result.categoria,
+                                  'url': result.remoteUrl
+                                  })
+                    cont = cont + 1
+                dados_to_json = json.dumps(dados, ensure_ascii=False)
+                return dados_to_json

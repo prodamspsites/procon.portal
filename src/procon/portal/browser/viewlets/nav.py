@@ -40,7 +40,7 @@ class Navegacao(ViewletBase):
 
     def getMenu(self):
         portal = api.portal.get()
-        objs = portal.listFolderContents(contentFilter={"portal_type": "Folder"})
+        objs = portal.listFolderContents(contentFilter={"portal_type": ["Folder", "Link"]})
 
         return objs
 

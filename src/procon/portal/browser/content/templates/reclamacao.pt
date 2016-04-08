@@ -1,0 +1,9 @@
+
+<!-- iteração de reclamação retorna lista de inputs -->
+<tal:dados tal:define="reclamacoes view/buscaReclamacao" tal:repeat="reclamacao reclamacoes">
+
+<!-- aqui nós iteramos os inputs -->
+    <tal:inputs tal:repeat="input reclamacao">
+        <span tal:content="input" />
+    </tal:inputs>
+</tal:dados>
