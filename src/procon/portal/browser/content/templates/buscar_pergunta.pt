@@ -59,7 +59,7 @@
 
         </table>
       </div>
-      <tal:result tal:condition="perguntas" tal:define="perguntas view/buscarPerguntaResposta" tal:repeat="pergunta perguntas">
+      <tal:result tal:condition="perguntas" tal:define="perguntas view/buscarPerguntaResposta">
       <div class="paginationReclamacoes">
         <span class="next">
             <a href="#">Próximos 10 itens»
@@ -81,6 +81,11 @@
     </div>
   </div>
   <!--RECLAMACOES-->
+  <div class="teste" style="display:none;">
+      <button class="btn btn-primary" id="voltar">Voltar</button>
+      <br>
+        INFORMAÇÕES
+  </div>
 
   </div>
 
