@@ -12,8 +12,12 @@ class BuscarDuvidas(BrowserView):
             client = MongoClient()
             db = client.consumidor
             perguntas = db.tbl_replica.find()
-            return perguntas
+            if perguntas.count() < 1:
+                return False
+            else:
+                return perguntas
         except Exception, ex:
+            return False
             print ex
 
 
@@ -25,6 +29,7 @@ class SalvarDuvidas(BrowserView):
                                usuario,
                                resposta,
                                assunto,
+                               categoria,
                                mensagem):
 
         """ salvar registros mongodb do tire suas duvidas """
@@ -39,6 +44,7 @@ class SalvarDuvidas(BrowserView):
                                    "data": data,
                                    "assunto": assunto,
                                    "mensagem": mensagem,
+                                   "categoria": categoria,
                                    "usuario": usuario})
         except Exception, ex:
             print ex
@@ -50,12 +56,15 @@ class SalvarDuvidas(BrowserView):
         assunto = self.getAssunto()
         mensagem = self.getMensagem()
         usuario = self.getUsuario()
+        categoria = self.getCategoria()
 
-        self.salvarPerguntaResposta("id-all", radio_util,
+        self.salvarPerguntaResposta("id-all",
+                                    radio_util,
                                     pergunta,
                                     usuario,
                                     resposta,
                                     assunto,
+                                    categoria,
                                     mensagem)
 
     def getRadio(self):
@@ -96,6 +105,13 @@ class SalvarDuvidas(BrowserView):
     def getUsuario(self):
         try:
             req = self.request.form['usuario']
+        except:
+            req = None
+        return req
+
+    def getCategoria(self):
+        try:
+            req = self.request.form['categoria']
         except:
             req = None
         return req

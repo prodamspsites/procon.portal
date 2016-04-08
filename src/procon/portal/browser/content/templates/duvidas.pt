@@ -21,7 +21,7 @@
                tal:define="obj item/getObject"
                tal:condition="python:item.portal_type=='pergunta'">
 
-                  <h3 data-id="" tal:attributes="data-id item/id"><span tal:content="structure python:item.getObject().pergunta.output" /></h3>
+                  <h3 data-id="" tal:attributes="data-id item/id; data-categoria python:context.aq_parent.id"><span tal:content="structure python:item.getObject().pergunta.output" /></h3>
                   <div class="textoAccordeon">
                     <span class="resposta_duvida" tal:content="structure python:obj.resposta.output" />
                     <form class="respostaUtil">
