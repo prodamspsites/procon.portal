@@ -1,0 +1,49 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+<body>
+
+<metal:content-core fill-slot="content-core">
+<metal:block use-macro="context/standard_view/macros/content-core">
+
+    <metal:entries fill-slot="entries">
+    <metal:block use-macro="context/standard_view/macros/entries">
+    <metal:entry fill-slot="entry">
+    <div class="blocoNoticias">
+      <tal:hasImage condition="python:item.image"
+                    tal:define="scales python:item.getObject().restrictedTraverse('@@images');
+                                imageLarge python:scales.scale('image', width=340, height=195)">
+                  <a href="#" tal:define="obj item/getObject"
+                              tal:attributes="href obj/absolute_url">
+                    <img tal:attributes="src imageLarge/url; alt item/Title;" class="left" />
+                  </a>
+             </tal:hasImage>
+      <div class="destaqueNoticias"
+               tal:define="obj item/getObject"
+               tal:condition="python:item.portal_type=='News Item'">
+                  <time tal:define="date obj/EffectiveDate;
+                                    data python:view.getDate(date)"
+                        tal:content="data" />
+              <h2 metal:define-macro="listitem">
+                  <a href="#"  tal:attributes="href python:obj.absolute_url()" tal:content="obj/Title">
+                      Item Title
+                  </a>
+              </h2>
+              <p class="description" tal:content="obj/Description">Descrição</p>
+              </div>
+        </div>
+            <div class="visualClear"><!-- --></div>
+    </metal:entry>
+    </metal:block>
+    </metal:entries>
+
+</metal:block>
+</metal:content-core>
+
+</body>
+</html>

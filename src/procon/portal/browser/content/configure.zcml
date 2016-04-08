@@ -45,6 +45,13 @@
       class=".colecao.Colecao"
       />
 
+    <browser:page
+      name="capa_noticias_view"
+      permission="zope2.View"
+      for="plone.app.contenttypes.interfaces.ICollection"
+      template="templates/capa_noticias.pt"
+      class=".colecao.Noticias"
+      />
       <browser:page
         name="reclamacao"
         permission="zope2.View"
