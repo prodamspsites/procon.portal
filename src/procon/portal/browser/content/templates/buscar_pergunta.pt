@@ -1,0 +1,93 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="plone">
+<body>
+  <div id="content-core" metal:fill-slot="main">
+  <!--RECLAMACOES-->
+  <div class="wrapAdmin">
+    <div class="divReclamacoes">
+      <h1>Dúvidas recebidas</h1>
+
+      <div class="tableReclamacoes">
+        <table>
+          <tr>
+            <th width="12%">
+              <span>Data</span>
+              <a href="#" title="ordenar mais recente" class="setaDown active"></a>
+              <a href="#" title="ordenar mais recente" class="setaUp"></a>
+            </th>
+            <th width="13%">
+              <span>Categoria</span>
+              <a href="#" title="ordenar mais recente" class="setaDown active"></a>
+              <a href="#" title="ordenar mais recente" class="setaUp"></a>
+            </th>
+            <th width="45%">
+              <span>Pergunta</span>
+              <a href="#" title="ordenar mais recente" class="setaDown active"></a>
+              <a href="#" title="ordenar mais recente" class="setaUp"></a>
+            </th>
+            <th width="25%">
+              <span>Nome</span>
+              <a href="#" title="ordenar mais recente" class="setaDown active"></a>
+              <a href="#" title="ordenar mais recente" class="setaUp active"></a>
+            </th>
+            <th width="5%">
+              <span>Lido</span>
+              <a href="#" title="ordenar mais recente" class="setaDown active"></a>
+              <a href="#" title="ordenar mais recente" class="setaUp active"></a>
+            </th>
+          </tr>
+            <tal:empty tal:condition="not:perguntas" tal:define="perguntas view/buscarPerguntaResposta">
+                <tr>
+                  <td colspan="100%" align="center">Nenhuma dúvida encontrada</td>
+                </tr>
+            </tal:empty>
+
+            <tal:result tal:condition="perguntas" tal:define="perguntas view/buscarPerguntaResposta" tal:repeat="pergunta perguntas">
+              <tr>
+                <td><tal:inputs tal:content="structure python:pergunta['data'][:10]"></td>
+                <td><tal:inputs tal:content="structure python:pergunta['categoria']"></td>
+                <td><tal:inputs tal:content="structure python:pergunta['pergunta']"></td>
+                <td><tal:inputs tal:content="structure python:pergunta['usuario']"></td>
+                <td><input type="checkbox" value="cadastro" /></td>
+              </tr>
+            </tal:result>
+
+        </table>
+      </div>
+      <tal:result tal:condition="perguntas" tal:define="perguntas view/buscarPerguntaResposta">
+      <div class="paginationReclamacoes">
+        <span class="next">
+            <a href="#">Próximos 10 itens»
+            </a>
+        </span>
+        <span class="prev">
+            <a href="#">Próximos 10 itens»
+            </a>
+        </span>
+        <span class="current">1</span>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <a href="#">4</a>
+        <a href="#">5</a>
+        <a href="#">6</a>
+      </div>
+      </tal:result>
+      <a href="#" title="Voltar à lista de reclamações" class="voltarReclamacoes">Voltar à lista de reclamações</a>
+    </div>
+  </div>
+  <!--RECLAMACOES-->
+  <div class="teste" style="display:none;">
+      <button class="btn btn-primary" id="voltar">Voltar</button>
+      <br>
+        INFORMAÇÕES
+  </div>
+
+  </div>
+
+</body>
+</html>

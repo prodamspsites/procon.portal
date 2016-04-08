@@ -9,7 +9,7 @@ class Noticias(BrowserView):
     def getDate(self, date):
         data = DateTime(date).strftime('%d/%m/%Y')
         hora = DateTime(date).strftime('%H:%M')
-        return data + ' às ' + hora
+        return data + ' - ' + hora
 
 
 class Colecao(BrowserView):
