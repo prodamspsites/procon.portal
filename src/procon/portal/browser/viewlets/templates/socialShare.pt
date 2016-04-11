@@ -1,0 +1,16 @@
+<div tal:define="url python:context.absolute_url()" class="socialShare" >
+  <p>Compartilhar</p>
+  <ul>
+    <li class="shareFacebook">
+      <a target="_blank" href="#" tal:attributes="href string:http://www.facebook.com/sharer/sharer.php?u=${url}">
+    </li>
+
+    <li class="shareTwitter">
+      <a target="_blank" href="#" tal:attributes="href string:http://twitter.com/share?text=Im Sharing on Twitter&url=${url}"></a>
+    </li>
+
+    <li class="shareGoogle">
+      <a target="_blank" href="#" tal:attributes="href string:https://plus.google.com/share?url=${url}"></a>
+    </li>
+  </ul>
+</div>

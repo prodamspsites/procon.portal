@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<portlets
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    i18n:domain="prodam.portal">
+ <!-- Portlet type registrations -->
+ <portlet
+   addview="procon.servicos"
+   title="Portlet Serviços"
+   description=""
+   i18n:attributes="title;
+                    description"
+   >
+   <for interface="plone.app.portlets.interfaces.IColumn" />
+   <for interface="plone.app.portlets.interfaces.IDashboard" />
+ </portlet>
+
+ <portlet
+   addview="procon.noticias"
+   title="Portlet notícias"
+   description=""
+   i18n:attributes="title;
+                    description"
+   >
+   <for interface="plone.app.portlets.interfaces.IColumn" />
+   <for interface="plone.app.portlets.interfaces.IDashboard" />
+ </portlet>
+
+</portlets>

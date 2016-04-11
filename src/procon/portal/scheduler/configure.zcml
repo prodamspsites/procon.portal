@@ -1,0 +1,14 @@
+
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:cmf="http://namespaces.zope.org/cmf"
+    xmlns:schedule="http://namespaces.zope.org/schedule"
+    i18n_domain="procon.portal">
+
+  <schedule:job
+    view="categorias"
+    unit="day"
+    at="03:00"
+  />
+</configure>

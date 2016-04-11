@@ -1,0 +1,83 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="procon.portal">
+
+     <browser:viewlet
+        name="procon.logo.principal"
+        manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+        class="plone.app.layout.viewlets.common.LogoViewlet"
+        permission="zope2.View"
+        layer="procon.portal.interfaces.IProdamPortal"
+        template="templates/logo.pt"
+    />
+     <browser:viewlet
+        name="procon.social"
+        manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+        class=".viewlets.DefaultViewlet"
+        permission="zope2.View"
+        layer="procon.portal.interfaces.IProdamPortal"
+        template="templates/social.pt"
+    />
+     <browser:viewlet
+        name="procon.logo.negocios"
+        manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+        class=".viewlets.DefaultViewlet"
+        permission="zope2.View"
+        layer="procon.portal.interfaces.IProdamPortal"
+        template="templates/logo_negocios.pt"
+    />
+
+    <browser:viewlet
+        name="procon.footer"
+        manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
+        class=".viewlets.DefaultViewlet"
+        permission="zope2.View"
+        layer="procon.portal.interfaces.IProdamPortal"
+        template="templates/footer_procon.pt"
+    />
+
+    <browser:viewlet
+        name="procon.navegacao.horizontal"
+        manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+        class=".nav.Navegacao"
+        permission="zope2.View"
+        layer="procon.portal.interfaces.IProdamPortal"
+        template="templates/navegacao_horizontal.pt"
+    />
+
+    <browser:viewlet
+        name="procon.path_bar"
+        manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+        class="plone.app.layout.viewlets.common.PathBarViewlet"
+        template="templates/breadcrumbs.pt"
+        permission="zope2.View"
+        />
+
+    <browser:viewlet
+        name="procon.duvidas"
+        manager="plone.app.layout.viewlets.interfaces.IBelowContentTitle"
+        class=".duvidas.Duvidas"
+        permission="zope2.View"
+        layer="procon.portal.interfaces.IProdamPortal"
+        template="templates/duvidas.pt"
+    />
+
+    <browser:viewlet
+        name="procon.socialShare"
+        manager="plone.app.layout.viewlets.interfaces.IBelowContentTitle"
+        class=".viewlets.DefaultViewlet"
+        permission="zope2.View"
+        layer="procon.portal.interfaces.IProdamPortal"
+        template="templates/socialShare.pt"
+    />
+
+    <browser:viewlet
+        name="procon.searchbox"
+        manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+        class="plone.app.layout.viewlets.common.SearchBoxViewlet"
+        permission="zope2.View"
+        template="templates/searchbox.pt"
+        />
+
+</configure>

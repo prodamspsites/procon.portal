@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<object>
+  <order manager="plone.plonefooter" skinname="*">
+  </order>
+
+  <order manager="plone.belowcontenttitle" skinname="*">
+    <viewlet name="procon.duvidas" />
+    <viewlet name="procon.socialShare" />
+  </order>
+
+  <order manager="plone.portalheader" skinname="*">
+    <viewlet name="procon.logo.principal" />
+    <viewlet name="procon.social" />
+    <viewlet name="procon.logo.negocios" />
+    <viewlet name="procon.navegacao.horizontal" />
+    <viewlet name="procon.path_bar" />
+    <viewlet name="procon.searchbox"/>
+  </order>
+
+  <order manager="plone.portalfooter" skinname="*">
+    <viewlet name="procon.footer" />
+  </order>
+
+  <hidden manager="plone.portalheader" skinname="*" remove="True" purge="True">
+      <viewlet name="plone.searchbox" />
+  </hidden>
+
+  <hidden manager="plone.abovecontent" skinname="*">
+    <viewlet name="plone.path_bar" />
+  </hidden>
+</object>

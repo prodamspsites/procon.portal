@@ -1,0 +1,1 @@
+<tal:consumidorjson tal:content="view/consultaDiretorio" />

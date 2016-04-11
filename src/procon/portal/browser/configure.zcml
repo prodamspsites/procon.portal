@@ -3,4 +3,9 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     i18n_domain="procon.portal">
 
+    <!-- Viewlets -->
+    <include package='.viewlets' />
+
+    <!-- Conteudos -->
+    <include package='.content' />
 </configure>

@@ -48,6 +48,7 @@ setup(
         'collective.schedule',
         'collective.cover',
         'collective.nitf',
+        'collective.cover',
         'sc.social.like',
         'five.pt',
         'Pillow',

@@ -1,0 +1,5 @@
+<div id="logoProcon">
+     <h1 id="portal-title">
+       <a href="/portal" class="logoSite" tal:attributes="href context/portal_url"></a>
+     </h1>
+</div>
