@@ -52,9 +52,9 @@
               tal:omit-tag="">
            ...
         </span>
-        <a href=""
+        <li><a href=""
            tal:attributes="href python:view.make_link(batch.lastpage)"
-           tal:content="batch/lastpage">3457</a>
+           tal:content="batch/lastpage">3457</a></li>
     </span>
     <li class="next"
           tal:condition="batch/has_next">
