@@ -29,6 +29,16 @@
     template="templates/consumidor.pt"
     />
 
+    <!-- BrowserView para criar e/ou atualizar protocolo -->
+    <browser:page
+        name="protocolo"
+        for="*"
+        class=".protocolo.ProtocoloView"
+        layer="procon.portal.interfaces.IProdamPortal"
+        permission="zope2.View"
+
+    />
+
     <browser:page
       name="busca"
       class="plone.app.search.browser.Search"
