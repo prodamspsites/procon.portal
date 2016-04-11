@@ -37,9 +37,14 @@
               <p class="description" tal:content="obj/Description">Descrição</p>
               </div>
         </div>
+
             <div class="visualClear"><!-- --></div>
+
     </metal:entry>
     </metal:block>
+            <div class="divPaginacao">
+          <div metal:use-macro="context/procon_macros/macros/navigation" />
+      </div>
     </metal:entries>
 
 </metal:block>
