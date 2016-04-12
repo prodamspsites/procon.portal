@@ -26,6 +26,12 @@
 <body>
 
   <div id="content-core" metal:fill-slot="main">
+    <div id="breadcrumbs">
+        <span id="breadcrumbs-home">
+            <a href="#" tal:attributes="href python:context.absolute_url_path()">Página Inicial </a> <span class="breadcrumbSeparator"> > </span>
+        </span>
+        <span id="breadcrumbs-current">Busca</span>
+    </div>
 
     <form name="search"
           action="@@busca"
@@ -38,21 +44,6 @@
 
         <input type="hidden" name="advanced_search" value="False" />
         <input type="hidden" name="sort_on" value="" />
-
-        <fieldset id="search-field" i18n:domain="plone" class="noborder">
-            <input class="searchPage"
-                   name="SearchableText"
-                   type="text"
-                   size="25"
-                   title="Search Site"
-                   i18n:attributes="title title_search_title;"
-                   tal:attributes="value st;"
-                   />
-            <input class="searchPage searchButton allowMultiSubmit"
-                   type="submit"
-                   value="Search"
-                   i18n:attributes="value label_search;"/>
-        </fieldset>
 
         <div class="row">
 
