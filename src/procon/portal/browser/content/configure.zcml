@@ -52,6 +52,7 @@
       template="templates/capa_noticias.pt"
       class=".colecao.Noticias"
       />
+
     <browser:page
       name="reclamacao"
       permission="zope2.View"
@@ -94,5 +95,21 @@
       class="plone.batching.browser.PloneBatchView"
       template="templates/batchnavigation.pt"
       />
+
+    <browser:page
+      name="capa_duvidas_view"
+      permission="zope2.View"
+      for="plone.app.contenttypes.interfaces.ICollection"
+      template="templates/capa_duvidas.pt"
+      class=".colecao.Colecao"
+      />
+
+    <browser:page
+      name="chamadaView"
+      for="*"
+      class=".chamada.chamadaView"
+      template="templates/chamada.pt"
+      permission="zope2.View"
+    />
 
 </configure>
