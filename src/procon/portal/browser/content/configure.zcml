@@ -40,7 +40,7 @@
     />
 
     <browser:page
-      name="busca"
+      name="procon-busca"
       class="plone.app.search.browser.Search"
       permission="zope2.View"
       for="*"

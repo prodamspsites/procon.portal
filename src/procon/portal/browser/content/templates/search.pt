@@ -19,19 +19,12 @@
 
   <metal:block fill-slot="top_slot"
                tal:define="dummy python:request.set('disable_border',1);
-                           disable_column_one python:request.set('disable_plone.leftcolumn',1);
-                           disable_column_two python:request.set('disable_plone.rightcolumn',1);" />
+                           disable_column_one python:request.set('disable_plone.leftcolumn',1);"/>
 </head>
 
 <body>
 
   <div id="content-core" metal:fill-slot="main">
-    <div id="breadcrumbs">
-        <span id="breadcrumbs-home">
-            <a href="#" tal:attributes="href python:context.absolute_url_path()">Página Inicial </a> <span class="breadcrumbSeparator"> > </span>
-        </span>
-        <span id="breadcrumbs-current">Busca</span>
-    </div>
 
     <form name="search"
           action="@@busca"
