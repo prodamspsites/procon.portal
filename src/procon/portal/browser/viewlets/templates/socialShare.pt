@@ -12,5 +12,16 @@
     <li class="shareGoogle">
       <a target="_blank" href="#" tal:attributes="href string:https://plus.google.com/share?url=${url}"></a>
     </li>
+
+    <li class="whatsapp">
+      <script>
+    //<![CDATA[
+    var siteurl = window.location.href;
+      document.write('<a href="whatsapp://send" data-text="Confira o site:" data-href="' + siteurl + '" class="wa_btn wa_btn_s">\
+    Share</a> \
+    ');
+    //]]>
+    </script>
+    </li>
   </ul>
 </div>
