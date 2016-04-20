@@ -9,3 +9,10 @@ TINYMCE_JSON_FORMATS = {'strikethrough': {'inline': 'span',
                         'underline': {'inline': 'span',
                                       'classes': 'underline',
                                       'exact': 'true'}}
+
+MONGODB_HOSTS = {
+    'local': 'localhost',
+    'dev': '10.20.26.12',
+    'hom': '10.20.26.12',
+    'prod': '10.20.26.12'
+}

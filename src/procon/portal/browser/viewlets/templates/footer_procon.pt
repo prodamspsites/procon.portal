@@ -1,0 +1,78 @@
+<div id="footer">
+<!-- WRAP MENU FOOTER -->
+    <div class="wrap">
+      <div class="menuFooter">
+        <ul>
+          <li>
+              <ul>
+                <li class="tituloMenu"><a href="#" title="Quem somos">Quem somos</a></li>
+              <ul>
+          </li>
+          <li>
+              <ul>
+               <li class="tituloMenu"><a href="#" title="INFORMAÇÕES">Informações</a></li>
+                <li><a href="#" title="Código de Defesa do Consumidor">Código de Defesa do Consumidor</a></li>
+                <li><a href="#" title="Recall">Recall</a></li>
+                <li><a href="#" title="Legislação">Legislação</a></li>
+                <li><a href="#" title="Juízados especiais Cíveis">Juízados especiais Cíveis</a></li>
+                <li><a href="#" title="Evite esses sites">Evite esses sites</a></li>
+              <ul>
+          </li>
+          <li>
+              <ul>
+                <li class="tituloMenu"><a href="#" title="Fornecedor">Fornecedor</a></li>
+                <li><a href="#" title="Perguntas frequentes">Perguntas frequentes</a></li>
+                <li><a href="#" title="Pedidos de certidão">Pedidos de certidão</a></li>
+                <li><a href="#" title="Processos sacionatórios">Processos sacionatórios</a></li>
+              <ul>
+          </li>
+          <li>
+              <ul>
+                <li class="tituloMenu"><a href="#" title="Estatísticas de atendimento">Estatísticas de atendimento</a></li>
+                <li class="tituloMenu"><a href="#" title="Sites úteis">Sites úteis</a></li>
+                <li class="tituloMenu"><a href="#" title="Tire suas dúvidas">Tire suas dúvidas</a></li>
+                <li class="tituloMenu"><a href="#" title="Faça sua reclamação">Faça sua reclamação</a></li>
+                <li class="tituloMenu"><a href="#" title="Envie uma dúvida">Envie uma dúvida</a></li>
+              <ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- FIM WRAP MENU FOOTER -->
+
+  <div class="wrap">
+    <div class="logoFooter"><a href="http://prefeitura.sp.gov.br" target="_blank"></a></div>
+    <p class="textoFooter">
+      Secretaria de Negócios Jurídicos<br>
+      Prefeitura de São Paulo<br>
+      Viaduto do Chá, 15 - 12º andar - Centro<br>
+      CEP 01002-020 - São Paulo - SP<br>
+      Telefone 156
+    </p>
+    <div class="socialFooter">
+      <p>Redes Sociais</p>
+      <ul class="listaSocial">
+        <li class="faceSocial">
+          <a href="#"></a>
+        </li>
+        <li class="twitterSocial">
+          <a href="#"></a>
+        </li>
+        <li class="youtubeSocial">
+          <a href="#"></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footerBottom">
+     <div class="wrap">
+        <p class="copyright">Todo o conteúdo do site está disponível sob licença Creative Commons. O código deste site é livre, consulte.|  <a href="#" target="_blank">Políticas do site</a></p>
+        <div class="divProdam">
+          <p>Hospedagem<br> e Desenvolvimento</p>
+          <div class="logoProdam"><a href="http://www.prodam.sp.gov.br/" target="_blank"></a></div>
+        </div>
+        <div class="logoGrx"></div>
+    </div>
+  </div>
+</div>

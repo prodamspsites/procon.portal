@@ -1,0 +1,35 @@
+<nav class="menu" tal:define="items view/getMenu">
+  <div class="wrap" tal:condition="items">
+    <ul>
+      <tal:items tal:repeat="item items">
+        <li tal:attributes="class python:view.segundoNivel(item) and 'subMenu' or ''"
+            tal:condition="not:item/exclude_from_nav">
+          <a href="#" title="Sobre o Procon" tal:attributes="href python:item.absolute_url();
+                                                             title item/Title"
+                                             tal:content="item/Title">Sobre o Procon</a>
+
+            <tal:segundoNivel condition="python:view.segundoNivel(item)">
+            <ul class="menuNivel">
+              <tal:childrens define="childrens python:view.getSegundoNivel(item)" repeat="children childrens">
+                <li tal:condition="python:view.checkVisibility(children.getObject()) and not children.exclude_from_nav">
+                  <tal:isLink condition="python:children.portal_type=='Link'">
+                    <a href="#" tal:define="link python:children.getObject().remoteUrl;
+                                            portal_url context/portal_url;
+                                            blank python:link.startswith(portal_url)"
+                                tal:attributes="href link;
+                                                title children/Title;
+                                                target python:not blank and '_blank' or '_self'"
+                                tal:content="children/Title" />
+                  </tal:isLink>
+                  <tal:notLink condition="python:children.portal_type != 'Link'">
+                    <a href="#" tal:attributes="href python:children.getObject().absolute_url();
+                                              title children/Title" tal:content="children/Title" />
+                  </tal:notLink>
+                </li>
+              </tal:childrens>
+            </tal:segundoNivel>
+        </li>
+      </tal:items>
+    </ul>
+  </div>
+</nav>

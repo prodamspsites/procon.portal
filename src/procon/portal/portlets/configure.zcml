@@ -4,5 +4,22 @@
 
   <include package="plone.app.portlets" />
 
+    <plone:portlet
+        name="procon.servicos"
+        interface=".servicos.iServicos"
+        assignment=".servicos.Assignment"
+        renderer=".servicos.Renderer"
+        addview=".servicos.AddForm"
+        editview=".servicos.EditForm"
+        />
+
+    <plone:portlet
+        name="procon.noticias"
+        interface=".noticias.iNoticias"
+        assignment=".noticias.Assignment"
+        renderer=".noticias.Renderer"
+        addview=".noticias.AddForm"
+        editview=".noticias.EditForm"
+        />
 
 </configure>
