@@ -3,19 +3,19 @@
       <ul>
           <li>
             <span class="item1"></span>
-            <a href="/consumidor/formularios" title="FAÇA SUA RECLAMAÇÃO">FAÇA SUA <br />RECLAMAÇÃO</a>
+            <a class="item1" href="/consumidor/formularios" title="FAÇA SUA RECLAMAÇÃO">FAÇA SUA <br />RECLAMAÇÃO</a>
           </li>
           <li>
             <span class="item2"></span>
-            <a href="#" title="TIRE SUAS DÚVIDAS">TIRE SUAS <br />DÚVIDAS</a>
+            <a class="item2" href="#" title="TIRE SUAS DÚVIDAS">TIRE SUAS <br />DÚVIDAS</a>
           </li>
           <li>
             <span class="item3"></span>
-            <a href="#" title="RECLAMAÇÕES FUNDAMENTADAS">RECLAMAÇÕES <br />FUNDAMENTADAS</a>
+            <a class="item3" href="#" title="RECLAMAÇÕES FUNDAMENTADAS">RECLAMAÇÕES <br />FUNDAMENTADAS</a>
           </li>
           <li>
             <span class="item4"></span>
-            <a href="#" title="RECLAMAÇÕES FUNDAMENTADAS">FAÇA SUA <br />DENÚNCIA</a>
+            <a class="item4" href="#" title="RECLAMAÇÕES FUNDAMENTADAS">FAÇA SUA <br />DENÚNCIA</a>
           </li>
       </ul>
     </div>

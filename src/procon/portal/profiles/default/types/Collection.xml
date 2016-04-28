@@ -17,6 +17,7 @@
  <property name="view_methods">
   <element value="duvidas_view"/>
   <element value="capa_noticias_view"/>
+  <element value="capa_duvidas_view" />
   <element value="standard_view"/>
   <element value="summary_view"/>
   <element value="all_content"/>

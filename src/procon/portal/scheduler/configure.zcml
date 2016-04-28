@@ -9,6 +9,6 @@
   <schedule:job
     view="categorias"
     unit="day"
-    at="14:31"
+    at="03:00"
   />
 </configure>
