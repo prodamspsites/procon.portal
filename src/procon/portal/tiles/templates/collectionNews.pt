@@ -53,23 +53,19 @@
           <div class="noticiasColuna">
           <!-- Primeira notícia de destaque -->
           <div class="firstItem" tal:condition="results" tal:define="obj python:results[0].getObject();
-                                                                     firstItem python:results[0]">
-            <tal:notImage condition="not:python:view.thumbnail(obj) ">
+                                                                     firstDate python:results[0]">
+            <tal:notImage condition="not:python:obj.image ">
               <a tal:attributes="href obj/absolute_url">
                 <img src="++theme++procon/img/imgNoticiasPadra.jpg"/>
               </a>
             </tal:notImage>
-            <tal:hasImage condition="python:view.thumbnail(obj)">
-              <tal:image define="thumbnail python:view.thumbnail(obj)">
-                <a tal:attributes="href obj/absolute_url">
-                  <img tal:attributes="src thumbnail/url;
-                                       width thumbnail/width;
-                                       height thumbnail/height;
-                                       class view/get_image_position;
-                                       alt python:view.get_alt(obj);" />
-                </a>
-              </tal:image>
-            </tal:hasImage>
+                  <tal:hasImage tal:condition="python:obj.image">
+
+                    <img  tal:define="path python:'/'.join(obj.getPhysicalPath())"
+                          tal:attributes="src string:${path}/@@images/image.jpeg;"
+                           />
+                  </tal:hasImage>
+
                 <tal:fields repeat="field view/configured_fields">
 
                 <tal:title define="htmltag python:field.get('htmltag', 'h1')"
@@ -103,7 +99,7 @@
 
                 <tal:datetime condition="python:field['id'] == 'date'">
                 <time
-                    tal:define="datetime python:view.Date(firstItem);
+                    tal:define="datetime python:view.Date(firstDate);
                                 format python:field.get('format', 'datetime');
                                 dateformat python:view.get_localized_time(datetime, format);
                                 data python:dateformat.split(' ')[0];
