@@ -52,7 +52,8 @@
 
           <div class="noticiasColuna">
           <!-- Primeira notícia de destaque -->
-          <div class="firstItem" tal:condition="results" tal:define="obj python:results[0].getObject()">
+          <div class="firstItem" tal:condition="results" tal:define="obj python:results[0].getObject();
+                                                                     firstItem python:results[0]">
             <tal:notImage condition="not:python:view.thumbnail(obj) ">
               <a tal:attributes="href obj/absolute_url">
                 <img src="++theme++procon/img/imgNoticiasPadra.jpg"/>
@@ -102,7 +103,7 @@
 
                 <tal:datetime condition="python:field['id'] == 'date'">
                 <time
-                    tal:define="datetime python:view.Date(obj);
+                    tal:define="datetime python:view.Date(firstItem);
                                 format python:field.get('format', 'datetime');
                                 dateformat python:view.get_localized_time(datetime, format);
                                 data python:dateformat.split(' ')[0];
