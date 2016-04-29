@@ -49,10 +49,10 @@
 
             <tal:result tal:condition="perguntas" tal:define="perguntas view/buscarPerguntaResposta" tal:repeat="pergunta perguntas">
               <tr>
-                <td><tal:inputs tal:content="structure python:pergunta['data'][:10]"></td>
-                <td><tal:inputs tal:content="structure python:pergunta['categoria']"></td>
-                <td><tal:inputs tal:content="structure python:pergunta['pergunta']"></td>
-                <td><tal:inputs tal:content="structure python:pergunta['usuario']"></td>
+                <td tal:attributes="class python:str(pergunta['_id'])+'_data'"><tal:inputs tal:content="structure python:pergunta['data'][:10]"></td>
+                <td tal:attributes="class python:str(pergunta['_id'])+'_categoria'"><tal:inputs tal:content="structure python:pergunta['categoria']"></td>
+                <td tal:attributes="class python:pergunta['_id']"><tal:inputs tal:content="structure python:pergunta['pergunta']"></td>
+                <td tal:attributes="class python:str(pergunta['_id'])+'_usuario'"><tal:inputs tal:content="structure python:pergunta['usuario']"></td>
                 <td><input type="checkbox" value="cadastro" /></td>
               </tr>
             </tal:result>
@@ -83,8 +83,59 @@
   <!--RECLAMACOES-->
   <div class="teste" style="display:none;">
       <button class="btn btn-primary" id="voltar">Voltar</button>
-      <br>
-        INFORMAÇÕES
+      <div class="tableReclamacoes">
+        <table>
+          <tr>
+            <th width="12%">
+              <span>Data</span>
+              <a href="#" title="ordenar mais recente" class="setaDown active"></a>
+              <a href="#" title="ordenar mais recente" class="setaUp"></a>
+            </th>
+            <th width="13%">
+              <span>Categoria</span>
+              <a href="#" title="ordenar mais recente" class="setaDown active"></a>
+              <a href="#" title="ordenar mais recente" class="setaUp"></a>
+            </th>
+            <th width="25%">
+              <span>Nome</span>
+              <a href="#" title="ordenar mais recente" class="setaDown active"></a>
+              <a href="#" title="ordenar mais recente" class="setaUp active"></a>
+            </th>
+          </tr>
+          <tal:result tal:condition="perguntas" tal:define="perguntas view/buscarPerguntaResposta">
+            <tr>
+              <td id="tbl1"></td>
+              <td id="tbl2"></td>
+              <td id="tbl3"></td>
+            </tr>
+          </tal:result>
+        </table>
+        <b>Pergunta:</b> <br/>
+        <span id="pergunta"></span>
+        <br>
+        <br>
+        <div style="border: solid 1px #c2c2c2; width:100%; height:100px; background-color:#c2c2c2">
+          <b>Resposta:</b> <br/>
+          <span id="resposta"></span>
+        </div>
+        <br>
+        Comentários usuário
+        <div style="border: solid 1px #c2c2c2; width:100%; height:100px; background-color:#c2c2c2">
+          <b>Motivo: </b>A resposta não está completa <br/>
+          Comentários adicionais: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet.
+          Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor.
+          Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+          Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.
+        </div>
+        <br>
+        <input type="checkbox" /> Marcar como lido
+        <br>
+        Observações:
+        <br>
+        <textarea rows=6>
+
+        </textarea>
+      </div>
   </div>
 
   </div>
