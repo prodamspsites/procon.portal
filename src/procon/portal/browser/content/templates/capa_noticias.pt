@@ -17,10 +17,10 @@
     <div class="blocoNoticias">
       <tal:hasImage condition="python:item.image"
                     tal:define="scales python:item.getObject().restrictedTraverse('@@images');
-                                imageLarge python:scales.scale('image', width=340, height=195)">
+                                imageLarge python:scales.scale('image', scale='large')">
                   <a href="#" tal:define="obj item/getObject"
                               tal:attributes="href obj/absolute_url">
-                    <img tal:attributes="src imageLarge/url; alt item/Title;" class="left" />
+                    <img tal:attributes="src imageLarge/url; alt item/Title; width string:340; height string:195" class="left" />
                   </a>
              </tal:hasImage>
       <div class="destaqueNoticias"

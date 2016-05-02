@@ -9,7 +9,7 @@ class BuscarDuvidas(BrowserView):
     def buscarPerguntaResposta(self):
         """ buscar registros mongodb do tire suas dúvidas """
         try:
-            client = MongoClient()
+            client = MongoClient("mongodb.hom.prodam", 27017)
             db = client.consumidor
             perguntas = db.tbl_replica.find()
             if perguntas.count() < 1:
@@ -35,7 +35,7 @@ class SalvarDuvidas(BrowserView):
         """ salvar registros mongodb do tire suas duvidas """
         data = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
         try:
-            client = MongoClient()
+            client = MongoClient("mongodb.hom.prodam", 27017)
             db = client.consumidor
             db.tbl_replica.insert({"id_plone": id_plone,
                                    "util": util,
