@@ -1,18 +1,22 @@
-<tal:Form condition="python:context.portal_type=='FormFolder'">
-<div class="form-group">
-  <input id="project" placeholder="Digite o nome da empresa que deseja reclamar">
-  <input type="hidden" id="project-id">
-  <input type="submit" class="btnBuscar disabled" value="BUSCAR"  disabled />
-</div>
-<div class="divRedireciona">
-   <p>A empresa que você buscou está cadastrada no site consumidor.gov.br onde você pode se comunicar diretamente com as empresas participantes que se comprometeram a receber, analisar e responder as reclamações de seus consumidores em até 10 dias.</p>
-   <p><strong>Clique no botão abaixo para ser redirecionado no site e continuar com a sua reclamação.</strong></p>
-   <a href="#" target="_blank" class="linkRedireciona">CLIQUE AQUI PARA SER REDIRECIONADO</a>
-   <span class="imgSeta"></span>
-   <span class="imgConsumidor"></span>
-   <p><strong>Caso você já tenha reclmado no site do consumidor.gov.br e seu problema não tenha sido solucionado, preencha o campo abaixo com o númedo do protocolo do consumidor.gov.br e prossiga com a reclamação no Procon Paulistano.</strong></p>
-   <div class="divProtocolo">
-      <input class="inputProtocolo" /><input type="submit"  class="btnProsseguir" />
-   </div>
-</div>
-</tal:Form>
+<tal:anonymous tal:define="portal_state context/@@plone_portal_state;
+                          anonymous python:portal_state.anonymous()"
+               tal:condition="not:anonymous">
+  <tal:Form condition="python:context.portal_type=='FormFolder'">
+  <div class="form-group">
+    <input id="project" placeholder="Digite o nome da empresa que deseja reclamar" />
+    <input type="hidden" id="project-id" />
+    <input type="submit" class="btnBuscar disabled" value="BUSCAR"  disabled />
+  </div>
+  <div class="divRedireciona">
+     <p>A empresa que você buscou está cadastrada no site consumidor.gov.br onde você pode se comunicar diretamente com as empresas participantes que se comprometeram a receber, analisar e responder as reclamações de seus consumidores em até 10 dias.</p>
+     <p><strong>Clique no botão abaixo para ser redirecionado no site e continuar com a sua reclamação.</strong></p>
+     <a href="#" target="_blank" class="linkRedireciona">CLIQUE AQUI PARA SER REDIRECIONADO</a>
+     <span class="imgSeta"></span>
+     <span class="imgConsumidor"></span>
+     <p><strong>Caso você já tenha reclmado no site do consumidor.gov.br e seu problema não tenha sido solucionado, preencha o campo abaixo com o númedo do protocolo do consumidor.gov.br e prossiga com a reclamação no Procon Paulistano.</strong></p>
+     <div class="divProtocolo">
+        <input class="inputProtocolo" /><input type="submit"  class="btnProsseguir" />
+     </div>
+  </div>
+  </tal:Form>
+</tal:anonymous>
