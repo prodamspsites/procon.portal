@@ -49,7 +49,7 @@ class Consumidor(BrowserView):
         try:
             client = MongoClient()
             # client = MongoClient("mongodb.hom.prodam", 27017)
-            db = client.consumidor
+            db = client.procon
             categorias = db.empresas.find()
         except Exception, ex:
             print ex
