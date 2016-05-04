@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from nfe.portal.interfaces import IPergunta
-from nfe.portal.interfaces import IResposta
+from procon.portal.interfaces import IPergunta
+from procon.portal.interfaces import IResposta
 from plone.indexer.decorator import indexer
 
 

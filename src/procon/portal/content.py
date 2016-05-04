@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from nfe.portal.interfaces import IPergunta, IResposta
+from procon.portal.interfaces import IPergunta, IResposta
 from plone.dexterity.content import Item
 from plone.dexterity.content import Container
 from zope.interface import implements
