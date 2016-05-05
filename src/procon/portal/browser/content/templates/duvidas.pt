@@ -31,11 +31,11 @@
                           <label class="labelMotivo">Qual o motivo?
                             <select id="assunto_opcao">
                               <option value="assunto0">Selecione uma opção</option>
-                              <option value="assunto1">A resposta não está completa</option>
-                              <option value="assunto2">A resposta é incompatível com a pergunta</option>
-                              <option value="assunto3">A resposta está incorreta</option>
-                              <option value="assunto5">A resposta está confusa</option>
-                              <option value="assunto5">A resposta usa muitos termos técnicos</option>
+                              <option value="A resposta não está completa">A resposta não está completa</option>
+                              <option value="A resposta é incompatível com a pergunta">A resposta é incompatível com a pergunta</option>
+                              <option value="A resposta está incorreta">A resposta está incorreta</option>
+                              <option value="A resposta está confusa">A resposta está confusa</option>
+                              <option value="A resposta usa muitos termos técnicos">A resposta usa muitos termos técnicos</option>
                             </select>
                             <input type="hidden" value="" id="form_usuario_duvida" tal:attributes="value python:view.getUser()" />
                           </label>
@@ -45,6 +45,7 @@
                           </label>
                           <input type="button" id="enviarDuvida" class="enviaDuvida" value="ENVIAR" />
                         </div>
+                        &nbsp;<span class="mensagem_enviada" style="margin-left:-264px;margin-top:40px;position:absolute;">  </span>
                       </fieldset>
                     </form>
                     <p class="agradece">O Procon Paulistano agradece sua colaboração. <strong>Você pode enviar uma dúvida usando o formulário no final da página.</strong></p>
