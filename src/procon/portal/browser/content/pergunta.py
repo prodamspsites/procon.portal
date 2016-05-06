@@ -2,6 +2,7 @@
 from Products.Five import BrowserView
 from pymongo import MongoClient
 from datetime import datetime
+from bson.objectid import ObjectId
 
 
 class BuscarDuvidas(BrowserView):
@@ -39,15 +40,24 @@ class SalvarDuvidas(BrowserView):
             # client = MongoClient("mongodb.hom.prodam", 27017)
             client = MongoClient()
             db = client.consumidor
-            db.tbl_replica.insert({"id_plone": id_plone,
-                                   "util": util,
-                                   "pergunta": pergunta,
-                                   "resposta": resposta,
-                                   "data": data,
-                                   "assunto": assunto,
-                                   "mensagem": mensagem,
-                                   "categoria": categoria,
-                                   "usuario": usuario})
+            print self.getIdentificacao()
+            if self.getIdentificacao():
+                print "ola"
+                identificacao = self.getIdentificacao()
+                db.tbl_replica.update_one({"_id": ObjectId(identificacao)},
+                                          {"$set": {"lido": True}},
+                                          upsert=False)
+            else:
+                db.tbl_replica.insert({"id_plone": id_plone,
+                                       "util": util,
+                                       "lido": False,
+                                       "pergunta": pergunta,
+                                       "resposta": resposta,
+                                       "data": data,
+                                       "assunto": assunto,
+                                       "mensagem": mensagem,
+                                       "categoria": categoria,
+                                       "usuario": usuario})
         except Exception, ex:
             print ex
 
@@ -86,6 +96,13 @@ class SalvarDuvidas(BrowserView):
     def getResposta(self):
         try:
             req = self.request.form['resposta']
+        except:
+            req = None
+        return req
+
+    def getIdentificacao(self):
+        try:
+            req = self.request.form['identificacao']
         except:
             req = None
         return req

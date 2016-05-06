@@ -15,6 +15,9 @@
       <table id="table_id" class="display">
           <thead>
             <tr>
+              <th width="1%" style="display:none">
+                <span>.</span>
+              </th>
               <th width="12%">
                 <span>Data</span>
               </th>
@@ -34,6 +37,7 @@
           </thead>
           <tbody>
             <tr tal:condition="perguntas" tal:define="perguntas view/buscarPerguntaResposta" tal:repeat="pergunta perguntas">
+              <td style="display:none" class="_id"><tal:inputs tal:content="structure python:pergunta['_id']"></td>
               <td tal:attributes="class python:str(pergunta['_id'])+'_data'"><tal:inputs tal:content="structure python:pergunta['data'][:10]"></td>
               <td tal:attributes="class python:str(pergunta['_id'])+'_categoria'"><tal:inputs tal:content="structure python:pergunta['categoria']"></td>
               <td tal:attributes="class python:str(pergunta['_id'])+'_pergunta'"><tal:inputs tal:content="structure python:pergunta['pergunta']"></td>
@@ -41,8 +45,7 @@
               <span style="display:none" tal:attributes="class python:str(pergunta['_id'])+'_mensagem'"><tal:inputs tal:content="structure python:pergunta['mensagem']"></span>
               <span style="display:none" tal:attributes="class python:str(pergunta['_id'])+'_resposta'"><tal:inputs tal:content="structure python:pergunta['resposta']"></span>
               <span style="display:none" tal:attributes="class python:str(pergunta['_id'])+'_assunto'"><tal:inputs tal:content="structure python:pergunta['assunto']"></span>
-
-              <td><input type="checkbox" value="cadastro" /></td>
+              <th tal:define="lido python:pergunta['lido']; input string:<input class='lido' type='checkbox' value='cadastro' />" tal:content="structure python:lido and 'ok' or input " style="background-color:white"></th>
             </tr>
           </tbody>
           <!-- bower:js -->
