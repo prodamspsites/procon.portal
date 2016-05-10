@@ -40,14 +40,22 @@ class SalvarDuvidas(BrowserView):
             # client = MongoClient("mongodb.hom.prodam", 27017)
             client = MongoClient()
             db = client.consumidor
-            print self.getIdentificacao()
-            if self.getIdentificacao():
-                print "ola"
+
+            if self.getIdentificacao() and not self.getObservacao():
+                print '1'
                 identificacao = self.getIdentificacao()
                 db.tbl_replica.update_one({"_id": ObjectId(identificacao)},
                                           {"$set": {"lido": True}},
                                           upsert=False)
+            elif self.getIdentificacao() and self.getObservacao():
+                print '2'
+                identificacao = self.getIdentificacao()
+                observacao = self.getObservacao()
+                db.tbl_replica.update_one({"_id": ObjectId(identificacao)},
+                                          {"$set": {"observacao": observacao}},
+                                          upsert=False)
             else:
+                print '3'
                 db.tbl_replica.insert({"id_plone": id_plone,
                                        "util": util,
                                        "lido": False,
@@ -57,6 +65,7 @@ class SalvarDuvidas(BrowserView):
                                        "assunto": assunto,
                                        "mensagem": mensagem,
                                        "categoria": categoria,
+                                       "observacao": "",
                                        "usuario": usuario})
         except Exception, ex:
             print ex
@@ -103,6 +112,13 @@ class SalvarDuvidas(BrowserView):
     def getIdentificacao(self):
         try:
             req = self.request.form['identificacao']
+        except:
+            req = None
+        return req
+
+    def getObservacao(self):
+        try:
+            req = self.request.form['observacao']
         except:
             req = None
         return req

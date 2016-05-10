@@ -38,6 +38,7 @@
           <tbody>
             <tr tal:condition="perguntas" tal:define="perguntas view/buscarPerguntaResposta" tal:repeat="pergunta perguntas">
               <td style="display:none" class="_id"><tal:inputs tal:content="structure python:pergunta['_id']"></td>
+              <span style="display:none" tal:attributes="class python:str(pergunta['_id'])+'_observacao'"><tal:inputs tal:content="structure python:pergunta['observacao']"></span>
               <td tal:attributes="class python:str(pergunta['_id'])+'_data'"><tal:inputs tal:content="structure python:pergunta['data'][:10]"></td>
               <td tal:attributes="class python:str(pergunta['_id'])+'_categoria'"><tal:inputs tal:content="structure python:pergunta['categoria']"></td>
               <td tal:attributes="class python:str(pergunta['_id'])+'_pergunta'"><tal:inputs tal:content="structure python:pergunta['pergunta']"></td>
@@ -45,7 +46,7 @@
               <span style="display:none" tal:attributes="class python:str(pergunta['_id'])+'_mensagem'"><tal:inputs tal:content="structure python:pergunta['mensagem']"></span>
               <span style="display:none" tal:attributes="class python:str(pergunta['_id'])+'_resposta'"><tal:inputs tal:content="structure python:pergunta['resposta']"></span>
               <span style="display:none" tal:attributes="class python:str(pergunta['_id'])+'_assunto'"><tal:inputs tal:content="structure python:pergunta['assunto']"></span>
-              <th tal:define="lido python:pergunta['lido']; input string:<input class='lido' type='checkbox' value='cadastro' />" tal:content="structure python:lido and 'ok' or input " style="background-color:white"></th>
+              <th tal:define="lido python:pergunta['lido']; input string:<input class='lido' type='checkbox' value='cadastro' />; disable string:<input class='lido' disabled=disabled' checked type='checkbox' value='cadastro' />" tal:content="structure python:lido and disable or input " style="background-color:white"></th>
             </tr>
           </tbody>
           <!-- bower:js -->
@@ -107,14 +108,17 @@
             Comentários adicionais: <span id="mensagem"></span>
           </div>
           <br>
-          <span class="marcarLido"><input type="checkbox"/> Marcar como lido</span>
+          <span class="marcarLido"><input class="lido" type="checkbox"/> Marcar como lido</span>
           <br>
          <strong class="tituloConsumidor">Observações:</strong>
           <br>
-          <textarea rows=6>
+          <textarea id="observacao" rows=6>
 
           </textarea>
-
+          <span style="display:none;" id="idObservacao"></span>
+          <br>
+          <input type="button" id="enviarComentario" value="Enviar">
+          <br>
           <a id="voltar" class="voltarReclamacoes">Voltar à lista de reclamações</a>
         </div>
       </div>
