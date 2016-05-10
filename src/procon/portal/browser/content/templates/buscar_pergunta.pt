@@ -11,6 +11,12 @@
   <div class="wrapAdmin">
     <div class="divReclamacoes">
       <h1>Dúvidas recebidas</h1>
+      <span class="total">Total: 5488</span>
+      <div class="filtrarPor"><strong>Filtrar por:</strong>
+      <select class="selectFilter"><option>Nome</option><select>
+      <input type="text" placeholder="Digite o nome" class="inputFilter"/>
+      <input type="button" value="FILTRAR" class="btnFiltrar" />
+    </div>
       <div class="tableReclamacoes">
       <table id="table_id" class="display">
           <thead>
