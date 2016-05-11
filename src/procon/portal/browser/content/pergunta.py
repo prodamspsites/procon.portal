@@ -10,8 +10,8 @@ class BuscarDuvidas(BrowserView):
     def buscarPerguntaResposta(self):
         """ buscar registros mongodb do tire suas dúvidas """
         try:
-            # client = MongoClient("mongodb.hom.prodam", 27017)
-            client = MongoClient()
+            client = MongoClient("mongodb.hom.prodam", 27017)
+            # client = MongoClient()
             db = client.consumidor
             perguntas = db.tbl_replica.find()
             if perguntas.count() < 1:
@@ -37,25 +37,23 @@ class SalvarDuvidas(BrowserView):
         """ salvar registros mongodb do tire suas duvidas """
         data = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
         try:
-            # client = MongoClient("mongodb.hom.prodam", 27017)
-            client = MongoClient()
+            client = MongoClient("mongodb.hom.prodam", 27017)
+            # client = MongoClient()
             db = client.consumidor
 
             if self.getIdentificacao() and not self.getObservacao():
-                print '1'
+
                 identificacao = self.getIdentificacao()
                 db.tbl_replica.update_one({"_id": ObjectId(identificacao)},
                                           {"$set": {"lido": True}},
                                           upsert=False)
             elif self.getIdentificacao() and self.getObservacao():
-                print '2'
                 identificacao = self.getIdentificacao()
                 observacao = self.getObservacao()
                 db.tbl_replica.update_one({"_id": ObjectId(identificacao)},
                                           {"$set": {"observacao": observacao}},
                                           upsert=False)
             else:
-                print '3'
                 db.tbl_replica.insert({"id_plone": id_plone,
                                        "util": util,
                                        "lido": False,
