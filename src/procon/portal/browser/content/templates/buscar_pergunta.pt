@@ -129,7 +129,7 @@
           <br>
           <input type="button" id="enviarComentario" value="Enviar">
           <br>
-          <a id="voltar" class="voltarReclamacoes">Voltar à lista de reclamações</a>
+          <a href="@@duvidas_buscar" class="voltarReclamacoes">Voltar à lista de reclamações</a>
         </div>
       </div>
   </div>
