@@ -12,18 +12,17 @@ class BuscarDuvidas(BrowserView):
         try:
             client = MongoClient()
             db = client.consumidor
-            # perguntas = {}
+            perguntas = {}
             if self.getFiltro():
-                perguntas = db.tbl_replica.find({"usuario": {"$regex": self.getFiltro()}})
-                # perguntas = {'perguntas': questionarios, 'filtro': self.getFiltro(), 'total': questionarios.count()}
+                questionarios = db.tbl_replica.find({"usuario": {"$regex": self.getFiltro()}})
+                perguntas = {'perguntas': questionarios, 'filtro': self.getFiltro(), 'total': questionarios.count()}
                 return perguntas
             else:
-                perguntas = db.tbl_replica.find()
-                if perguntas.count() < 1:
-                    # perguntas = {'filtro': None, 'total': 1}
+                questionarios = db.tbl_replica.find()
+                if questionarios.count() < 1:
                     return False
                 else:
-                    # questionarios = {'perguntas': questionarios, 'filtro': None, 'total': questionarios.count()}
+                    perguntas = {'perguntas': questionarios, 'filtro': None, 'total': questionarios.count()}
                     return perguntas
 
         except Exception:
@@ -51,7 +50,6 @@ class SalvarDuvidas(BrowserView):
         """ salvar registros mongodb do tire suas duvidas """
         data = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
         try:
-            # client = MongoClient("mongodb.hom.prodam", 27017)
             client = MongoClient()
             db = client.consumidor
 
