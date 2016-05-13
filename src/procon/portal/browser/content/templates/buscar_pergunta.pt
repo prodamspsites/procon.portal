@@ -11,7 +11,7 @@
   <div class="wrapAdmin">
     <div class="divReclamacoes">
       <h1>Dúvidas recebidas</h1>
-      <span class="total">Total: <span tal:define="perguntas view/buscarPerguntaResposta;" tal:replace="python:perguntas['total']"></span></span>
+      <!-- <span class="total">Total: <span tal:define="perguntas view/buscarPerguntaResposta;" tal:replace="python:perguntas['total']"></span></span> -->
 
       <div class="filtrarPor"><strong>Filtrar por:</strong>
       <form tal:attributes="action string:${context/portal_url}/duvidas_buscar" method="POST" name="filtro">
