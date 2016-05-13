@@ -15,17 +15,17 @@ class BuscarDuvidas(BrowserView):
             db = client.consumidor
             # perguntas = {}
             if self.getFiltro():
-                questionarios = db.tbl_replica.find({"usuario": {"$regex": self.getFiltro()}})
+                perguntas = db.tbl_replica.find({"usuario": {"$regex": self.getFiltro()}})
                 # perguntas = {'perguntas': questionarios, 'filtro': self.getFiltro(), 'total': questionarios.count()}
-                return questionarios
+                return perguntas
             else:
-                questionarios = db.tbl_replica.find()
-                if questionarios.count() < 1:
+                perguntas = db.tbl_replica.find()
+                if perguntas.count() < 1:
                     # perguntas = {'filtro': None, 'total': 1}
                     return False
                 else:
                     # questionarios = {'perguntas': questionarios, 'filtro': None, 'total': questionarios.count()}
-                    return questionarios
+                    return perguntas
 
         except Exception:
             return False
