@@ -13,18 +13,19 @@ class BuscarDuvidas(BrowserView):
             client = MongoClient("mongodb.hom.prodam", 27017)
             # client = MongoClient()
             db = client.consumidor
-            perguntas = {}
+            # perguntas = {}
             if self.getFiltro():
                 questionarios = db.tbl_replica.find({"usuario": {"$regex": self.getFiltro()}})
-                perguntas = {'perguntas': questionarios, 'filtro': self.getFiltro(), 'total': questionarios.count()}
-                return perguntas
+                # perguntas = {'perguntas': questionarios, 'filtro': self.getFiltro(), 'total': questionarios.count()}
+                return questionarios
             else:
                 questionarios = db.tbl_replica.find()
                 if questionarios.count() < 1:
-                    perguntas = {'filtro': None, 'total': 1}
+                    # perguntas = {'filtro': None, 'total': 1}
+                    return False
                 else:
-                    perguntas = {'perguntas': questionarios, 'filtro': None, 'total': questionarios.count()}
-                    return perguntas
+                    # questionarios = {'perguntas': questionarios, 'filtro': None, 'total': questionarios.count()}
+                    return questionarios
 
         except Exception:
             return False
