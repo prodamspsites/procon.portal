@@ -21,7 +21,7 @@ class BuscarDuvidas(BrowserView):
             else:
                 questionarios = db.tbl_replica.find()
                 if questionarios.count() < 1:
-                    return False
+                    perguntas = {'filtro': None, 'total': 1}
                 else:
                     perguntas = {'perguntas': questionarios, 'filtro': None, 'total': questionarios.count()}
                     return perguntas
