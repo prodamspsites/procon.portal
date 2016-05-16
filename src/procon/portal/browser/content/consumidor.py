@@ -48,7 +48,6 @@ class Consumidor(BrowserView):
         """ categorias do site consumidor.gov.br """
         try:
             client = MongoClient()
-            # client = MongoClient("mongodb.hom.prodam", 27017)
             db = client.procon
             categorias = db.empresas.find()
         except Exception, ex:
