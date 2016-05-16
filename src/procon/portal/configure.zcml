@@ -19,6 +19,15 @@
 
   <adapter name="SearchableText" factory=".indexers.PerguntaSearchableIndex" />
 
+
+  <adapter factory=".userdataschema.UserDataPanelExtender" provides="plone.z3cform.fieldsets.interfaces.IFormExtender" />
+
+  <adapter factory=".userdataschema.RegistrationPanelExtender" provides="plone.z3cform.fieldsets.interfaces.IFormExtender" />
+
+  <adapter factory=".userdataschema.AddUserFormExtender" provides="plone.z3cform.fieldsets.interfaces.IFormExtender" />
+
+  <adapter provides=".userdataschema.IEnhancedUserDataSchema" for="plone.app.layout.navigation.interfaces.INavigationRoot" factory=".userdataschema.EnhancedUserDataSchemaAdapter" />
+
   <!-- Profiles de Generic Setup -->
   <include file='profiles.zcml' />
 
