@@ -1,0 +1,191 @@
+<!-- <tal:dados tal:define="reclamacoes view/buscaReclamacao" tal:repeat="reclamacao reclamacoes">
+  <tal:inputs tal:content="structure python:reclamacao[0]">
+  <tal:inputs tal:content="structure python:reclamacao[1]">
+  <tal:inputs tal:content="structure python:reclamacao[2]">
+  <tal:inputs tal:content="structure python:reclamacao[3]">
+  <tal:inputs tal:content="structure python:reclamacao[4]">
+</tal:dados> -->
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="plone">
+<body>
+  <div id="content-core" metal:fill-slot="main">
+  <!--RECLAMACOES-->
+  <div class="wrapAdmin">
+    <div class="divReclamacoes">
+      <h1>Reclamações recebidas</h1>
+      <!-- <span class="total">Total: <span tal:define="perguntas view/buscarPerguntaResposta;" tal:replace="python:perguntas['total']"></span></span> -->
+
+      <div class="filtrarPor"><strong>Filtrar por:</strong>
+      <form tal:attributes="action string:${context/portal_url}/duvidas_buscar" method="POST" name="filtro">
+        <select class="selectFilter"><option>Nome</option><select>
+        <!-- <input type="text" tal:define="perguntas view/buscarPerguntaResposta; filtro python:perguntas['filtro']" tal:attributes="value python:filtro and filtro or ''"  name="filtro_nome" placeholder="Digite o nome" class="inputFilter"/> -->
+        <input type="submit" value="FILTRAR" class="btnFiltrar" />
+      </form>
+    </div>
+      <div class="tableReclamacoes">
+      <table id="table_id" class="display">
+          <thead>
+            <tr>
+              <th width="1%" style="display:none">
+                <span>.</span>
+              </th>
+              <th width="12%">
+                <span>Data</span>
+              </th>
+              <th width="18%">
+                <span>Tipo de cadastro</span>
+              </th>
+              <th width="35%">
+                <span>Protocolo</span>
+              </th>
+              <th width="20%">
+                <span>Nome</span>
+              </th>
+              <th width="15%">
+                <span>SINDEC</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr tal:condition="dados" tal:define="dados view/buscaReclamacao" tal:repeat="pergunta dados">
+              <td class="_id"><tal:inputs tal:content="structure python:pergunta[17][:10]"></td>
+              <td tal:attributes="class python:str(pergunta[0])+'_categoria'">- - -</td>
+              <td tal:attributes="class python:str(pergunta[0])+'_pergunta'">- - -</td>
+              <td tal:attributes="class python:str(pergunta[0])+'_usuario'"><tal:inputs tal:content="structure python:pergunta[5]"></td>
+              <th tal:define="lido python:pergunta[1]; input string:<input class='lido' type='checkbox' value='cadastro' />; disable string:<input class='lido' disabled=disabled' checked type='checkbox' value='cadastro' />" tal:content="structure python:lido and disable+' <font color=gray>Cadastrado</font>' or input " style="background-color:white"></th>
+            </tr>
+          </tbody>
+          <!-- bower:js -->
+          <!-- endbower -->
+      </table>
+      </div>
+
+      <tal:result tal:condition="perguntas" tal:define="perguntas view/buscaReclamacao">
+      <div class="paginationReclamacoes">
+      </div>
+      </tal:result>
+      <a href="#" title="Voltar à lista de reclamações" class="voltarReclamacoes">Voltar à lista de reclamações</a>
+    </div>
+  </div>
+  <!--RECLAMACOES-->
+  <div class="teste" style="display:none;">
+    <div class="tableReclamacoes">
+    <table>
+      <tr>
+        <th width="12%">
+          <span>Data</span>
+          <a href="#" title="ordenar mais recente" class="setaDown active"></a>
+          <a href="#" title="ordenar mais recente" class="setaUp"></a>
+        </th>
+        <th width="13%">
+          <span>Categoria</span>
+          <a href="#" title="ordenar mais recente" class="setaDown active"></a>
+          <a href="#" title="ordenar mais recente" class="setaUp"></a>
+        </th>
+        <th width="25%">
+          <span>Nome</span>
+          <a href="#" title="ordenar mais recente" class="setaDown active"></a>
+          <a href="#" title="ordenar mais recente" class="setaUp active"></a>
+        </th>
+      </tr>
+        <tr>
+          <td id="tbl1"></td>
+          <td id="tbl2"></td>
+          <td id="tbl3"></td>
+        </tr>
+    </table>
+    </div>
+
+    <label>Protocolo Consumidor.gov.br *</label>
+    <input type="text" value="0000000" />
+    <br/>
+
+    <label>CPF *</label>
+    <input type="text" value="404.003.138-55" />
+    <br/>
+
+    <label>Nome Completo *</label>
+    <input type="text" value="404.003.138-55" />
+    <br/>
+
+    <label>Data de nascimento *</label>
+    <input type="text" value="404.003.138-55" />
+    <br/>
+
+    <label>Sexo *</label>
+    <input type="text" value="404.003.138-55" />
+    <br/>
+
+    <label>Telefone *</label>
+    <input type="text" value="404.003.138-55" />
+    <br/>
+
+    <label>E-mail *</label>
+    <input type="text" value="404.003.138-55" />
+    <br/>
+
+    <label>CEP *</label>
+    <input type="text" value="404.003.138-55" />
+    <br/>
+
+    <label>Endereço *</label>
+    <input type="text" value="404.003.138-55" />
+    <br/>
+
+    <label>Número *</label>
+    <input type="text" value="404.003.138-55" />
+    <br/>
+
+    <label>Complemento</label>
+    <input type="text" value="404.003.138-55" />
+    <br/>
+
+    <label>Bairro *</label>
+    <input type="text" value="404.003.138-55" />
+    <br/>
+
+    <label>UF *</label>
+    <input type="text" value="404.003.138-55" />
+    <br/>
+
+    <label>Cidade</label>
+    <input type="text" value="404.003.138-55" />
+    <br/>
+
+    <label>Empresa *</label>
+    <input type="text" value="404.003.138-55" />
+    <br/>
+
+    <label>Data da compra ou assinatura de contrato *</label>
+    <input type="text" value="404.003.138-55" />
+    <br/>
+
+    <label>Área *</label>
+    <input type="text" value="404.003.138-55" />
+    <br/>
+
+    <label>Digite sua reclamação *</label>
+    <textarea></textarea>
+    <br/>
+    Arquivos anexado(s)
+    <br>
+
+      <label>Insira o FA (SINDEC)</label>
+      <input type="text" value="404.003.138-55" />
+      <button>INSERIR</button>
+      <br/>
+  </div>
+
+
+  </div>
+
+</body>
+</html>

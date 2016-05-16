@@ -7,9 +7,9 @@ class Reclamacao(BrowserView):
 
     def buscaReclamacao(self):
         portal = api.portal.get()
-        # folderConsumidor = portal['consumidor']
-        form = portal['teste']
-        sendDataAdapter = form['teste']
+        folderConsumidor = portal['denuncia']
+        form = folderConsumidor['formulario-de-denuncia']
+        sendDataAdapter = form['dados']
         dados = sendDataAdapter.getSavedFormInput()
 
         dados = [x for x in dados if type(x) is list]
