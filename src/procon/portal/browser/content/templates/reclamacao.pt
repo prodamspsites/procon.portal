@@ -3,6 +3,135 @@
 <tal:dados tal:define="reclamacoes view/buscaReclamacao" tal:repeat="reclamacao reclamacoes">
 
 <!-- aqui nós iteramos os inputs -->
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="plone">
+<body>
+  <div id="content-core" metal:fill-slot="main">
+  <!--RECLAMACOES-->
+  <div class="wrapAdmin">
+    <div class="divReclamacoes">
+      <h1>Dúvidas recebidas</h1>
+<!--       <span class="total">Total: <span tal:define="perguntas view/buscaReclamacao;" tal:replace="python:perguntas['total']"></span></span>
+ -->
+      <div class="filtrarPor"><strong>Filtrar por:</strong>
+    </div>
+      <div class="tableReclamacoes">
+      <table id="table_id" class="display">
+          <thead>
+            <tr>
+              <th width="1%" style="display:none">
+                <span>.</span>
+              </th>
+              <th width="12%">
+                <span>Data</span>
+              </th>
+              <th width="13%">
+                <span>Categoria</span>
+              </th>
+              <th width="45%">
+                <span>Pergunta</span>
+              </th>
+              <th width="25%">
+                <span>Nome</span>
+              </th>
+              <th width="5%">
+                <span>Lido</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr tal:condition="reclamacoes" tal:define="reclamacoes view/buscaReclamacao" tal:repeat="reclamacao reclamacoes">
+              <td style="display:none" class="_id"><tal:inputs tal:content="structure python:reclamacao[0]"></td>
+              <td><tal:inputs tal:content="structure python:reclamacao[0]"></td>
+              <td><tal:inputs tal:content="structure python:reclamacao[1]"></td>
+              <td><tal:inputs tal:content="structure python:reclamacao[2]"></td>
+              <td><tal:inputs tal:content="structure python:reclamacao[4]"></td>
+            </tr>
+          </tbody>
+          <!-- bower:js -->
+          <!-- endbower -->
+      </table>
+      </div>
+
+      <a href="#" title="Voltar à lista de reclamações" class="voltarReclamacoes">Voltar à lista de reclamações</a>
+    </div>
+  </div>
+  <!--RECLAMACOES-->
+  <div class="teste" style="display:none;">
+      <div class="tableReclamacoes">
+        <table>
+          <tr>
+            <th width="12%">
+              <span>Data</span>
+              <a href="#" title="ordenar mais recente" class="setaDown active"></a>
+              <a href="#" title="ordenar mais recente" class="setaUp"></a>
+            </th>
+            <th width="13%">
+              <span>Categoria</span>
+              <a href="#" title="ordenar mais recente" class="setaDown active"></a>
+              <a href="#" title="ordenar mais recente" class="setaUp"></a>
+            </th>
+            <th width="25%">
+              <span>Nome</span>
+              <a href="#" title="ordenar mais recente" class="setaDown active"></a>
+              <a href="#" title="ordenar mais recente" class="setaUp active"></a>
+            </th>
+          </tr>
+          <tal:result tal:condition="reclamacoes" tal:define="reclamacoes view/buscaReclamacao">
+            <tr>
+              <td id="tbl1"></td>
+              <td id="tbl2"></td>
+              <td id="tbl3"></td>
+            </tr>
+          </tal:result>
+        </table>
+
+        <div class="detalhesDuvida">
+          <strong class="tituloConsumidor">Pergunta:</strong>
+          <div class="respostaConsumidor">
+            <span id="pergunta"></span>
+          </div>
+
+          <strong class="tituloConsumidor">Resposta:</strong>
+          <div class="respostaConsumidor">
+            <span id="resposta"></span>
+          </div>
+
+          <strong class="tituloConsumidor">Comentários Usuário</strong>
+          <div class="comentarioConsumidor">
+            <strong>Motivo: </strong> <span id="assunto" /> <br>
+            Comentários adicionais: <span id="mensagem"></span>
+          </div>
+          <br>
+          <span class="marcarLido"><input class="lido" id="lido_check" type="checkbox"/> Marcar como lido</span>
+          <br>
+         <strong class="tituloConsumidor">Observações:</strong>
+          <br>
+          <textarea id="observacao" rows=6>
+
+          </textarea>
+          <span style="display:none;" id="idObservacao"></span>
+          <br>
+          <input type="button" id="enviarComentario" value="Enviar">
+          <br>
+          <a href="@@duvidas_buscar" class="voltarReclamacoes">Voltar à lista de reclamações</a>
+        </div>
+      </div>
+  </div>
+
+  </div>
+
+</body>
+</html>
+
+
+
     <tal:inputs tal:repeat="input reclamacao">
         <span tal:content="input" />
     </tal:inputs>
