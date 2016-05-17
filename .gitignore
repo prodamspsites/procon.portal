@@ -26,6 +26,7 @@ local.cfg
 Makefile
 parts/
 src/collective.cover/
+src/Products.PloneFormGen/
 src/collective.transmogrifier/
 src/Products.PloneFormGen/
 src/procon.tema
