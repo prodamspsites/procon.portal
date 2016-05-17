@@ -11,12 +11,12 @@
   <div class="wrapAdmin">
     <div class="divReclamacoes">
       <h1>Dúvidas recebidas</h1>
-      <!-- <span class="total">Total: <span tal:define="perguntas view/buscarPerguntaResposta;" tal:replace="python:perguntas['total']"></span></span> -->
+      <span class="total">Total: <span tal:define="perguntas view/buscarPerguntaResposta;" tal:replace="python:perguntas['total']"></span></span>
 
       <div class="filtrarPor"><strong>Filtrar por:</strong>
       <form tal:attributes="action string:${context/portal_url}/duvidas_buscar" method="POST" name="filtro">
         <select class="selectFilter"><option>Nome</option><select>
-        <!-- <input type="text" tal:define="perguntas view/buscarPerguntaResposta; filtro python:perguntas['filtro']" tal:attributes="value python:filtro and filtro or ''"  name="filtro_nome" placeholder="Digite o nome" class="inputFilter"/> -->
+        <input type="text" tal:define="perguntas view/buscarPerguntaResposta; filtro python:perguntas['filtro']" tal:attributes="value python:filtro and filtro or ''"  name="filtro_nome" placeholder="Digite o nome" class="inputFilter"/>
         <input type="submit" value="FILTRAR" class="btnFiltrar" />
       </form>
     </div>
@@ -48,7 +48,7 @@
             <tr tal:condition="perguntas" tal:define="perguntas view/buscarPerguntaResposta" tal:repeat="pergunta python:perguntas['perguntas']">
               <td style="display:none" class="_id"><tal:inputs tal:content="structure python:pergunta['_id']"></td>
               <span style="display:none" tal:attributes="class python:str(pergunta['_id'])+'_observacao'"><tal:inputs tal:content="structure python:pergunta['observacao']"></span>
-              <td tal:attributes="class python:str(pergunta['_id'])+'_data'"><tal:inputs tal:content="structure python:pergunta['data'][:10]"></td>
+              <td class="duvida_buscar" tal:attributes="class python:str(pergunta['_id'])+'_data'"><tal:inputs tal:content="structure python:pergunta['data'][:10]"></td>
               <td tal:attributes="class python:str(pergunta['_id'])+'_categoria'"><tal:inputs tal:content="structure python:pergunta['categoria']"></td>
               <td tal:attributes="class python:str(pergunta['_id'])+'_pergunta'"><tal:inputs tal:content="structure python:pergunta['pergunta']"></td>
               <td tal:attributes="class python:str(pergunta['_id'])+'_usuario'"><tal:inputs tal:content="structure python:pergunta['usuario']"></td>
@@ -129,7 +129,7 @@
           <br>
           <input type="button" id="enviarComentario" value="Enviar">
           <br>
-          <a href="@@duvidas_buscar" class="voltarReclamacoes">Voltar à lista de reclamações</a>
+          <a href="@@buscar_duvidas" class="voltarReclamacoes">Voltar à lista de dúvidas</a>
         </div>
       </div>
   </div>

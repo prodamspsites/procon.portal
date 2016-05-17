@@ -10,8 +10,7 @@ class BuscarDuvidas(BrowserView):
     def buscarPerguntaResposta(self):
         """ buscar registros mongodb do tire suas dúvidas """
         try:
-            client = MongoClient("mongodb.hom.prodam", 27017)
-            # client = MongoClient()
+            client = MongoClient()
             db = client.consumidor
             perguntas = {}
             if self.getFiltro():
@@ -51,8 +50,7 @@ class SalvarDuvidas(BrowserView):
         """ salvar registros mongodb do tire suas duvidas """
         data = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
         try:
-            client = MongoClient("mongodb.hom.prodam", 27017)
-            # client = MongoClient()
+            client = MongoClient()
             db = client.consumidor
 
             if self.getIdentificacao() and not self.getObservacao():
