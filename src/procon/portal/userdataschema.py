@@ -38,6 +38,18 @@ estadocivil_options = SimpleVocabulary([
     SimpleTerm(value='divorciado', title=_(u'Divorciado(a)')),
     SimpleTerm(value='viuvo', title=_(u'Viúvo(a)')), ])
 
+enquadramento_options = SimpleVocabulary([
+    SimpleTerm(value='Microempreendedor Individual (MEI)', title=_(u'Microempreendedor Individual (MEI)')),
+    SimpleTerm(value='Microempresa (ME)', title=_(u'Microempresa (ME)')),
+    SimpleTerm(value='Empresas de Pequeno Porte (EPP)', title=_(u'Empresas de Pequeno Porte (EPP)')),
+    SimpleTerm(value='Empresário Individual (EI)', title=_(u'Empresário Individual (EI)')),
+    SimpleTerm(value='Empresa Individual de Responsabilidade Limitada (EIRELI)', title=_(u'Empresa Individual de Responsabilidade Limitada (EIRELI)')), ])
+
+tipo_societario_options = SimpleVocabulary([
+    SimpleTerm(value='Sociedade Limitada (Ltda)', title=_(u'Sociedade Limitada (Ltda)')),
+    SimpleTerm(value='Sociedade Anônima (S.A)', title=_(u'Sociedade Anônima (S.A)')),
+    SimpleTerm(value='Empresa Individual de Responsabilidade Limitada (Eireli)', title=_(u'Empresa Individual de Responsabilidade Limitada (Eireli)')), ])
+
 adicionais_escolha_um = SimpleVocabulary([
     SimpleTerm(value='sim', title=_(u'Sim')),
     SimpleTerm(value='nao', title=_(u'Não')), ])
@@ -65,40 +77,44 @@ class IEnhancedUserDataSchema(model.Schema):
     extra fields.
     """
 
-    termos_uso = schema.List(title=u"Termos de Uso do Consumidor.",
-                             # description=u"Eu concordo com os Termos de Uso do Consumidor.",
-                             required=True,
-                             value_type=schema.Choice(vocabulary=termos)
-                             )
+    termos_uso = schema.List(
+        title=u"Termos de Uso do Consumidor.",
+        # description=u"Eu concordo com os Termos de Uso do Consumidor.",
+        required=False,
+        value_type=schema.Choice(vocabulary=termos))
 
-    adicional_um = schema.Choice(title=_(u'Possui mais de 60 anos ?'),
-                                 description=_(u'Possui mais de 60 anos ?'),
-                                 vocabulary=adicionais_escolha_um,
-                                 required=True,)
+    adicional_um = schema.Choice(
+        title=_(u'Possui mais de 60 anos ?'),
+        description=_(u'Possui mais de 60 anos ?'),
+        vocabulary=adicionais_escolha_um,
+        required=False,)
 
-    adicional_um = schema.Choice(title=_(u'Possui mais de 60 anos ?'),
-                                 description=_(u'Possui mais de 60 anos ?'),
-                                 vocabulary=adicionais_escolha_um,
-                                 required=True,)
+    adicional_um = schema.Choice(
+        title=_(u'Possui mais de 60 anos ?'),
+        description=_(u'Possui mais de 60 anos ?'),
+        vocabulary=adicionais_escolha_um,
+        required=False,)
 
-    adicional_tres = schema.Choice(title=_(u'Possui alguma deficiência ?'),
-                                   description=_(u'Possui alguma deficiência ?'),
-                                   vocabulary=adicionais_escolha_tres,
-                                   required=True,)
+    adicional_tres = schema.Choice(
+        title=_(u'Possui alguma deficiência ?'),
+        description=_(u'Possui alguma deficiência ?'),
+        vocabulary=adicionais_escolha_tres,
+        required=False,)
 
-    adicional_dois = schema.Choice(title=_(u'Portador de alguma doença grave prevista na Lei nº 12.008/09, atestada por declaração/laudo médico ?'),
-                                   description=_(u'Portador de alguma doença grave prevista na Lei nº 12.008/09, atestada por declaração/laudo médico ?'),
-                                   vocabulary=adicionais_escolha_dois,
-                                   required=True,)
+    adicional_dois = schema.Choice(
+        title=_(u'Portador de alguma doença grave prevista na Lei nº 12.008/09, atestada por declaração/laudo médico ?'),
+        description=_(u'Portador de alguma doença grave prevista na Lei nº 12.008/09, atestada por declaração/laudo médico ?'),
+        vocabulary=adicionais_escolha_dois,
+        required=False,)
 
     municipio = schema.Choice(
-        title=_(u'1) O consumidor deve assinalar se possui ou não domicílio no Município de São Paulo.', default=u'1) O consumidor deve assinalar se possui ou não domicílio no Município de São Paulo.'),
-        description=_(u'Você possui domicílio no Município de São Paulo?',
+        title=_(u'Você possui domicílio no Município de São Paulo?', default=u'Você possui domicílio no Município de São Paulo?'),
+        description=_(u'',
                       default=u""),
         vocabulary=municipio_options,
         required=True,)
     tipo = schema.Choice(
-        title=_(u'', default=u''),
+        title=_(u'Tipo de consumidor', default=u'Tipo de consumidor'),
         description=_(u'',
                       default=u""),
         vocabulary=tipo_options,
@@ -148,18 +164,30 @@ class IEnhancedUserDataSchema(model.Schema):
     estadocivil = schema.Choice(
         title=_(u'Estado civil', default=u'Estado civil'),
         description=_(u'',
-                      default=u""),
+                      default=u"Solteiro(a)"),
         vocabulary=estadocivil_options,
+        required=False,)
+    tipo_societario = schema.Choice(
+        title=_(u'Tipo Societário', default=u'Tipo Societário'),
+        description=_(u'',
+                      default=u""),
+        vocabulary=tipo_societario_options,
+        required=False,)
+    enquadramento = schema.Choice(
+        title=_(u'Enquadramento', default=u'Enquadramento'),
+        description=_(u'',
+                      default=u""),
+        vocabulary=enquadramento_options,
         required=False,)
 
     data_nascimento = schema.TextLine(
         title=_(u'Data de nascimento', default=u'Data de nascimento'),
-        required=True
+        required=False
     )
 
     contato_telefone = schema.TextLine(
         title=_(u'DDD + Telefone/Celular'),
-        required=True
+        required=False
     )
 
     contato_celular = schema.TextLine(
@@ -169,7 +197,7 @@ class IEnhancedUserDataSchema(model.Schema):
 
     codigo_enderecamento_postal = schema.TextLine(
         title=_(u'CEP', default=u'CEP'),
-        required=True
+        required=False
     )
 
     logradouro = schema.TextLine(
@@ -179,12 +207,12 @@ class IEnhancedUserDataSchema(model.Schema):
 
     complemento = schema.TextLine(
         title=_(u'Número/Complemento'),
-        required=True
+        required=False
     )
 
     bairro = schema.TextLine(
         title=_(u'Bairro'),
-        required=True
+        required=False
     )
 
     cidade = schema.TextLine(
@@ -204,7 +232,7 @@ class IEnhancedUserDataSchema(model.Schema):
 
     mail = schema.TextLine(
         title=_(u'E-mail'),
-        required=True
+        required=False
     )
 
     confirmacao = schema.TextLine(

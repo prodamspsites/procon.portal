@@ -26,4 +26,6 @@
  <property name="adicional_dois" type="string"></property>
  <property name="adicional_tres" type="string"></property>
  <property name="termos_uso" type="string"></property>
+ <property name="tipo_societario" type="string"></property>
+ <property name="enquadramento" type="string"></property>
 </object>
