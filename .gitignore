@@ -5,6 +5,7 @@
 *~
 .*project
 .coverage
+desenv.cfg
 .installed.cfg
 .mr.developer.cfg
 develoment.cfg
