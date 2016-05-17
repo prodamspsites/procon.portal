@@ -64,11 +64,11 @@
       />
 
     <browser:page
-      name="reclamacao"
+      name="buscar_reclamacoes"
       permission="zope2.View"
       for="*"
       layer="procon.portal.interfaces.IProdamPortal"
-      template="templates/reclamacao.pt"
+      template="templates/consultas/reclamacao.pt"
       class=".reclamacao.Reclamacao"
       />
 
@@ -82,11 +82,11 @@
       />
 
     <browser:page
-      name="duvidas_buscar"
+      name="buscar_duvidas"
       permission="zope2.View"
       for="*"
       layer="procon.portal.interfaces.IProdamPortal"
-      template="templates/buscar_pergunta.pt"
+      template="templates/consultas/duvida.pt"
       class=".pergunta.BuscarDuvidas"
       />
 

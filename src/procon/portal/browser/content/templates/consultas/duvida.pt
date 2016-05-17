@@ -1,9 +1,3 @@
-
-<!-- iteração de reclamação retorna lista de inputs -->
-<tal:dados tal:define="reclamacoes view/buscaReclamacao" tal:repeat="reclamacao reclamacoes">
-
-<!-- aqui nós iteramos os inputs -->
-
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
@@ -17,9 +11,14 @@
   <div class="wrapAdmin">
     <div class="divReclamacoes">
       <h1>Dúvidas recebidas</h1>
-<!--       <span class="total">Total: <span tal:define="perguntas view/buscaReclamacao;" tal:replace="python:perguntas['total']"></span></span>
- -->
+      <span class="total">Total: <span tal:define="perguntas view/buscarPerguntaResposta;" tal:replace="python:perguntas['total']"></span></span>
+
       <div class="filtrarPor"><strong>Filtrar por:</strong>
+      <form tal:attributes="action string:${context/portal_url}/duvidas_buscar" method="POST" name="filtro">
+        <select class="selectFilter"><option>Nome</option><select>
+        <input type="text" tal:define="perguntas view/buscarPerguntaResposta; filtro python:perguntas['filtro']" tal:attributes="value python:filtro and filtro or ''"  name="filtro_nome" placeholder="Digite o nome" class="inputFilter"/>
+        <input type="submit" value="FILTRAR" class="btnFiltrar" />
+      </form>
     </div>
       <div class="tableReclamacoes">
       <table id="table_id" class="display">
@@ -46,12 +45,18 @@
             </tr>
           </thead>
           <tbody>
-            <tr tal:condition="reclamacoes" tal:define="reclamacoes view/buscaReclamacao" tal:repeat="reclamacao reclamacoes">
-              <td style="display:none" class="_id"><tal:inputs tal:content="structure python:reclamacao[0]"></td>
-              <td><tal:inputs tal:content="structure python:reclamacao[0]"></td>
-              <td><tal:inputs tal:content="structure python:reclamacao[1]"></td>
-              <td><tal:inputs tal:content="structure python:reclamacao[2]"></td>
-              <td><tal:inputs tal:content="structure python:reclamacao[4]"></td>
+            <tr tal:condition="perguntas" tal:define="perguntas view/buscarPerguntaResposta" tal:repeat="pergunta python:perguntas['perguntas']">
+              <td style="display:none" class="_id"><tal:inputs tal:content="structure python:pergunta['_id']"></td>
+              <span style="display:none" tal:attributes="class python:str(pergunta['_id'])+'_observacao'"><tal:inputs tal:content="structure python:pergunta['observacao']"></span>
+              <td class="duvida_buscar" tal:attributes="class python:str(pergunta['_id'])+'_data'"><tal:inputs tal:content="structure python:pergunta['data'][:10]"></td>
+              <td tal:attributes="class python:str(pergunta['_id'])+'_categoria'"><tal:inputs tal:content="structure python:pergunta['categoria']"></td>
+              <td tal:attributes="class python:str(pergunta['_id'])+'_pergunta'"><tal:inputs tal:content="structure python:pergunta['pergunta']"></td>
+              <td tal:attributes="class python:str(pergunta['_id'])+'_usuario'"><tal:inputs tal:content="structure python:pergunta['usuario']"></td>
+              <span style="display:none" tal:attributes="class python:str(pergunta['_id'])+'_mensagem'"><tal:inputs tal:content="structure python:pergunta['mensagem']"></span>
+              <span style="display:none" tal:attributes="class python:str(pergunta['_id'])+'_resposta'"><tal:inputs tal:content="structure python:pergunta['resposta']"></span>
+              <span style="display:none" tal:attributes="class python:str(pergunta['_id'])+'_assunto'"><tal:inputs tal:content="structure python:pergunta['assunto']"></span>
+              <span style="display:none" tal:attributes="class python:str(pergunta['_id'])+'_lido'"><tal:inputs tal:content="structure python:pergunta['lido']"></span>
+              <th tal:define="lido python:pergunta['lido']; input string:<input class='lido' type='checkbox' value='cadastro' />; disable string:<input class='lido' disabled=disabled' checked type='checkbox' value='cadastro' />" tal:content="structure python:lido and disable or input " style="background-color:white"></th>
             </tr>
           </tbody>
           <!-- bower:js -->
@@ -59,6 +64,10 @@
       </table>
       </div>
 
+      <tal:result tal:condition="perguntas" tal:define="perguntas view/buscarPerguntaResposta">
+      <div class="paginationReclamacoes">
+      </div>
+      </tal:result>
       <a href="#" title="Voltar à lista de reclamações" class="voltarReclamacoes">Voltar à lista de reclamações</a>
     </div>
   </div>
@@ -83,7 +92,7 @@
               <a href="#" title="ordenar mais recente" class="setaUp active"></a>
             </th>
           </tr>
-          <tal:result tal:condition="reclamacoes" tal:define="reclamacoes view/buscaReclamacao">
+          <tal:result tal:condition="perguntas" tal:define="perguntas view/buscarPerguntaResposta">
             <tr>
               <td id="tbl1"></td>
               <td id="tbl2"></td>
@@ -120,7 +129,7 @@
           <br>
           <input type="button" id="enviarComentario" value="Enviar">
           <br>
-          <a href="@@duvidas_buscar" class="voltarReclamacoes">Voltar à lista de reclamações</a>
+          <a href="@@buscar_duvidas" class="voltarReclamacoes">Voltar à lista de dúvidas</a>
         </div>
       </div>
   </div>
@@ -129,10 +138,3 @@
 
 </body>
 </html>
-
-
-
-    <tal:inputs tal:repeat="input reclamacao">
-        <span tal:content="input" />
-    </tal:inputs>
-</tal:dados>
