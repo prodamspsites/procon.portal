@@ -40,6 +40,8 @@ class ProtocoloView(BrowserView):
 
             if 'action' in self.request:
                 if self.request.get('action') == 'create':
+                    print "create"
+                    print self.create()
                     return self.create()
                 if self.request.get('action') == 'update':
                     if 'protocol' in self.request and self.request.get('protocol'):
