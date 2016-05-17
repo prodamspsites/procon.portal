@@ -1,0 +1,143 @@
+<!-- <tal:dados tal:define="reclamacoes view/buscaReclamacao" tal:repeat="reclamacao reclamacoes">
+  <tal:inputs tal:content="structure python:reclamacao[0]">
+  <tal:inputs tal:content="structure python:reclamacao[1]">
+  <tal:inputs tal:content="structure python:reclamacao[2]">
+  <tal:inputs tal:content="structure python:reclamacao[3]">
+  <tal:inputs tal:content="structure python:reclamacao[4]">
+</tal:dados> -->
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="plone">
+<body>
+  <div id="content-core" metal:fill-slot="main">
+  <!--RECLAMACOES-->
+  <div class="wrapAdmin">
+    <div class="divReclamacoes">
+      <h1>Reclamações recebidas</h1>
+      <!-- <span class="total">Total: <span tal:define="perguntas view/buscarPerguntaResposta;" tal:replace="python:perguntas['total']"></span></span> -->
+
+      <div class="filtrarPor"><strong>Filtrar por:</strong>
+      <form tal:attributes="action string:${context/portal_url}/duvidas_buscar" method="POST" name="filtro">
+        <select class="selectFilter"><option>Nome</option><select>
+        <input type="text"  name="filtro_nome" placeholder="Digite um valor para filtrar" class="inputFilter"/>
+        <input type="submit" value="FILTRAR" class="btnFiltrar" />
+      </form>
+    </div>
+      <div class="tableReclamacoes">
+      <table id="table_id_reclamacoes" class="display">
+          <thead>
+            <tr>
+              <th width="1%" style="display:none">
+                <span>.</span>
+              </th>
+              <th width="12%">
+                <span>Data</span>
+              </th>
+              <th width="18%">
+                <span>Tipo de cadastro</span>
+              </th>
+              <th width="35%">
+                <span>Protocolo</span>
+              </th>
+              <th width="20%">
+                <span>Nome</span>
+              </th>
+              <th width="15%">
+                <span>SINDEC</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr tal:condition="dados" tal:define="dados view/buscaReclamacao" tal:repeat="pergunta dados">
+              <td class="reclamacao_buscar" class="_id"><tal:inputs tal:content="structure python:pergunta[1]"></td>
+              <td tal:attributes="class python:str(pergunta[0])+'_categoria'">- - -</td>
+              <td tal:attributes="class python:str(pergunta[0])+'_pergunta'">- - -</td>
+              <td tal:attributes="class python:str(pergunta[0])+'_usuario'"><tal:inputs tal:content="structure python:pergunta[5]"></td>
+              <th tal:define="lido python:pergunta[1]; input string:<input class='lido' type='checkbox' value='cadastro' />; disable string:<input class='lido' disabled=disabled' checked type='checkbox' value='cadastro' />" tal:content="structure python:lido and disable+' <font color=gray>Cadastrado</font>' or input " style="background-color:white"></th>
+              <div class="reclamacoes_interno" style="display:none" tal:define="labels
+                  python:['VOCÊ PROCUROU A EMPRESA PARA SOLUCIONAR O PROBLEMA ?',
+                          'INFORME COMO FOI O SEU CONTATO COM A EMPRESA. INDIQUE O(S) NÚMERO(S) DE PROTOCOLO(S), CASO O(S) POSSUA:',
+                          'INFORME POR QUE VOCÊ NÃO PROCUROU A EMPRESA PARA RESOLVER O SEU PROBLEMA:',
+                          'COMO VOCÊ COMPROU/CONTRATOU ?',
+                          'ÁREA RELATIVA AO PRODUTO/SERVIÇO RECLAMADO:',
+                          'A RECLAMAÇÃO REFERE-SE À/AO:',
+                          'ASSINALE O TIPO DE PROBLEMA APRESENTADO:',
+                          'QUANDO VOCÊ COMPROU O PRODUTO OU CONTRATOU O SERVIÇO ?',
+                          'É importante que você forneça o maior número de dados possíveis relativos à compra ou contratação do serviço reclamado, tais como:',
+                          'QUAL O VALOR TOTAL DO PRODUTO/SERVIÇO ? Clique ou toque aqui para inserir o texto.',
+                          'QUAL A CONDIÇÃO DE PAGAMENTO DO PRODUTO OU SERVIÇO CONTRATADO ?',
+                          'QUANTIDADE DE PARCELAS.',
+                          'VALOR DA PARCELA.',
+                          'QUANDO O PRODUTO OU SERVIÇO APRESENTOU PROBLEMA',
+                          'DESCREVA SUA RECLAMAÇÃO NO CAMPO ABAIXO. MAS ANTES DE PREENCHÊ-LA, LEIA AS OBSERVAÇÕES A SEGUIR.',
+                          'PEDIDO'
+                         ]" tal:repeat="label labels">
+
+                  <!-- <label tal:content="label">VALOR</label> -->
+                  <!-- <span tal:define="count python:int(repeat.label.number);" tal:content="python:dados[int(repeat.pergunta.number) -1][count]"></span> -->
+                  <!-- <hr> -->
+
+                    <div class="detalhesDuvida">
+                      <strong class="tituloConsumidor" tal:content="label">Pergunta:</strong>
+                      <div class="respostaConsumidor">
+                        <span tal:define="count python:int(repeat.label.number);" tal:content="python:dados[int(repeat.pergunta.number) -1][count]"></span>
+                      </div>
+                    </div>
+
+              </div>
+            </tr>
+          </tbody>
+          <!-- bower:js -->
+          <!-- endbower -->
+      </table>
+      </div>
+
+      <tal:result tal:condition="perguntas" tal:define="perguntas view/buscaReclamacao">
+      <div class="paginationReclamacoes">
+      </div>
+      </tal:result>
+      <a href="@@buscar_reclamacoes" class="voltarReclamacoes">Voltar à lista de reclamações</a>
+    </div>
+  </div>
+  <!--RECLAMACOES-->
+  <div class="teste" style="display:none;">
+    <div class="tableReclamacoes">
+    <table>
+      <tr>
+        <th width="12%">
+          <span>Data</span>
+          <a href="#" title="ordenar mais recente" class="setaDown active"></a>
+          <a href="#" title="ordenar mais recente" class="setaUp"></a>
+        </th>
+        <th width="13%">
+          <span>Categoria</span>
+          <a href="#" title="ordenar mais recente" class="setaDown active"></a>
+          <a href="#" title="ordenar mais recente" class="setaUp"></a>
+        </th>
+        <th width="25%">
+          <span>Nome</span>
+          <a href="#" title="ordenar mais recente" class="setaDown active"></a>
+          <a href="#" title="ordenar mais recente" class="setaUp active"></a>
+        </th>
+      </tr>
+        <tr>
+          <td id="tbl1"></td>
+          <td id="tbl2"></td>
+          <td id="tbl3"></td>
+        </tr>
+    </table>
+    </div>
+  </div>
+
+
+  </div>
+
+</body>
+</html>

@@ -46,6 +46,7 @@ setup(
         'procon.tema',
         'pymongo',
         'collective.schedule',
+        'wildcard.tinymceplugins.youtube',
         'collective.cover',
         'collective.nitf',
         'collective.cover',

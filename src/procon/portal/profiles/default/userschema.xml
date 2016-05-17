@@ -1,0 +1,37 @@
+<model
+  xmlns:lingua="http://namespaces.plone.org/supermodel/lingua"
+  xmlns:users="http://namespaces.plone.org/supermodel/users"
+  xmlns:form="http://namespaces.plone.org/supermodel/form"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  xmlns:security="http://namespaces.plone.org/supermodel/security"
+  xmlns:marshal="http://namespaces.plone.org/supermodel/marshal"
+  xmlns="http://namespaces.plone.org/supermodel/schema"
+  i18n:domain="plone">
+  <schema name="member-fields">
+    <field name="tipo" type="zope.schema.Choice"
+      form:widget="z3c.form.browser.radio.RadioFieldWidget" users:forms="In User Profile">
+      <description />
+      <required>True</required>
+      <title />
+      <values>
+        <element>Pessoa física</element>
+        <element>Pessoa jurídica</element>
+      </values>
+    </field>
+    <field name="nome" type="zope.schema.TextLine" users:forms="In User Profile">
+      <description />
+      <required>True</required>
+      <title>Nome completo</title>
+    </field>
+    <field name="nome" type="zope.schema.TextLine" users:forms="In User Profile">
+      <description />
+      <required>True</required>
+      <title>CPF</title>
+    </field>
+    <field name="email" type="plone.schema.email.Email" users:forms="In User Profile">
+      <description />
+      <required>True</required>
+      <title>E-mail</title>
+    </field>
+  </schema>
+</model>

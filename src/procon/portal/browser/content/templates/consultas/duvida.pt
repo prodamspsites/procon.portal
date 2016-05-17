@@ -48,7 +48,7 @@
             <tr tal:condition="perguntas" tal:define="perguntas view/buscarPerguntaResposta" tal:repeat="pergunta python:perguntas['perguntas']">
               <td style="display:none" class="_id"><tal:inputs tal:content="structure python:pergunta['_id']"></td>
               <span style="display:none" tal:attributes="class python:str(pergunta['_id'])+'_observacao'"><tal:inputs tal:content="structure python:pergunta['observacao']"></span>
-              <td tal:attributes="class python:str(pergunta['_id'])+'_data'"><tal:inputs tal:content="structure python:pergunta['data'][:10]"></td>
+              <td class="duvida_buscar" tal:attributes="class python:str(pergunta['_id'])+'_data'"><tal:inputs tal:content="structure python:pergunta['data'][:10]"></td>
               <td tal:attributes="class python:str(pergunta['_id'])+'_categoria'"><tal:inputs tal:content="structure python:pergunta['categoria']"></td>
               <td tal:attributes="class python:str(pergunta['_id'])+'_pergunta'"><tal:inputs tal:content="structure python:pergunta['pergunta']"></td>
               <td tal:attributes="class python:str(pergunta['_id'])+'_usuario'"><tal:inputs tal:content="structure python:pergunta['usuario']"></td>
@@ -129,7 +129,7 @@
           <br>
           <input type="button" id="enviarComentario" value="Enviar">
           <br>
-          <a href="@@duvidas_buscar" class="voltarReclamacoes">Voltar à lista de reclamações</a>
+          <a href="@@buscar_duvidas" class="voltarReclamacoes">Voltar à lista de dúvidas</a>
         </div>
       </div>
   </div>
