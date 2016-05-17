@@ -45,9 +45,14 @@ setup(
     install_requires=[
         'procon.tema',
         'pymongo',
+<<<<<<< HEAD
 	'Products.PloneFormGen',        
 	'collective.schedule',        
 	'procon.tema',
+=======
+        'collective.schedule',
+        'wildcard.tinymceplugins.youtube',
+>>>>>>> 1bfc0a5ab817e3b3d584bb1abc53efe581dffe85
         'collective.cover',
         'collective.nitf',
         'collective.cover',

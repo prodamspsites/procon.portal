@@ -4,6 +4,7 @@
     <value purge="false">
       <element>page_template</element>
       <element>collection_news</element>
+      <element>capa_collection_news</element>
       <element>basic_tile</element>
     </value>
   </record>
@@ -13,7 +14,22 @@
     <value purge="false">
       <element>page_template</element>
       <element>collection_news</element>
+      <element>capa_collection_news</element>
       <element>basic_tile</element>
     </value>
   </record>
+
+    <!-- estilos do collective.cover -->
+  <record name="collective.cover.controlpanel.ICoverSettings.styles" interface="collective.cover.controlpanel.ICoverSettings" field="styles">
+    <value>
+      <element>Estilo 1|estilo1</element>
+      <element>Estilo 2|estilo2</element>
+      <element>Estilo 3|estilo3</element>
+      <element>Estilo 4|estilo4</element>
+      <element>Estilo 5|estilo5</element>
+      <element>Border|tile.edge</element>
+      <element>container|wrap-not</element>
+    </value>
+  </record>
+
 </registry>

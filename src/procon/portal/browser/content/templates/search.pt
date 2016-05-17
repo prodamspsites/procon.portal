@@ -19,8 +19,7 @@
 
   <metal:block fill-slot="top_slot"
                tal:define="dummy python:request.set('disable_border',1);
-                           disable_column_one python:request.set('disable_plone.leftcolumn',1);
-                           disable_column_two python:request.set('disable_plone.rightcolumn',1);" />
+                           disable_column_one python:request.set('disable_plone.leftcolumn',1);"/>
 </head>
 
 <body>
@@ -38,21 +37,6 @@
 
         <input type="hidden" name="advanced_search" value="False" />
         <input type="hidden" name="sort_on" value="" />
-
-        <fieldset id="search-field" i18n:domain="plone" class="noborder">
-            <input class="searchPage"
-                   name="SearchableText"
-                   type="text"
-                   size="25"
-                   title="Search Site"
-                   i18n:attributes="title title_search_title;"
-                   tal:attributes="value st;"
-                   />
-            <input class="searchPage searchButton allowMultiSubmit"
-                   type="submit"
-                   value="Search"
-                   i18n:attributes="value label_search;"/>
-        </fieldset>
 
         <div class="row">
 
@@ -113,21 +97,22 @@
                                                    show_about python:not isAnon or allowAnonymousViewAbout;">
                           <dl class="searchResults">
                               <tal:results repeat="item batch">
-                                    <p class="parent" tal:content="python:item.getObject().aq_parent.Title()"></p>
+                                <div class="blocoBusca">
+                                    <span class="categoria"><p class="parent" tal:content="python:item.getObject().aq_parent.Title()"></p>
                                     <tal:newsItem tal:condition="python:item.portal_type == 'News Item'">
                                                                               <span tal:define="publication_date item/EffectiveDate;
                                                           modification_date item/ModificationDate">
 
                                             <span class="dateNewsItens" tal:condition="python: publication_date != 'None'">
-                                              |
+                                              |&nbsp;&nbsp;
                                               <span tal:replace="python:toLocalizedTime(publication_date, long_format=0)">
                                                 August 16, 2001 at 23:35:59
                                               </span>
                                             </span>
                                           </span>
                                     </tal:newsItem>
+                                  </span>
                                     <dt tal:attributes="class item/ContentTypeClass">
-                                      <img tal:replace="structure item/getIcon" />
                                       <a href="#"
                                          tal:define="item_url item/getURL;
                                                      item_type item/PortalType"
@@ -135,9 +120,10 @@
                                                          class string:state-${item/review_state}"
                                          tal:content="python:item.getDataOrigin().pretty_title_or_id()" />
                                     </dt>
+                                  </div>
                               </tal:results>
                           </dl>
-                          <div metal:use-macro="context/batch_macros/macros/navigation" />
+                          <div metal:use-macro="context/procon_macros/macros/navigation" />
                         </metal:results>
                     </div>
                 </metal:searchresults>

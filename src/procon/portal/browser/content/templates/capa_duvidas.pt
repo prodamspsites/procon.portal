@@ -1,0 +1,49 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+<body>
+
+<metal:content-core fill-slot="content-core">
+<metal:block use-macro="context/standard_view/macros/content-core">
+
+    <metal:entries fill-slot="entries">
+    <div class="wrap">
+      <p>Escolha uma categoria para tirar as suas dúvidas:</p>
+    <div class="blocoDuvidas">
+      <ul class="itensDuvidas">
+    <metal:block use-macro="context/standard_view/macros/entries">
+    <metal:entry fill-slot="entry">
+
+        <li tal:define="obj item/getObject">
+          <tal:hasImage condition="python:item.image"
+                        tal:define="scales python:item.getObject().restrictedTraverse('@@images');
+                                    imageLarge python:scales.scale('image', width=340, height=195)">
+                      <a href="#" tal:define="obj item/getObject"
+                                  tal:attributes="href obj/url">
+                        <img tal:attributes="src imageLarge/url; alt item/Title;" class="AQUIIIIIII" />
+                      </a>
+          </tal:hasImage>
+              <span metal:define-macro="listitem">
+                <a href="#"  tal:attributes="href obj/url" tal:content="obj/Title">
+                    Item Title
+                </a>
+              </span>
+        </li>
+
+    </metal:entry>
+    </metal:block>
+      </ul>
+    </div>
+    </div>
+    </metal:entries>
+
+</metal:block>
+</metal:content-core>
+
+</body>
+</html>

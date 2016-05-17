@@ -5,6 +5,7 @@
 *~
 .*project
 .coverage
+desenv.cfg
 .installed.cfg
 .mr.developer.cfg
 develoment.cfg
@@ -26,6 +27,7 @@ Makefile
 parts/
 src/collective.cover/
 src/collective.transmogrifier/
+src/Products.PloneFormGen/
 src/procon.tema
 src/procon.portal
 src/prodam.tiles

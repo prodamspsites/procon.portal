@@ -9,6 +9,7 @@ from zope import schema
 from zope.formlib import form
 from zope.interface import implements
 from plone import api
+from DateTime import DateTime
 
 
 class iNoticias(IPortletDataProvider):
@@ -76,6 +77,12 @@ class Assignment(base.Assignment):
 
 class Renderer(base.Renderer):
     _template = ViewPageTemplateFile('templates/noticias.pt')
+
+    def getDate(self, date):
+        data = DateTime(date).strftime('%d/%m/%Y')
+        hora = DateTime(date).strftime('%H:%M')
+        dataFinal = data + ' - ' + hora
+        return dataFinal
 
     def __init__(self, *args):
         base.Renderer.__init__(self, *args)
