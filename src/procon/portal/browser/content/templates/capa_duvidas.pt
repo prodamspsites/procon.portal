@@ -20,12 +20,10 @@
     <metal:entry fill-slot="entry">
 
         <li tal:define="obj item/getObject">
-          <tal:hasImage condition="python:item.image"
-                        tal:define="scales python:item.getObject().restrictedTraverse('@@images');
-                                    imageLarge python:scales.scale('image', scale='full')">
+          <tal:hasImage condition="python:item.image">
                       <a href="#" tal:define="obj item/getObject"
                                   tal:attributes="href obj/url">
-                        <img tal:attributes="src imageLarge/url; alt item/Title; width string:340; height string:195  "/>
+                        <img tal:attributes="src python:obj.absolute_url() + '/@@images/image.jpg'"/>
                       </a>
           </tal:hasImage>
               <span metal:define-macro="listitem">

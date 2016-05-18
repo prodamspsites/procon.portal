@@ -17,7 +17,7 @@
     <div class="blocoNoticias">
       <tal:hasImage condition="python:item.image"
                     tal:define="scales python:item.getObject().restrictedTraverse('@@images');
-                                imageLarge python:scales.scale('image', scale='full')">
+                                imageLarge python:scales.scale('image', width=100, height=100)">
                   <a href="#" tal:define="obj item/getObject"
                               tal:attributes="href obj/absolute_url">
                     <img tal:attributes="src imageLarge/url; alt item/Title;" class="left" />
