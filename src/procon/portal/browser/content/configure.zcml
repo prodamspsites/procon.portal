@@ -122,4 +122,13 @@
       permission="zope2.View"
     />
 
+    <!-- IMPORTAR PERGUNTAS E RESPOSTAS  -->
+    <browser:page
+      name="importacao"
+      for="*"
+      class=".importacao.Importacao"
+      template="templates/importacao.pt"
+      permission="zope2.View"
+      />
+
 </configure>
