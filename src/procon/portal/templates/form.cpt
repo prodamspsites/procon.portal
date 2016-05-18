@@ -87,6 +87,8 @@
                                         anonymous python:portal_state.anonymous()"
                              tal:condition="not:anonymous">
                 <metal:use_body use-macro="body_macro" />
+                <span class="currentUser" tal:content="user/getUserName" />
+
               </tal:anonymous>
             </div>
 
