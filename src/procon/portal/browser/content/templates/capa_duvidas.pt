@@ -22,10 +22,10 @@
         <li tal:define="obj item/getObject">
           <tal:hasImage condition="python:item.image"
                         tal:define="scales python:item.getObject().restrictedTraverse('@@images');
-                                    imageLarge python:scales.scale('image', width=340, height=195)">
+                                    imageLarge python:scales.scale('image', scale='full')">
                       <a href="#" tal:define="obj item/getObject"
                                   tal:attributes="href obj/url">
-                        <img tal:attributes="src imageLarge/url; alt item/Title;" class="AQUIIIIIII" />
+                        <img tal:attributes="src imageLarge/url; alt item/Title; width string:340; height string:195  "/>
                       </a>
           </tal:hasImage>
               <span metal:define-macro="listitem">
