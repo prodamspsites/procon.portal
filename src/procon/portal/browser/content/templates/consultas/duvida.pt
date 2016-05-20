@@ -10,6 +10,8 @@
   <!--RECLAMACOES-->
   <div class="wrapAdmin">
     <div class="divReclamacoes">
+      <span class="currentUser" tal:content="user/getUserName" />
+
       <h1>Dúvidas recebidas</h1>
       <span class="total">Total: <span tal:define="perguntas view/buscarPerguntaResposta;" tal:replace="python:perguntas['total']"></span></span>
 
@@ -68,7 +70,6 @@
       <div class="paginationReclamacoes">
       </div>
       </tal:result>
-      <a href="#" title="Voltar à lista de reclamações" class="voltarReclamacoes">Voltar à lista de reclamações</a>
     </div>
   </div>
   <!--RECLAMACOES-->
