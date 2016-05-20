@@ -13,7 +13,7 @@ Conheça o site Consumidor.gov.br! Para acessá-lo e prosseguir com sua reclama�
    <span class="imgConsumidor"></span>
    <p><strong>Caso você já tenha reclamado no site do Consumidor.gov.br e seu problema não tenha sido solucionado, preencha o campo abaixo com o número do protocolo disponibilizado no site Consumidor.gov.br e prossiga com a reclamação no Procon Paulistano.</strong></p>
    <div class="divProtocolo">
-      <input class="inputProtocolo" /><input type="submit"  class="btnProsseguir" />
+      <input class="inputProtocolo" /><input type="submit"  class="btnProsseguir" val="ENVIAR" />
    </div>
 </div>
 </tal:Form>
