@@ -5,6 +5,7 @@
 *~
 .*project
 .coverage
+desenv.cfg
 .installed.cfg
 .mr.developer.cfg
 develoment.cfg
@@ -27,6 +28,7 @@ parts/
 src/collective.cover/
 src/Products.PloneFormGen/
 src/collective.transmogrifier/
+src/Products.PloneFormGen/
 src/procon.tema
 src/procon.portal
 src/prodam.tiles

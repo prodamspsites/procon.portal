@@ -48,6 +48,8 @@ setup(
 	'Products.PloneFormGen',        
 	'collective.schedule',        
 	'procon.tema',
+        'collective.schedule',
+        'wildcard.tinymceplugins.youtube',
         'collective.cover',
         'collective.nitf',
         'collective.cover',

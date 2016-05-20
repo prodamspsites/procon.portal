@@ -19,13 +19,25 @@
       />
   <plone:tile
       name="collection_news"
-      title="Exibe um coleção de notícias"
-      description="Exibe um coleção de notícias"
+      title="Exibe um coleção de notícias da home"
+      description="Exibe um coleção de notícias da home"
       icon="++resource++collective.cover/tile-collection.png"
       add_permission="cmf.ModifyPortalContent"
       schema=".collection.ICollectionTile"
       class=".collection.CollectionTile"
       permission="zope2.View"
+      for="*"
+      />
+  <plone:tile
+      name="capa_collection_news"
+      title="Exibe a capa de coleção de notícias"
+      description="Exibe a capa de coleção de notícias"
+      icon="++resource++collective.cover/tile-collection.png"
+      add_permission="cmf.ModifyPortalContent"
+      schema=".capa_collection.ICollectionTile"
+      class=".capa_collection.CollectionTile"
+      permission="zope2.View"
+      template="templates/capa_collection_news.pt"
       for="*"
       />
   <plone:tile

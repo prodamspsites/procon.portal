@@ -49,6 +49,20 @@
       CEP 01002-020 - São Paulo - SP<br>
       Telefone 156
     </p>
+    <div class="socialFooter">
+      <p>Redes Sociais</p>
+      <ul class="listaSocial">
+        <li class="faceSocial">
+          <a href="#"></a>
+        </li>
+        <li class="twitterSocial">
+          <a href="#"></a>
+        </li>
+        <li class="youtubeSocial">
+          <a href="#"></a>
+        </li>
+      </ul>
+    </div>
   </div>
 
   <div class="footerBottom">

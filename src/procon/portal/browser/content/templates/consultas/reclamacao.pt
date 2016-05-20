@@ -27,11 +27,12 @@
       <form tal:attributes="action string:${context/portal_url}/duvidas_buscar" method="POST" name="filtro">
         <select class="selectFilter"><option>Nome</option><select>
         <!-- <input type="text" tal:define="perguntas view/buscarPerguntaResposta; filtro python:perguntas['filtro']" tal:attributes="value python:filtro and filtro or ''"  name="filtro_nome" placeholder="Digite o nome" class="inputFilter"/> -->
+
         <input type="submit" value="FILTRAR" class="btnFiltrar" />
       </form>
     </div>
       <div class="tableReclamacoes">
-      <table id="table_id" class="display">
+      <table id="table_id_reclamacoes" class="display">
           <thead>
             <tr>
               <th width="1%" style="display:none">
@@ -57,10 +58,42 @@
           <tbody>
             <tr tal:condition="dados" tal:define="dados view/buscaReclamacao" tal:repeat="pergunta dados">
               <td class="_id"><tal:inputs tal:content="structure python:pergunta[0]"></td>
+              <td class="reclamacao_buscar" class="_id"><tal:inputs tal:content="structure python:pergunta[1]"></td>
               <td tal:attributes="class python:str(pergunta[0])+'_categoria'">- - -</td>
               <td tal:attributes="class python:str(pergunta[0])+'_pergunta'">- - -</td>
               <td tal:attributes="class python:str(pergunta[0])+'_usuario'"><tal:inputs tal:content="structure python:pergunta[5]"></td>
               <th tal:define="lido python:pergunta[1]; input string:<input class='lido' type='checkbox' value='cadastro' />; disable string:<input class='lido' disabled=disabled' checked type='checkbox' value='cadastro' />" tal:content="structure python:lido and disable+' <font color=gray>Cadastrado</font>' or input " style="background-color:white"></th>
+              <div class="reclamacoes_interno" style="display:none" tal:define="labels
+                  python:['VOCÊ PROCUROU A EMPRESA PARA SOLUCIONAR O PROBLEMA ?',
+                          'INFORME COMO FOI O SEU CONTATO COM A EMPRESA. INDIQUE O(S) NÚMERO(S) DE PROTOCOLO(S), CASO O(S) POSSUA:',
+                          'INFORME POR QUE VOCÊ NÃO PROCUROU A EMPRESA PARA RESOLVER O SEU PROBLEMA:',
+                          'COMO VOCÊ COMPROU/CONTRATOU ?',
+                          'ÁREA RELATIVA AO PRODUTO/SERVIÇO RECLAMADO:',
+                          'A RECLAMAÇÃO REFERE-SE À/AO:',
+                          'ASSINALE O TIPO DE PROBLEMA APRESENTADO:',
+                          'QUANDO VOCÊ COMPROU O PRODUTO OU CONTRATOU O SERVIÇO ?',
+                          'É importante que você forneça o maior número de dados possíveis relativos à compra ou contratação do serviço reclamado, tais como:',
+                          'QUAL O VALOR TOTAL DO PRODUTO/SERVIÇO ? Clique ou toque aqui para inserir o texto.',
+                          'QUAL A CONDIÇÃO DE PAGAMENTO DO PRODUTO OU SERVIÇO CONTRATADO ?',
+                          'QUANTIDADE DE PARCELAS.',
+                          'VALOR DA PARCELA.',
+                          'QUANDO O PRODUTO OU SERVIÇO APRESENTOU PROBLEMA',
+                          'DESCREVA SUA RECLAMAÇÃO NO CAMPO ABAIXO. MAS ANTES DE PREENCHÊ-LA, LEIA AS OBSERVAÇÕES A SEGUIR.',
+                          'PEDIDO'
+                         ]" tal:repeat="label labels">
+
+                  <!-- <label tal:content="label">VALOR</label> -->
+                  <!-- <span tal:define="count python:int(repeat.label.number);" tal:content="python:dados[int(repeat.pergunta.number) -1][count]"></span> -->
+                  <!-- <hr> -->
+
+                    <div class="detalhesDuvida">
+                      <strong class="tituloConsumidor" tal:content="label">Pergunta:</strong>
+                      <div class="respostaConsumidor">
+                        <span tal:define="count python:int(repeat.label.number);" tal:content="python:dados[int(repeat.pergunta.number) -1][count]"></span>
+                      </div>
+                    </div>
+
+              </div>
             </tr>
           </tbody>
           <!-- bower:js -->
@@ -72,7 +105,7 @@
       <div class="paginationReclamacoes">
       </div>
       </tal:result>
-      <a href="#" title="Voltar à lista de reclamações" class="voltarReclamacoes">Voltar à lista de reclamações</a>
+
     </div>
   </div>
   <!--RECLAMACOES-->
