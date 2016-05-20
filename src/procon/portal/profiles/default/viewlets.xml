@@ -11,8 +11,10 @@
   <order manager="plone.portalheader" skinname="*">
     <viewlet name="procon.logo.principal" />
     <viewlet name="procon.social" />
+    <viewlet name="procon.modoAdministrativo"/>
     <viewlet name="procon.logo.negocios" />
     <viewlet name="procon.navegacao.horizontal" />
+    <viewlet name="procon.menuModAdmin" />
     <viewlet name="procon.path_bar" />
     <viewlet name="procon.searchbox"/>
   </order>

@@ -1,0 +1,17 @@
+<div class="wrap menuModAdmin">
+    <ul>
+        <li class="subMenu">
+            <a>Reclamações</a>
+        </li>
+        <li class="subMenu">
+            <a>Dúvidas</a>
+        </li>
+        <li class="subMenu">
+            <a>Denúncias</a>
+        </li>
+        <li class="subMenu">
+            <a>Fornecedores</a>
+        </li>
+
+    </ul>
+</div>
