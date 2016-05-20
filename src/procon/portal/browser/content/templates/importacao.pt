@@ -7,6 +7,10 @@
       i18n:domain="plone">
 <body>
   <metal:content-core fill-slot="content-core">
+    <tal:dados tal:content="view/criarObjetosPorCategorias" />
   </metal:content-core>
 </body>
 </html>
+<!-- dados[i] = {'Categoria': row['Categoria'],
+            'Pergunta': row['Pergunta'],
+            'Resposta': row['Resposta']} -->

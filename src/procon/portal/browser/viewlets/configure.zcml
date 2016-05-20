@@ -80,4 +80,21 @@
         template="templates/searchbox.pt"
         />
 
+    <browser:viewlet
+        name="procon.modoAdministrativo"
+        manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+        class=".viewlets.DefaultViewlet"
+        permission="zope2.View"
+        template="templates/modoAdministrativo.pt"
+    />
+
+    <browser:viewlet
+        name="procon.menuModAdmin"
+        manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+        class=".viewlets.DefaultViewlet"
+        permission="zope2.View"
+        layer="procon.portal.interfaces.IProdamPortal"
+        template="templates/menuModAdmin.pt"
+    />
+
 </configure>
