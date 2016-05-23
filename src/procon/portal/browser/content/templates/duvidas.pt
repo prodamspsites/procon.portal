@@ -42,6 +42,7 @@
                                 <option value="A resposta está incorreta">A resposta está incorreta</option>
                                 <option value="A resposta está confusa">A resposta está confusa</option>
                                 <option value="A resposta usa muitos termos técnicos">A resposta usa muitos termos técnicos</option>
+                                <option value="Não há resposta para minha pergunta">Não há resposta para minha pergunta</option>
                               </select>
                               <input type="hidden" value="" id="form_usuario_duvida" tal:attributes="value python:view.getUser()" />
                             </label>
