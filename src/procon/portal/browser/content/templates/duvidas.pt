@@ -31,7 +31,7 @@
                                    tal:condition="not:anonymous">
 
                       <form class="respostaUtil">
-                        <fieldset><legend>Resposta foi útil</legend>
+                        <fieldset><legend>Sua dúvida foi resolvida?</legend>
                           <label>Esta resposta foi útil: <input type="radio" name="duvidas_util" class="duvida_util" value='sim'><span>Sim</span><input type="radio" name="duvidas_util" class="duvida_util" value='nao'><span>Não</span></label>
                           <div class="replica" style="display:none;">
                             <label class="labelMotivo">Qual o motivo?
