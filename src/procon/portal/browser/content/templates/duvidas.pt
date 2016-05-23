@@ -59,6 +59,14 @@
                     </tal:anonymous>
 
 
+                    <tal:anonymous tal:define="portal_state context/@@plone_portal_state;
+                                              anonymous python:portal_state.anonymous()"
+                                   tal:condition="anonymous">
+                                   <div class="logarForm">
+                                    <p>Faça o login</a>
+                                   </div>
+                    </tal:anonymous>
+
                   </div>
           </div>
         </metal:entry>
