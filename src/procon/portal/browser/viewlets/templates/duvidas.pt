@@ -8,9 +8,7 @@
    <p>O fornecedor que você buscou está cadastrado no site Consumidor.gov.br, uma plataforma disponibilizada pelo Governo Federal e monitorada pelo Procon Paulistano para a solução alternativa de conflitos, na qual as empresas participantes se comprometeram a receber, analisar e responder as reclamações de seus consumidores em até 10 dias.<br />Em média, 8 em cada 10 reclamações são resolvidas nesta plataforma!
 Conheça o site Consumidor.gov.br! Para acessá-lo e prosseguir com sua reclamação, clique no botão abaixo.</p>
    <p><strong>Clique no botão abaixo para ser redirecionado no site e continuar com a sua reclamação.</strong></p>
-   <a href="#" target="_blank" class="linkRedireciona">CLIQUE AQUI PARA SER REDIRECIONADO</a>
-   <span class="imgSeta"></span>
-   <span class="imgConsumidor"></span>
+   <a href="#" target="_blank" class="linkRedireciona">CLIQUE AQUI</a>
    <p><strong>Caso você já tenha reclamado no site do Consumidor.gov.br e seu problema não tenha sido solucionado, preencha o campo abaixo com o número do protocolo disponibilizado no site Consumidor.gov.br e prossiga com a reclamação no Procon Paulistano.</strong></p>
    <div class="divProtocolo">
       <input class="inputProtocolo" /><input type="submit"  class="btnProsseguir" val="ENVIAR" />
