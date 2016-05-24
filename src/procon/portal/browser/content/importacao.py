@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import pyexcel as pe
-# import pyexcel.ext.xlsx
+import pyexcel.ext.xlsx
 import os
 from Products.Five import BrowserView
 from plone import api

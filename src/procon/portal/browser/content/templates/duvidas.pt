@@ -32,7 +32,7 @@
 
                       <form class="respostaUtil">
                         <fieldset><legend>Resposta foi útil</legend>
-                          <label>Esta resposta foi útil: <input type="radio" name="duvidas_util" class="duvida_util" value='sim'><span>Sim</span><input type="radio" name="duvidas_util" class="duvida_util" value='nao'><span>Não</span></label>
+                          <label>Sua dúvida foi resolvida? <input type="radio" name="duvidas_util" class="duvida_util" value='sim'><span>Sim</span><input type="radio" name="duvidas_util" class="duvida_util" value='nao'><span>Não</span></label>
                           <div class="replica" style="display:none;">
                             <label class="labelMotivo">Qual o motivo?
                               <select id="assunto_opcao">
@@ -42,6 +42,7 @@
                                 <option value="A resposta está incorreta">A resposta está incorreta</option>
                                 <option value="A resposta está confusa">A resposta está confusa</option>
                                 <option value="A resposta usa muitos termos técnicos">A resposta usa muitos termos técnicos</option>
+                                <option value="Não há resposta para minha pergunta">Não há resposta para minha pergunta</option>
                               </select>
                               <input type="hidden" value="" id="form_usuario_duvida" tal:attributes="value python:view.getUser()" />
                             </label>
@@ -58,14 +59,6 @@
 
                     </tal:anonymous>
 
-
-                    <tal:anonymous tal:define="portal_state context/@@plone_portal_state;
-                                              anonymous python:portal_state.anonymous()"
-                                   tal:condition="anonymous">
-                                   <div class="logarForm">
-                                    <p>Faça o login</a>
-                                   </div>
-                    </tal:anonymous>
 
                   </div>
           </div>

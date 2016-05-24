@@ -7,7 +7,7 @@
           </li>
           <li>
             <span class="item2"></span>
-            <a class="item2" href="#" title="TIRE SUAS DÚVIDAS">TIRE SUAS <br />DÚVIDAS</a>
+            <a class="item2" href="/consumidor/duvidas" title="TIRE SUAS DÚVIDAS">TIRE SUAS <br />DÚVIDAS</a>
           </li>
           <li>
             <span class="item3"></span>
@@ -15,7 +15,7 @@
           </li>
           <li>
             <span class="item4"></span>
-            <a class="item4" href="#" title="RECLAMAÇÕES FUNDAMENTADAS">FAÇA SUA <br />DENÚNCIA</a>
+            <a class="item4" href="/consumidor/formulario-de-denuncia" title="RECLAMAÇÕES FUNDAMENTADAS">FAÇA SUA <br />DENÚNCIA</a>
           </li>
       </ul>
     </div>
