@@ -26,7 +26,8 @@
       <div class="filtrarPor"><strong>Filtrar por:</strong>
       <form tal:attributes="action string:${context/portal_url}/duvidas_buscar" method="POST" name="filtro">
         <select class="selectFilter"><option>Nome</option><select>
-        <input type="text"  name="filtro_nome" placeholder="Digite um valor para filtrar" class="inputFilter"/>
+        <!-- <input type="text" tal:define="perguntas view/buscarPerguntaResposta; filtro python:perguntas['filtro']" tal:attributes="value python:filtro and filtro or ''"  name="filtro_nome" placeholder="Digite o nome" class="inputFilter"/> -->
+
         <input type="submit" value="FILTRAR" class="btnFiltrar" />
       </form>
     </div>
@@ -56,6 +57,7 @@
           </thead>
           <tbody>
             <tr tal:condition="dados" tal:define="dados view/buscaReclamacao" tal:repeat="pergunta dados">
+              <td class="_id"><tal:inputs tal:content="structure python:pergunta[0]"></td>
               <td class="reclamacao_buscar" class="_id"><tal:inputs tal:content="structure python:pergunta[1]"></td>
               <td tal:attributes="class python:str(pergunta[0])+'_categoria'">- - -</td>
               <td tal:attributes="class python:str(pergunta[0])+'_pergunta'">- - -</td>
@@ -103,7 +105,7 @@
       <div class="paginationReclamacoes">
       </div>
       </tal:result>
-      <a href="@@buscar_reclamacoes" class="voltarReclamacoes">Voltar à lista de reclamações</a>
+
     </div>
   </div>
   <!--RECLAMACOES-->
@@ -134,6 +136,86 @@
         </tr>
     </table>
     </div>
+
+    <label>Protocolo Consumidor.gov.br *</label>
+    <input type="text" value="0000000" />
+    <br/>
+
+    <label>CPF *</label>
+    <input type="text" value="404.003.138-55" />
+    <br/>
+
+    <label>Nome Completo *</label>
+    <input type="text" value="404.003.138-55" />
+    <br/>
+
+    <label>Data de nascimento *</label>
+    <input type="text" value="404.003.138-55" />
+    <br/>
+
+    <label>Sexo *</label>
+    <input type="text" value="404.003.138-55" />
+    <br/>
+
+    <label>Telefone *</label>
+    <input type="text" value="404.003.138-55" />
+    <br/>
+
+    <label>E-mail *</label>
+    <input type="text" value="404.003.138-55" />
+    <br/>
+
+    <label>CEP *</label>
+    <input type="text" value="404.003.138-55" />
+    <br/>
+
+    <label>Endereço *</label>
+    <input type="text" value="404.003.138-55" />
+    <br/>
+
+    <label>Número *</label>
+    <input type="text" value="404.003.138-55" />
+    <br/>
+
+    <label>Complemento</label>
+    <input type="text" value="404.003.138-55" />
+    <br/>
+
+    <label>Bairro *</label>
+    <input type="text" value="404.003.138-55" />
+    <br/>
+
+    <label>UF *</label>
+    <input type="text" value="404.003.138-55" />
+    <br/>
+
+    <label>Cidade</label>
+    <input type="text" value="404.003.138-55" />
+    <br/>
+
+    <label>Empresa *</label>
+    <input type="text" value="404.003.138-55" />
+    <br/>
+
+    <label>Data da compra ou assinatura de contrato *</label>
+    <input type="text" value="404.003.138-55" />
+    <br/>
+
+    <label>Área *</label>
+    <input type="text" value="404.003.138-55" />
+    <br/>
+
+    <label>Digite sua reclamação *</label>
+    <textarea></textarea>
+    <br/>
+    Arquivos anexado(s)
+    <br>
+
+      <label>Insira o FA (SINDEC)</label>
+      <input type="text" value="404.003.138-55" />
+      <button>INSERIR</button>
+      <br/>
+
   </div>
 
 
