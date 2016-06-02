@@ -1,4 +1,4 @@
-<!-- <tal:dados tal:define="reclamacoes view/buscaReclamacao" tal:repeat="reclamacao reclamacoes">
+<!-- <tal:dados tal:define="reclamacoes view/buscaDenuncia" tal:repeat="reclamacao reclamacoes">
   <tal:inputs tal:content="structure python:reclamacao[0]">
   <tal:inputs tal:content="structure python:reclamacao[1]">
   <tal:inputs tal:content="structure python:reclamacao[2]">
@@ -55,7 +55,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr tal:condition="dados" tal:define="dados view/buscaReclamacao" tal:repeat="pergunta dados">
+            <tr tal:condition="dados" tal:define="dados view/buscaDenuncia" tal:repeat="pergunta dados">
               <td class="reclamacao_buscar" class="_id"><tal:inputs tal:content="structure python:pergunta[1]"></td>
               <td tal:attributes="class python:str(pergunta[0])+'_categoria'">- - -</td>
               <td tal:attributes="class python:str(pergunta[0])+'_pergunta'">- - -</td>
@@ -101,7 +101,7 @@
       </table>
       </div>
 
-      <tal:result tal:condition="perguntas" tal:define="perguntas view/buscaReclamacao">
+      <tal:result tal:condition="perguntas" tal:define="perguntas view/buscaDenuncia">
       <div class="paginationReclamacoes">
       </div>
       </tal:result>
