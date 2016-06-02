@@ -56,31 +56,31 @@
           </thead>
           <tbody>
             <tr tal:condition="dados" tal:define="dados view/buscaReclamacao" tal:repeat="pergunta dados">
-              <td class="reclamacao_buscar" class="_id"><tal:inputs tal:define="tamanho python:len(dados)" tal:content="structure python:pergunta[tamanho -1]"></td>
+              <td class="reclamacao_buscar _id"><tal:inputs tal:content="structure python:pergunta[1]"></td>
               <td tal:attributes="class python:str(pergunta[0])+'_categoria'">- - -</td>
-              <td tal:attributes="class python:str(pergunta[0])+'_pergunta'"><tal:inputs tal:content="structure python:pergunta[32]"></td>
-              <td tal:attributes="class python:str(pergunta[0])+'_usuario'"><tal:inputs tal:content="structure python:pergunta[1]"></td>
+              <td tal:attributes="class python:str(pergunta[0])+'_pergunta'">- - -</td>
+              <td tal:attributes="class python:str(pergunta[0])+'_usuario'"><tal:inputs tal:content="structure python:pergunta[5]"></td>
               <th tal:define="lido python:pergunta[1]; input string:<input class='lido' type='checkbox' value='cadastro' />; disable string:<input class='lido' disabled=disabled' checked type='checkbox' value='cadastro' />" tal:content="structure python:lido and disable+' <font color=gray>Cadastrado</font>' or input " style="background-color:white"></th>
               <div class="reclamacoes_interno" style="display:none" tal:define="labels
-                  python:['Você procurou a empresa para solucionar o problema?',
-                          'Informe por que você não procurou a empresa para resolver o seu problema:',
-                          'Como você comprou/contratou?',
-                          'Especificar',
-                          'Área relativa ao produto/serviço reclamado',
-                          'Especificar',
-                          'Assinale o tipo de problema apresentado: - 8',
-                          'Especificar',
-                          'Quando você comprou o produto ou contratou o serviço?',
-                          'É importante que você forneça no campo abaixo o maior número de dados possíveis relativos à compra do produto ou contratação do serviço reclamado',
-                          'Qual o valor total do produto/serviço?',
-                          'Qual a condição de pagamento do produto ou serviço contratado?',
-                          'Quantidade de parcelas:',
-                          'Valor da parcela:',
-                          'Quando o produto ou serviço apresentou problema?',
-                          'Descreva sua reclamação no campo abaixo',
-                          'No campo abaixo, descreva de forma objetiva o seu pedido à empresa.',
-                          'Arquivos anexados'
-                         ]" tal:repeat="label labels">
+                 python:['Você procurou a empresa para solucionar o problema?',
+                         'Informe por que você não procurou a empresa para resolver o seu problema:',
+                         'Como você comprou/contratou?',
+                         'Especificar',
+                         'Área relativa ao produto/serviço reclamado',
+                         'Especificar',
+                         'Assinale o tipo de problema apresentado: - 8',
+                         'Especificar',
+                         'Quando você comprou o produto ou contratou o serviço?',
+                         'É importante que você forneça no campo abaixo o maior número de dados possíveis relativos à compra do produto ou contratação do serviço reclamado',
+                         'Qual o valor total do produto/serviço?',
+                         'Qual a condição de pagamento do produto ou serviço contratado?',
+                         'Quantidade de parcelas:',
+                         'Valor da parcela:',
+                         'Quando o produto ou serviço apresentou problema?',
+                         'Descreva sua reclamação no campo abaixo',
+                         'No campo abaixo, descreva de forma objetiva o seu pedido à empresa.',
+                         'Arquivos anexados'
+                        ]" tal:repeat="label labels">
 
                   <!-- <label tal:content="label">VALOR</label> -->
                   <!-- <span tal:define="count python:int(repeat.label.number);" tal:content="python:dados[int(repeat.pergunta.number) -1][count]"></span> -->
