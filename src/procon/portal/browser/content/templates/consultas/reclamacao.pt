@@ -56,8 +56,7 @@
           </thead>
           <tbody>
             <tr tal:condition="dados" tal:define="dados view/buscaReclamacao" tal:repeat="pergunta dados">
-              <td class="reclamacao_buscar" class="_id">- - -</td>
-              <td class="reclamacao_buscar _id"><tal:inputs tal:content="structure python:pergunta[1]"></
+              <td class="reclamacao_buscar _id"><tal:inputs tal:content="structure python:pergunta[1]"></td>
               <td tal:attributes="class python:str(pergunta[0])+'_categoria'">- - -</td>
               <td tal:attributes="class python:str(pergunta[0])+'_pergunta'">- - -</td>
               <td tal:attributes="class python:str(pergunta[0])+'_usuario'"><tal:inputs tal:content="structure python:pergunta[5]"></td>
