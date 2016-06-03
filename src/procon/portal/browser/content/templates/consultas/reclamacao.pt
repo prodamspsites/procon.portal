@@ -57,11 +57,12 @@
           <tbody>
             <tr tal:condition="dados" tal:define="dados view/buscaReclamacao" tal:repeat="pergunta dados">
               <td class="reclamacao_buscar _id"><tal:inputs tal:content="structure python:pergunta[1]"></td>
-              <td tal:attributes="class python:str(pergunta[0])+'_categoria'">- - -</td>
-              <td tal:attributes="class python:str(pergunta[0])+'_pergunta'">- - -</td>
-              <td tal:attributes="class python:str(pergunta[0])+'_usuario'"><tal:inputs tal:content="structure python:pergunta[5]"></td>
+              <td tal:attributes="class python:'categoria'">- - -</td>
+              <td tal:attributes="class python:'pergunta'">- - -</td>
+              <td tal:attributes="class python:'usuario'"><tal:inputs tal:content="structure python:pergunta[5]"></td>
               <th tal:define="lido python:pergunta[1]; input string:<input class='lido' type='checkbox' value='cadastro' />; disable string:<input class='lido' disabled=disabled' checked type='checkbox' value='cadastro' />" tal:content="structure python:lido and disable+' <font color=gray>Cadastrado</font>' or input " style="background-color:white"></th>
-              <div class="reclamacoes_interno" style="display:none" tal:define="labels
+              <td style="background-color:white !important">
+              <div class="reclamacoes_interno" tal:define="labels
                   python:['Você procurou a empresa para solucionar o problema?',
                           'Informe como foi o seu contato com a empresa. indique o(s) número(s) de protocolo(s), caso o(s) possua:',
                           'Informe por que você não procurou a empresa para resolver o seu problema:',
@@ -89,7 +90,7 @@
                           'No campo abaixo, descreva de forma objetiva o seu pedido à empresa.',
                           'Arquivos anexados'
                          ]" tal:repeat="label labels">
-                      <div class="detalhesDuvida">
+                      <div class="detalhesDuvida" style="display:none;">
                         <strong class="tituloConsumidor" tal:content="label">Pergunta:</strong>
                           <div class="respostaConsumidor" tal:define="count python:int(repeat.label.number);" tal:condition="python:count+1<27">
                             <span tal:content="python:dados[int(repeat.pergunta.number) -1][count +1]" tal:attributes="data-count python:count+1"></span>
@@ -101,6 +102,7 @@
                           </div>
                       </div>
               </div>
+            </td>
             </tr>
           </tbody>
           <!-- bower:js -->
