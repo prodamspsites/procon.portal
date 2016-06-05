@@ -24,9 +24,14 @@ class AtualizarReclamacao(BrowserView):
     def AtualizarReclamacao(self):
         mongodb = MongoClient()
         db = mongodb.procon
-
-        db.reclamacoes.insert({"status": self.getStatus(),
-                               "protocolo": self.getProtocolo()})
+        find = db.reclamacoes.find({"protocolo": {"$regex": self.getProtocolo()}})
+        if find.count() == 0:
+            db.reclamacoes.insert_one({"status": self.getStatus(),
+                                       "protocolo": self.getProtocolo()})
+        else:
+            db.reclamacoes.update_one({"protocolo": self.getProtocolo()},
+                                      {"$set": {"status": self.getStatus()}},
+                                      upsert=False)
 
 
 class Reclamacao(BrowserView):
