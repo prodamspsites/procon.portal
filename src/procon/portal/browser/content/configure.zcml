@@ -90,6 +90,15 @@
     />
 
   <browser:page
+    name="atualizar_reclamacao"
+    permission="zope2.View"
+    for="*"
+    layer="procon.portal.interfaces.IProdamPortal"
+    template="templates/atualizar_reclamacao.pt"
+    class=".reclamacao.AtualizarReclamacao"
+    />
+
+  <browser:page
     name="duvidas_salvar"
     permission="zope2.View"
     for="*"

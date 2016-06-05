@@ -1,6 +1,32 @@
 # -*- coding: utf-8 -*-
 from Products.Five import BrowserView
 from plone import api
+from pymongo import MongoClient
+
+
+class AtualizarReclamacao(BrowserView):
+
+    def __call__(self):
+        print self.AtualizarReclamacao()
+
+    def getStatus(self):
+        try:
+            return self.request.form['reclamacao_status']
+        except Exception:
+            return None
+
+    def getProtocolo(self):
+        try:
+            return self.request.form['protocolo']
+        except Exception:
+            return None
+
+    def AtualizarReclamacao(self):
+        mongodb = MongoClient()
+        db = mongodb.procon
+
+        db.reclamacoes.insert({"status": self.getStatus(),
+                               "protocolo": self.getProtocolo()})
 
 
 class Reclamacao(BrowserView):
