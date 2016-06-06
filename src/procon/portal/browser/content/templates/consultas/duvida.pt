@@ -13,12 +13,18 @@
       <span class="currentUser" tal:content="user/getUserName" />
 
       <h1>Dúvidas recebidas</h1>
-      <span class="total">Total: <span tal:define="perguntas view/buscarPerguntaResposta;" tal:replace="python:perguntas['total']"></span></span>
+      <span class="total">Total: <span tal:condition="python:perguntas" tal:define="perguntas view/buscarPerguntaResposta;" tal:replace="python:perguntas['total']"></span></span>
 
       <div class="filtrarPor"><strong>Filtrar por:</strong>
-      <form tal:attributes="action string:${context/portal_url}/duvidas_buscar" method="POST" name="filtro">
+      <form tal:attributes="action string:${context/portal_url}/buscar_duvidas" method="POST" name="filtro">
         <select class="selectFilter"><option>Nome</option><select>
-        <input type="text" tal:define="perguntas view/buscarPerguntaResposta; filtro python:perguntas['filtro']" tal:attributes="value python:filtro and filtro or ''"  name="filtro_nome" placeholder="Digite o nome" class="inputFilter"/>
+        <tal:hasFiltro define="perguntas view/buscarPerguntaResposta" condition="perguntas">
+          <input type="text" tal:define="filtro python:perguntas['filtro']" tal:attributes="value python:filtro and filtro or ''"  name="filtro_nome" placeholder="Digite o nome" class="inputFilter"/>
+        </tal:hasFiltro>
+
+        <tal:hasFiltro define="perguntas view/buscarPerguntaResposta" condition="not:perguntas">
+          <input type="text" name="filtro_nome" placeholder="Digite o nome" class="inputFilter"/>
+        </tal:hasFiltro>
         <input type="submit" value="FILTRAR" class="btnFiltrar" />
       </form>
     </div>
@@ -50,7 +56,8 @@
             <tr tal:condition="perguntas" tal:define="perguntas view/buscarPerguntaResposta" tal:repeat="pergunta python:perguntas['perguntas']">
               <td style="display:none" class="_id"><tal:inputs tal:content="structure python:pergunta['_id']"></td>
               <span style="display:none" tal:attributes="class python:str(pergunta['_id'])+'_observacao'"><tal:inputs tal:content="structure python:pergunta['observacao']"></span>
-              <td class="duvida_buscar" tal:attributes="class python:str(pergunta['_id'])+'_data'"><tal:inputs tal:content="structure python:pergunta['data'][:10]"></td>
+             <span style="display:none" tal:attributes="class python:str(pergunta['_id'])+'_operador'"><tal:inputs tal:content="structure python:pergunta['operador']"></span>
+              <td tal:attributes="class python:str(pergunta['_id'])+'_data duvidas_buscar'"><tal:inputs tal:content="structure python:pergunta['data'][:10]"></td>
               <td tal:attributes="class python:str(pergunta['_id'])+'_categoria'"><tal:inputs tal:content="structure python:pergunta['categoria']"></td>
               <td tal:attributes="class python:str(pergunta['_id'])+'_pergunta'"><tal:inputs tal:content="structure python:pergunta['pergunta']"></td>
               <td tal:attributes="class python:str(pergunta['_id'])+'_usuario'"><tal:inputs tal:content="structure python:pergunta['usuario']"></td>
@@ -73,7 +80,7 @@
     </div>
   </div>
   <!--RECLAMACOES-->
-  <div class="teste" style="display:none;">
+  <div class="DuvidaDivInterno" style="display:none;">
       <div class="tableReclamacoes">
         <table>
           <tr>
@@ -126,6 +133,12 @@
           <textarea id="observacao" rows=6>
 
           </textarea>
+
+
+         <strong class="tituloConsumidor" >Atualizado em:</strong>
+          <br>
+          <input type='text' id="operador">
+          <br>
           <span style="display:none;" id="idObservacao"></span>
           <br>
           <input type="button" id="enviarComentario" value="Enviar">

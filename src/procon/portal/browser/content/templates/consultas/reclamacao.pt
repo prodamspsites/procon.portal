@@ -64,13 +64,13 @@
               <td style="background-color:white !important; border: 0px">
               <div class="detalhesDuvida" style="display:none">
 
-                      <!-- <div class="detalhesDuvida">
+                      <div class="detalhesDuvida">
                         <strong class="tituloConsumidor">Atualizar status</strong>
                           <div class="respostaConsumidor">
                             <select id="reclamacao_status"
                                     tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-1]">
                                 <tal:block tal:define="retorno
-                                                       python:dados[int(repeat.pergunta.number) -1][-2]"
+                                                       python:dados[int(repeat.pergunta.number) -1][-4]"
                                            tal:repeat="record view/reclamacaoStatus">
                                     <option tal:condition="python: record != retorno"
                                             tal:attributes="value record"
@@ -83,7 +83,7 @@
                                 </tal:block>
                             </select>
                           </div>
-                      </div> -->
+                      </div>
 
 
                       <div class="detalhesDuvida userInfo"
@@ -385,6 +385,20 @@
                         <strong class="tituloConsumidor">Matrícula/Código</strong>
                           <div class="respostaConsumidor">
                             <span tal:content="python:dados[int(repeat.pergunta.number) -1][48]"></span>
+                          </div>
+                      </div>
+
+                      <div class="detalhesDuvida">
+                        <strong class="tituloConsumidor">Operador</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][-2]"></span>
+                          </div>
+                      </div>
+
+                      <div class="detalhesDuvida">
+                        <strong class="tituloConsumidor">Data</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][-1]"></span>
                           </div>
                       </div>
 

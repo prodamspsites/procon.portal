@@ -97,6 +97,8 @@ class Reclamacao(BrowserView):
                 continue
             try:
                 dado.insert(len(dado) + 1, query['lido'])
+                dado.insert(len(dado) + 2, query['operador'])
+                dado.insert(len(dado) + 2, query['data'])
             except KeyError:
                 continue
         return dados
