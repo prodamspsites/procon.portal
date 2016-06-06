@@ -56,12 +56,12 @@
           </thead>
           <tbody>
             <tr tal:condition="dados" tal:define="dados view/buscaReclamacao" tal:repeat="pergunta dados">
-              <td class="reclamacao_buscar _id"><tal:inputs tal:content="structure python:pergunta[1]"></td>
-              <td tal:attributes="class python:'categoria'">- - -</td>
-              <td tal:attributes="class python:'pergunta'">- - -</td>
-              <td tal:attributes="class python:'usuario'"><tal:inputs tal:content="structure python:pergunta[5]"></td>
-              <th tal:define="lido python:pergunta[1]; input string:<input class='lido' type='checkbox' value='cadastro' />; disable string:<input class='lido' disabled=disabled' checked type='checkbox' value='cadastro' />" tal:content="structure python:lido and disable+' <font color=gray>Cadastrado</font>' or input " style="background-color:white"></th>
-              <!-- <td style="background-color:white !important"> -->
+              <td tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-1]" class="reclamacao_buscar _id">06/06/2016</td>
+              <td tal:attributes="class python:'categoria'">Cadastro</td>
+              <td tal:attributes="class python:'pergunta'">00998821888</td>
+              <td tal:attributes="class python:'usuario'">Admin</td>
+              <th tal:define="lido python:None; input string:<input class='lido_reclamacoes' type='checkbox' value='cadastro' />; disable string:<input class='lido' disabled=disabled' checked type='checkbox' value='cadastro' />" tal:content="structure python:lido and disable+' <font color=gray>Cadastrado</font>' or input " style="background-color:white"></th>
+              <td style="background-color:white !important; border: 0px">
               <div class="detalhesDuvida" style="display:none" tal:define="labels
                   python:['',
                           '',
@@ -90,28 +90,28 @@
                           '',
                           ''
                          ]">
-                      <select id="reclamacao_status">
-                        <option>Selecione uma opção</option>
-                        <option>Em processamento</option>
-                        <option>Concluído – Extra-Procon</option>
-                        <option>Concluído – Simples consulta</option>
-                        <option>Aguarda resposta do fornecedor</option>
-                        <option>Aguarda retorno do consumidor</option>
-                        <option>Baixa de CIP - improcedência</option>
-                        <option>Baixa de CIP – com resolução total</option>
-                        <option>Baixa de CIP – com resolução parcial</option>
-                        <option>Baixa de CIP – resolução por mera liberalidade</option>
-                        <option>Baixa de CIP – sem resolução</option>
-                        <option>Baixa de CIP – desistência do consumidor</option>
-                        <option>Baixa de CIP – decurso (fornecedor)</option>
-                        <option>Instauração de reclamação</option>
-                        <option>Notificação para defesa e/ou audiência enviada</option>
-                        <option>Aguarda prazo de defesa/audiência</option>
-                        <option>Em análise</option>
-                        <option>Decisão – reclamação não fundamentada</option>
-                        <option>Decisão – reclamação fundamentada atendida</option>
-                        <option>Decisão – reclamação fundamentada não atendida</option>
-                      </select>
+
+                      <div class="detalhesDuvida">
+                        <strong class="tituloConsumidor">Atualizar status</strong>
+                          <div class="respostaConsumidor">
+                            <select id="reclamacao_status"
+                                    tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-1]">
+                                <tal:block tal:define="retorno
+                                                       python:dados[int(repeat.pergunta.number) -1][0]"
+                                           tal:repeat="record view/reclamacaoStatus">
+                                    <option tal:condition="python: record != retorno"
+                                            tal:attributes="value record"
+                                            tal:content="record"></option>
+                                    <option tal:condition="python: record == retorno"
+                                            tal:attributes="value record"
+                                            tal:content="record"
+                                            selected="selected">
+                                    </option>
+                                </tal:block>
+                            </select>
+                          </div>
+                      </div>
+
 
                       <div class="detalhesDuvida">
                         <strong class="tituloConsumidor">Você procurou a empresa para solucionar o problema?</strong>
@@ -262,11 +262,6 @@
                             <span tal:content="python:dados[int(repeat.pergunta.number) -1][26]"></span>
                           </div>
                       </div>
-                      <div id="protocolo"
-                        tal:define="valor python:len(dados[int(repeat.pergunta.number) -1])"
-                        tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][valor-1]"
-                        >
-                      </div>
                       <div class="detalhesDuvida">
                         <strong class="tituloConsumidor">Arquivos anexados</strong>
                           <div class="respostaConsumidor">
@@ -274,6 +269,7 @@
                           </div>
                       </div>
               </div>
+            </td>
             </tr>
           </tbody>
           <!-- bower:js -->
@@ -288,36 +284,6 @@
       <a href="@@buscar_reclamacoes" class="voltarReclamacoes">Voltar à lista de reclamações</a>
     </div>
   </div>
-  <!--RECLAMACOES-->
-  <div class="teste" style="display:none;">
-    <div class="tableReclamacoes">
-    <table>
-      <tr>
-        <th width="12%">
-          <span>Data</span>
-          <a href="#" title="ordenar mais recente" class="setaDown active"></a>
-          <a href="#" title="ordenar mais recente" class="setaUp"></a>
-        </th>
-        <th width="13%">
-          <span>Categoria</span>
-          <a href="#" title="ordenar mais recente" class="setaDown active"></a>
-          <a href="#" title="ordenar mais recente" class="setaUp"></a>
-        </th>
-        <th width="25%">
-          <span>Nome</span>
-          <a href="#" title="ordenar mais recente" class="setaDown active"></a>
-          <a href="#" title="ordenar mais recente" class="setaUp active"></a>
-        </th>
-      </tr>
-        <tr>
-          <td id="tbl1"></td>
-          <td id="tbl2"></td>
-          <td id="tbl3"></td>
-        </tr>
-    </table>
-    </div>
-  </div>
-
 
   </div>
 
