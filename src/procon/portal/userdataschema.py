@@ -7,7 +7,6 @@ from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
 
 from z3c.form import field
 from z3c.form.browser.radio import RadioFieldWidget
-from z3c.form.browser.checkbox import CheckBoxFieldWidget
 
 from plone.supermodel import model
 from plone.app.users.browser.account import AccountPanelSchemaAdapter
@@ -20,8 +19,8 @@ from procon.portal import _
 
 
 tipo_options = SimpleVocabulary([
-    SimpleTerm(value='pf', title=_(u'Pessoa Física')),
-    SimpleTerm(value='pj', title=_(u'Pessoa Jurídica')), ])
+    SimpleTerm(value='pessoa física', title=_(u'Pessoa Física')),
+    SimpleTerm(value='pessoa jurídica', title=_(u'Pessoa Jurídica')), ])
 
 municipio_options = SimpleVocabulary([
     SimpleTerm(value='sim', title=_(u'Sim')),
@@ -62,8 +61,8 @@ adicionais_escolha_tres = SimpleVocabulary([
     SimpleTerm(value='sim', title=_(u'Sim')),
     SimpleTerm(value='nao', title=_(u'Não')), ])
 
-termos = SimpleVocabulary([
-    SimpleTerm(value='sim', title=_(u'Eu concordo com os Termos de Uso do Consumidor.'))])
+# termos = SimpleVocabulary([
+#     SimpleTerm(value='sim', title=_(u'Eu concordo com os Termos de Uso do Consumidor.'))])
 
 
 def validateAccept(value):
@@ -77,11 +76,11 @@ class IEnhancedUserDataSchema(model.Schema):
     extra fields.
     """
 
-    termos_uso = schema.List(
-        title=u"Termos de Uso do Consumidor.",
-        # description=u"Eu concordo com os Termos de Uso do Consumidor.",
-        required=False,
-        value_type=schema.Choice(vocabulary=termos))
+    # termos_uso = schema.List(
+    #     title=u"Termos de Uso do Consumidor.",
+    #     # description=u"Eu concordo com os Termos de Uso do Consumidor.",
+    #     required=False,
+    #     value_type=schema.Choice(vocabulary=termos))
 
     adicional_um = schema.Choice(
         title=_(u'Possui mais de 60 anos ?'),
@@ -112,13 +111,13 @@ class IEnhancedUserDataSchema(model.Schema):
         description=_(u'',
                       default=u""),
         vocabulary=municipio_options,
-        required=True,)
+        required=False,)
     tipo = schema.Choice(
         title=_(u'Tipo de consumidor', default=u'Tipo de consumidor'),
         description=_(u'',
                       default=u""),
         vocabulary=tipo_options,
-        required=True,)
+        required=False,)
     nome = schema.TextLine(
         title=_(u'Nome Completo', default=u'Nome Completo'),
         description=_(u'',
@@ -136,7 +135,7 @@ class IEnhancedUserDataSchema(model.Schema):
                       default=u""),
         required=False,)
     responsavel = schema.TextLine(
-        title=_(u'Nome completo do responsável', default=u'Nome completo do responsável'),
+        title=_(u'Nome completo do representante legal', default=u'Nome completo do representante legal'),
         description=_(u'',
                       default=u""),
         required=False,)
@@ -151,7 +150,7 @@ class IEnhancedUserDataSchema(model.Schema):
                       default=u""),
         required=False,)
     expeditor = schema.TextLine(
-        title=_(u'Órgão Expeditor', default=u'Órgão Expeditor'),
+        title=_(u'Órgão Expedidor', default=u'Órgão Expedidor'),
         description=_(u'',
                       default=u""),
         required=False,)
@@ -237,7 +236,7 @@ class IEnhancedUserDataSchema(model.Schema):
 
     confirmacao = schema.TextLine(
         title=_(u'Confirmação de E-mail'),
-        required=True
+        required=False
     )
 
 
@@ -257,7 +256,6 @@ class UserDataPanelExtender(extensible.FormExtender):
         fields['adicional_um'].widgetFactory = RadioFieldWidget
         fields['adicional_dois'].widgetFactory = RadioFieldWidget
         fields['adicional_tres'].widgetFactory = RadioFieldWidget
-        fields['termos_uso'].widgetFactory = CheckBoxFieldWidget
         self.add(fields)
 
 
@@ -272,7 +270,6 @@ class RegistrationPanelExtender(extensible.FormExtender):
         fields['adicional_um'].widgetFactory = RadioFieldWidget
         fields['adicional_dois'].widgetFactory = RadioFieldWidget
         fields['adicional_tres'].widgetFactory = RadioFieldWidget
-        fields['termos_uso'].widgetFactory = CheckBoxFieldWidget
 
         self.add(fields)
 
@@ -288,7 +285,6 @@ class AddUserFormExtender(extensible.FormExtender):
         fields['adicional_um'].widgetFactory = RadioFieldWidget
         fields['adicional_dois'].widgetFactory = RadioFieldWidget
         fields['adicional_tres'].widgetFactory = RadioFieldWidget
-        fields['termos_uso'].widgetFactory = CheckBoxFieldWidget
 
         # management form doesn't need this field
         fields = fields.omit('accept')
