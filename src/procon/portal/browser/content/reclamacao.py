@@ -100,7 +100,9 @@ class Reclamacao(BrowserView):
                 dado.insert(len(dado) + 2, query['operador'])
                 dado.insert(len(dado) + 2, query['data'])
             except KeyError:
-                continue
+                dado.insert(len(dado) + 1, '')
+                dado.insert(len(dado) + 2, '')
+                dado.insert(len(dado) + 2, '')
         return dados
 
     def buscaDenuncia(self):
