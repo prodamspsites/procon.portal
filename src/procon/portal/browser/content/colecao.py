@@ -31,5 +31,5 @@ class Colecao(BrowserView):
 
     def getUser(self):
         user = api.user.get_current()
-        user.getProperty('name')
+        user.getProperty('ID')
         return user
