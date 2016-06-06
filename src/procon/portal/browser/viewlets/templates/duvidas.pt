@@ -5,10 +5,10 @@
   <input type="submit" class="btnBuscar disabled" value="BUSCAR"  disabled />
 </div>
 <div class="divRedireciona">
-   <p>O fornecedor que você buscou está cadastrado no site Consumidor.gov.br, uma plataforma disponibilizada pelo Governo Federal e monitorada pelo Procon Paulistano para a solução alternativa de conflitos, na qual as empresas participantes se comprometeram a receber, analisar e responder as reclamações de seus consumidores em até 10 dias.<br /><br />Em média, 8 em cada 10 reclamações são resolvidas nesta plataforma!
-Conheça o site Consumidor.gov.br! Para acessá-lo e prosseguir com sua reclamação, clique no botão abaixo.</p>
+   <p>O fornecedor que você buscou está cadastrado no consumidor.gov.br, uma plataforma mantida pelo Governo Federal e monitorada pelo Procon Paulistano, para a solução alternativa de conflitos de consumo.<br /><br />As empresas que aderiram à plataforma consumidor.gov.br se comprometeram a receber, analisar e responder as reclamações de consumidores em até 10 dias corridos. Em média, oito de cada dez reclamações feitas na plataforma consumidor.gov.br são resolvidas!<br /><br />
+   Para acessar a plataforma consumidor.gov.br e prosseguir com sua reclamação, clique no botão abaixo.
    <a href="#" target="_blank" class="linkRedireciona">CLIQUE AQUI</a>
-   <p><strong>Caso você já tenha reclamado no site do Consumidor.gov.br e seu problema não tenha sido solucionado, preencha o campo abaixo com o número do protocolo disponibilizado no site Consumidor.gov.br e prossiga com a reclamação no Procon Paulistano.</strong></p>
+   <p>Caso você já tenha registrado sua reclamação na plataforma consumidor.gov.br e seu problema não tenha sido solucionado, preencha o campo abaixo com o <strong>número do protocolo de sua reclamação</strong> e prossiga no site do Procon Paulistano.</p>
    <div class="divProtocolo">
       <input class="inputProtocolo" /><input type="submit"  class="btnProsseguir" value="ENVIAR" />
    </div>
