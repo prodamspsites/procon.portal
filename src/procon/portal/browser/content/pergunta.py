@@ -3,6 +3,7 @@ from Products.Five import BrowserView
 from pymongo import MongoClient
 from datetime import datetime
 from bson.objectid import ObjectId
+from plone import api
 
 
 class BuscarDuvidas(BrowserView):
@@ -46,7 +47,8 @@ class SalvarDuvidas(BrowserView):
                                assunto,
                                categoria,
                                mensagem):
-
+        user = api.user.get_current()
+        userID = user.id
         """ salvar registros mongodb do tire suas duvidas """
         data = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
         try:
@@ -57,13 +59,13 @@ class SalvarDuvidas(BrowserView):
 
                 identificacao = self.getIdentificacao()
                 db.tbl_replica.update_one({"_id": ObjectId(identificacao)},
-                                          {"$set": {"lido": True}},
+                                          {"$set": {"lido": True, "operador": userID}},
                                           upsert=False)
             elif self.getIdentificacao() and self.getObservacao():
                 identificacao = self.getIdentificacao()
                 observacao = self.getObservacao()
                 db.tbl_replica.update_one({"_id": ObjectId(identificacao)},
-                                          {"$set": {"observacao": observacao}},
+                                          {"$set": {"observacao": observacao, "operador": userID}},
                                           upsert=False)
             else:
                 db.tbl_replica.insert({"id_plone": id_plone,
@@ -76,6 +78,7 @@ class SalvarDuvidas(BrowserView):
                                        "mensagem": mensagem,
                                        "categoria": categoria,
                                        "observacao": "",
+                                       "operador": False,
                                        "usuario": usuario})
         except Exception, ex:
             print ex

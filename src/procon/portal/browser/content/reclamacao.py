@@ -5,6 +5,35 @@ from pymongo import MongoClient
 from datetime import datetime
 
 
+class SelecionarReclamacao(BrowserView):
+
+    def __call__(self):
+        user = api.user.get_current()
+        userID = user.id
+        mongodb = MongoClient()
+        db = mongodb.procon
+        protocolo = self.getProtocolo()
+        questionarios = db.tbl_replica.find({"protocolo": {"$regex": protocolo}})
+        data = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+        if questionarios.count() > 0:
+
+            db.tbl_replica.update_one({"protocolo": protocolo},
+                                      {"$set": {"lido": False}},
+                                      upsert=False)
+        else:
+            db.reclamacoes.insert_one({"status": "Selecione uma opção",
+                                       "protocolo": protocolo,
+                                       "lido": True,
+                                       "operador": userID,
+                                       "data": data})
+
+    def getProtocolo(self):
+        try:
+            return self.request.form['protocolo']
+        except Exception:
+            return None
+
+
 class AtualizarReclamacao(BrowserView):
 
     def __call__(self):
@@ -23,6 +52,8 @@ class AtualizarReclamacao(BrowserView):
             return None
 
     def AtualizarReclamacao(self):
+        user = api.user.get_current()
+        userID = user.id
         mongodb = MongoClient()
         db = mongodb.procon
         find = db.reclamacoes.find({"protocolo": {"$regex": self.getProtocolo()}})
@@ -30,6 +61,8 @@ class AtualizarReclamacao(BrowserView):
         if find.count() == 0:
             db.reclamacoes.insert_one({"status": self.getStatus(),
                                        "protocolo": self.getProtocolo(),
+                                       "lido": False,
+                                       "operador": userID,
                                        "data": data})
         else:
             db.reclamacoes.update_one({"protocolo": self.getProtocolo()},
@@ -56,11 +89,15 @@ class Reclamacao(BrowserView):
         dados = [x for x in dados if type(x) is list]
 
         for dado in dados:
-            protocolo = dado[len(dado) - 1]
+            protocolo = dado[-1]
             query = self.db.reclamacoes.find_one({"protocolo": {"$regex": str(protocolo)}})
             try:
-                dado.insert(0, query['status'].encode('utf-8'))
+                dado.insert(len(dado), query['status'].encode('utf-8'))
             except TypeError:
+                continue
+            try:
+                dado.insert(len(dado) + 1, query['lido'])
+            except KeyError:
                 continue
         return dados
 

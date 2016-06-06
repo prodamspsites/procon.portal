@@ -108,6 +108,16 @@
     />
 
   <browser:page
+    name="reclamacoes_salvar"
+    permission="zope2.View"
+    for="*"
+    layer="procon.portal.interfaces.IProdamPortal"
+    template="templates/salvar_reclamacao.pt"
+    class=".reclamacao.SelecionarReclamacao"
+    />
+
+
+  <browser:page
     name="buscar_duvidas"
     permission="zope2.View"
     for="*"
