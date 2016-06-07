@@ -37,19 +37,16 @@
               <th width="1%" style="display:none">
                 <span>.</span>
               </th>
-              <th width="12%">
+              <th width="17%">
                 <span>Data</span>
               </th>
-              <th width="18%">
-                <span>Tipo de cadastro</span>
+              <th width="40%">
+                <span>Razão Social</span>
               </th>
-              <th width="35%">
-                <span>Protocolo</span>
+              <th width="23%">
+                <span>CNPJ</span>
               </th>
               <th width="20%">
-                <span>Nome</span>
-              </th>
-              <th width="15%">
                 <span>SINDEC</span>
               </th>
             </tr>
@@ -57,9 +54,10 @@
           <tbody>
             <tr tal:condition="dados" tal:define="dados view/buscaFornecedor" tal:repeat="pergunta dados">
               <td tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-1]" class="reclamacao_buscar _id">07/06/2016</td>
-              <td tal:attributes="class python:'categoria'">Cadastro</td>
-              <td tal:attributes="class python:'pergunta'">00998821888</td>
-              <td tal:attributes="class python:'usuario'">Admin</td>
+              <td tal:attributes="class python:'categoria'"
+                  tal:content="python:dados[int(repeat.pergunta.number) -1][1]">Cadastro</td>
+              <td tal:attributes="class python:'pergunta'"
+                  tal:content="python:dados[int(repeat.pergunta.number) -1][2]">00998821888</td>
               <th tal:define="lido python:dados[int(repeat.pergunta.number) -1][-3]; input string:<input class='lido_reclamacoes' type='checkbox' value='cadastro' />; disable string:<input class='lido' disabled=disabled' checked type='checkbox' value='cadastro' />" tal:content="structure python:lido and disable+' <font color=gray>Cadastrado</font>' or input " style="background-color:white"></th>
                 <div class="detalhesDuvida" style="display:none" tal:define="labels
                   python:['Razão Social',
