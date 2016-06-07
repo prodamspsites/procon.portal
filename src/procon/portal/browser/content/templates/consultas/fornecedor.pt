@@ -85,10 +85,12 @@
                       </div>
                     </div>
 
-                    <div class="detalhesDuvida" tal:condition="repeat/label/end">
+                    <div class="detalhesDuvida"
+                         tal:condition="repeat/label/end and (dados[int(repeat.pergunta.number) -1][count] != 'X'"
+                         tal:define="count python:int(repeat.label.number);">
                       <strong class="tituloConsumidor" tal:content="label">Pergunta:</strong>
                           <div class="respostaConsumidor">
-                            <a tal:define="count python:int(repeat.label.number);" href="#" class="fileDownload" tal:content="python:dados[int(repeat.pergunta.number) -1][count +1]" tal:attributes="data-binary python:dados[int(repeat.pergunta.number) -1][count]; data-mimetype python:dados[int(repeat.pergunta.number) -1][count +2]"></a>
+                            <a href="#" class="fileDownload" tal:content="python:dados[int(repeat.pergunta.number) -1][count +1]" tal:attributes="data-binary python:dados[int(repeat.pergunta.number) -1][count]; data-mimetype python:dados[int(repeat.pergunta.number) -1][count +2]"></a>
                           </div>
                     </div>
 
