@@ -86,7 +86,7 @@
                     </div>
 
                     <div class="detalhesDuvida"
-                         tal:condition="repeat/label/end and (dados[int(repeat.pergunta.number) -1][count] != 'X'"
+                         tal:condition="python:repeat.label.end and dados[int(repeat.pergunta.number) -1][count +1] != 'x'"
                          tal:define="count python:int(repeat.label.number);">
                       <strong class="tituloConsumidor" tal:content="label">Pergunta:</strong>
                           <div class="respostaConsumidor">
