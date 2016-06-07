@@ -85,24 +85,30 @@ class Reclamacao(BrowserView):
         form = folderConsumidor['formularios']
         sendDataAdapter = form['dados']
         dados = sendDataAdapter.getSavedFormInput()
-
         dados = [x for x in dados if type(x) is list]
 
         for dado in dados:
             protocolo = dado[-1]
             query = self.db.reclamacoes.find_one({"protocolo": {"$regex": str(protocolo)}})
-            try:
-                dado.insert(len(dado), query['status'].encode('utf-8'))
-            except TypeError:
-                continue
-            try:
-                dado.insert(len(dado) + 1, query['lido'])
-                dado.insert(len(dado) + 2, query['operador'])
-                dado.insert(len(dado) + 2, query['data'])
-            except KeyError:
-                dado.insert(len(dado) + 1, '')
-                dado.insert(len(dado) + 2, '')
-                dado.insert(len(dado) + 2, '')
+            if len(dado) == 53:
+                try:
+                    dado.insert(len(dado), query['status'].encode('utf-8'))
+                    dado.insert(len(dado) + 1, query['lido'])
+                    dado.insert(len(dado) + 2, query['operador'])
+                    dado.insert(len(dado) + 3, query['data'])
+                except:
+                    dado.insert(len(dado), '')
+                    dado.insert(len(dado) + 1, '')
+                    dado.insert(len(dado) + 2, '')
+                    dado.insert(len(dado) + 3, '')
+            else:
+                try:
+                    dado[-4] = query['status'].encode('utf-8')
+                    dado[-3] = query['lido']
+                    dado[-2] = query['operador']
+                    dado[-1] = query['data']
+                except:
+                    continue
         return dados
 
     def buscaDenuncia(self):
