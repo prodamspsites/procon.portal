@@ -6,7 +6,7 @@
   <browser:page
     name="emails"
     for="*"
-    permission="zope2.View"
+    permission="cmf.ReviewPortalContent"
     class=".mail.DisparaEmail"
     layer="procon.portal.interfaces.IProdamPortal"
     template="templates/mail.pt"
@@ -64,7 +64,7 @@
 
   <browser:page
     name="buscar_reclamacoes"
-    permission="zope2.View"
+    permission="cmf.ReviewPortalContent"
     for="*"
     layer="procon.portal.interfaces.IProdamPortal"
     template="templates/consultas/reclamacao.pt"
@@ -73,7 +73,7 @@
 
   <browser:page
     name="buscar_denuncias"
-    permission="zope2.View"
+    permission="cmf.ReviewPortalContent"
     for="*"
     layer="procon.portal.interfaces.IProdamPortal"
     template="templates/consultas/denuncia.pt"
@@ -82,7 +82,7 @@
 
   <browser:page
     name="buscar_fornecedores"
-    permission="zope2.View"
+    permission="cmf.ReviewPortalContent"
     for="*"
     layer="procon.portal.interfaces.IProdamPortal"
     template="templates/consultas/fornecedor.pt"
@@ -91,7 +91,7 @@
 
   <browser:page
     name="atualizar_reclamacao"
-    permission="zope2.View"
+    permission="cmf.ReviewPortalContent"
     for="*"
     layer="procon.portal.interfaces.IProdamPortal"
     template="templates/atualizar_reclamacao.pt"
@@ -109,7 +109,7 @@
 
   <browser:page
     name="reclamacoes_salvar"
-    permission="zope2.View"
+    permission="cmf.ReviewPortalContent"
     for="*"
     layer="procon.portal.interfaces.IProdamPortal"
     template="templates/salvar_reclamacao.pt"
@@ -119,7 +119,7 @@
 
   <browser:page
     name="buscar_duvidas"
-    permission="zope2.View"
+    permission="cmf.ReviewPortalContent"
     for="*"
     layer="procon.portal.interfaces.IProdamPortal"
     template="templates/consultas/duvida.pt"
