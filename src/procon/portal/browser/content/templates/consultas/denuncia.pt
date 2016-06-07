@@ -22,7 +22,7 @@
   <!--RECLAMACOES-->
   <div class="wrapAdmin">
     <div class="divReclamacoes">
-      <h1>Reclamações recebidas</h1>
+      <h1>Denúncias recebidas</h1>
       <!-- <span class="total">Total: <span tal:define="perguntas view/buscarPerguntaResposta;" tal:replace="python:perguntas['total']"></span></span> -->
 
       <div class="filtrarPor"><strong>Filtrar por:</strong>
