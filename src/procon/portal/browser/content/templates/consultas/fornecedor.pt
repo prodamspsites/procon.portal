@@ -80,11 +80,18 @@
                           'Arquivos anexados'
                          ]" tal:repeat="label labels">
 
-                    <div class="detalhesDuvida">
+                    <div class="detalhesDuvida" tal:condition="python: not repeat.label.end">
                       <strong class="tituloConsumidor" tal:content="label">Pergunta:</strong>
                       <div class="respostaConsumidor">
                         <span tal:define="count python:int(repeat.label.number);" tal:content="python:dados[int(repeat.pergunta.number) -1][count]"></span>
                       </div>
+                    </div>
+
+                    <div class="detalhesDuvida" tal:condition="repeat/label/end">
+                      <strong class="tituloConsumidor" tal:content="label">Pergunta:</strong>
+                          <div class="respostaConsumidor">
+                            <a tal:define="count python:int(repeat.label.number) -1;" href="#" class="fileDownload" tal:content="python:dados[int(repeat.pergunta.number) -1][count +1]" tal:attributes="data-binary python:dados[int(repeat.pergunta.number) -1][count]; data-mimetype python:dados[int(repeat.pergunta.number) -1][count +2]"></a>
+                          </div>
                     </div>
 
               </div>
