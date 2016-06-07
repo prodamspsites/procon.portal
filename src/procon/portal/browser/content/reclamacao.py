@@ -17,7 +17,7 @@ class SelecionarReclamacao(BrowserView):
         data = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
         if questionarios.count() > 0:
 
-            db.tbl_replica.update_one({"protocolo": protocolo},
+            db.reclamacoes.update_one({"protocolo": protocolo},
                                       {"$set": {"lido": False}},
                                       upsert=False)
         else:

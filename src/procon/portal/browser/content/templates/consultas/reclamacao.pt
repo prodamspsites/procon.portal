@@ -32,7 +32,7 @@
       </form>
     </div>
       <div class="tableReclamacoes">
-      <table id="table_id_reclamacoes" class="display">
+      <table id="table_id_reclamacoes" class="display" style='border:0px'>
           <thead>
             <tr>
               <th width="1%" style="display:none">
@@ -50,51 +50,32 @@
               <th width="20%">
                 <span>Nome</span>
               </th>
-              <th width="15%">
-                <span>SINDEC</span>
+              <th width="1%" style="display:none">
+                <span>.</span>
               </th>
+<!--               <th width="15%">
+                <span>SINDEC</span>
+              </th> -->
             </tr>
           </thead>
-          <tbody>
+          <tbody style="border:0px">
             <tr tal:condition="dados" tal:define="dados view/buscaReclamacao" tal:repeat="pergunta dados">
               <td tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-1]" class="reclamacao_buscar _id">07/06/2016</td>
-              <td tal:attributes="class python:'categoria'"
+              <td tal:attributes="class python:'categoria reclamacao_buscar'"
                   tal:define="userId python:dados[int(repeat.pergunta.number) -1][0];
                                        membership python:context.portal_membership;
                                        user python:membership.getMemberById(userId)"
                   tal:content="python:user.getProperty('tipo')">Cadastro</td>
-              <td tal:attributes="class python:'pergunta'"
+              <td tal:attributes="class python:'pergunta reclamacao_buscar'"
                   tal:content="python:dados[int(repeat.pergunta.number) -1][-5]">00998821888</td>
-              <td tal:attributes="class python:'usuario'"
+              <td tal:attributes="class python:'usuario reclamacao_buscar'"
                   tal:define="userId python:dados[int(repeat.pergunta.number) -1][0];
                                        membership python:context.portal_membership;
                                        user python:membership.getMemberById(userId)"
                   tal:content="python:user.getProperty('fullname')">Admin</td>
-              <th tal:define="lido python:dados[int(repeat.pergunta.number) -1][-3]; input string:<input class='lido_reclamacoes' type='checkbox' value='cadastro' />; disable string:<input class='lido' disabled=disabled' checked type='checkbox' value='cadastro' />" tal:content="structure python:lido and disable+' <font color=gray>Cadastrado</font>' or input " style="background-color:white"></th>
-              <td style="background-color:white !important; border: 0px">
+<!--               <th tal:define="lido python:dados[int(repeat.pergunta.number) -1][-3]; input string:<input class='lido_reclamacoes' type='checkbox' value='cadastro' />; disable string:<input class='lido' disabled=disabled' checked type='checkbox' value='cadastro' />" tal:content="structure python:lido and disable+' <font color=gray>Cadastrado</font>' or input " style="background-color:white"></th> -->
+              <td class="td_interno" style="display:none">
               <div class="detalhesDuvida" style="display:none">
-
-                      <div class="detalhesDuvida">
-                        <strong class="tituloConsumidor">Atualizar status</strong>
-                          <div class="respostaConsumidor">
-                            <select id="reclamacao_status"
-                                    tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-1]">
-                                <tal:block tal:define="retorno
-                                                       python:dados[int(repeat.pergunta.number) -1][-4]"
-                                           tal:repeat="record view/reclamacaoStatus">
-                                    <option tal:condition="python: record != retorno"
-                                            tal:attributes="value record"
-                                            tal:content="record"></option>
-                                    <option tal:condition="python: record == retorno"
-                                            tal:attributes="value record"
-                                            tal:content="record"
-                                            selected="selected">
-                                    </option>
-                                </tal:block>
-                            </select>
-                          </div>
-                      </div>
-
 
                       <div class="detalhesDuvida userInfo"
                            tal:define="userId python:dados[int(repeat.pergunta.number) -1][0];
@@ -399,6 +380,58 @@
                       </div>
 
                       <div class="detalhesDuvida">
+                        <strong class="tituloConsumidor">Protocolo</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][-5]"></span>
+                          </div>
+                      </div>
+
+                      <div class="detalhesDuvida">
+                        <strong class="tituloConsumidor">Atualizar status</strong>
+                          <div class="respostaConsumidor">
+                            <select id="reclamacao_status"
+                                    tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-1]">
+                                <tal:block tal:define="retorno
+                                                       python:dados[int(repeat.pergunta.number) -1][-4]"
+                                           tal:repeat="record view/reclamacaoStatus">
+                                    <option tal:condition="python: record != retorno"
+                                            tal:attributes="value record"
+                                            tal:content="record"></option>
+                                    <option tal:condition="python: record == retorno"
+                                            tal:attributes="value record"
+                                            tal:content="record"
+                                            selected="selected">
+                                    </option>
+                                </tal:block>
+                            </select>
+                          </div>
+                      </div>
+
+<!--                       <div
+                           tal:define="lido python:dados[int(repeat.pergunta.number) -1][-3]; input string:<input class='lido_reclamacoes' type='checkbox' value='cadastro' />; disable string:<input class='lido' disabled=disabled' checked type='checkbox' value='cadastro' />" tal:content="structure python:lido and disable+' <font color=gray>Cadastrado</font>' or input " style="background-color:white">
+                           <!-- <strong class="tituloConsumidor">Operador</strong> -->
+                    <!-- </div> -->
+
+                      <div class="detalhesDuvida">
+                        <strong class="tituloConsumidor">SINDEC (Cadastro)</strong>
+                          <tal:hasChecked
+                            condition="python:not dados[int(repeat.pergunta.number) -1][-3]">
+
+                          <div class="respostaConsumidor">
+                            <input class='lido_reclamacoes' type='checkbox' value='cadastro' />
+                          </div>
+
+                          </tal:hasChecked>
+                          <tal:Checked
+                            condition="python:not dados[int(repeat.pergunta.number) -1][-3]">
+                          <div class="respostaConsumidor">
+                            <input class='lido_reclamacoes' type='checkbox' disabled="disabled" value='cadastro' /> <b>Cadastrado</b>
+                          </div>
+
+                          </tal:Checked>
+                      </div>
+
+                      <div class="detalhesDuvida">
                         <strong class="tituloConsumidor">Operador</strong>
                           <div class="respostaConsumidor">
                             <span tal:content="python:dados[int(repeat.pergunta.number) -1][-2]"></span>
@@ -411,6 +444,7 @@
                             <span tal:content="python:dados[int(repeat.pergunta.number) -1][-1]"></span>
                           </div>
                       </div>
+                      <input class="context" type="submit" name="form_submit" value="Enviar">
 
               </div>
             </td>
