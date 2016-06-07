@@ -61,7 +61,7 @@
               <td tal:attributes="class python:'pergunta'">00998821888</td>
               <td tal:attributes="class python:'usuario'">Admin</td>
               <th tal:define="lido python:dados[int(repeat.pergunta.number) -1][-3]; input string:<input class='lido_reclamacoes' type='checkbox' value='cadastro' />; disable string:<input class='lido' disabled=disabled' checked type='checkbox' value='cadastro' />" tal:content="structure python:lido and disable+' <font color=gray>Cadastrado</font>' or input " style="background-color:white"></th>
-              <div class="reclamacoes_interno" style="display:none" tal:define="labels
+                <div class="detalhesDuvida" style="display:none" tal:define="labels
                   python:['Razão Social',
                           'CNPJ',
                           'Nome fantasia',
