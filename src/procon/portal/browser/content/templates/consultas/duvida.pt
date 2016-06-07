@@ -143,7 +143,6 @@
           <br>
           <input type="button" id="enviarComentario" value="Enviar">
           <br>
-          <a href="@@buscar_duvidas" class="voltarReclamacoes">Voltar à lista de dúvidas</a>
         </div>
       </div>
   </div>

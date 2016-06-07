@@ -80,10 +80,6 @@
                           'Arquivos anexados'
                          ]" tal:repeat="label labels">
 
-                  <!-- <label tal:content="label">VALOR</label> -->
-                  <!-- <span tal:define="count python:int(repeat.label.number);" tal:content="python:dados[int(repeat.pergunta.number) -1][count]"></span> -->
-                  <!-- <hr> -->
-
                     <div class="detalhesDuvida">
                       <strong class="tituloConsumidor" tal:content="label">Pergunta:</strong>
                       <div class="respostaConsumidor">
@@ -103,7 +99,6 @@
       <div class="paginationReclamacoes">
       </div>
       </tal:result>
-      <a href="@@buscar_reclamacoes" class="voltarReclamacoes">Voltar à lista de reclamações</a>
     </div>
   </div>
   <!--RECLAMACOES-->
