@@ -9,17 +9,18 @@ class SelecionarReclamacao(BrowserView):
 
     def __call__(self):
         user = api.user.get_current()
+        print user
+        print user.id
         userID = user.id
         mongodb = MongoClient()
         db = mongodb.procon
         protocolo = self.getProtocolo()
-        print protocolo
         questionarios = db.reclamacoes.find({"protocolo": {"$regex": protocolo}})
         data = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
         if questionarios.count() > 0:
 
             db.reclamacoes.update_one({"protocolo": protocolo},
-                                      {"$set": {"lido": True}},
+                                      {"$set": {"lido": True, "operador": userID}},
                                       upsert=False)
         else:
             db.reclamacoes.insert_one({"status": "Selecione uma opção",
@@ -54,6 +55,8 @@ class AtualizarReclamacao(BrowserView):
 
     def AtualizarReclamacao(self):
         user = api.user.get_current()
+        print user
+        print user.id
         userID = user.id
         mongodb = MongoClient()
         db = mongodb.procon
@@ -67,7 +70,7 @@ class AtualizarReclamacao(BrowserView):
                                        "data": data})
         else:
             db.reclamacoes.update_one({"protocolo": self.getProtocolo()},
-                                      {"$set": {"status": self.getStatus(), "data": data}},
+                                      {"$set": {"status": self.getStatus(), "data": data, "operador": userID}},
                                       upsert=False)
 
 
@@ -89,27 +92,20 @@ class Reclamacao(BrowserView):
         dados = [x for x in dados if type(x) is list]
 
         for dado in dados:
-            protocolo = dado[-1]
-            query = self.db.reclamacoes.find_one({"protocolo": {"$regex": str(protocolo)}})
             if len(dado) == 53:
-                try:
-                    dado.insert(len(dado), query['status'].encode('utf-8'))
-                    dado.insert(len(dado) + 1, query['lido'])
-                    dado.insert(len(dado) + 2, query['operador'])
-                    dado.insert(len(dado) + 3, query['data'])
-                except:
-                    dado.insert(len(dado), '')
-                    dado.insert(len(dado) + 1, '')
-                    dado.insert(len(dado) + 2, '')
-                    dado.insert(len(dado) + 3, '')
-            else:
-                try:
-                    dado[-4] = query['status'].encode('utf-8')
-                    dado[-3] = query['lido']
-                    dado[-2] = query['operador']
-                    dado[-1] = query['data']
-                except:
-                    continue
+                dado.insert(len(dado), '')
+                dado.insert(len(dado) + 1, '')
+                dado.insert(len(dado) + 2, '')
+                dado.insert(len(dado) + 3, '')
+            protocolo = dado[-5]
+            query = self.db.reclamacoes.find_one({"protocolo": {"$regex": str(protocolo)}})
+            try:
+                dado[-4] = query['status'].encode('utf-8')
+                dado[-3] = query['lido']
+                dado[-2] = query['operador']
+                dado[-1] = query['data']
+            except:
+                pass
         return dados
 
     def buscaDenuncia(self):
