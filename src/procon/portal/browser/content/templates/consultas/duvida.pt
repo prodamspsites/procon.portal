@@ -63,6 +63,7 @@
               <td tal:attributes="class python:str(pergunta['_id'])+'_usuario duvidas_buscar'"><tal:inputs tal:content="structure python:pergunta['usuario']"></td>
               <span style="display:none" tal:attributes="class python:str(pergunta['_id'])+'_mensagem'"><tal:inputs tal:content="structure python:pergunta['mensagem']"></span>
               <span style="display:none" tal:attributes="class python:str(pergunta['_id'])+'_resposta'"><tal:inputs tal:content="structure python:pergunta['resposta']"></span>
+              <span style="display:none" tal:attributes="class python:str(pergunta['_id'])+'_datas'"><tal:inputs tal:content="structure python:pergunta['data']"></span>
               <span style="display:none" tal:attributes="class python:str(pergunta['_id'])+'_assunto'"><tal:inputs tal:content="structure python:pergunta['assunto']"></span>
               <span style="display:none" tal:attributes="class python:str(pergunta['_id'])+'_lido'"><tal:inputs tal:content="structure python:pergunta['lido']"></span>
 <!--               <th tal:define="lido python:pergunta['lido']; input string:<input class='lido' type='checkbox' value='cadastro' />; disable string:<input class='lido' disabled=disabled' checked type='checkbox' value='cadastro' />" tal:content="structure python:lido and disable or input " style="background-color:white"></th> -->
@@ -137,12 +138,12 @@
 
          <strong class="tituloConsumidor" >Operador:</strong>
           <br>
-          <input type='text' id="operador">
+          <input type='text' id="operador"  disabled="disabled">
           <br>
 
          <strong class="tituloConsumidor" >Data da última atualização:</strong>
           <br>
-          <input type='text'>
+          <input type='text' id="data_atualizacao" disabled="disabled">
           <br>
           <span style="display:none;" id="idObservacao"></span>
           <br>
