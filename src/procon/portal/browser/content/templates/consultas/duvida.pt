@@ -35,20 +35,20 @@
               <th width="1%" style="display:none">
                 <span>.</span>
               </th>
-              <th width="12%">
+              <th width="10%">
                 <span>Data</span>
               </th>
-              <th width="13%">
+              <th width="8%">
                 <span>Categoria</span>
               </th>
               <th width="45%">
                 <span>Pergunta</span>
               </th>
-              <th width="25%">
+              <th width="10%">
                 <span>Nome</span>
               </th>
-              <th width="5%">
-                <span>Lido</span>
+              <th width="20%">
+                <span>Operador PROCON</span>
               </th>
             </tr>
           </thead>
@@ -58,14 +58,16 @@
               <span style="display:none" tal:attributes="class python:str(pergunta['_id'])+'_observacao'"><tal:inputs tal:content="structure python:pergunta['observacao']"></span>
              <span style="display:none" tal:attributes="class python:str(pergunta['_id'])+'_operador'"><tal:inputs tal:content="structure python:pergunta['operador']"></span>
               <td tal:attributes="class python:str(pergunta['_id'])+'_data duvidas_buscar'"><tal:inputs tal:content="structure python:pergunta['data'][:10]"></td>
-              <td tal:attributes="class python:str(pergunta['_id'])+'_categoria'"><tal:inputs tal:content="structure python:pergunta['categoria']"></td>
-              <td tal:attributes="class python:str(pergunta['_id'])+'_pergunta'"><tal:inputs tal:content="structure python:pergunta['pergunta']"></td>
-              <td tal:attributes="class python:str(pergunta['_id'])+'_usuario'"><tal:inputs tal:content="structure python:pergunta['usuario']"></td>
+              <td tal:attributes="class python:str(pergunta['_id'])+'_categoria duvidas_buscar'"><tal:inputs tal:content="structure python:pergunta['categoria']"></td>
+              <td tal:attributes="class python:str(pergunta['_id'])+'_pergunta duvidas_buscar'"><tal:inputs tal:content="structure python:pergunta['pergunta']"></td>
+              <td tal:attributes="class python:str(pergunta['_id'])+'_usuario duvidas_buscar'"><tal:inputs tal:content="structure python:pergunta['usuario']"></td>
               <span style="display:none" tal:attributes="class python:str(pergunta['_id'])+'_mensagem'"><tal:inputs tal:content="structure python:pergunta['mensagem']"></span>
               <span style="display:none" tal:attributes="class python:str(pergunta['_id'])+'_resposta'"><tal:inputs tal:content="structure python:pergunta['resposta']"></span>
+              <span style="display:none" tal:attributes="class python:str(pergunta['_id'])+'_datas'"><tal:inputs tal:content="structure python:pergunta['data']"></span>
               <span style="display:none" tal:attributes="class python:str(pergunta['_id'])+'_assunto'"><tal:inputs tal:content="structure python:pergunta['assunto']"></span>
               <span style="display:none" tal:attributes="class python:str(pergunta['_id'])+'_lido'"><tal:inputs tal:content="structure python:pergunta['lido']"></span>
-              <th tal:define="lido python:pergunta['lido']; input string:<input class='lido' type='checkbox' value='cadastro' />; disable string:<input class='lido' disabled=disabled' checked type='checkbox' value='cadastro' />" tal:content="structure python:lido and disable or input " style="background-color:white"></th>
+<!--               <th tal:define="lido python:pergunta['lido']; input string:<input class='lido' type='checkbox' value='cadastro' />; disable string:<input class='lido' disabled=disabled' checked type='checkbox' value='cadastro' />" tal:content="structure python:lido and disable or input " style="background-color:white"></th> -->
+              <td tal:attributes="class python:str(pergunta['_id'])+'_usuario'"><tal:inputs tal:content="structure python:pergunta['usuario']"></td>
             </tr>
           </tbody>
           <!-- bower:js -->
@@ -82,7 +84,7 @@
   <!--RECLAMACOES-->
   <div class="DuvidaDivInterno" style="display:none;">
       <div class="tableReclamacoes">
-        <table>
+        <table style="margin-left:0px">
           <tr>
             <th width="12%">
               <span>Data</span>
@@ -90,12 +92,12 @@
               <a href="#" title="ordenar mais recente" class="setaUp"></a>
             </th>
             <th width="13%">
-              <span>Categoria</span>
+              <span>Nome do Usuário</span>
               <a href="#" title="ordenar mais recente" class="setaDown active"></a>
               <a href="#" title="ordenar mais recente" class="setaUp"></a>
             </th>
             <th width="25%">
-              <span>Nome</span>
+              <span>E-mail</span>
               <a href="#" title="ordenar mais recente" class="setaDown active"></a>
               <a href="#" title="ordenar mais recente" class="setaUp active"></a>
             </th>
@@ -134,10 +136,14 @@
 
           </textarea>
 
-
-         <strong class="tituloConsumidor" >Atualizado em:</strong>
+         <strong class="tituloConsumidor" >Operador:</strong>
           <br>
-          <input type='text' id="operador">
+          <input type='text' id="operador"  disabled="disabled">
+          <br>
+
+         <strong class="tituloConsumidor" >Data da última atualização:</strong>
+          <br>
+          <input type='text' id="data_atualizacao" disabled="disabled">
           <br>
           <span style="display:none;" id="idObservacao"></span>
           <br>
