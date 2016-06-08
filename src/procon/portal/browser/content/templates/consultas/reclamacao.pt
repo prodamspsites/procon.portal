@@ -25,7 +25,7 @@
       <!-- <span class="total">Total: <span tal:define="perguntas view/buscarPerguntaResposta;" tal:replace="python:perguntas['total']"></span></span> -->
 
       <div class="filtrarPor"><strong>Filtrar por:</strong>
-      <form tal:attributes="action string:${context/portal_url}/duvidas_buscar" method="POST" name="filtro">
+      <form tal:attributes="action string:${context/portal_url}/buscar_reclamacoes" method="POST" name="filtro">
         <select class="selectFilter"><option>Nome</option><select>
         <input type="text"  name="filtro_nome" placeholder="Digite um valor para filtrar" class="inputFilter"/>
         <input type="submit" value="FILTRAR" class="btnFiltrar" />
@@ -407,7 +407,6 @@
                           </div>
                       </div>
 
-
                       <div class="detalhesDuvida">
                         <strong class="tituloConsumidor">SINDEC (Cadastro)</strong>
                           <tal:hasChecked
@@ -427,7 +426,10 @@
                           </tal:Checked>
                       </div>
 
-                      <div class="detalhesDuvida">
+                      <div class="detalhesDuvida"
+                            tal:define="operadorId python:dados[int(repeat.pergunta.number) -1][-2];
+                                        membership python:context.portal_membership;
+                                        operador python:membership.getMemberById(operadorId);">
                         <strong class="tituloConsumidor">Operador</strong>
                           <div class="respostaConsumidor">
                             <span tal:content="python:dados[int(repeat.pergunta.number) -1][-2]"></span>
@@ -440,7 +442,8 @@
                             <span tal:content="python:dados[int(repeat.pergunta.number) -1][-1]"></span>
                           </div>
                       </div>
-                      <a style="color: white !important" href="@@buscar_reclamacoes" class="context" name="form_submit">Enviar</a>
+                      <a style="color: white !important" href="" class="context" name="form_submit"
+                         tal:attributes="href string:${context/portal_url}/@@buscar_reclamacoes">Enviar</a>
 
               </div>
             </td>
