@@ -60,6 +60,9 @@
                   <span style="display:none" tal:attributes="class python:str(pergunta['_id'])+'_observacao'">
                     <tal:inputs tal:content="structure python:pergunta['observacao']">
                   </span>
+                  <span style="display:none" tal:attributes="class python:str(pergunta['_id'])+'_operador'">
+                    <tal:inputs tal:content="structure python:pergunta['operador']">
+                  </span>
                   <td tal:attributes="class python:str(pergunta['_id'])+'_data duvidas_buscar'">
                     <tal:inputs tal:content="structure python:pergunta['data'][:10]">
                   </td>
@@ -113,7 +116,30 @@
                                               operador python:membership.getMemberById(operadorID)"
                                   tal:content="python:operador.getProperty('email')" />
                   </span>
-
+                  <span style="display:none"
+                        tal:attributes="class python:str(pergunta['_id'])+'_cpf'"
+                        tal:condition="python:pergunta['usuario']">
+                      <tal:inputs tal:define="operadorID python:pergunta['usuario'];
+                                              membership python:context.portal_membership;
+                                              operador python:membership.getMemberById(operadorID)"
+                                  tal:content="python:operador.getProperty('cpf')" />
+                  </span>
+                  <span style="display:none"
+                        tal:attributes="class python:str(pergunta['_id'])+'_municipio'"
+                        tal:condition="python:pergunta['usuario']">
+                      <tal:inputs tal:define="operadorID python:pergunta['usuario'];
+                                              membership python:context.portal_membership;
+                                              operador python:membership.getMemberById(operadorID)"
+                                  tal:content="python:operador.getProperty('cidade')" />
+                  </span>
+                  <span style="display:none"
+                        tal:attributes="class python:str(pergunta['_id'])+'_uf'"
+                        tal:condition="python:pergunta['usuario']">
+                      <tal:inputs tal:define="operadorID python:pergunta['usuario'];
+                                              membership python:context.portal_membership;
+                                              operador python:membership.getMemberById(operadorID)"
+                                  tal:content="string:SP" />
+                  </span>
                   <td tal:attributes="class python:str(pergunta['_id'])+'_usuario'"
                       tal:condition="python:not pergunta['operador']"> </td>
                 </tr>
@@ -133,18 +159,33 @@
         <div class="tableReclamacoes">
           <table style="margin-left:0px">
             <tr>
-              <th width="12%">
+              <th width="18%">
                 <span>Data</span>
                 <a href="#" title="ordenar mais recente" class="setaDown active"></a>
                 <a href="#" title="ordenar mais recente" class="setaUp"></a>
               </th>
-              <th width="13%">
+              <th width="20%">
                 <span>Nome do Usuário</span>
                 <a href="#" title="ordenar mais recente" class="setaDown active"></a>
                 <a href="#" title="ordenar mais recente" class="setaUp"></a>
               </th>
-              <th width="25%">
+              <th width="20%">
                 <span>E-mail</span>
+                <a href="#" title="ordenar mais recente" class="setaDown active"></a>
+                <a href="#" title="ordenar mais recente" class="setaUp active"></a>
+              </th>
+              <th width="20%">
+                <span>CPF/CNPJ</span>
+                <a href="#" title="ordenar mais recente" class="setaDown active"></a>
+                <a href="#" title="ordenar mais recente" class="setaUp active"></a>
+              </th>
+              <th width="25%">
+                <span>Município</span>
+                <a href="#" title="ordenar mais recente" class="setaDown active"></a>
+                <a href="#" title="ordenar mais recente" class="setaUp active"></a>
+              </th>
+              <th width="20%">
+                <span>UF</span>
                 <a href="#" title="ordenar mais recente" class="setaDown active"></a>
                 <a href="#" title="ordenar mais recente" class="setaUp active"></a>
               </th>
@@ -154,6 +195,9 @@
                 <td id="tbl1"></td>
                 <td id="fullname"></td>
                 <td id="email"></td>
+                <td id="cpf"></td>
+                <td id="municipio"></td>
+                <td id="uf"></td>
               </tr>
             </tal:result>
           </table>
