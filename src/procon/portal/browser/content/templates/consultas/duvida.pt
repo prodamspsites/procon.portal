@@ -1,159 +1,202 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
-      xmlns:tal="http://xml.zope.org/namespaces/tal"
-      xmlns:metal="http://xml.zope.org/namespaces/metal"
-      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-      lang="en"
-      metal:use-macro="context/main_template/macros/master"
-      i18n:domain="plone">
-<body>
-  <div id="content-core" metal:fill-slot="main">
-  <!--RECLAMACOES-->
-  <div class="wrapAdmin">
-    <div class="divReclamacoes">
-      <span class="currentUser" tal:content="user/getUserName" />
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  lang="en"
+  metal:use-macro="context/main_template/macros/master"
+  i18n:domain="plone">
+  <body>
+    <div id="content-core" metal:fill-slot="main">
+      <!--RECLAMACOES-->
+      <div class="wrapAdmin">
+        <div class="divReclamacoes">
+          <span class="currentUser" tal:content="user/getUserName" />
+          <h1>Dúvidas recebidas</h1>
+          <span class="total">Total: <span tal:condition="python:perguntas" tal:define="perguntas view/buscarPerguntaResposta;" tal:replace="python:perguntas['total']"></span></span>
+          <div class="filtrarPor">
+            <strong>Filtrar por:</strong>
+            <form tal:attributes="action string:${context/portal_url}/buscar_duvidas" method="POST" name="filtro">
+              <select class="selectFilter">
+              <option>Nome</option>
+              <select>
+              <tal:hasFiltro define="perguntas view/buscarPerguntaResposta" condition="perguntas">
+                <input type="text" tal:define="filtro python:perguntas['filtro']" tal:attributes="value python:filtro and filtro or ''"  name="filtro_nome" placeholder="Digite o nome" class="inputFilter"/>
+              </tal:hasFiltro>
+              <tal:hasFiltro define="perguntas view/buscarPerguntaResposta" condition="not:perguntas">
+                <input type="text" name="filtro_nome" placeholder="Digite o nome" class="inputFilter"/>
+              </tal:hasFiltro>
+              <input type="submit" value="FILTRAR" class="btnFiltrar" />
+            </form>
+          </div>
+          <div class="tableReclamacoes">
+            <table id="table_id" class="display">
+              <thead>
+                <tr>
+                  <th width="1%" style="display:none">
+                    <span>.</span>
+                  </th>
+                  <th width="10%">
+                    <span>Data</span>
+                  </th>
+                  <th width="8%">
+                    <span>Categoria</span>
+                  </th>
+                  <th width="45%">
+                    <span>Pergunta</span>
+                  </th>
+                  <th width="10%">
+                    <span>Nome</span>
+                  </th>
+                  <th width="20%">
+                    <span>Operador PROCON</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr tal:condition="perguntas" tal:define="perguntas view/buscarPerguntaResposta" tal:repeat="pergunta python:perguntas['perguntas']">
+                  <td style="display:none" class="_id">
+                    <tal:inputs tal:content="structure python:pergunta['_id']">
+                  </td>
+                  <span style="display:none" tal:attributes="class python:str(pergunta['_id'])+'_observacao'">
+                    <tal:inputs tal:content="structure python:pergunta['observacao']">
+                  </span>
+                  <td tal:attributes="class python:str(pergunta['_id'])+'_data duvidas_buscar'">
+                    <tal:inputs tal:content="structure python:pergunta['data'][:10]">
+                  </td>
+                  <td tal:attributes="class python:str(pergunta['_id'])+'_categoria duvidas_buscar'">
+                    <tal:inputs tal:content="structure python:pergunta['categoria']">
+                  </td>
+                  <td tal:attributes="class python:str(pergunta['_id'])+'_pergunta duvidas_buscar'">
+                    <tal:inputs tal:content="structure python:pergunta['pergunta']">
+                  </td>
 
-      <h1>Dúvidas recebidas</h1>
-      <span class="total">Total: <span tal:condition="python:perguntas" tal:define="perguntas view/buscarPerguntaResposta;" tal:replace="python:perguntas['total']"></span></span>
+                  <td tal:attributes="class python:str(pergunta['_id'])+'_usuario'">
+                    <tal:inputs tal:define="operadorID python:pergunta['usuario'];
+                                            membership python:context.portal_membership;
+                                            operador python:membership.getMemberById(operadorID)"
+                      tal:content="python:operador.getProperty('fullname') or operador" />
+                  </td>
 
-      <div class="filtrarPor"><strong>Filtrar por:</strong>
-      <form tal:attributes="action string:${context/portal_url}/buscar_duvidas" method="POST" name="filtro">
-        <select class="selectFilter"><option>Nome</option><select>
-        <tal:hasFiltro define="perguntas view/buscarPerguntaResposta" condition="perguntas">
-          <input type="text" tal:define="filtro python:perguntas['filtro']" tal:attributes="value python:filtro and filtro or ''"  name="filtro_nome" placeholder="Digite o nome" class="inputFilter"/>
-        </tal:hasFiltro>
 
-        <tal:hasFiltro define="perguntas view/buscarPerguntaResposta" condition="not:perguntas">
-          <input type="text" name="filtro_nome" placeholder="Digite o nome" class="inputFilter"/>
-        </tal:hasFiltro>
-        <input type="submit" value="FILTRAR" class="btnFiltrar" />
-      </form>
-    </div>
-      <div class="tableReclamacoes">
-      <table id="table_id" class="display">
-          <thead>
-            <tr>
-              <th width="1%" style="display:none">
-                <span>.</span>
-              </th>
-              <th width="10%">
-                <span>Data</span>
-              </th>
-              <th width="8%">
-                <span>Categoria</span>
-              </th>
-              <th width="45%">
-                <span>Pergunta</span>
-              </th>
-              <th width="10%">
-                <span>Nome</span>
-              </th>
-              <th width="20%">
-                <span>Operador PROCON</span>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr tal:condition="perguntas" tal:define="perguntas view/buscarPerguntaResposta" tal:repeat="pergunta python:perguntas['perguntas']">
-              <td style="display:none" class="_id"><tal:inputs tal:content="structure python:pergunta['_id']"></td>
-              <span style="display:none" tal:attributes="class python:str(pergunta['_id'])+'_observacao'"><tal:inputs tal:content="structure python:pergunta['observacao']"></span>
-             <span style="display:none" tal:attributes="class python:str(pergunta['_id'])+'_operador'"><tal:inputs tal:content="structure python:pergunta['operador']"></span>
-              <td tal:attributes="class python:str(pergunta['_id'])+'_data duvidas_buscar'"><tal:inputs tal:content="structure python:pergunta['data'][:10]"></td>
-              <td tal:attributes="class python:str(pergunta['_id'])+'_categoria duvidas_buscar'"><tal:inputs tal:content="structure python:pergunta['categoria']"></td>
-              <td tal:attributes="class python:str(pergunta['_id'])+'_pergunta duvidas_buscar'"><tal:inputs tal:content="structure python:pergunta['pergunta']"></td>
-              <td tal:attributes="class python:str(pergunta['_id'])+'_usuario duvidas_buscar'"><tal:inputs tal:content="structure python:pergunta['usuario']"></td>
-              <span style="display:none" tal:attributes="class python:str(pergunta['_id'])+'_mensagem'"><tal:inputs tal:content="structure python:pergunta['mensagem']"></span>
-              <span style="display:none" tal:attributes="class python:str(pergunta['_id'])+'_resposta'"><tal:inputs tal:content="structure python:pergunta['resposta']"></span>
-              <span style="display:none" tal:attributes="class python:str(pergunta['_id'])+'_datas'"><tal:inputs tal:content="structure python:pergunta['data']"></span>
-              <span style="display:none" tal:attributes="class python:str(pergunta['_id'])+'_assunto'"><tal:inputs tal:content="structure python:pergunta['assunto']"></span>
-              <span style="display:none" tal:attributes="class python:str(pergunta['_id'])+'_lido'"><tal:inputs tal:content="structure python:pergunta['lido']"></span>
-<!--               <th tal:define="lido python:pergunta['lido']; input string:<input class='lido' type='checkbox' value='cadastro' />; disable string:<input class='lido' disabled=disabled' checked type='checkbox' value='cadastro' />" tal:content="structure python:lido and disable or input " style="background-color:white"></th> -->
-              <td tal:attributes="class python:str(pergunta['_id'])+'_usuario'"><tal:inputs tal:content="structure python:pergunta['usuario']"></td>
-            </tr>
-          </tbody>
-          <!-- bower:js -->
-          <!-- endbower -->
-      </table>
-      </div>
+                  <span style="display:none" tal:attributes="class python:str(pergunta['_id'])+'_mensagem'">
+                    <tal:inputs tal:content="structure python:pergunta['mensagem']">
+                  </span>
+                  <span style="display:none" tal:attributes="class python:str(pergunta['_id'])+'_resposta'">
+                    <tal:inputs tal:content="structure python:pergunta['resposta']">
+                  </span>
+                  <span style="display:none" tal:attributes="class python:str(pergunta['_id'])+'_datas'">
+                    <tal:inputs tal:content="structure python:pergunta['data']">
+                  </span>
+                  <span style="display:none" tal:condition="python:pergunta['operador']" tal:attributes="class python:str(pergunta['_id'])+'_data_atualizacao'">
+                    <tal:inputs tal:content="structure python:pergunta['data_atualizacao']">
+                  </span>
+                  <span style="display:none" tal:attributes="class python:str(pergunta['_id'])+'_assunto'">
+                    <tal:inputs tal:content="structure python:pergunta['assunto']">
+                  </span>
+                  <span style="display:none" tal:attributes="class python:str(pergunta['_id'])+'_lido'">
+                    <tal:inputs tal:content="structure python:pergunta['lido']">
+                  </span>
 
-      <tal:result tal:condition="perguntas" tal:define="perguntas view/buscarPerguntaResposta">
-      <div class="paginationReclamacoes">
-      </div>
-      </tal:result>
-    </div>
-  </div>
-  <!--RECLAMACOES-->
-  <div class="DuvidaDivInterno" style="display:none;">
-      <div class="tableReclamacoes">
-        <table style="margin-left:0px">
-          <tr>
-            <th width="12%">
-              <span>Data</span>
-              <a href="#" title="ordenar mais recente" class="setaDown active"></a>
-              <a href="#" title="ordenar mais recente" class="setaUp"></a>
-            </th>
-            <th width="13%">
-              <span>Nome do Usuário</span>
-              <a href="#" title="ordenar mais recente" class="setaDown active"></a>
-              <a href="#" title="ordenar mais recente" class="setaUp"></a>
-            </th>
-            <th width="25%">
-              <span>E-mail</span>
-              <a href="#" title="ordenar mais recente" class="setaDown active"></a>
-              <a href="#" title="ordenar mais recente" class="setaUp active"></a>
-            </th>
-          </tr>
+                  <td tal:attributes="class python:str(pergunta['_id'])+'_fullname'"
+                      tal:condition="python:pergunta['operador']">
+                    <tal:inputs tal:define="operadorID python:pergunta['operador'];
+                                            membership python:context.portal_membership;
+                                            operador python:membership.getMemberById(operadorID)"
+                                tal:content="python:operador.getProperty('fullname') or operador" />
+                  </td>
+
+                  <span style="display:none"
+                        tal:attributes="class python:str(pergunta['_id'])+'_email'"
+                        tal:condition="python:pergunta['usuario']">
+                      <tal:inputs tal:define="operadorID python:pergunta['usuario'];
+                                              membership python:context.portal_membership;
+                                              operador python:membership.getMemberById(operadorID)"
+                                  tal:content="python:operador.getProperty('email')" />
+                  </span>
+
+                  <td tal:attributes="class python:str(pergunta['_id'])+'_usuario'"
+                      tal:condition="python:not pergunta['operador']"> </td>
+                </tr>
+              </tbody>
+              <!-- bower:js -->
+              <!-- endbower -->
+            </table>
+          </div>
           <tal:result tal:condition="perguntas" tal:define="perguntas view/buscarPerguntaResposta">
-            <tr>
-              <td id="tbl1"></td>
-              <td id="tbl2"></td>
-              <td id="tbl3"></td>
-            </tr>
+            <div class="paginationReclamacoes">
+            </div>
           </tal:result>
-        </table>
-
-        <div class="detalhesDuvida">
-          <strong class="tituloConsumidor">Pergunta:</strong>
-          <div class="respostaConsumidor">
-            <span id="pergunta"></span>
-          </div>
-
-          <strong class="tituloConsumidor">Resposta:</strong>
-          <div class="respostaConsumidor">
-            <span id="resposta"></span>
-          </div>
-
-          <strong class="tituloConsumidor">Comentários Usuário</strong>
-          <div class="comentarioConsumidor">
-            <strong>Motivo: </strong> <span id="assunto" /> <br>
-            Comentários adicionais: <span id="mensagem"></span>
-          </div>
-          <br>
-          <span class="marcarLido"><input class="lido" id="lido_check" type="checkbox"/> Marcar como lido</span>
-          <br>
-         <strong class="tituloConsumidor">Observações:</strong>
-          <br>
-          <textarea id="observacao" rows=6>
+        </div>
+      </div>
+      <!--RECLAMACOES-->
+      <div class="DuvidaDivInterno" style="display:none;">
+        <div class="tableReclamacoes">
+          <table style="margin-left:0px">
+            <tr>
+              <th width="12%">
+                <span>Data</span>
+                <a href="#" title="ordenar mais recente" class="setaDown active"></a>
+                <a href="#" title="ordenar mais recente" class="setaUp"></a>
+              </th>
+              <th width="13%">
+                <span>Nome do Usuário</span>
+                <a href="#" title="ordenar mais recente" class="setaDown active"></a>
+                <a href="#" title="ordenar mais recente" class="setaUp"></a>
+              </th>
+              <th width="25%">
+                <span>E-mail</span>
+                <a href="#" title="ordenar mais recente" class="setaDown active"></a>
+                <a href="#" title="ordenar mais recente" class="setaUp active"></a>
+              </th>
+            </tr>
+            <tal:result tal:condition="perguntas" tal:define="perguntas view/buscarPerguntaResposta">
+              <tr>
+                <td id="tbl1"></td>
+                <td id="fullname"></td>
+                <td id="email"></td>
+              </tr>
+            </tal:result>
+          </table>
+          <div class="detalhesDuvida">
+            <strong class="tituloConsumidor">Pergunta:</strong>
+            <div class="respostaConsumidor">
+              <span id="pergunta"></span>
+            </div>
+            <strong class="tituloConsumidor">Resposta:</strong>
+            <div class="respostaConsumidor">
+              <span id="resposta"></span>
+            </div>
+            <strong class="tituloConsumidor">Comentários Usuário</strong>
+            <div class="comentarioConsumidor">
+              <strong>Motivo: </strong> <span id="assunto" /> <br>
+              Comentários adicionais: <span id="mensagem"></span>
+            </div>
+            <br>
+            <span class="marcarLido"><input class="lido" id="lido_check" type="checkbox"/> Marcar como lido</span>
+            <br>
+            <strong class="tituloConsumidor">Observações:</strong>
+            <br>
+            <textarea id="observacao" rows=6>
 
           </textarea>
 
-         <strong class="tituloConsumidor" >Operador:</strong>
-          <br>
-          <input type='text' id="operador"  disabled="disabled">
-          <br>
-
-         <strong class="tituloConsumidor" >Data da última atualização:</strong>
-          <br>
-          <input type='text' id="data_atualizacao" disabled="disabled">
-          <br>
-          <span style="display:none;" id="idObservacao"></span>
-          <br>
-          <input type="button" id="enviarComentario" value="Enviar">
-          <br>
+            <div class="atualizacao">
+              <strong class="tituloConsumidor">Operador:</strong>
+              <div class="respostaConsumidor">
+                <span id="operador"></span>
+              </div>
+              <strong class="tituloConsumidor">Data da última atualização:</strong>
+              <div class="respostaConsumidor">
+                <span id="data_atualizacao"></span>
+              </div>
+            </div>
+            <span style="display:none;" id="idObservacao"></span>
+            <br>
+            <input type="button" id="enviarComentario" value="Enviar">
+            <br>
+          </div>
         </div>
       </div>
-  </div>
-
-  </div>
-
-</body>
+    </div>
+  </body>
 </html>
