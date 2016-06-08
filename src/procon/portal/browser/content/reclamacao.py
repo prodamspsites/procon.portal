@@ -13,12 +13,13 @@ class SelecionarReclamacao(BrowserView):
         mongodb = MongoClient()
         db = mongodb.procon
         protocolo = self.getProtocolo()
-        questionarios = db.tbl_replica.find({"protocolo": {"$regex": protocolo}})
+        print protocolo
+        questionarios = db.reclamacoes.find({"protocolo": {"$regex": protocolo}})
         data = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
         if questionarios.count() > 0:
 
             db.reclamacoes.update_one({"protocolo": protocolo},
-                                      {"$set": {"lido": False}},
+                                      {"$set": {"lido": True}},
                                       upsert=False)
         else:
             db.reclamacoes.insert_one({"status": "Selecione uma opção",
