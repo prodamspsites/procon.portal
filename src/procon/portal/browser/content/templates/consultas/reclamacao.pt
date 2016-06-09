@@ -25,7 +25,7 @@
       <!-- <span class="total">Total: <span tal:define="perguntas view/buscarPerguntaResposta;" tal:replace="python:perguntas['total']"></span></span> -->
 
       <div class="filtrarPor"><strong>Filtrar por:</strong>
-      <form tal:attributes="action string:${context/portal_url}/buscar_reclamacoes" method="POST" name="filtro">
+      <form tal:attributes="action string:${context/portal_url}/buscar_reclamacoes" method="GET" name="filtro">
         <select class="selectFilter"><option>Nome</option><select>
         <input type="text"  name="filtro" placeholder="Digite um valor para filtrar" class="inputFilter"/>
         <input type="submit" value="FILTRAR" class="btnFiltrar" />

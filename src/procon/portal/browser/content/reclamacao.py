@@ -70,6 +70,62 @@ class AtualizarReclamacao(BrowserView):
                                       upsert=False)
 
 
+class AtualizaForms(BrowserView):
+
+    def __call__(self):
+        if self.getTable() and self.getObjectId() and self.getColumn() and self.getValue():
+            self.atualizaFormularios()
+
+    def getColumn(self):
+        print 'column'
+        try:
+            return self.request.form['campo']
+        except Exception:
+            return None
+
+    def getValue(self):
+        try:
+            return self.request.form['valor']
+        except Exception:
+            return None
+
+    def getTable(self):
+        try:
+            return self.request.form['area']
+        except Exception:
+            return None
+
+    def getObjectId(self):
+        try:
+            return self.request.form['objId']
+        except Exception:
+            return None
+
+    def atualizaFormularios(self):
+        mongodb = MongoClient()
+        db = mongodb.procon
+
+        table = self.getTable()
+        objId = self.getObjectId()
+        column = self.getColumn()
+        value = self.getValue()
+        user = api.user.get_current()
+        userID = user.id
+        data = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+        lido = column == 'lido' and value or False
+        observacao = column == 'observacao' and value or False
+
+        find_one = db[table].find_one({'data': {"$regex": objId}})
+        if not find_one:
+            db[table].insert_one({'data': objId,
+                                  'observacao': observacao,
+                                  "lido": lido,
+                                  "operador": userID,
+                                  "data_atualizacao": data})
+        else:
+            db[table].update_one({'data': objId}, {"$set": {column: value, "operador": userID, "data_atualizacao": data}}, upsert=False)
+
+
 class Reclamacao(BrowserView):
 
     def __init__(self, context, request):
@@ -85,7 +141,7 @@ class Reclamacao(BrowserView):
         form = folderConsumidor['formularios']
         sendDataAdapter = form['dados']
         dados = sendDataAdapter.getSavedFormInput()
-        dados = [x for x in dados if type(x) is list]
+        dados = [x for x in dados if type(x) is list and self.filterInputs(x)]
 
         for dado in dados:
             if len(dado) == 54:
@@ -104,20 +160,50 @@ class Reclamacao(BrowserView):
                 pass
         return dados
 
+    def filtraForm(self):
+        try:
+            filtro = self.request.form['filtro']
+            filtro = filtro.lower().split(' ')
+            return filtro
+        except:
+            return False
+
     def buscaDenuncia(self):
         portal = api.portal.get()
         folderConsumidor = portal['consumidor']
         form = folderConsumidor['formulario-de-denuncia']
         sendDataAdapter = form['dados']
         dados = sendDataAdapter.getSavedFormInput()
-        dados = [x for x in dados if type(x) is list]
-        for dado in dados:
-            query = self.db.denuncias.find_one({"data": {"$regex": str(dado[-2])}})
-            if len(query) > 0:
-                dado.append(query['lido'])
+        dados = [x for x in dados if type(x) is list and self.filterInputs(x)]
 
-        print dados
+        for dado in dados:
+            if (len(dado) == 20):
+                dado.insert(len(dado), '')
+                dado.insert(len(dado) + 1, '')
+                dado.insert(len(dado) + 2, '')
+                dado.insert(len(dado) + 3, '')
+            query = self.db.denuncias.find_one({"data": {"$regex": str(dado[-6])}})
+            try:
+                dado[-4] = query['lido']
+                dado[-3] = query['observacao']
+                dado[-2] = query['operador']
+                dado[-1] = query['data_atualizacao']
+            except:
+                pass
+
         return dados
+
+    def filterInputs(self, lista):
+        filtro = self.filtraForm()
+        if filtro:
+            verifica = False
+            for items in lista:
+                item = str(items).lower().split(' ')
+                if any(i in filtro for i in item):
+                    verifica = True
+            return verifica
+        else:
+            return True
 
     def buscaFornecedor(self):
         portal = api.portal.get()
@@ -125,8 +211,22 @@ class Reclamacao(BrowserView):
         form = folderConsumidor['adesao-ao-procon-paulistano']
         sendDataAdapter = form['dados']
         dados = sendDataAdapter.getSavedFormInput()
+        dados = [x for x in dados if type(x) is list and self.filterInputs(x)]
+        for dado in dados:
+            if (len(dado) == 22):
+                dado.insert(len(dado), '')
+                dado.insert(len(dado) + 1, '')
+                dado.insert(len(dado) + 2, '')
+                dado.insert(len(dado) + 3, '')
+            query = self.db.fornecedores.find_one({"data": {"$regex": str(dado[-6])}})
 
-        dados = [x for x in dados if type(x) is list]
+            try:
+                dado[-4] = query['lido']
+                dado[-3] = query['observacao']
+                dado[-2] = query['operador']
+                dado[-1] = query['data_atualizacao']
+            except:
+                pass
 
         return dados
 

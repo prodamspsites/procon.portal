@@ -53,13 +53,16 @@
           </thead>
           <tbody>
             <tr tal:condition="dados" tal:define="dados view/buscaFornecedor" tal:repeat="pergunta dados">
-              <td tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-1]" class="reclamacao_buscar _id">07/06/2016</td>
+              <td tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-1]" class="reclamacao_buscar _id"
+                  tal:content="python:dados[int(repeat.pergunta.number) -1][-6]">07/06/2016</td>
               <td tal:attributes="class python:'categoria'"
                   tal:content="python:dados[int(repeat.pergunta.number) -1][1]">Cadastro</td>
               <td tal:attributes="class python:'pergunta'"
                   tal:content="python:dados[int(repeat.pergunta.number) -1][2]">00998821888</td>
-              <th tal:define="lido python:dados[int(repeat.pergunta.number) -1][-3]; input string:<input class='lido_reclamacoes' type='checkbox' value='cadastro' />; disable string:<input class='lido' disabled=disabled' checked type='checkbox' value='cadastro' />" tal:content="structure python:lido and disable+' <font color=gray>Cadastrado</font>' or input " style="background-color:white"></th>
-                <div class="detalhesDuvida" style="display:none" tal:define="labels
+              <td tal:define="lido python:dados[int(repeat.pergunta.number) -1][-4];
+                              lido python:lido and 'Sim' or 'Não';"
+                  tal:content="lido"></td>
+                <div class="detalhesDuvida" tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-6]" style="display:none" tal:define="labels
                   python:['Razão Social',
                           'CNPJ',
                           'Nome fantasia',
@@ -76,7 +79,9 @@
                           'Telefone',
                           'E-mail',
                           'Arquivos anexados'
-                         ]" tal:repeat="label labels">
+                         ]">
+
+                  <tal:labels repeat="label labels">
 
                     <div class="detalhesDuvida" tal:condition="python: not repeat.label.end">
                       <strong class="tituloConsumidor" tal:content="label">Pergunta:</strong>
@@ -96,7 +101,65 @@
                               tal:attributes="data-binary python:dados[int(repeat.pergunta.number) -1][count]; data-mimetype python:dados[int(repeat.pergunta.number) -1][count +2]"></a>
                           </div>
                     </div>
+                  </tal:labels>
 
+                  <div class="detalhesDuvida">
+                    <strong class="tituloConsumidor">SINDEC:</strong>
+                    <div class="respostaConsumidor">
+                          <tal:hasChecked
+                            condition="python:not dados[int(repeat.pergunta.number) -1][-4]">
+                          <div class="respostaConsumidor">
+                            <input id='lido' type='checkbox' value='cadastro' />
+                          </div>
+                          </tal:hasChecked>
+                          <tal:Checked
+                            condition="python:dados[int(repeat.pergunta.number) -1][-4]">
+                          <div class="respostaConsumidor">
+                            <input type='checkbox'
+                                   disabled="disabled"
+                                   value='cadastro'
+                                   checked="checked"/>
+                                   <b>Cadastrado</b>
+                          </div>
+                          </tal:Checked>
+                    </div>
+                  </div>
+
+                  <div class="detalhesDuvida">
+                    <strong class="tituloConsumidor">Observação</strong>
+                    <div class="respostaConsumidor">
+                      <tal:hasChecked
+                        tal:condition="python:dados[int(repeat.pergunta.number) -1][-3]">
+                        <textarea disabled="disabled" tal:content="python:dados[int(repeat.pergunta.number) -1][-3]" rows=6>
+                      </tal:hasChecked>
+                      <tal:hasChecked
+                        tal:condition="python:not dados[int(repeat.pergunta.number) -1][-3]">
+                        <textarea id="enviarObservacao" rows=6>
+                      </tal:hasChecked>
+                    </div>
+                  </div>
+
+                  <div class="detalhesDuvida"
+                        tal:define="operadorId python:dados[int(repeat.pergunta.number) -1][-2];
+                                    membership python:context.portal_membership;
+                                    operador python:membership.getMemberById(operadorId);"
+                        tal:condition="python:dados[int(repeat.pergunta.number) -1][-2]">
+                    <strong class="tituloConsumidor">Operador</strong>
+                      <div class="respostaConsumidor">
+                        <span tal:content="python:operador.getProperty('fullname') or operador"></span>
+                      </div>
+                  </div>
+
+                  <tal:hasChecked condition="python:dados[int(repeat.pergunta.number) -1][-1]">
+                  <div class="detalhesDuvida">
+                    <strong class="tituloConsumidor">Data de atualização</strong>
+                      <div class="respostaConsumidor">
+                        <span tal:content="python:dados[int(repeat.pergunta.number) -1][-1]"></span>
+                      </div>
+                  </div>
+                  </tal:hasChecked>
+
+                  <input type="button" id="enviarComentario" value="Enviar">
               </div>
             </tr>
           </tbody>
@@ -105,43 +168,9 @@
       </table>
       </div>
 
-      <tal:result tal:condition="perguntas" tal:define="perguntas view/buscaFornecedor">
-      <div class="paginationReclamacoes">
-      </div>
-      </tal:result>
     </div>
   </div>
   <!--RECLAMACOES-->
-  <div class="teste" style="display:none;">
-    <div class="tableReclamacoes">
-    <table>
-      <tr>
-        <th width="12%">
-          <span>Data</span>
-          <a href="#" title="ordenar mais recente" class="setaDown active"></a>
-          <a href="#" title="ordenar mais recente" class="setaUp"></a>
-        </th>
-        <th width="13%">
-          <span>Categoria</span>
-          <a href="#" title="ordenar mais recente" class="setaDown active"></a>
-          <a href="#" title="ordenar mais recente" class="setaUp"></a>
-        </th>
-        <th width="25%">
-          <span>Nome</span>
-          <a href="#" title="ordenar mais recente" class="setaDown active"></a>
-          <a href="#" title="ordenar mais recente" class="setaUp active"></a>
-        </th>
-      </tr>
-        <tr>
-          <td id="tbl1"></td>
-          <td id="tbl2"></td>
-          <td id="tbl3"></td>
-        </tr>
-    </table>
-    </div>
-  </div>
-
-
   </div>
 
 </body>
