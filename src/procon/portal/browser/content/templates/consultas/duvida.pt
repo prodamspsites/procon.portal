@@ -216,7 +216,9 @@
               Comentários adicionais: <span id="mensagem"></span>
             </div>
             <br>
-            <span class="marcarLido"><input class="lido" id="lido_check" type="checkbox"/> Marcar como lido</span>
+            <span class="marcarLido">
+              <input class="lido" id="lido_check" type="checkbox"/> Marcar como lido
+            </span>
             <br>
             <strong class="tituloConsumidor">Observações:</strong>
             <br>

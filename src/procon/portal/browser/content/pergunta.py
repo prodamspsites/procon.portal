@@ -56,30 +56,32 @@ class SalvarDuvidas(BrowserView):
             db = client.consumidor
 
             if self.getIdentificacao() and not self.getObservacao():
-
                 identificacao = self.getIdentificacao()
+
                 db.tbl_replica.update_one({"_id": ObjectId(identificacao)},
                                           {"$set": {"lido": True, "operador": userID, "data_atualizacao": data}},
                                           upsert=False)
             elif self.getIdentificacao() and self.getObservacao():
+
                 identificacao = self.getIdentificacao()
                 observacao = self.getObservacao()
                 db.tbl_replica.update_one({"_id": ObjectId(identificacao)},
                                           {"$set": {"observacao": observacao, "operador": userID, "data_atualizacao": data}},
                                           upsert=False)
             else:
-                db.tbl_replica.insert({"id_plone": id_plone,
-                                       "util": util,
-                                       "lido": False,
-                                       "pergunta": pergunta,
-                                       "resposta": resposta,
-                                       "data": data,
-                                       "assunto": assunto,
-                                       "mensagem": mensagem,
-                                       "categoria": categoria,
-                                       "observacao": "",
-                                       "operador": False,
-                                       "usuario": usuario})
+
+                db.tbl_replica.insert_one({"id_plone": id_plone,
+                                           "util": util,
+                                           "lido": False,
+                                           "pergunta": pergunta,
+                                           "resposta": resposta,
+                                           "data": data,
+                                           "assunto": assunto,
+                                           "mensagem": mensagem,
+                                           "categoria": categoria,
+                                           "observacao": "",
+                                           "operador": False,
+                                           "usuario": usuario})
         except Exception, ex:
             print ex
 
