@@ -138,7 +138,7 @@
                       <tal:inputs tal:define="operadorID python:pergunta['usuario'];
                                               membership python:context.portal_membership;
                                               operador python:membership.getMemberById(operadorID)"
-                                  tal:content="string:SP" />
+                                  tal:content="python:operador.getProperty('unidade_federativa')" />
                   </span>
                   <td tal:attributes="class python:str(pergunta['_id'])+'_usuario'"
                       tal:condition="python:not pergunta['operador']"> </td>

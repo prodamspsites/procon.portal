@@ -86,8 +86,9 @@
                           'Arquivos anexados'
                          ]">
 
+                  <tal:labels repeat="label labels">
 
-<!--                       <div class="detalhesDuvida userInfo"
+                      <div class="detalhesDuvida userInfo"
                            tal:define="userId python:dados[int(repeat.pergunta.number) -1][0];
                                        membership python:context.portal_membership;
                                        user python:membership.getMemberById(userId)"
@@ -106,10 +107,12 @@
                           <div class="respostaConsumidor">
                             <span tal:content="python:user.getProperty('cidade')"></span>
                           </div>
-                      </div> -->
 
-
-                  <tal:labels repeat="label labels">
+                        <strong class="tituloConsumidor">Unidade Federativa</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:user.getProperty('unidade_federativa')"></span>
+                          </div>
+                      </div>
 
                     <div class="detalhesDuvida" tal:condition="python: not repeat.label.end and not repeat.label.start">
                       <strong class="tituloConsumidor" tal:content="label">Pergunta:</strong>
