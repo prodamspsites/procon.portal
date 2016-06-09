@@ -110,9 +110,13 @@ class Reclamacao(BrowserView):
         form = folderConsumidor['formulario-de-denuncia']
         sendDataAdapter = form['dados']
         dados = sendDataAdapter.getSavedFormInput()
-
         dados = [x for x in dados if type(x) is list]
+        for dado in dados:
+            query = self.db.denuncias.find_one({"data": {"$regex": str(dado[-2])}})
+            if len(query) > 0:
+                dado.append(query['lido'])
 
+        print dados
         return dados
 
     def buscaFornecedor(self):
