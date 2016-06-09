@@ -83,48 +83,54 @@ class IEnhancedUserDataSchema(model.Schema):
     #     value_type=schema.Choice(vocabulary=termos))
 
     adicional_um = schema.Choice(
-        title=_(u'Possui mais de 60 anos ?'),
-        description=_(u'Possui mais de 60 anos ?'),
+        title=_(u'Possui mais de 60 anos ? *'),
+        description=_(u'Possui mais de 60 anos ? *'),
         vocabulary=adicionais_escolha_um,
         required=False,)
 
     adicional_um = schema.Choice(
-        title=_(u'Possui mais de 60 anos ?'),
-        description=_(u'Possui mais de 60 anos ?'),
+        title=_(u'Possui mais de 60 anos ? *'),
+        description=_(u'Possui mais de 60 anos ? *'),
         vocabulary=adicionais_escolha_um,
         required=False,)
 
     adicional_tres = schema.Choice(
-        title=_(u'Possui alguma deficiência ?'),
-        description=_(u'Possui alguma deficiência ?'),
+        title=_(u'Possui alguma deficiência ? *'),
+        description=_(u'Possui alguma deficiência ? *'),
         vocabulary=adicionais_escolha_tres,
         required=False,)
 
     adicional_dois = schema.Choice(
-        title=_(u'Portador de alguma doença grave prevista na Lei nº 12.008/09, atestada por declaração/laudo médico ?'),
-        description=_(u'Portador de alguma doença grave prevista na Lei nº 12.008/09, atestada por declaração/laudo médico ?'),
+        title=_(u'Portador de alguma doença grave prevista na Lei nº 12.008/09, atestada por declaração/laudo médico ? *'),
+        description=_(u'Portador de alguma doença grave prevista na Lei nº 12.008/09, atestada por declaração/laudo médico ? *'),
         vocabulary=adicionais_escolha_dois,
         required=False,)
 
     municipio = schema.Choice(
-        title=_(u'Você possui domicílio no Município de São Paulo?', default=u'Você possui domicílio no Município de São Paulo?'),
+        title=_(u'Você possui domicílio no Município de São Paulo? *', default=u'Você possui domicílio no Município de São Paulo? *'),
         description=_(u'',
                       default=u""),
         vocabulary=municipio_options,
         required=False,)
+    cadastro = schema.Choice(
+        title=_(u'Tipo de consumidor *', default=u'Tipo de consumidor *'),
+        description=_(u'',
+                      default=u""),
+        vocabulary=tipo_options,
+        required=False,)
     tipo = schema.Choice(
-        title=_(u'Tipo de consumidor', default=u'Tipo de consumidor'),
+        title=_(u'Tipo de consumidor *', default=u'Tipo de consumidor *'),
         description=_(u'',
                       default=u""),
         vocabulary=tipo_options,
         required=False,)
     nome = schema.TextLine(
-        title=_(u'Nome Completo', default=u'Nome Completo'),
+        title=_(u'Nome Completo *', default=u'Nome Completo *'),
         description=_(u'',
                       default=u""),
         required=False,)
     razao_social = schema.TextLine(
-        title=_(u'Razão social', default=u'Razão social'),
+        title=_(u'Razão social *', default=u'Razão social *'),
         description=_(u'',
                       default=u""),
         required=False,)
@@ -135,22 +141,22 @@ class IEnhancedUserDataSchema(model.Schema):
                       default=u""),
         required=False,)
     responsavel = schema.TextLine(
-        title=_(u'Nome completo do representante legal', default=u'Nome completo do representante legal'),
+        title=_(u'Nome completo do representante legal *', default=u'Nome completo do representante legal *'),
         description=_(u'',
                       default=u""),
         required=False,)
     cpf = schema.TextLine(
-        title=_(u'CPF', default=u'CPF'),
+        title=_(u'CPF *', default=u'CPF *'),
         description=_(u'',
                       default=u""),
         required=False,)
     rg = schema.TextLine(
-        title=_(u'RG', default=u'RG'),
+        title=_(u'RG *', default=u'RG *'),
         description=_(u'',
                       default=u""),
         required=False,)
     expeditor = schema.TextLine(
-        title=_(u'Órgão Expedidor', default=u'Órgão Expedidor'),
+        title=_(u'Órgão Expedidor *', default=u'Órgão Expedidor *'),
         description=_(u'',
                       default=u""),
         required=False,)
@@ -167,13 +173,13 @@ class IEnhancedUserDataSchema(model.Schema):
         vocabulary=estadocivil_options,
         required=False,)
     tipo_societario = schema.Choice(
-        title=_(u'Tipo Societário', default=u'Tipo Societário'),
+        title=_(u'Tipo Societário *', default=u'Tipo Societário *'),
         description=_(u'',
                       default=u""),
         vocabulary=tipo_societario_options,
         required=False,)
     enquadramento = schema.Choice(
-        title=_(u'Enquadramento', default=u'Enquadramento'),
+        title=_(u'Enquadramento *', default=u'Enquadramento *'),
         description=_(u'',
                       default=u""),
         vocabulary=enquadramento_options,
@@ -195,32 +201,32 @@ class IEnhancedUserDataSchema(model.Schema):
     )
 
     codigo_enderecamento_postal = schema.TextLine(
-        title=_(u'CEP', default=u'CEP'),
+        title=_(u'CEP *', default=u'CEP *'),
         required=False
     )
 
     logradouro = schema.TextLine(
-        title=_(u'Logradouro'),
+        title=_(u'Logradouro *'),
         required=False
     )
 
     complemento = schema.TextLine(
-        title=_(u'Número/Complemento'),
+        title=_(u'Número/Complemento *'),
         required=False
     )
 
     bairro = schema.TextLine(
-        title=_(u'Bairro'),
+        title=_(u'Bairro *'),
         required=False
     )
 
     cidade = schema.TextLine(
-        title=_(u'Cidade'),
+        title=_(u'Cidade *'),
         required=False
     )
 
     unidade_federativa = schema.TextLine(
-        title=_(u'UF'),
+        title=_(u'UF *'),
         required=False
     )
 
@@ -230,12 +236,12 @@ class IEnhancedUserDataSchema(model.Schema):
     )
 
     mail = schema.TextLine(
-        title=_(u'E-mail'),
+        title=_(u'E-mail *'),
         required=False
     )
 
     confirmacao = schema.TextLine(
-        title=_(u'Confirmação de E-mail'),
+        title=_(u'Confirmação de E-mail *'),
         required=False
     )
 
@@ -250,6 +256,7 @@ class UserDataPanelExtender(extensible.FormExtender):
     def update(self):
         fields = field.Fields(IEnhancedUserDataSchema)
         fields = fields.omit('accept')  # Users have already accepted.
+        fields['cadastro'].widgetFactory = RadioFieldWidget
         fields['tipo'].widgetFactory = RadioFieldWidget
         fields['municipio'].widgetFactory = RadioFieldWidget
         fields['genero'].widgetFactory = RadioFieldWidget
@@ -264,6 +271,7 @@ class RegistrationPanelExtender(extensible.FormExtender):
 
     def update(self):
         fields = field.Fields(IEnhancedUserDataSchema)
+        fields['cadastro'].widgetFactory = RadioFieldWidget
         fields['tipo'].widgetFactory = RadioFieldWidget
         fields['municipio'].widgetFactory = RadioFieldWidget
         fields['genero'].widgetFactory = RadioFieldWidget
@@ -279,6 +287,7 @@ class AddUserFormExtender(extensible.FormExtender):
 
     def update(self):
         fields = field.Fields(IEnhancedUserDataSchema)
+        fields['cadastro'].widgetFactory = RadioFieldWidget
         fields['tipo'].widgetFactory = RadioFieldWidget
         fields['municipio'].widgetFactory = RadioFieldWidget
         fields['genero'].widgetFactory = RadioFieldWidget

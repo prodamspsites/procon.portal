@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <object name="portal_memberdata" meta_type="Plone Memberdata Tool">
  <property name="tipo" type="string"></property>
+ <property name="cadastro" type="string"></property>
  <property name="nome" type="string"></property>
  <property name="razao_social" type="string"></property>
  <property name="nome_fantasia" type="string"></property>
