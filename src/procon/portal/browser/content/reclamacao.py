@@ -85,7 +85,7 @@ class Reclamacao(BrowserView):
         form = folderConsumidor['formularios']
         sendDataAdapter = form['dados']
         dados = sendDataAdapter.getSavedFormInput()
-        dados = [x for x in dados if type(x) is list]
+        dados = [x for x in dados if type(x) is list and self.filterInputs(x)]
 
         for dado in dados:
             if len(dado) == 54:
@@ -104,16 +104,34 @@ class Reclamacao(BrowserView):
                 pass
         return dados
 
+    def filtraForm(self):
+        try:
+            filtro = self.request.form['filtro']
+            filtro = filtro.lower().split(' ')
+            return filtro
+        except:
+            return False
+
     def buscaDenuncia(self):
         portal = api.portal.get()
         folderConsumidor = portal['consumidor']
         form = folderConsumidor['formulario-de-denuncia']
         sendDataAdapter = form['dados']
         dados = sendDataAdapter.getSavedFormInput()
-
-        dados = [x for x in dados if type(x) is list]
-
+        dados = [x for x in dados if type(x) is list and self.filterInputs(x)]
         return dados
+
+    def filterInputs(self, lista):
+        filtro = self.filtraForm()
+        if filtro:
+            verifica = False
+            for items in lista:
+                item = str(items).lower().split(' ')
+                if any(i in filtro for i in item):
+                    verifica = True
+            return verifica
+        else:
+            return True
 
     def buscaFornecedor(self):
         portal = api.portal.get()
@@ -121,8 +139,7 @@ class Reclamacao(BrowserView):
         form = folderConsumidor['adesao-ao-procon-paulistano']
         sendDataAdapter = form['dados']
         dados = sendDataAdapter.getSavedFormInput()
-
-        dados = [x for x in dados if type(x) is list]
+        dados = [x for x in dados if type(x) is list and self.filterInputs(x)]
 
         return dados
 
