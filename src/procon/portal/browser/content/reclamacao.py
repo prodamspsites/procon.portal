@@ -9,8 +9,6 @@ class SelecionarReclamacao(BrowserView):
 
     def __call__(self):
         user = api.user.get_current()
-        print user
-        print user.id
         userID = user.id
         mongodb = MongoClient()
         db = mongodb.procon
@@ -55,8 +53,6 @@ class AtualizarReclamacao(BrowserView):
 
     def AtualizarReclamacao(self):
         user = api.user.get_current()
-        print user
-        print user.id
         userID = user.id
         mongodb = MongoClient()
         db = mongodb.procon
@@ -92,7 +88,7 @@ class Reclamacao(BrowserView):
         dados = [x for x in dados if type(x) is list]
 
         for dado in dados:
-            if len(dado) == 53:
+            if len(dado) == 54:
                 dado.insert(len(dado), '')
                 dado.insert(len(dado) + 1, '')
                 dado.insert(len(dado) + 2, '')
