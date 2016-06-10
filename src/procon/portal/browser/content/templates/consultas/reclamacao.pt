@@ -53,9 +53,9 @@
               <th width="1%" style="display:none">
                 <span>.</span>
               </th>
-<!--               <th width="15%">
+              <th width="15%">
                 <span>SINDEC</span>
-              </th> -->
+              </th>
             </tr>
           </thead>
           <tbody style="border:0px">
@@ -73,7 +73,9 @@
                                        membership python:context.portal_membership;
                                        user python:membership.getMemberById(userId)"
                   tal:content="python:user.getProperty('fullname') or user">Admin</td>
-
+              <td tal:define="lido python:dados[int(repeat.pergunta.number) -1][-4];
+                              lido python:lido and 'Sim' or 'Não';"
+                  tal:content="lido"></td>
               <td class="td_interno" style="display:none">
               <div class="detalhesDuvida" style="display:none">
 
