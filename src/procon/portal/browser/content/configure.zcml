@@ -72,6 +72,15 @@
     />
 
   <browser:page
+    name="atualiza_forms"
+    permission="cmf.ReviewPortalContent"
+    for="*"
+    layer="procon.portal.interfaces.IProdamPortal"
+    template="templates/consultas/reclamacao.pt"
+    class=".reclamacao.AtualizaForms"
+    />
+
+  <browser:page
     name="buscar_denuncias"
     permission="cmf.ReviewPortalContent"
     for="*"
