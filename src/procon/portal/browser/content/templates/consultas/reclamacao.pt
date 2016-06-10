@@ -65,7 +65,7 @@
                   tal:define="userId python:dados[int(repeat.pergunta.number) -1][0];
                                        membership python:context.portal_membership;
                                        user python:membership.getMemberById(userId)"
-                  tal:content="python:user.getProperty('cadastro')">Cadastro</td>
+                  tal:content="python:user.getProperty('cadastro') or 'Pessoa física'">Cadastro</td>
               <td tal:attributes="class python:'pergunta reclamacao_buscar'"
                   tal:content="python:dados[int(repeat.pergunta.number) -1][-5]">00998821888</td>
               <td tal:attributes="class python:'usuario reclamacao_buscar'"
@@ -95,6 +95,12 @@
                           <div class="respostaConsumidor">
                             <span tal:content="python:user.getProperty('cidade')"></span>
                           </div>
+
+                        <strong class="tituloConsumidor">Unidade Federativa</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:user.getProperty('unidade_federativa')"></span>
+                          </div>
+
                       </div>
 
                       <div class="detalhesDuvida">
