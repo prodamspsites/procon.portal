@@ -213,7 +213,7 @@ class Reclamacao(BrowserView):
         dados = sendDataAdapter.getSavedFormInput()
         dados = [x for x in dados if type(x) is list and self.filterInputs(x)]
         for dado in dados:
-            if (len(dado) == 22):
+            if (len(dado) == 21):
                 dado.insert(len(dado), '')
                 dado.insert(len(dado) + 1, '')
                 dado.insert(len(dado) + 2, '')

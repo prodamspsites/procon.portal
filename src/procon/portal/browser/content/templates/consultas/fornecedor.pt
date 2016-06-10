@@ -52,7 +52,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr tal:condition="dados" tal:define="dados view/buscaFornecedor" tal:repeat="pergunta dados">
+            <tr tal:condition="dados" tal:define="dados view/buscaFornecedor" tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-6]" tal:repeat="pergunta dados">
               <td tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-1]" class="reclamacao_buscar _id"
                   tal:content="python:dados[int(repeat.pergunta.number) -1][-6]">07/06/2016</td>
               <td tal:attributes="class python:'categoria'"
@@ -62,6 +62,7 @@
               <td tal:define="lido python:dados[int(repeat.pergunta.number) -1][-4];
                               lido python:lido and 'Sim' or 'Não';"
                   tal:content="lido"></td>
+              <td style="background-color:white !important; border: 0px; display: none">
                 <div class="detalhesDuvida" tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-6]" style="display:none" tal:define="labels
                   python:['Razão Social',
                           'CNPJ',
@@ -130,11 +131,11 @@
                     <div class="respostaConsumidor">
                       <tal:hasChecked
                         tal:condition="python:dados[int(repeat.pergunta.number) -1][-3]">
-                        <textarea disabled="disabled" tal:content="python:dados[int(repeat.pergunta.number) -1][-3]" rows=6>
+                        <textarea disabled="disabled" tal:content="python:dados[int(repeat.pergunta.number) -1][-3]" rows=6 />
                       </tal:hasChecked>
                       <tal:hasChecked
                         tal:condition="python:not dados[int(repeat.pergunta.number) -1][-3]">
-                        <textarea id="enviarObservacao" rows=6>
+                        <textarea id="enviarObservacao" rows=6 />
                       </tal:hasChecked>
                     </div>
                   </div>
@@ -159,8 +160,9 @@
                   </div>
                   </tal:hasChecked>
 
-                  <input type="button" id="enviarComentario" value="Enviar">
+                  <input type="button" id="enviarComentario" value="Enviar" />
               </div>
+            </td>
             </tr>
           </tbody>
           <!-- bower:js -->
