@@ -172,7 +172,7 @@
                           <div class="respostaConsumidor"
                                tal:define="operadorId python:dados[int(repeat.pergunta.number) -1][-2];
                                            membership python:context.portal_membership;
-                                           operador python:membership.getMemberById(operadorId);"
+                                           operador python:membership.getMemberById(operadorId);">
                             <span tal:content="python:operador.getProperty('fullname') or operador"></span>
                           </div>
                       </div>
