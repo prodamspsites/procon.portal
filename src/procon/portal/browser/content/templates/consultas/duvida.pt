@@ -50,6 +50,9 @@
                   <th width="20%">
                     <span>Operador PROCON</span>
                   </th>
+                  <th width="20%">
+                    <span>Lido</span>
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -144,6 +147,10 @@
                   </span>
                   <td tal:attributes="class python:str(pergunta['_id'])+'_usuario'"
                       tal:condition="python:not pergunta['operador']"> </td>
+                  <td tal:attributes="class python:str(pergunta['_id'])+'_pergunta duvidas_buscar'">
+                    <tal:inputs tal:define="lido python:pergunta['lido'] and 'Sim' or 'Não'"
+                                tal:content="lido"></tal:inputs>
+                  </td>
                 </tr>
               </tbody>
               <!-- bower:js -->
