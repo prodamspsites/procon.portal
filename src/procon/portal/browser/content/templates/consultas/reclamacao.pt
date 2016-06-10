@@ -72,7 +72,7 @@
                   tal:define="userId python:dados[int(repeat.pergunta.number) -1][0];
                                        membership python:context.portal_membership;
                                        user python:membership.getMemberById(userId)"
-                  tal:content="python:user.getProperty('fullname') or user">Admin</td>
+                  tal:content="python:user.getProperty('razao_social') or user.getProperty('fullname') or user">Admin</td>
 
               <td class="td_interno" style="display:none">
               <div class="detalhesDuvida" style="display:none">
