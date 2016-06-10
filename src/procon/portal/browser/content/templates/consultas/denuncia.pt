@@ -63,7 +63,7 @@
                                        user python:membership.getMemberById(userId)"
                   tal:content="python:user.getProperty('fullname') or user">Admin</td>
               <td tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-1]" class="reclamacao_buscar _id"
-                  tal:content="python:dados[int(repeat.pergunta.number) -1][2]">Nome</td>
+                  tal:content="python:dados[int(repeat.pergunta.number) -1][1]">Nome</td>
               <td tal:define="lido python:dados[int(repeat.pergunta.number) -1][-4];
                               lido python:lido and 'Sim' or 'Não';"
                   tal:content="lido"></td>
