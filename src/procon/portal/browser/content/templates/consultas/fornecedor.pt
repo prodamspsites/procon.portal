@@ -105,7 +105,7 @@
                   </tal:labels>
 
                   <div class="detalhesDuvida">
-                    <strong class="tituloConsumidor">SINDEC:</strong>
+                    <strong class="tituloConsumidor">Fornecedor inserido no SINDEC:</strong>
                     <div class="respostaConsumidor">
                           <tal:hasChecked
                             condition="python:not dados[int(repeat.pergunta.number) -1][-4]">
