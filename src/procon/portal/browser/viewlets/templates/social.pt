@@ -1,13 +1,16 @@
 <div class="social">
   <ul class="listaSocial">
     <li class="faceSocial">
-      <a href="#"></a>
+      <a href="https://www.facebook.com/proconpaulistano/?fref=ts" target="_blank"></a>
     </li>
     <li class="twitterSocial">
-      <a href="#"></a>
+      <a href="https://twitter.com/ProconDigitalSP" target="_blank"></a>
     </li>
     <li class="youtubeSocial">
-      <a href="#"></a>
+      <a href="https://www.youtube.com/channel/UC--dnH10822Ifl3ZaaFWgEw" target="_blank"></a>
+    </li>
+    <li class="libras">
+      <a href="" target="_blank"></a>
     </li>
   </ul>
 </div>
