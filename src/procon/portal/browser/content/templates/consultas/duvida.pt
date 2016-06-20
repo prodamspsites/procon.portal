@@ -229,7 +229,7 @@
               <input class="lido" id="lido_check" type="checkbox"/> Marcar como lido
             </span>
             <br>
-            <strong class="tituloConsumidor">Observações:</strong>
+            <strong class="tituloConsumidor">Inserir FA, data de envio da resposta ao consumidor e texto da resposta:</strong>
             <br>
             <textarea id="observacao" rows=6>
 

@@ -24,6 +24,7 @@ class SelecionarReclamacao(BrowserView):
             db.reclamacoes.insert_one({"status": "Selecione uma opção",
                                        "protocolo": protocolo,
                                        "lido": True,
+                                       "FA": False,
                                        "operador": userID,
                                        "data": data})
 
@@ -43,7 +44,13 @@ class AtualizarReclamacao(BrowserView):
         try:
             return self.request.form['reclamacao_status']
         except Exception:
-            return None
+            return False
+
+    def getFA(self):
+        try:
+            return self.request.form['FA']
+        except Exception:
+            return False
 
     def getProtocolo(self):
         try:
@@ -58,15 +65,18 @@ class AtualizarReclamacao(BrowserView):
         db = mongodb.procon
         find = db.reclamacoes.find({"protocolo": {"$regex": self.getProtocolo()}})
         data = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+        coluna = self.getStatus() and 'status' or self.getFA() and 'FA'
+        valor = self.getStatus() or self.getFA()
         if find.count() == 0:
             db.reclamacoes.insert_one({"status": self.getStatus(),
                                        "protocolo": self.getProtocolo(),
                                        "lido": False,
+                                       "FA": self.getFA(),
                                        "operador": userID,
                                        "data": data})
         else:
             db.reclamacoes.update_one({"protocolo": self.getProtocolo()},
-                                      {"$set": {"status": self.getStatus(), "data": data, "operador": userID}},
+                                      {"$set": {coluna: valor, "data": data, "operador": userID}},
                                       upsert=False)
 
 
@@ -77,7 +87,6 @@ class AtualizaForms(BrowserView):
             self.atualizaFormularios()
 
     def getColumn(self):
-        print 'column'
         try:
             return self.request.form['campo']
         except Exception:
@@ -114,12 +123,14 @@ class AtualizaForms(BrowserView):
         data = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
         lido = column == 'lido' and value or False
         observacao = column == 'observacao' and value or False
+        FA = column == 'FA' and value or False
 
         find_one = db[table].find_one({'data': {"$regex": objId}})
         if not find_one:
             db[table].insert_one({'data': objId,
                                   'observacao': observacao,
                                   "lido": lido,
+                                  "FA": FA,
                                   "operador": userID,
                                   "data_atualizacao": data})
         else:
@@ -149,9 +160,11 @@ class Reclamacao(BrowserView):
                 dado.insert(len(dado) + 1, '')
                 dado.insert(len(dado) + 2, '')
                 dado.insert(len(dado) + 3, '')
-            protocolo = dado[-5]
+                dado.insert(len(dado) + 4, '')
+            protocolo = dado[-6]
             query = self.db.reclamacoes.find_one({"protocolo": {"$regex": str(protocolo)}})
             try:
+                dado[-5] = query['FA']
                 dado[-4] = query['status'].encode('utf-8')
                 dado[-3] = query['lido']
                 dado[-2] = query['operador']
@@ -177,7 +190,7 @@ class Reclamacao(BrowserView):
         dados = [x for x in dados if type(x) is list and self.filterInputs(x)]
 
         for dado in dados:
-            if (len(dado) == 20):
+            if (len(dado) == 22):
                 dado.insert(len(dado), '')
                 dado.insert(len(dado) + 1, '')
                 dado.insert(len(dado) + 2, '')
@@ -212,8 +225,9 @@ class Reclamacao(BrowserView):
         sendDataAdapter = form['dados']
         dados = sendDataAdapter.getSavedFormInput()
         dados = [x for x in dados if type(x) is list and self.filterInputs(x)]
+
         for dado in dados:
-            if (len(dado) == 21):
+            if (len(dado) == 22):
                 dado.insert(len(dado), '')
                 dado.insert(len(dado) + 1, '')
                 dado.insert(len(dado) + 2, '')

@@ -33,7 +33,7 @@ genero_options = SimpleVocabulary([
 estadocivil_options = SimpleVocabulary([
     SimpleTerm(value='solteiro', title=_(u'Solteiro(a)')),
     SimpleTerm(value='casado', title=_(u'Casado(a)')),
-    SimpleTerm(value='separado', title=_(u'Separado(a)')),
+    SimpleTerm(value='separado', title=_(u'Separado(a) judicialmente')),
     SimpleTerm(value='divorciado', title=_(u'Divorciado(a)')),
     SimpleTerm(value='viuvo', title=_(u'Viúvo(a)')), ])
 
@@ -45,9 +45,32 @@ enquadramento_options = SimpleVocabulary([
     SimpleTerm(value='Empresa Individual de Responsabilidade Limitada (EIRELI)', title=_(u'Empresa Individual de Responsabilidade Limitada (EIRELI)')), ])
 
 tipo_societario_options = SimpleVocabulary([
-    SimpleTerm(value='Sociedade Limitada (Ltda)', title=_(u'Sociedade Limitada (Ltda)')),
-    SimpleTerm(value='Sociedade Anônima (S.A)', title=_(u'Sociedade Anônima (S.A)')),
-    SimpleTerm(value='Empresa Individual de Responsabilidade Limitada (Eireli)', title=_(u'Empresa Individual de Responsabilidade Limitada (Eireli)')), ])
+    SimpleTerm(value='Empresário individual', title=_(u'Empresário individual')),
+    SimpleTerm(value='Empresa individual de responsabilidade limitada', title=_(u'Empresa individual de responsabilidade limitada')),
+    SimpleTerm(value='Sociedade limitada', title=_(u'Sociedade limitada')),
+    SimpleTerm(value='Sociedade anônima', title=_(u'Sociedade anônima')),
+    SimpleTerm(value='Outro tipo societário', title=_(u'Outro tipo societário')), ])
+
+doenca_grave_options = SimpleVocabulary([
+    SimpleTerm(value='Não possuo nenhuma das doenças/condições acima ', title=_(u'Não possuo nenhuma das doenças/condições acima ')),
+    SimpleTerm(value='Tuberculose ativa', title=_(u'Tuberculose ativa')),
+    SimpleTerm(value='Esclerose múltipla', title=_(u'Esclerose múltipla')),
+    SimpleTerm(value='Neoplasia maligna (câncer)', title=_(u'Neoplasia maligna (câncer)')),
+    SimpleTerm(value='Hanseníase (Lepra)', title=_(u'Hanseníase (Lepra)')),
+    SimpleTerm(value='Paralisia irreversível e incapacitante', title=_(u'Paralisia irreversível e incapacitante')),
+    SimpleTerm(value='Cardiopatia grave', title=_(u'Cardiopatia grave')),
+    SimpleTerm(value='Doença de Parkinson', title=_(u'Doença de Parkinson')),
+    SimpleTerm(value='Espondiloartrose anquilosante', title=_(u'Espondiloartrose anquilosante')),
+    SimpleTerm(value='Nefropatia grave', title=_(u'Nefropatia grave')),
+    SimpleTerm(value='Hepatopatia grave', title=_(u'Hepatopatia grave')),
+    SimpleTerm(value='Doença de Paget (osteíte deformante) em grau avançado', title=_(u'Doença de Paget (osteíte deformante) em grau avançado')),
+    SimpleTerm(value='Contaminação por radiação', title=_(u'Contaminação por radiação')),
+    SimpleTerm(value='Síndrome de imunodeficiência adquirida (AIDS)', title=_(u'Síndrome de imunodeficiência adquirida (AIDS)')),
+    SimpleTerm(value='Outra doença grave, não especificada acima, de acordo com laudo médico', title=_(u'Outra doença grave, não especificada acima, de acordo com laudo médico')),
+    SimpleTerm(value='Neoplasia maligna (câncer)', title=_(u'Neoplasia maligna (câncer)')),
+    SimpleTerm(value='Neoplasia maligna (câncer)', title=_(u'Neoplasia maligna (câncer)')),
+    SimpleTerm(value='Empresa Individual de Responsabilidade Limitada (EIRELI)', title=_(u'Empresa Individual de Responsabilidade Limitada (EIRELI)')),
+    SimpleTerm(value='Não possuo nenhuma das doenças/condições acima ', title=_(u'Não possuo nenhuma das doenças/condições acima ')), ])
 
 adicionais_escolha_um = SimpleVocabulary([
     SimpleTerm(value='sim', title=_(u'Sim')),
@@ -106,6 +129,12 @@ class IEnhancedUserDataSchema(model.Schema):
         vocabulary=adicionais_escolha_dois,
         required=False,)
 
+    doenca_grave = schema.Choice(
+        title=_(u'Portador de alguma doença grave, atestada por declaração/laudo médico ? *'),
+        description=_(u'Possui alguma deficiência ? *'),
+        vocabulary=doenca_grave_options,
+        required=False,)
+
     municipio = schema.Choice(
         title=_(u'Você possui domicílio no Município de São Paulo? *', default=u'Você possui domicílio no Município de São Paulo? *'),
         description=_(u'',
@@ -134,9 +163,18 @@ class IEnhancedUserDataSchema(model.Schema):
         description=_(u'',
                       default=u""),
         required=False,)
-
     nome_fantasia = schema.TextLine(
         title=_(u'Nome fantasia', default=u'Nome fantasia'),
+        description=_(u'',
+                      default=u""),
+        required=False,)
+    deficiencia_especificar = schema.TextLine(
+        title=_(u'Especificar', default=u'Especificar'),
+        description=_(u'',
+                      default=u""),
+        required=False,)
+    doenca_especificar = schema.TextLine(
+        title=_(u'Especificar', default=u'Especificar'),
         description=_(u'',
                       default=u""),
         required=False,)
@@ -263,6 +301,7 @@ class UserDataPanelExtender(extensible.FormExtender):
         fields['adicional_um'].widgetFactory = RadioFieldWidget
         fields['adicional_dois'].widgetFactory = RadioFieldWidget
         fields['adicional_tres'].widgetFactory = RadioFieldWidget
+        fields['doenca_grave'].widgetFactory = RadioFieldWidget
         self.add(fields)
 
 
@@ -278,7 +317,7 @@ class RegistrationPanelExtender(extensible.FormExtender):
         fields['adicional_um'].widgetFactory = RadioFieldWidget
         fields['adicional_dois'].widgetFactory = RadioFieldWidget
         fields['adicional_tres'].widgetFactory = RadioFieldWidget
-
+        fields['doenca_grave'].widgetFactory = RadioFieldWidget
         self.add(fields)
 
 
@@ -294,6 +333,7 @@ class AddUserFormExtender(extensible.FormExtender):
         fields['adicional_um'].widgetFactory = RadioFieldWidget
         fields['adicional_dois'].widgetFactory = RadioFieldWidget
         fields['adicional_tres'].widgetFactory = RadioFieldWidget
+        fields['doenca_grave'].widgetFactory = RadioFieldWidget
 
         # management form doesn't need this field
         fields = fields.omit('accept')
