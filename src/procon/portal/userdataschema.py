@@ -52,7 +52,7 @@ tipo_societario_options = SimpleVocabulary([
     SimpleTerm(value='Outro tipo societário', title=_(u'Outro tipo societário')), ])
 
 doenca_grave_options = SimpleVocabulary([
-    SimpleTerm(value='Não possuo nenhuma das doenças/condições acima ', title=_(u'Não possuo nenhuma das doenças/condições acima ')),
+    SimpleTerm(value='Não possuo nenhuma das doenças/condições', title=_(u'Não possuo nenhuma das doenças/condições')),
     SimpleTerm(value='Tuberculose ativa', title=_(u'Tuberculose ativa')),
     SimpleTerm(value='Esclerose múltipla', title=_(u'Esclerose múltipla')),
     SimpleTerm(value='Neoplasia maligna (câncer)', title=_(u'Neoplasia maligna (câncer)')),
@@ -66,11 +66,7 @@ doenca_grave_options = SimpleVocabulary([
     SimpleTerm(value='Doença de Paget (osteíte deformante) em grau avançado', title=_(u'Doença de Paget (osteíte deformante) em grau avançado')),
     SimpleTerm(value='Contaminação por radiação', title=_(u'Contaminação por radiação')),
     SimpleTerm(value='Síndrome de imunodeficiência adquirida (AIDS)', title=_(u'Síndrome de imunodeficiência adquirida (AIDS)')),
-    SimpleTerm(value='Outra doença grave, não especificada acima, de acordo com laudo médico', title=_(u'Outra doença grave, não especificada acima, de acordo com laudo médico')),
-    SimpleTerm(value='Neoplasia maligna (câncer)', title=_(u'Neoplasia maligna (câncer)')),
-    SimpleTerm(value='Neoplasia maligna (câncer)', title=_(u'Neoplasia maligna (câncer)')),
-    SimpleTerm(value='Empresa Individual de Responsabilidade Limitada (EIRELI)', title=_(u'Empresa Individual de Responsabilidade Limitada (EIRELI)')),
-    SimpleTerm(value='Não possuo nenhuma das doenças/condições acima ', title=_(u'Não possuo nenhuma das doenças/condições acima ')), ])
+    SimpleTerm(value='Outra doença grave, não especificada acima, de acordo com laudo médico', title=_(u'Outra doença grave, não especificada acima, de acordo com laudo médico')), ])
 
 adicionais_escolha_um = SimpleVocabulary([
     SimpleTerm(value='sim', title=_(u'Sim')),
