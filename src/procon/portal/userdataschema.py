@@ -297,7 +297,6 @@ class UserDataPanelExtender(extensible.FormExtender):
         fields['adicional_um'].widgetFactory = RadioFieldWidget
         fields['adicional_dois'].widgetFactory = RadioFieldWidget
         fields['adicional_tres'].widgetFactory = RadioFieldWidget
-        fields['doenca_grave'].widgetFactory = RadioFieldWidget
         self.add(fields)
 
 
@@ -313,7 +312,6 @@ class RegistrationPanelExtender(extensible.FormExtender):
         fields['adicional_um'].widgetFactory = RadioFieldWidget
         fields['adicional_dois'].widgetFactory = RadioFieldWidget
         fields['adicional_tres'].widgetFactory = RadioFieldWidget
-        fields['doenca_grave'].widgetFactory = RadioFieldWidget
         self.add(fields)
 
 
@@ -329,7 +327,6 @@ class AddUserFormExtender(extensible.FormExtender):
         fields['adicional_um'].widgetFactory = RadioFieldWidget
         fields['adicional_dois'].widgetFactory = RadioFieldWidget
         fields['adicional_tres'].widgetFactory = RadioFieldWidget
-        fields['doenca_grave'].widgetFactory = RadioFieldWidget
 
         # management form doesn't need this field
         fields = fields.omit('accept')
