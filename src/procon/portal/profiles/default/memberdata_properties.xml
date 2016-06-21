@@ -17,6 +17,7 @@
  <property name="data_nascimento" type="string"></property>
  <property name="contato_telefone" type="string"></property>
  <property name="contato_celular" type="string"></property>
+ <property name="uf_expedidor" type="string"></property>
  <property name="codigo_enderecamento_postal" type="string"></property>
  <property name="logradouro" type="string"></property>
  <property name="complemento" type="string"></property>

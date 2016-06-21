@@ -52,7 +52,7 @@ tipo_societario_options = SimpleVocabulary([
     SimpleTerm(value='Outro tipo societário', title=_(u'Outro tipo societário')), ])
 
 doenca_grave_options = SimpleVocabulary([
-    SimpleTerm(value='Não possuo nenhuma das doenças/condições', title=_(u'Não possuo nenhuma das doenças/condições')),
+    SimpleTerm(value='Não', title=_(u'Não')),
     SimpleTerm(value='Tuberculose ativa', title=_(u'Tuberculose ativa')),
     SimpleTerm(value='Esclerose múltipla', title=_(u'Esclerose múltipla')),
     SimpleTerm(value='Neoplasia maligna (câncer)', title=_(u'Neoplasia maligna (câncer)')),
@@ -66,7 +66,7 @@ doenca_grave_options = SimpleVocabulary([
     SimpleTerm(value='Doença de Paget (osteíte deformante) em grau avançado', title=_(u'Doença de Paget (osteíte deformante) em grau avançado')),
     SimpleTerm(value='Contaminação por radiação', title=_(u'Contaminação por radiação')),
     SimpleTerm(value='Síndrome de imunodeficiência adquirida (AIDS)', title=_(u'Síndrome de imunodeficiência adquirida (AIDS)')),
-    SimpleTerm(value='Outra doença grave, não especificada acima, de acordo com laudo médico', title=_(u'Outra doença grave, não especificada acima, de acordo com laudo médico')), ])
+    SimpleTerm(value='Outra doença considerada grave por atestado/laudo médico', title=_(u'Outra doença considerada grave por atestado/laudo médico')), ])
 
 adicionais_escolha_um = SimpleVocabulary([
     SimpleTerm(value='sim', title=_(u'Sim')),
@@ -191,6 +191,11 @@ class IEnhancedUserDataSchema(model.Schema):
         required=False,)
     expeditor = schema.TextLine(
         title=_(u'Órgão Expedidor *', default=u'Órgão Expedidor *'),
+        description=_(u'',
+                      default=u""),
+        required=False,)
+    uf_expedidor = schema.TextLine(
+        title=_(u'UF *', default=u'UF *'),
         description=_(u'',
                       default=u""),
         required=False,)
