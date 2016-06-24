@@ -5,34 +5,39 @@
         <ul>
           <li>
               <ul>
-                <li class="tituloMenu"><a href="#" title="Quem somos">Quem somos</a></li>
+                <li class="tituloMenu"><a href="#" title="Institucional">Institucional</a></li>
+                 <li><a href="/quem-somos-1/quem-somos" title="PROCON Paulistano">PROCON Paulistano</a></li>
+                 <li><a href="/quem-somos-1/missao-visao-e-valores" title="Identidade Institucional">Identidade Institucional</a></li>
+                 <li><a href="/quem-somos-1/estrutura" title="Estrutura">Estrutura</a></li>
+                 <li><a href="/quem-somos-1/quem-e-quem" title="Quem é quem">Quem é quem</a></li>
               <ul>
           </li>
           <li>
               <ul>
-               <li class="tituloMenu"><a href="#" title="INFORMAÇÕES">Informações</a></li>
-                <li><a href="#" title="Código de Defesa do Consumidor">Código de Defesa do Consumidor</a></li>
-                <li><a href="#" title="Recall">Recall</a></li>
-                <li><a href="#" title="Legislação">Legislação</a></li>
-                <li><a href="#" title="Juízados especiais Cíveis">Juízados especiais Cíveis</a></li>
-                <li><a href="#" title="Evite esses sites">Evite esses sites</a></li>
+               <li class="tituloMenu"><a href="/consumidor/formularios" title="Consumidor">Consumidor</a></li>
+                <li><a href="/consumidor/formularios" title="Faça sua reclamação">Faça sua reclamação</a></li>
+                <li><a href="http://sindec.prefeitura.sp.gov.br/sindecconsulta/" target="_blank" title="Consulte o andamento da sua reclamaç">Consulte o andamento da sua reclamaç</a></li>
+                <li><a href="/consumidor/formulario-de-denuncia" title="Faça a sua denúncia">Faça a sua denúncia</a></li>
+                <li><a href="/consumidor/duvidas" title="Tire suas dúvida">Tire suas dúvida</a></li>
+                <li><a href="#" title="Rankings">Rankings</a></li>
               <ul>
           </li>
           <li>
               <ul>
-                <li class="tituloMenu"><a href="#" title="Fornecedor">Fornecedor</a></li>
-                <li><a href="#" title="Perguntas frequentes">Perguntas frequentes</a></li>
-                <li><a href="#" title="Pedidos de certidão">Pedidos de certidão</a></li>
-                <li><a href="#" title="Processos sacionatórios">Processos sacionatórios</a></li>
+                <li class="tituloMenu"><a href="/fornecedor" title="Fornecedor">Fornecedor</a></li>
+                <li><a href="/fornecedor" title="Adesão ao PROCON Paulistano">Adesão ao PROCON Paulistano</a></li>
+                <li><a href="http://sindec.prefeitura.sp.gov.br/sindecconsulta/defaultfornecedor.asp" target="_blank" title="Login">Login</a></li>
+                <li><a href="/fornecedor/pedido-de-certidao" title="Pedido de certidão">Pedido de certidão</a></li>
               <ul>
           </li>
           <li>
               <ul>
-                <li class="tituloMenu"><a href="#" title="Estatísticas de atendimento">Estatísticas de atendimento</a></li>
-                <li class="tituloMenu"><a href="#" title="Sites úteis">Sites úteis</a></li>
-                <li class="tituloMenu"><a href="#" title="Tire suas dúvidas">Tire suas dúvidas</a></li>
-                <li class="tituloMenu"><a href="#" title="Faça sua reclamação">Faça sua reclamação</a></li>
-                <li class="tituloMenu"><a href="#" title="Envie uma dúvida">Envie uma dúvida</a></li>
+                <li class="tituloMenu"><a href="http://www.pcdlegal.com.br/cdc/#.V204JfkrJph" target="_blank" title="Código de Defesa do Consumidor">Código de Defesa do Consumidor</a></li>
+                <li class="tituloMenu"><a href="/legislacao" title="Legislação">Legislação</a></li>
+                <li class="tituloMenu"><a href="/Procon/noticias" title="Notícias">Notícias</a></li>
+                <li class="tituloMenu"><a href="/termo-de-uso/termo" title="Termos de uso">Termos de uso</a></li>
+                <li class="tituloMenu"><a href="/termo-de-uso/termo" title="Termos de uso">Políticas de uso</a></li>
+                <li class="tituloMenu"><a href="mailto:suporteprocon@prefeitura.sp.gov.br" title="Envie uma dúvida">Problemas no site?</a></li>
               <ul>
           </li>
         </ul>
