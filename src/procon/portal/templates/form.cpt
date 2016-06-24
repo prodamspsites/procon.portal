@@ -83,13 +83,13 @@
                     Body text
                 </metal:field>
               </tal:if>
-              <tal:anonymous tal:define="portal_state context/@@plone_portal_state;
+<!--               <tal:anonymous tal:define="portal_state context/@@plone_portal_state;
                                         anonymous python:portal_state.anonymous()"
-                             tal:condition="not:anonymous">
+                             tal:condition="not:anonymous"> -->
                 <metal:use_body use-macro="body_macro" />
                 <span class="currentUser" tal:content="user/getUserName" />
 
-              </tal:anonymous>
+              <!-- </tal:anonymous> -->
             </div>
 
             <tal:if tal:condition="here/getFormEpilogue | nothing">
