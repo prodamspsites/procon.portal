@@ -18,6 +18,35 @@ from procon.portal.interfaces import IProdamPortal
 from procon.portal import _
 
 
+uf_options = SimpleVocabulary([
+    SimpleTerm(value='SP', title=_(u'SP')),
+    SimpleTerm(value='AC', title=_(u'AC')),
+    SimpleTerm(value='AL', title=_(u'AL')),
+    SimpleTerm(value='AP', title=_(u'AP')),
+    SimpleTerm(value='AM', title=_(u'AM')),
+    SimpleTerm(value='BA', title=_(u'BA')),
+    SimpleTerm(value='CE', title=_(u'CE')),
+    SimpleTerm(value='DF', title=_(u'DF')),
+    SimpleTerm(value='ES', title=_(u'ES')),
+    SimpleTerm(value='GO', title=_(u'GO')),
+    SimpleTerm(value='MA', title=_(u'MA')),
+    SimpleTerm(value='MT', title=_(u'MT')),
+    SimpleTerm(value='MS', title=_(u'MS')),
+    SimpleTerm(value='MG', title=_(u'MG')),
+    SimpleTerm(value='PA', title=_(u'PA')),
+    SimpleTerm(value='PB', title=_(u'PB')),
+    SimpleTerm(value='PR', title=_(u'PR')),
+    SimpleTerm(value='PE', title=_(u'PE')),
+    SimpleTerm(value='PI', title=_(u'PI')),
+    SimpleTerm(value='RJ', title=_(u'RJ')),
+    SimpleTerm(value='RN', title=_(u'RN')),
+    SimpleTerm(value='RS', title=_(u'RS')),
+    SimpleTerm(value='RO', title=_(u'RO')),
+    SimpleTerm(value='RR', title=_(u'RR')),
+    SimpleTerm(value='SC', title=_(u'SC')),
+    SimpleTerm(value='SE', title=_(u'SE')),
+    SimpleTerm(value='TO', title=_(u'TO')), ])
+
 tipo_options = SimpleVocabulary([
     SimpleTerm(value='pessoa física', title=_(u'Pessoa Física')),
     SimpleTerm(value='pessoa jurídica', title=_(u'Pessoa Jurídica')), ])
@@ -77,8 +106,13 @@ adicionais_escolha_dois = SimpleVocabulary([
     SimpleTerm(value='nao', title=_(u'Não')), ])
 
 adicionais_escolha_tres = SimpleVocabulary([
-    SimpleTerm(value='sim', title=_(u'Sim')),
-    SimpleTerm(value='nao', title=_(u'Não')), ])
+    SimpleTerm(value='Não', title=_(u'Não')),
+    SimpleTerm(value='Deficiência Visual', title=_(u'Deficiência Visual')),
+    SimpleTerm(value='Deficiência Auditiva/Surdez ', title=_(u'Deficiência Auditiva/Surdez ')),
+    SimpleTerm(value='Deficiência intelectual', title=_(u'Deficiência intelectual')),
+    SimpleTerm(value='Deficiência física', title=_(u'Deficiência física')),
+    SimpleTerm(value='Transtorno do Espectro Autista - Lei nº 12.764/12', title=_(u'Transtorno do Espectro Autista - Lei nº 12.764/12')),
+    SimpleTerm(value='Surdocegueira', title=_(u'Surdocegueira')), ])
 
 # termos = SimpleVocabulary([
 #     SimpleTerm(value='sim', title=_(u'Eu concordo com os Termos de Uso do Consumidor.'))])
@@ -114,8 +148,8 @@ class IEnhancedUserDataSchema(model.Schema):
         required=False,)
 
     adicional_tres = schema.Choice(
-        title=_(u'Possui alguma deficiência ? *'),
-        description=_(u'Possui alguma deficiência ? *'),
+        title=_(u'Possui alguma deficiência? *'),
+        description=_(u'Possui alguma deficiência? *'),
         vocabulary=adicionais_escolha_tres,
         required=False,)
 
@@ -199,6 +233,14 @@ class IEnhancedUserDataSchema(model.Schema):
         description=_(u'',
                       default=u""),
         required=False,)
+
+    uf_estados = schema.Choice(
+        title=_(u'UF *', default=u'UF *'),
+        description=_(u'',
+                      default=u"Solteiro(a)"),
+        vocabulary=uf_options,
+        required=False,)
+
     genero = schema.Choice(
         title=_(u'Sexo', default=u'Sexo'),
         description=_(u'',
