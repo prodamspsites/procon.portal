@@ -59,6 +59,12 @@
 
                     </tal:anonymous>
 
+                    <tal:anonymous tal:define="portal_state context/@@plone_portal_state;
+                                              anonymous python:portal_state.anonymous()"
+                                   tal:condition="anonymous">
+                           <br /><br /><hr /><br /><p>Faça <a href="" tal:attributes="href string:${portal_url}/@@register">login</a> para avaliar esta pergunta, enviar um comentário ou uma dúvida.</p><br />
+                    </tal:anonymous>
+
 
                   </div>
           </div>

@@ -14,6 +14,7 @@
  <property name="doenca_grave" type="string"></property>
  <property name="genero" type="string"></property>
  <property name="estadocivil" type="string"></property>
+ <property name="uf_estados" type="string"></property>
  <property name="data_nascimento" type="string"></property>
  <property name="contato_telefone" type="string"></property>
  <property name="contato_celular" type="string"></property>
