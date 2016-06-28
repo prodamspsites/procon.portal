@@ -122,23 +122,12 @@
                       </div>
                     </div>
 
-
-                      <div class="detalhesDuvida">
-                        <strong class="tituloConsumidor">Arquivos anexados</strong>
-                           <div class="respostaConsumidor" tal:condition="python:dados[int(repeat.pergunta.number) -1][42] == 'NO UPLOAD'">Sem arquivos anexos
-                          </div>
-                          <div class="respostaConsumidor" tal:condition="python:dados[int(repeat.pergunta.number) -1][42] != 'NO UPLOAD'">
-                            <a href="#" class="fileDownload" tal:content="python:dados[int(repeat.pergunta.number) -1][43]" tal:attributes="data-binary python:dados[int(repeat.pergunta.number) -1][42]; data-mimetype python:dados[int(repeat.pergunta.number) -1][44]"></a>
-                          </div>
-                      </div>
-
-
                     <div class="detalhesDuvida" tal:condition="repeat/label/end"
                                                 tal:define="count python:int(repeat.label.number) -1;">
                       <strong class="tituloConsumidor" tal:content="label">Pergunta:</strong>
-                          <div class="respostaConsumidor" tal:condition="python:dados[int(repeat.pergunta.number) -1][count +1] == 'NO UPLOAD'">Sem arquivos anexos
+                          <div class="respostaConsumidor" tal:condition="python:dados[int(repeat.pergunta.number) -1][15] == 'NO UPLOAD'">Sem arquivos anexos
                           </div>
-                          <div class="respostaConsumidor">
+                          <div class="respostaConsumidor" tal:condition="python:dados[int(repeat.pergunta.number) -1][15] != 'NO UPLOAD'">
                             <a href="#" class="fileDownload" tal:content="python:dados[int(repeat.pergunta.number) -1][count +1]" tal:attributes="data-binary python:dados[int(repeat.pergunta.number) -1][count]; data-mimetype python:dados[int(repeat.pergunta.number) -1][count +2]"></a>
                           </div>
                     </div>
