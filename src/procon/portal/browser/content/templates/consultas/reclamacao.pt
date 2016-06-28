@@ -1,3 +1,13 @@
+<!-- <tal:dados tal:define="reclamacoes view/buscaReclamacao" tal:repeat="reclamacao reclamacoes">
+  <tal:inputs tal:content="structure python:reclamacao[0]">
+  <tal:inputs tal:content="structure python:reclamacao[1]">
+  <tal:inputs tal:content="structure python:reclamacao[2]">
+  <tal:inputs tal:content="structure python:reclamacao[3]">
+  <tal:inputs tal:content="structure python:reclamacao[4]">
+</tal:dados> -->
+
+
+
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
@@ -415,7 +425,7 @@
                             <input class='lido_reclamacoes' type='checkbox' disabled="disabled" value='cadastro' checked="checked" /> <b>Cadastrado</b>
                           </div>
 
-          </tal:Checked>
+				  </tal:Checked>
                       </div>
 
 
@@ -468,3 +478,4 @@
 
 </body>
 </html>
+
