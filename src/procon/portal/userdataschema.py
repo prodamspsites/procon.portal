@@ -272,7 +272,7 @@ class IEnhancedUserDataSchema(model.Schema):
     )
 
     contato_telefone = schema.TextLine(
-        title=_(u'DDD + Telefone/Celular'),
+        title=_(u'DDD + Telefone/Celular *'),
         required=False
     )
 
