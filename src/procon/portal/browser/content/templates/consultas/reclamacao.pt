@@ -443,7 +443,7 @@
 
                           <tal:notexists condition="python:not operador.getProperty('fullname')">
                             <div class="respostaConsumidor">
-                              <span tal:content="operador"></span>
+                              <span tal:content="admin"></span>
                             </div>
                           </tal:notexists>
 
