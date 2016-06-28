@@ -444,9 +444,22 @@
                                         operador python:membership.getMemberById(operadorId);"
                             tal:condition="python:dados[int(repeat.pergunta.number) -1][-2]">
                         <strong class="tituloConsumidor">Operador</strong>
-                          <div class="respostaConsumidor">
+
+                          <tal:exists condition="python:operador.getProperty('fullname')">
+                            <div class="respostaConsumidor">
+                              <span tal:content="python:operador.getProperty('fullname')"></span>
+                            </div>
+                          </tal:exists>
+
+                          <tal:notexists condition="python:not operador.getProperty('fullname')">
+                            <div class="respostaConsumidor">
+                              <span tal:content="admin"></span>
+                            </div>
+                          </tal:notexists>
+
+                          <!-- <div class="respostaConsumidor">
                             <span tal:content="python:operador.getProperty('fullname') or operador"></span>
-                          </div>
+                          </div> -->
                       </div>
 
                       <div class="detalhesDuvida">
