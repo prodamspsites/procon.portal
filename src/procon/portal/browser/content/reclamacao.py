@@ -191,9 +191,7 @@ class Reclamacao(BrowserView):
         dados = [x for x in dados if type(x) is list and self.filterInputs(x)]
 
         for dado in dados:
-	    print len(dado)
-	    print dado
-            if (len(dado) == 21 and dado[15] != 'NO UPLOAD') or (len(dado)==18 and dado[15] == 'NO UPLOAD'):
+            if (len(dado) == 21 and dado[15] != 'NO UPLOAD') or (len(dado) == 18 and dado[15] == 'NO UPLOAD'):
                 dado.insert(len(dado), '')
                 dado.insert(len(dado) + 1, '')
                 dado.insert(len(dado) + 2, '')
@@ -230,8 +228,7 @@ class Reclamacao(BrowserView):
         dados = [x for x in dados if type(x) is list and self.filterInputs(x)]
 
         for dado in dados:
-            print dado
-            if (len(dado) == 25 and dado[21] != 'NO UPLOAD') or (len(dado)==22 and dado[21] == 'NO UPLOAD'):
+            if (len(dado) == 25 and dado[21] != 'NO UPLOAD') or (len(dado) == 22 and dado[21] == 'NO UPLOAD'):
                 dado.insert(len(dado), '')
                 dado.insert(len(dado) + 1, '')
                 dado.insert(len(dado) + 2, '')
