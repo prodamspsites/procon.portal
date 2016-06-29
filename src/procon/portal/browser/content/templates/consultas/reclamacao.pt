@@ -63,7 +63,7 @@
           </thead>
           <tbody style="border:0px">
             <tr tal:condition="dados" tal:define="dados view/buscaReclamacao" tal:repeat="pergunta dados">
-              <td class="reclamacao_buscar _id" tal:content="python:dados[int(repeat.pergunta.number) -1][-7]">07/06/2016</td>
+              <td class="reclamacao_buscar _id" tal:content="python:dados[int(repeat.pergunta.number) -1][-8]">07/06/2016</td>
               <td tal:attributes="class python:'categoria reclamacao_buscar'"
                   tal:define="userId python:dados[int(repeat.pergunta.number) -1][0];
                                        membership python:context.portal_membership;
@@ -388,6 +388,13 @@
                         <strong class="tituloConsumidor">Matrícula/Código</strong>
                           <div class="respostaConsumidor">
                             <span tal:content="python:dados[int(repeat.pergunta.number) -1][-11]"></span>
+                          </div>
+                      </div>
+
+                      <div class="detalhesDuvida" tal:condition="python:dados[int(repeat.pergunta.number) -1][-7]">
+                        <strong class="tituloConsumidor">Protocolo CONSUMIDOR.GOV.BR</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][-7]"></span>
                           </div>
                       </div>
 
