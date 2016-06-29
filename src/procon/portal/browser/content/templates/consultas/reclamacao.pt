@@ -391,7 +391,7 @@
                           </div>
                       </div>
 
-                      <div class="detalhesDuvida" tal:condition="python:dados[int(repeat.pergunta.number) -1][-7]">
+                      <div class="detalhesDuvida" tal:condition="python:dados[int(repeat.pergunta.number) -1][-8]">
                         <strong class="tituloConsumidor">Protocolo CONSUMIDOR.GOV.BR</strong>
                           <div class="respostaConsumidor">
                             <span tal:content="python:dados[int(repeat.pergunta.number) -1][-8]"></span>
