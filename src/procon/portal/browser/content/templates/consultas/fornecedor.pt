@@ -69,7 +69,8 @@
                           'Nome fantasia',
                           'CNAE Fiscal Principal',
                           'Segmento de mercado',
-                          'Nome completo do responsável',
+                          'Nome completo do responsável pela empresa',
+                          'Nome completo do responsável pela área de Atendimento ao Cliente',
                           'CEP',
                           'Endereço',
                           'Número',
@@ -77,8 +78,11 @@
                           'Bairro',
                           'UF',
                           'Cidade',
-                          'Telefone',
-                          'E-mail',
+                          'Telefone para relacionamento direto com o Procon',
+                          'Telefone direto do responsável pela área de Atendimento ao Cliente',
+                          'E-mail para cadastramento no sistema do Procon',
+                          'E-mail para recebimento de notificações eletrônicas (e-mail)',
+                          'E-mail do responsável pela área de Atendimento ao Cliente',
                           'Arquivos anexados'
                          ]">
 
