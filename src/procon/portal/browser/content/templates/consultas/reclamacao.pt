@@ -453,7 +453,7 @@
 
                           <tal:notexists condition="python:not operador.getProperty('fullname')">
                             <div class="respostaConsumidor">
-                              <span tal:content="admin"></span>
+                              <span tal:content="operador"></span>
                             </div>
                           </tal:notexists>
 
