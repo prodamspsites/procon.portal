@@ -109,6 +109,16 @@
                             <span tal:content="python:user.getProperty('unidade_federativa')"></span>
                           </div>
 
+                        <strong class="tituloConsumidor">Telefone</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:user.getProperty('contato_telefone')"></span>
+                          </div>
+
+                        <strong class="tituloConsumidor">Telefone</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:user.getProperty('email')"></span>
+                          </div>
+
                       </div>
 
                       <div class="detalhesDuvida">
