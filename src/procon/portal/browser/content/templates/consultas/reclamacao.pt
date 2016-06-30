@@ -85,6 +85,13 @@
               <td class="td_interno" style="display:none">
               <div class="detalhesDuvida" style="display:none">
 
+                      <div class="detalhesDuvida">
+                        <strong class="tituloConsumidor">Data da reclamação</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][-7]"></span>
+                          </div>
+                      </div>
+
                       <div class="detalhesDuvida userInfo"
                            tal:define="userId python:dados[int(repeat.pergunta.number) -1][0];
                                        membership python:context.portal_membership;
@@ -114,7 +121,7 @@
                             <span tal:content="python:user.getProperty('contato_telefone')"></span>
                           </div>
 
-                        <strong class="tituloConsumidor">Telefone</strong>
+                        <strong class="tituloConsumidor">E-mail</strong>
                           <div class="respostaConsumidor">
                             <span tal:content="python:user.getProperty('email')"></span>
                           </div>
@@ -308,7 +315,7 @@
                       <div class="detalhesDuvida">
                         <strong class="tituloConsumidor">Qual a condição de pagamento do produto ou serviço contratado?</strong>
                           <div class="respostaConsumidor">
-                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][16]"></span>
+                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][19]"></span>
                           </div>
                       </div>
 
