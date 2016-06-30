@@ -59,3 +59,6 @@ class Navegacao(ViewletBase):
                 return True
         except AttributeError:
             return True
+
+    def getMember(self):
+        return api.user.get_current()

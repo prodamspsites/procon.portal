@@ -1,3 +1,21 @@
+<tal:anonymous tal:define="portal_state context/@@plone_portal_state;
+                          anonymous python:portal_state.anonymous()"
+               tal:condition="not:anonymous">
+
+  <div class="divMenuLogin">
+    <div class="loginAdmin"><a href="#" class="setaLogin" tal:define="membro view/getMember">
+      <span class="nome">
+        <span tal:replace="python:membro.getProperty('razao_social') and 'CPF' or 'CNPJ'">CNPJ</span> <br/>
+        <span tal:replace="membro">99.999.999/0001-00</span>
+      </span></a>
+      <!--<a href="#" title="CADASTRO/LOGIN" class="cadastro">CADASTRO/LOGIN</a>--></div>
+      <ul class="menuLogin">
+        <li><a href="#" title="Trocar senha" tal:attributes="href string:${context/portal_url}/change-password">Trocar senha</a></li>
+        <li><a href="#" title="Sair" tal:attributes="href string:${context/portal_url}/logout">Sair</a></li>
+      </ul>
+  </div>
+</tal:anonymous>
+
 <nav class="menu" tal:define="items view/getMenu">
   <div class="wrap" tal:condition="items">
     <ul>
