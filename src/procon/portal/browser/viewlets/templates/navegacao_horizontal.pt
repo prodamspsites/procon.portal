@@ -15,6 +15,16 @@
       </ul>
   </div>
 </tal:anonymous>
+<tal:anonymous tal:define="portal_state context/@@plone_portal_state;
+                          anonymous python:portal_state.anonymous()"
+               tal:condition="anonymous">
+
+  <div class="divMenuLogin">
+    <div class="loginAdmin logout">
+      <a href="#" title="CADASTRO/LOGIN" class="cadastro" tal:attributes="href string:${context/portal_url}/@@register">CADASTRO/LOGIN</a>
+    </div>
+  </div>
+</tal:anonymous>
 
 <nav class="menu" tal:define="items view/getMenu">
   <div class="wrap" tal:condition="items">
