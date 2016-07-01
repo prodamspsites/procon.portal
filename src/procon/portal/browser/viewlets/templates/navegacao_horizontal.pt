@@ -5,7 +5,7 @@
   <div class="divMenuLogin">
     <div class="loginAdmin"><a href="#" class="setaLogin" tal:define="membro view/getMember">
       <span class="nome">
-        <span tal:replace="python:membro.getProperty('razao_social') and 'CPF' or 'CNPJ'">CNPJ</span> <br/>
+        <span tal:replace="python:membro.getProperty('razao_social') and 'CNPJ' or 'CPF'">CNPJ</span> <br/>
         <span tal:replace="membro">99.999.999/0001-00</span>
       </span></a>
       <!--<a href="#" title="CADASTRO/LOGIN" class="cadastro">CADASTRO/LOGIN</a>--></div>
