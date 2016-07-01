@@ -10,7 +10,7 @@
    <a href="#" target="_blank" class="linkRedireciona">CLIQUE AQUI</a>
    <p>Caso você já tenha registrado sua reclamação na plataforma consumidor.gov.br e seu problema não tenha sido solucionado, preencha o campo abaixo com o <strong>número do protocolo de sua reclamação</strong> e prossiga no site do Procon Paulistano.</p>
    <div class="divProtocolo">
-      <input class="inputProtocolo" /><input type="submit"  class="btnProsseguir" value="ENVIAR" />
+      <input class="inputProtocolo" /><input type="submit"  class="btnProsseguir disabled" disabled=disabled value="ENVIAR" />
    </div>
 </div>
 </tal:Form>
