@@ -67,11 +67,12 @@ estadocivil_options = SimpleVocabulary([
     SimpleTerm(value='viuvo', title=_(u'Viúvo(a)')), ])
 
 enquadramento_options = SimpleVocabulary([
-    SimpleTerm(value='Microempreendedor Individual (MEI)', title=_(u'Microempreendedor Individual (MEI)')),
-    SimpleTerm(value='Microempresa (ME)', title=_(u'Microempresa (ME)')),
-    SimpleTerm(value='Empresas de Pequeno Porte (EPP)', title=_(u'Empresas de Pequeno Porte (EPP)')),
-    SimpleTerm(value='Empresário Individual (EI)', title=_(u'Empresário Individual (EI)')),
-    SimpleTerm(value='Empresa Individual de Responsabilidade Limitada (EIRELI)', title=_(u'Empresa Individual de Responsabilidade Limitada (EIRELI)')), ])
+    SimpleTerm(value='Microempreendedor individual - MEI', title=_(u'Microempreendedor individual - MEI')),
+    SimpleTerm(value='Microempresa - ME', title=_(u'Microempresa - ME')),
+    SimpleTerm(value='Empresa de pequeno porte - EPP', title=_(u'Empresa de pequeno porte - EPP')),
+    SimpleTerm(value='Empresa de médio porte', title=_(u'Empresa de médio porte')),
+    SimpleTerm(value='Empresa de grande porte', title=_(u'Empresa de grande porte')),
+    SimpleTerm(value='Outro', title=_(u'Outro')), ])
 
 tipo_societario_options = SimpleVocabulary([
     SimpleTerm(value='Empresário individual', title=_(u'Empresário individual')),
