@@ -37,7 +37,7 @@
                 <li class="tituloMenu"><a href="/Procon/noticias" title="Notícias">Notícias</a></li>
                 <li class="tituloMenu"><a href="/termo-de-uso/termo" title="Termos de uso">Termos de uso</a></li>
                 <li class="tituloMenu"><a href="/termo-de-uso/termo" title="Termos de uso">Políticas de uso</a></li>
-                <li class="tituloMenu"><a href="mailto:suporteprocon@prefeitura.sp.gov.br" title="Envie uma dúvida">Problemas no site?</a></li>
+                <li class="tituloMenu"><a href="" title="Envie uma dúvida" tal:attributes="href string:${portal_url}/contato/">Problemas no site?</a></li>
               <ul>
           </li>
         </ul>

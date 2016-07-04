@@ -10,7 +10,7 @@
     <metal:content-core fill-slot="main">
       <metal:block define-macro="main">
         <header class="titulo_principal">
-          <h1>Destaques</h1>
+          <h1>Notícias</h1>
         </header>
         <article>
           <header tal:define="portal_url context/portal_url;">
