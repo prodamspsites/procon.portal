@@ -10,7 +10,7 @@
       </span></a>
       <!--<a href="#" title="CADASTRO/LOGIN" class="cadastro">CADASTRO/LOGIN</a>--></div>
       <ul class="menuLogin">
-        <li><a href="#" title="Trocar senha" tal:attributes="href string:${context/portal_url}/change-password">Trocar senha</a></li>
+        <li><a href="#" title="Trocar senha" tal:attributes="href string:${context/portal_url}/trocar-senha">Trocar senha</a></li>
         <li><a href="#" title="Sair" tal:attributes="href string:${context/portal_url}/logout">Sair</a></li>
       </ul>
   </div>

@@ -167,4 +167,11 @@
     permission="zope2.View"
     />
 
+  <browser:page
+    for="plone.app.layout.navigation.interfaces.INavigationRoot"
+    name="trocar-senha"
+    class=".custom.PasswordPanel"
+    permission="cmf.SetOwnPassword"
+    />
+
 </configure>
