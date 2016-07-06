@@ -49,6 +49,12 @@
               <th width="20%">
                 <span>SINDEC</span>
               </th>
+              <th width="10%">
+                <span>Operador</span>
+              </th>
+              <th width="10%">
+                <span>Data Atualização</span>
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -62,6 +68,15 @@
               <td tal:define="lido python:dados[int(repeat.pergunta.number) -1][-4];
                               lido python:lido and 'Sim' or 'Não';"
                   tal:content="lido"></td>
+              <td tal:define="userId python:dados[int(repeat.pergunta.number) -1][0];
+                              membership python:context.portal_membership;
+                              user python:membership.getMemberById(userId)"
+                  tal:content="python:user.getProperty('fullname') or user">
+
+              </td>
+              <td tal:define="atualizacao python:dados[int(repeat.pergunta.number) -1][-1];
+                              atualizacao python:atualizacao and atualizacao or '';"
+                  tal:content="atualizacao"></td>
               <td style="background-color:white !important; border: 0px; display: none">
                 <div class="detalhesDuvida" tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-6]" style="display:none" tal:define="labels
                   python:['Razão Social',
