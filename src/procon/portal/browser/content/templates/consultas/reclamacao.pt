@@ -79,7 +79,7 @@
                   <span tal:define="idade python:user.getProperty('adicional_um');
                                     deficiencia python:user.getProperty('adicional_tres');
                                     doenca python:user.getProperty('doenca_grave');
-                                    prioridade python:(idade == deficiencia and deficiencia == doenca and 'Sim' or 'Não'"
+                                    prioridade python:(idade == deficiencia and deficiencia == doenca and 'Sim') or 'Não'"
                         tal:content="prioridade"></span>
               </td>
               <td tal:attributes="class python:'categoria reclamacao_buscar'"
