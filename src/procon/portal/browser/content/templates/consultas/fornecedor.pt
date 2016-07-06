@@ -70,8 +70,8 @@
                   tal:content="lido"></td>
               <td tal:define="userId python:dados[int(repeat.pergunta.number) -1][-2];
                               membership python:context.portal_membership;
-                              user python:membership.getMemberById(userId)"
-                  tal:content="python:user.getProperty('fullname') or user">
+                              user python:membership.getMemberById(userId)">
+                  <span tal:condition="user" tal:content="python:user.getProperty('fullname') or user" />
 
               </td>
               <td tal:define="atualizacao python:dados[int(repeat.pergunta.number) -1][-1];
