@@ -106,12 +106,12 @@
 
                         <strong class="tituloConsumidor">Municipio</strong>
                           <div class="respostaConsumidor">
-                            <span tal:content="python:user.getProperty('cidade')"></span>
+                            <span tal:content="python:user.getProperty('codigo_enderecamento_postal')"></span>
                           </div>
 
                         <strong class="tituloConsumidor">Unidade Federativa</strong>
                           <div class="respostaConsumidor">
-                            <span tal:content="python:user.getProperty('unidade_federativa')"></span>
+                            <span tal:content="python:user.getProperty('complemento')"></span>
                           </div>
                       </div>
 
