@@ -173,11 +173,6 @@
                             <span tal:content="python:user.getProperty('adicional_um')"></span>
                           </div>
 
-                        <strong class="tituloConsumidor">Possui mais de 60 anos?</strong>
-                          <div class="respostaConsumidor">
-                            <span tal:content="python:user.getProperty('adicional_um')"></span>
-                          </div>
-
                         <strong class="tituloConsumidor">Possui alguma deficiência?</strong>
                           <div class="respostaConsumidor">
                             <span tal:content="python:user.getProperty('adicional_tres')"></span>
