@@ -546,6 +546,11 @@
                             </div>
                           </tal:notexists>
 
+                        <strong class="tituloConsumidor">CPF do operador</strong>
+                            <div class="respostaConsumidor">
+                              <span tal:content="python:operador"></span>
+                            </div>
+
                           <!-- <div class="respostaConsumidor">
                             <span tal:content="python:operador.getProperty('fullname') or operador"></span>
                           </div> -->
