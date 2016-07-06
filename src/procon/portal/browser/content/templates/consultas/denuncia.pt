@@ -97,7 +97,7 @@
 
                         <strong class="tituloConsumidor">Data e horário da denúncia</strong>
                           <div class="respostaConsumidor">
-                            <span tal:content="python:python:dados[int(repeat.pergunta.number) -1][-7]"></span>
+                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][-7]"></span>
                           </div>
 
                         <strong class="tituloConsumidor">Nome</strong>
