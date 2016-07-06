@@ -227,7 +227,7 @@
                       </div>
 
                       <div class="detalhesDuvida">
-                        <strong class="tituloConsumidor">Como você comprou/contratou?</strong>
+                        <strong class="tituloConsumidor">Qual foi a condição de pagamento do produto ou serviço contratado?</strong>
                           <div class="respostaConsumidor">
                             <span tal:content="python:dados[int(repeat.pergunta.number) -1][16]">python:dados[int(repeat.pergunta.number) -1][17]</span>
                           </div>
