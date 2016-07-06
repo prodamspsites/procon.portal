@@ -208,21 +208,21 @@
                       <div class="detalhesDuvida">
                         <strong class="tituloConsumidor">Você procurou a empresa para solucionar o problema?</strong>
                           <div class="respostaConsumidor">
-                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][20]"></span>
+                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][37]"></span>
                           </div>
                       </div>
 
-                      <div class="detalhesDuvida" tal:condition="python:dados[int(repeat.pergunta.number) -1][14] == 'Sim'">
+                      <div class="detalhesDuvida" tal:condition="python:dados[int(repeat.pergunta.number) -1][37] == 'Sim'">
                         <strong class="tituloConsumidor">Informe como foi o seu contato com a empresa. indique o(s) número(s) de protocolo(s), caso o(s) possua:</strong>
                           <div class="respostaConsumidor">
-                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][15]"></span>
+                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][38]"></span>
                           </div>
                       </div>
 
-                      <div class="detalhesDuvida" tal:condition="python:dados[int(repeat.pergunta.number) -1][14] == 'Não'">
+                      <div class="detalhesDuvida" tal:condition="python:dados[int(repeat.pergunta.number) -1][37] == 'Não'">
                         <strong class="tituloConsumidor">Informe por que você não procurou a empresa para resolver o seu problema:</strong>
                           <div class="respostaConsumidor">
-                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][16]"></span>
+                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][39]"></span>
                           </div>
                       </div>
 
@@ -244,49 +244,49 @@
                       <div class="detalhesDuvida" tal:condition="python:dados[int(repeat.pergunta.number) -1][19] == 'Alimentos'">
                         <strong class="tituloConsumidor">Assinale o tipo de problema apresentado:</strong>
                           <div class="respostaConsumidor">
-                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][22]"></span>
+                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][29]"></span>
                           </div>
                       </div>
 
-                      <div class="detalhesDuvida" tal:condition="python:dados[int(repeat.pergunta.number) -1][19] == 'Assuntos Financeiros'">
+                      <div class="detalhesDuvida" tal:condition="python:dados[int(repeat.pergunta.number) -1][29] == 'Assuntos Financeiros'">
                         <strong class="tituloConsumidor">Assinale o tipo de problema apresentado:</strong>
                           <div class="respostaConsumidor">
-                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][23]"></span>
+                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][30]"></span>
                           </div>
                       </div>
 
-                      <div class="detalhesDuvida" tal:condition="python:dados[int(repeat.pergunta.number) -1][19] == 'Habitação'">
+                      <div class="detalhesDuvida" tal:condition="python:dados[int(repeat.pergunta.number) -1][29] == 'Habitação'">
                         <strong class="tituloConsumidor">Assinale o tipo de problema apresentado:</strong>
                           <div class="respostaConsumidor">
-                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][24]"></span>
+                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][31]"></span>
                           </div>
                       </div>
 
-                      <div class="detalhesDuvida" tal:condition="python:dados[int(repeat.pergunta.number) -1][19] == 'Produtos'">
+                      <div class="detalhesDuvida" tal:condition="python:dados[int(repeat.pergunta.number) -1][29] == 'Produtos'">
                         <strong class="tituloConsumidor">Assinale o tipo de problema apresentado:</strong>
                           <div class="respostaConsumidor">
-                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][25]"></span>
+                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][32]"></span>
                           </div>
                       </div>
 
-                      <div class="detalhesDuvida" tal:condition="python:dados[int(repeat.pergunta.number) -1][19] == 'Saúde'">
+                      <div class="detalhesDuvida" tal:condition="python:dados[int(repeat.pergunta.number) -1][29] == 'Saúde'">
                         <strong class="tituloConsumidor">Assinale o tipo de problema apresentado:</strong>
                           <div class="respostaConsumidor">
-                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][26]"></span>
+                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][33]"></span>
                           </div>
                       </div>
 
-                      <div class="detalhesDuvida" tal:condition="python:dados[int(repeat.pergunta.number) -1][19] == 'Serviços Essenciais'">
+                      <div class="detalhesDuvida" tal:condition="python:dados[int(repeat.pergunta.number) -1][29] == 'Serviços Essenciais'">
                         <strong class="tituloConsumidor">Assinale o tipo de problema apresentado:</strong>
                           <div class="respostaConsumidor">
-                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][27]"></span>
+                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][34]"></span>
                           </div>
                       </div>
 
-                      <div class="detalhesDuvida" tal:condition="python:dados[int(repeat.pergunta.number) -1][19] == 'Serviços Privados'">
+                      <div class="detalhesDuvida" tal:condition="python:dados[int(repeat.pergunta.number) -1][29] == 'Serviços Privados'">
                         <strong class="tituloConsumidor">Assinale o tipo de problema apresentado:</strong>
                           <div class="respostaConsumidor">
-                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][28]"></span>
+                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][35]"></span>
                           </div>
                       </div>
 
