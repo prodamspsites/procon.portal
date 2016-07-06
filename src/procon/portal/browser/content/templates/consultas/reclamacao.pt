@@ -32,7 +32,7 @@
       </form>
     </div>
       <div class="tableReclamacoes">
-      <table id="table_id_reclamacoes" class="display" width="123%" style='border:0px'>
+      <table id="table_id_reclamacoes" class="display" width="133%" style='border:0px'>
           <thead>
             <tr>
               <th width="1%" style="display:none">
@@ -40,6 +40,9 @@
               </th>
               <th width="12%">
                 <span>Data</span>
+              </th>
+              <th width="12%">
+                <span>Prioridade</span>
               </th>
               <th width="18%">
                 <span>Tipo de cadastro</span>
@@ -70,6 +73,15 @@
           <tbody style="border:0px">
             <tr tal:condition="dados" tal:define="dados view/buscaReclamacao" tal:repeat="pergunta dados">
               <td class="reclamacao_buscar _id" tal:content="python:dados[int(repeat.pergunta.number) -1][-7]">07/06/2016</td>
+              <td tal:define="userId python:dados[int(repeat.pergunta.number) -1][0];
+                              membership python:context.portal_membership;
+                              user python:membership.getMemberById(userId)">
+                  <span tal:define="idade python:user.getProperty('adicional_um');
+                                    deficiencia python:user.getProperty('adicional_tres');
+                                    doenca python:user.getProperty('doenca_grave');
+                                    prioridade python:(idade == deficiencia and deficiencia == doenca and 'Sim' or 'Não'"
+                        tal:content="prioridade"></span>
+              </td>
               <td tal:attributes="class python:'categoria reclamacao_buscar'"
                   tal:define="userId python:dados[int(repeat.pergunta.number) -1][0];
                                        membership python:context.portal_membership;
@@ -154,6 +166,26 @@
                         <strong class="tituloConsumidor">E-mail</strong>
                           <div class="respostaConsumidor">
                             <span tal:content="python:user.getProperty('email')"></span>
+                          </div>
+
+                        <strong class="tituloConsumidor">Possui mais de 60 anos?</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:user.getProperty('adicional_um')"></span>
+                          </div>
+
+                        <strong class="tituloConsumidor">Possui mais de 60 anos?</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:user.getProperty('adicional_um')"></span>
+                          </div>
+
+                        <strong class="tituloConsumidor">Possui alguma deficiência?</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:user.getProperty('adicional_tres')"></span>
+                          </div>
+
+                        <strong class="tituloConsumidor">Portador de alguma doença grave, atestada por declaração/laudo médico?</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:user.getProperty('doenca_grave')"></span>
                           </div>
 
                       </div>
