@@ -32,7 +32,7 @@
       </form>
     </div>
       <div class="tableReclamacoes">
-      <table id="table_id_reclamacoes" class="display" style='border:0px'>
+      <table id="table_id_reclamacoes" class="display" width="123%" style='border:0px'>
           <thead>
             <tr>
               <th width="1%" style="display:none">
@@ -59,6 +59,12 @@
               <th width="22%">
                 <span>FA</span>
               </th>
+              <th width="10%">
+                <span>Status</span>
+              </th>
+              <th width="10%">
+                <span>Data Atualização</span>
+              </th>
             </tr>
           </thead>
           <tbody style="border:0px">
@@ -82,6 +88,30 @@
               <td tal:define="FA python:dados[int(repeat.pergunta.number) -1][-5];
                               FA python:FA and FA or '';"
                   tal:content="FA"></td>
+
+
+              <td>
+                <div class="respostaConsumidor">
+                  <select id="reclamacao_status"
+                          tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-6]">
+                      <tal:block tal:define="retorno
+                                             python:dados[int(repeat.pergunta.number) -1][-4]"
+                                 tal:repeat="record view/reclamacaoStatus">
+                          <option tal:condition="python: record != retorno"
+                                  tal:attributes="value record"
+                                  tal:content="record"></option>
+                          <option tal:condition="python: record == retorno"
+                                  tal:attributes="value record"
+                                  tal:content="record"
+                                  selected="selected">
+                          </option>
+                      </tal:block>
+                  </select>
+
+              </td>
+              <td tal:define="atualizacao python:dados[int(repeat.pergunta.number) -1][-1];
+                              atualizacao python:atualizacao and atualizacao or '';"
+                  tal:content="atualizacao"></td>
               <td class="td_interno" style="display:none">
               <div class="detalhesDuvida" style="display:none">
 
