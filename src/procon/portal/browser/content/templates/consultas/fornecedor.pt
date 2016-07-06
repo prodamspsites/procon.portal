@@ -80,9 +80,9 @@
                           'Cidade',
                           'Telefone para relacionamento direto com o Procon',
                           'Telefone direto do responsável pela área de Atendimento ao Cliente',
+                          'E-mail do responsável pela área de Atendimento ao Cliente',
                           'E-mail para cadastramento no sistema do Procon',
                           'E-mail para recebimento de notificações eletrônicas (e-mail)',
-                          'E-mail do responsável pela área de Atendimento ao Cliente',
                           'Arquivos anexados'
                          ]">
 

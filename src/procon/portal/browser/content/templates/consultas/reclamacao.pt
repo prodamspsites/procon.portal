@@ -106,14 +106,14 @@
                             <span tal:content="python:user.getProperty('cpf')"></span>
                           </div>
 
-                        <strong class="tituloConsumidor">Municipio</strong>
+                        <strong class="tituloConsumidor">CEP</strong>
                           <div class="respostaConsumidor">
-                            <span tal:content="python:user.getProperty('cidade')"></span>
+                            <span tal:content="python:user.getProperty('codigo_enderecamento_postal')"></span>
                           </div>
 
-                        <strong class="tituloConsumidor">Unidade Federativa</strong>
+                        <strong class="tituloConsumidor">Complemento</strong>
                           <div class="respostaConsumidor">
-                            <span tal:content="python:user.getProperty('unidade_federativa')"></span>
+                            <span tal:content="python:user.getProperty('complemento')"></span>
                           </div>
 
                         <strong class="tituloConsumidor">Telefone</strong>
