@@ -38,9 +38,9 @@
                   <th width="10%">
                     <span>Data</span>
                   </th>
-                  <th width="10%">
+                  <!-- <th width="10%">
                     <span>Prioridade</span>
-                  </th>
+                  </th> -->
                   <th width="8%">
                     <span>Categoria</span>
                   </th>
@@ -78,7 +78,7 @@
                   <td tal:attributes="class python:str(pergunta['_id'])+'_data duvidas_buscar'">
                     <tal:inputs tal:content="structure python:pergunta['data'][:10]">
                   </td>
-                  <td tal:define="userId python:dados[int(repeat.pergunta.number) -1][0];
+                  <!-- <td tal:define="userId python:dados[int(repeat.pergunta.number) -1][0];
                                   membership python:context.portal_membership;
                                   user python:membership.getMemberById(userId)">
                       <span tal:define="idade python:user.getProperty('adicional_um');
@@ -86,7 +86,7 @@
                                         doenca python:user.getProperty('doenca_grave');
                                         prioridade python:(idade == deficiencia and deficiencia == doenca and 'Não') or 'Sim'"
                             tal:content="prioridade"></span>
-                  </td>
+                  </td> -->
                   <td tal:attributes="class python:str(pergunta['_id'])+'_categoria duvidas_buscar'">
                     <tal:inputs tal:content="structure python:pergunta['categoria']">
                   </td>
