@@ -38,7 +38,7 @@
         <metal:headslot define-slot="head_slot" />
         <metal:styleslot define-slot="style_slot" />
         <metal:javascriptslot define-slot="javascript_head_slot" />
-
+        <meta name="keywords" content="procon, procon sp, procon paulistano, procon são paulo, procon online, código de defesa do consumidor, consumidor">
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="generator" content="Plone - http://plone.org" />
     </tal:notajax>

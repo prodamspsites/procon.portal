@@ -55,21 +55,25 @@ class SalvarDuvidas(BrowserView):
             client = MongoClient()
             db = client.consumidor
 
-            if self.getIdentificacao() and not self.getObservacao():
+            if self.getIdentificacao() and not self.getObservacao() and not self.getStatus():
                 identificacao = self.getIdentificacao()
 
                 db.tbl_replica.update_one({"_id": ObjectId(identificacao)},
                                           {"$set": {"lido": True, "operador": userID, "data_atualizacao": data}},
                                           upsert=False)
             elif self.getIdentificacao() and self.getObservacao():
-
                 identificacao = self.getIdentificacao()
                 observacao = self.getObservacao()
                 db.tbl_replica.update_one({"_id": ObjectId(identificacao)},
                                           {"$set": {"observacao": observacao, "operador": userID, "data_atualizacao": data}},
                                           upsert=False)
+            elif self.getIdentificacao() and self.getStatus():
+                identificacao = self.getIdentificacao()
+                status = self.getStatus()
+                db.tbl_replica.update_one({"_id": ObjectId(identificacao)},
+                                          {"$set": {"status": status, "operador": userID, "data_atualizacao": data}},
+                                          upsert=False)
             else:
-
                 db.tbl_replica.insert_one({"id_plone": id_plone,
                                            "util": util,
                                            "lido": False,
@@ -81,6 +85,7 @@ class SalvarDuvidas(BrowserView):
                                            "categoria": categoria,
                                            "observacao": "",
                                            "operador": False,
+                                           "status": "Não Processada",
                                            "usuario": usuario})
         except Exception, ex:
             print ex
@@ -135,6 +140,13 @@ class SalvarDuvidas(BrowserView):
     def getObservacao(self):
         try:
             req = self.request.form['observacao']
+        except:
+            req = None
+        return req
+
+    def getStatus(self):
+        try:
+            req = self.request.form['status']
         except:
             req = None
         return req

@@ -38,6 +38,9 @@
                   <th width="10%">
                     <span>Data</span>
                   </th>
+                  <th width="10%">
+                    <span>Prioridade</span>
+                  </th>
                   <th width="8%">
                     <span>Categoria</span>
                   </th>
@@ -52,6 +55,12 @@
                   </th>
                   <th width="20%">
                     <span>Lido</span>
+                  </th>
+                  <th width="20%">
+                    <span>Status</span>
+                  </th>
+                  <th width="20%">
+                    <span>Data Atualização</span>
                   </th>
                 </tr>
               </thead>
@@ -68,6 +77,15 @@
                   </span>
                   <td tal:attributes="class python:str(pergunta['_id'])+'_data duvidas_buscar'">
                     <tal:inputs tal:content="structure python:pergunta['data'][:10]">
+                  </td>
+                  <td tal:define="membership python:context.portal_membership;
+                                  user python:membership.getMemberById(pergunta['usuario'])"
+                      tal:attributes="class python:str(pergunta['_id'])+'_prioridade'">
+                      <span tal:define="idade python:user.getProperty('adicional_um');
+                                        deficiencia python:user.getProperty('adicional_tres');
+                                        doenca python:user.getProperty('doenca_grave');
+                                        prioridade python:(idade == deficiencia and deficiencia == doenca and 'Não') or 'Sim'"
+                            tal:content="prioridade"></span>
                   </td>
                   <td tal:attributes="class python:str(pergunta['_id'])+'_categoria duvidas_buscar'">
                     <tal:inputs tal:content="structure python:pergunta['categoria']">
@@ -130,6 +148,13 @@
                                   tal:content="python:operador.getProperty('cpf')" />
                   </span>
                   <span style="display:none"
+                        tal:attributes="class python:str(pergunta['_id'])+'_status'">
+                      <tal:inputs tal:define="status python:pergunta['status']"
+                                  tal:content="status" />
+                  </span>
+
+
+                  <span style="display:none"
                         tal:attributes="class python:str(pergunta['_id'])+'_municipio'"
                         tal:condition="python:pergunta['usuario']">
                       <tal:inputs tal:define="operadorID python:pergunta['usuario'];
@@ -151,6 +176,18 @@
                     <tal:inputs tal:define="lido python:pergunta['lido'] and 'Sim' or 'Não'"
                                 tal:content="lido"></tal:inputs>
                   </td>
+
+                  <td tal:attributes="class python:str(pergunta['_id'])+'_pergunta duvidas_buscar'">
+                    <tal:inputs tal:define="status python:pergunta['status']"
+                                tal:content="status"></tal:inputs>
+                  </td>
+
+                  <td tal:condition="python:pergunta.get('data_atualizacao')">
+                    <span tal:content="python:pergunta.get('data_atualizacao')"></span>
+                  </td>
+                  <td tal:condition="python:not pergunta.get('data_atualizacao')">
+                    -- -- --
+                  </td>
                 </tr>
               </tbody>
               <!-- bower:js -->
@@ -170,6 +207,11 @@
             <tr>
               <th width="18%">
                 <span>Data</span>
+                <a href="#" title="ordenar mais recente" class="setaDown active"></a>
+                <a href="#" title="ordenar mais recente" class="setaUp"></a>
+              </th>
+              <th width="18%">
+                <span>Prioridade</span>
                 <a href="#" title="ordenar mais recente" class="setaDown active"></a>
                 <a href="#" title="ordenar mais recente" class="setaUp"></a>
               </th>
@@ -198,15 +240,22 @@
                 <a href="#" title="ordenar mais recente" class="setaDown active"></a>
                 <a href="#" title="ordenar mais recente" class="setaUp active"></a>
               </th>
+              <th width="20%">
+                <span>Status</span>
+                <a href="#" title="ordenar mais recente" class="setaDown active"></a>
+                <a href="#" title="ordenar mais recente" class="setaUp active"></a>
+              </th>
             </tr>
             <tal:result tal:condition="perguntas" tal:define="perguntas view/buscarPerguntaResposta">
               <tr>
                 <td id="tbl1"></td>
+                <td id="prioridade"></td>
                 <td id="fullname"></td>
                 <td id="email"></td>
                 <td id="cpf"></td>
                 <td id="municipio"></td>
                 <td id="uf"></td>
+                <td id="status"></td>
               </tr>
             </tal:result>
           </table>
@@ -226,15 +275,22 @@
             </div>
             <br>
             <span class="marcarLido">
-              <input class="lido" id="lido_check" type="checkbox"/> Marcar como lido
+              <input class="lido" id="lido_check" type="checkbox"/> <span id="texto"></span>
             </span>
             <br>
             <strong class="tituloConsumidor">Inserir FA, data de envio da resposta ao consumidor e texto da resposta:</strong>
             <br>
-            <textarea id="observacao" rows=6>
+          <textarea id="observacao" rows=6>
 
           </textarea>
-
+            <br>
+            <strong class="tituloConsumidor">Status</strong>
+            <select id="duvidas_status">
+                <option value="Não Processada">Não Processada</option>
+                <option value="Em Análise">Em Análise</option>
+                <option value="Analisada">Analisada</option>
+            </select>
+            <br>
             <div class="atualizacao">
               <strong class="tituloConsumidor">Operador:</strong>
               <div class="respostaConsumidor">
