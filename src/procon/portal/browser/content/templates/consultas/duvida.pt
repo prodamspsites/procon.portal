@@ -209,15 +209,15 @@
 
                   <tal:prioridade define="membership python:context.portal_membership;
                                   user python:membership.getMemberById(pergunta['usuario'])">
-                      <span tal:define="prioridade python:user.getProperty('adicional_um') and user.getProperty('adicional_um') or '' "
+                      <span tal:define="prioridade python:user.getProperty('adicional_um') and user.getProperty('adicional_um') or '-' "
                           tal:content="prioridade"
                           tal:attributes="class python:str(pergunta['_id'])+'_pr1'">
                       </span>
-                      <span tal:define="prioridade python:user.getProperty('adicional_tres') and user.getProperty('adicional_tres') or '' "
+                      <span tal:define="prioridade python:user.getProperty('adicional_tres') and user.getProperty('adicional_tres') or '-' "
                           tal:content="prioridade"
                           tal:attributes="class python:str(pergunta['_id'])+'_pr2'">
                       </span>
-                      <span tal:define="prioridade python:user.getProperty('doenca_grave') and user.getProperty('doenca_grave') or '' "
+                      <span tal:define="prioridade python:user.getProperty('doenca_grave') and user.getProperty('doenca_grave') or '-' "
                           tal:content="prioridade"
                           tal:attributes="class python:str(pergunta['_id'])+'_pr3'">
                       </span>
