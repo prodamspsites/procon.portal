@@ -99,13 +99,19 @@
                   <td tal:attributes="class python:str(pergunta['_id'])+'_data duvidas_buscar'">
                     <tal:inputs tal:content="structure python:pergunta['data'][:10]">
                   </td>
-                  <td tal:define="nome python:user.getProperty('razao_social') or user.getProperty('fullname') or user"
+                  <td tal:define="membership python:context.portal_membership;
+                                  user python:membership.getMemberById(pergunta['usuario']);
+                                  nome python:user.getProperty('razao_social') or user.getProperty('fullname') or user"
                       tal:content="nome">
                   </td>
-                  <td tal:define="email python:user.getProperty('email') and user.getProperty('email') or '-- --' "
+                  <td tal:define="membership python:context.portal_membership;
+                                  user python:membership.getMemberById(pergunta['usuario']);
+                                  email python:user.getProperty('email') and user.getProperty('email') or '-- --' "
                       tal:content="email">
                   </td>
-                  <td tal:content="user"></td>
+                  <td tal:define="membership python:context.portal_membership;
+                                  user python:membership.getMemberById(pergunta['usuario'])"
+                      tal:content="user"></td>
 
                   <span style="display:none" tal:attributes="class python:str(pergunta['_id'])+'_mensagem'">
                     <tal:inputs tal:content="structure python:pergunta['mensagem']">
