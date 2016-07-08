@@ -38,9 +38,9 @@
                   <th width="10%">
                     <span>Data</span>
                   </th>
-                  <!-- <th width="10%">
+                  <th width="10%">
                     <span>Prioridade</span>
-                  </th> -->
+                  </th>
                   <th width="8%">
                     <span>Categoria</span>
                   </th>
@@ -78,15 +78,15 @@
                   <td tal:attributes="class python:str(pergunta['_id'])+'_data duvidas_buscar'">
                     <tal:inputs tal:content="structure python:pergunta['data'][:10]">
                   </td>
-                  <!-- <td tal:define="userId python:dados[int(repeat.pergunta.number) -1][0];
-                                  membership python:context.portal_membership;
-                                  user python:membership.getMemberById(userId)">
+                  <td tal:define="membership python:context.portal_membership;
+                                  user python:membership.getMemberById(pergunta['usuario'])"
+                      tal:attributes="class python:str(pergunta['_id'])+'_prioridade'">
                       <span tal:define="idade python:user.getProperty('adicional_um');
                                         deficiencia python:user.getProperty('adicional_tres');
                                         doenca python:user.getProperty('doenca_grave');
                                         prioridade python:(idade == deficiencia and deficiencia == doenca and 'Não') or 'Sim'"
                             tal:content="prioridade"></span>
-                  </td> -->
+                  </td>
                   <td tal:attributes="class python:str(pergunta['_id'])+'_categoria duvidas_buscar'">
                     <tal:inputs tal:content="structure python:pergunta['categoria']">
                   </td>
@@ -210,6 +210,11 @@
                 <a href="#" title="ordenar mais recente" class="setaDown active"></a>
                 <a href="#" title="ordenar mais recente" class="setaUp"></a>
               </th>
+              <th width="18%">
+                <span>Prioridade</span>
+                <a href="#" title="ordenar mais recente" class="setaDown active"></a>
+                <a href="#" title="ordenar mais recente" class="setaUp"></a>
+              </th>
               <th width="20%">
                 <span>Nome do Usuário</span>
                 <a href="#" title="ordenar mais recente" class="setaDown active"></a>
@@ -244,6 +249,7 @@
             <tal:result tal:condition="perguntas" tal:define="perguntas view/buscarPerguntaResposta">
               <tr>
                 <td id="tbl1"></td>
+                <td id="prioridade"></td>
                 <td id="fullname"></td>
                 <td id="email"></td>
                 <td id="cpf"></td>
