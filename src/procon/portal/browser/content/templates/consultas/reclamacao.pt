@@ -105,7 +105,8 @@
               <td>
                 <div class="respostaConsumidor">
                   <select id="reclamacao_status"
-                          tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-6]">
+                          tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-6];
+                                          disabled string:true">
                       <tal:block tal:define="retorno
                                              python:dados[int(repeat.pergunta.number) -1][-4]"
                                  tal:repeat="record view/reclamacaoStatus">
