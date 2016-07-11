@@ -103,10 +103,10 @@
                                                operador python:membership.getMemberById(operadorID);
                                                "
                                        condition="operadorID">
-                             <tal:hasInfo condition="python:operador.hasProperty('fullname')">
+                             <tal:hasInfo condition="python:hasattr(operador, 'fullname')">
                                 <span tal:content="python:operador.getProperty('fullname')"></span>
                              </tal:hasInfo>
-                             <tal:hasNoInfo condition="python:not operador.hasProperty('fullname')">
+                             <tal:hasNoInfo condition="python:not hasattr(operador, 'fullname')">
                                 <span tal:content="python:operador"></span>
                              </tal:hasNoInfo>
                            </tal:mother>
