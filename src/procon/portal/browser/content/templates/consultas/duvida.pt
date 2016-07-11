@@ -137,12 +137,19 @@
                                                          -- -- --
                                                        </td>
 
-                  <span style="display:none" tal:define="membership python:context.portal_membership;
-                                  user python:membership.getMemberById(pergunta['usuario']);
-                                  nome python:user.getProperty('razao_social') or user.getProperty('fullname') or user"
-                      tal:content="nome"
-                      tal:attributes="class python:str(pergunta['_id'])+'_nome'">
-                  </span>
+                  <!-- razao social  -->
+                  <tal:rsocial define="operadorID python:pergunta['usuario'];
+                                      membership python:context.portal_membership;
+                                      operador python:membership.getMemberById(operadorID);
+                                      "
+                              condition="operadorID">
+                       <span style="display:none" tal:content="python:user.getProperty('razao_social') or operador"
+                                                  tal:attributes="class python:str(pergunta['_id'])+'_nome'">
+                       </span>
+                  </tal:rsocial>
+
+
+
                   <span style="display:none" tal:define="membership python:context.portal_membership;
                                   user python:membership.getMemberById(pergunta['usuario']);
                                   email python:user.getProperty('email') and user.getProperty('email') or '-- --' "
