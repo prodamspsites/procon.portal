@@ -111,7 +111,9 @@
                                                               membership python:context.portal_membership;
                                                               operador python:membership.getMemberById(operadorID)"
                                         condition="python:not operador.getProperty('fullname')">
-                                        <span tal:content="python:operador"></span>
+                                        <span define="operadorID python:pergunta['usuario'];
+                                                                membership python:context.portal_membership;
+                                                                operador python:membership.getMemberById(operadorID)" tal:content="python:operador"></span>
                                       <tal:inputs>
                                     </tal:hasNoInfo>
                                   </td>
