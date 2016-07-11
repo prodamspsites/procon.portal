@@ -32,7 +32,7 @@
           <option value="-5">CPF/CNPJ do consumidor</option>
           <option value="2">Fornecedor</option>
           <option value="3">CPF/CNPJ do fornecedor</option>
-          <option value="-9">Lido</option>
+          <option value="-9">Status</option>
           <option value="-11">Data da denúncia</option>
           <option value="-1">Data de atualização</option>
         <select>
@@ -57,7 +57,7 @@
                 <span>CPF/CNPJ do fornecedor denunciado</span>
               </th>
               <th width="15%">
-                <span>Lido</span>
+                <span>Status</span>
               </th>
               <th width="15%">
                 <span>Data da denúncia</span>
