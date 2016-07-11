@@ -102,15 +102,17 @@
                                       <tal:inputs define="operadorID python:pergunta['usuario'];
                                                               membership python:context.portal_membership;
                                                               operador python:membership.getMemberById(operadorID)"
-                                        condition="python:operador.getProperty('fullname')"
-                                        content="python:operador.getProperty('fullname')"/>
+                                        condition="python:operador.getProperty('fullname')">
+                                        <span tal:content="python:operador.getProperty('fullname')"></span>
+                                      </tal:inputs>
                                     </tal:hasInfo>
                                     <tal:hasNoInfo condition="python:pergunta['usuario']">
                                       <tal:inputs define="operadorID python:pergunta['usuario'];
                                                               membership python:context.portal_membership;
                                                               operador python:membership.getMemberById(operadorID)"
-                                        condition="python:not operador.getProperty('fullname')"
-                                        content="operador"/>
+                                        condition="python:not operador.getProperty('fullname')">
+                                        <span tal:content="operador"></span>
+                                      <tal:inputs>
                                     </tal:hasNoInfo>
                                   </td>
                                   <td tal:attributes="class python:str(pergunta['_id'])+'_fullname'"
