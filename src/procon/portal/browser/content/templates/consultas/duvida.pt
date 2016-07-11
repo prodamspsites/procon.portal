@@ -118,8 +118,8 @@
                                                                operador python:membership.getMemberById(operadorID)"
                                                    tal:content="python:operador.getProperty('fullname') or operador" />
                                      </td>
-                                     <!-- <td tal:attributes="class python:str(pergunta['_id'])+'_usuario'"
-                                         tal:condition="python:not pergunta['operador']"> </td> -->
+                                     <td tal:attributes="class python:str(pergunta['_id'])+'_lido'"
+                                         tal:condition="python:not pergunta['operador']"> </td>
                                      <td tal:attributes="class python:str(pergunta['_id'])+'_pergunta duvidas_buscar'">
                                        <tal:inputs tal:define="lido python:pergunta['lido'] and 'Sim' or 'Não'"
                                                    tal:content="lido"></tal:inputs>
