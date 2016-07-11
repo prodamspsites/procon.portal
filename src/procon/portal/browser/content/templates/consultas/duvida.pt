@@ -139,7 +139,7 @@
                                     operador python:membership.getMemberById(operadorID);
                                     "
                             condition="operadorID">
-                     <span tal:content="python:user.getProperty('fullname') or operador"></span>
+                     <span tal:content="python:user.getProperty('razao_social') or operador"></span>
                 </tal:rsocial>
 
 
