@@ -26,8 +26,16 @@
       <!-- <span class="total">Total: <span tal:define="perguntas view/buscarPerguntaResposta;" tal:replace="python:perguntas['total']"></span></span> -->
 
       <div class="filtrarPor"><strong>Filtrar por:</strong>
-      <form tal:attributes="action string:${context/portal_url}/duvidas_buscar" method="POST" name="filtro">
-        <select class="selectFilter"><option>Nome</option><select>
+      <form tal:attributes="action string:${context/portal_url}/buscar_reclamacoes" method="GET" name="filtro">
+        <select name="coluna" class="selectFilter">
+          <option value="-8">Consumidor</option>
+          <option value="-5">CPF/CNPJ do consumidor</option>
+          <option value="2">Fornecedor</option>
+          <option value="3">CPF/CNPJ do fornecedor</option>
+          <option value="-9">Lido</option>
+          <option value="-11">Data da denúncia</option>
+          <option value="-1">Data de atualização</option>
+        <select>
         <input type="text"  name="filtro_nome" placeholder="Digite um valor para filtrar" class="inputFilter"/>
         <input type="submit" value="FILTRAR" class="btnFiltrar" />
       </form>
@@ -36,17 +44,26 @@
       <table id="table_id_reclamacoes" class="display" width="100%">
           <thead>
             <tr>
-              <th width="12%">
-                <span>Data</span>
+              <th width="32%">
+                <span>Consumidor</span>
               </th>
               <th width="32%">
-                <span>Nome</span>
+                <span>CPF/CNPJ do consumidor</span>
               </th>
-              <th width="40%">
-                <span>Denunciado</span>
+              <th width="32%">
+                <span>Fornecedor</span>
+              </th>
+              <th width="32%">
+                <span>CPF/CNPJ do fornecedor denunciado</span>
               </th>
               <th width="15%">
                 <span>Lido</span>
+              </th>
+              <th width="15%">
+                <span>Data da denúncia</span>
+              </th>
+              <th width="15%">
+                <span>Data da atualização</span>
               </th>
               <th width="1%" style="display:none">
                 <span>.</span>
@@ -55,25 +72,27 @@
           </thead>
           <tbody>
             <tr tal:condition="dados" tal:define="dados view/buscaDenuncia" tal:repeat="pergunta dados">
-              <td tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-6]" class="reclamacao_buscar _id"
-                  tal:content="python:dados[int(repeat.pergunta.number) -1][-6]">07/06/2016</td>
               <td tal:attributes="class python:'usuario'"
-                  tal:define="userId python:dados[int(repeat.pergunta.number) -1][0];
-                                       membership python:context.portal_membership;
-                                       user python:membership.getMemberById(userId)"
-                  tal:content="python:user.getProperty('fullname') or user">Admin</td>
-              <td tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-1]" class="reclamacao_buscar _id"
-                  tal:content="python:dados[int(repeat.pergunta.number) -1][1]">Nome</td>
+                  tal:content="python:dados[int(repeat.pergunta.number) -1][-8]">Admin</td>
+              <td tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-10]" class="reclamacao_buscar _id"
+                  tal:content="python:dados[int(repeat.pergunta.number) -1][-5]">CPF/CNPJ do consumidor</td>
+              <td tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-10]" class="reclamacao_buscar _id"
+                  tal:content="python:dados[int(repeat.pergunta.number) -1][2]">Fornecedor</td>
+              <td tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-10]" class="reclamacao_buscar _id"
+                  tal:content="python:dados[int(repeat.pergunta.number) -1][3]">CPF/CNPJ do fornecedor</td>
               <td tal:define="lido python:dados[int(repeat.pergunta.number) -1][-4];
                               lido python:lido and 'Sim' or 'Não';"
                   tal:content="lido"></td>
+              <td tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-10]" class="reclamacao_buscar _id"
+                  tal:content="python:dados[int(repeat.pergunta.number) -1][-11]">Data da denúncia</td>
+              <td tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-10]" class="reclamacao_buscar _id"
+                  tal:content="python:dados[int(repeat.pergunta.number) -1][-1]">CPF/CNPJ do fornecedor</td>
               <td style="background-color:white !important; border: 0px; display: none">
-              <div class="detalhesDuvida" style="display:none" tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-6]" tal:define="labels
+              <div class="detalhesDuvida" style="display:none" tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-11]" tal:define="labels
                   python:['usuário',
                           'Nome da empresa/fornecedor denunciado',
                           'Razão social:',
                           'CNPJ/CPF:',
-                          'Inscrição Estadual:',
                           'DDD + Telefone:',
                           'CEP:',
                           'Logradouro:',
@@ -97,17 +116,17 @@
 
                         <strong class="tituloConsumidor">Data e horário da denúncia</strong>
                           <div class="respostaConsumidor">
-                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][-6]"></span>
+                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][-11]"></span>
                           </div>
 
                         <strong class="tituloConsumidor">Nome</strong>
                           <div class="respostaConsumidor">
-                            <span tal:content="python:user.getProperty('fullname')"></span>
+                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][-8]"></span>
                           </div>
 
-                        <strong class="tituloConsumidor">CPF</strong>
+                        <strong class="tituloConsumidor">CPF/CNPJ</strong>
                           <div class="respostaConsumidor">
-                            <span tal:content="python:user.getProperty('cpf')"></span>
+                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][-5]"></span>
                           </div>
 
                         <strong class="tituloConsumidor">CEP</strong>
@@ -142,10 +161,10 @@
                     <div class="detalhesDuvida" tal:condition="repeat/label/end"
                                                 tal:define="count python:int(repeat.label.number) -1;">
                       <strong class="tituloConsumidor" tal:content="label">Pergunta:</strong>
-                          <div class="respostaConsumidor" tal:condition="python:dados[int(repeat.pergunta.number) -1][15] == 'NO UPLOAD'">Sem arquivos anexos
+                          <div class="respostaConsumidor" tal:condition="python:dados[int(repeat.pergunta.number) -1][14][0] == 'NO UPLOAD'">Sem arquivos anexos
                           </div>
-                          <div class="respostaConsumidor" tal:condition="python:dados[int(repeat.pergunta.number) -1][15] != 'NO UPLOAD'">
-                            <a href="#" class="fileDownload" tal:content="python:dados[int(repeat.pergunta.number) -1][count +1]" tal:attributes="data-binary python:dados[int(repeat.pergunta.number) -1][count]; data-mimetype python:dados[int(repeat.pergunta.number) -1][count +2]"></a>
+                          <div class="respostaConsumidor" tal:condition="python:dados[int(repeat.pergunta.number) -1][14][0] != 'NO UPLOAD'">
+                            <a href="#" class="fileDownload" tal:content="python:dados[int(repeat.pergunta.number) -1][count][1]" tal:attributes="data-binary python:dados[int(repeat.pergunta.number) -1][count][0]; data-mimetype python:dados[int(repeat.pergunta.number) -1][count][2]"></a>
                           </div>
                     </div>
                   </tal:labels>

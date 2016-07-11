@@ -303,7 +303,8 @@
             </div>
             <span style="display:none;" id="idObservacao"></span>
             <br>
-            <input type="button" id="enviarComentario" value="Enviar">
+            <a style="color: white !important" href="" class="context" name="form_submit"
+               tal:attributes="href string:${context/portal_url}/@@buscar_reclamacoes">Enviar</a>
             <br>
           </div>
         </div>

@@ -26,7 +26,17 @@
 
       <div class="filtrarPor"><strong>Filtrar por:</strong>
       <form tal:attributes="action string:${context/portal_url}/buscar_reclamacoes" method="GET" name="filtro">
-        <select class="selectFilter"><option>Nome</option><select>
+        <select name="coluna" class="selectFilter">
+          <option value="-12">Data</option>
+          <option value="-6">Prioridade</option>
+          <option value="-10">Protocolo</option>
+          <option value="-7">Tipo de cadastro</option>
+          <option value="-8">Nome</option>
+          <option value="-9">SINDEC</option>
+          <option value="-5">FA</option>
+          <option value="-4">Status</option>
+          <option value="-1">Data de atualização</option>
+        <select>
         <input type="text"  name="filtro" placeholder="Digite um valor para filtrar" class="inputFilter"/>
         <input type="submit" value="FILTRAR" class="btnFiltrar" />
       </form>
@@ -72,31 +82,16 @@
           </thead>
           <tbody style="border:0px">
             <tr tal:condition="dados" tal:define="dados view/buscaReclamacao" tal:repeat="pergunta dados">
-              <td class="reclamacao_buscar _id" tal:content="python:dados[int(repeat.pergunta.number) -1][-7]">07/06/2016</td>
-              <td tal:define="userId python:dados[int(repeat.pergunta.number) -1][0];
-                              membership python:context.portal_membership;
-                              user python:membership.getMemberById(userId)">
-                  <span tal:define="idade python:user.getProperty('adicional_um');
-                                    deficiencia python:user.getProperty('adicional_tres');
-                                    doenca python:user.getProperty('doenca_grave');
-                                    prioridade python:(idade == deficiencia and deficiencia == doenca and 'Não') or 'Sim'"
-                        tal:content="prioridade"></span>
+              <td class="reclamacao_buscar _id" tal:content="python:dados[int(repeat.pergunta.number) -1][-11]">07/06/2016</td>
+              <td tal:content="python:dados[int(repeat.pergunta.number) -1][-6]">;
               </td>
               <td tal:attributes="class python:'categoria reclamacao_buscar'"
-                  tal:define="userId python:dados[int(repeat.pergunta.number) -1][0];
-                                       membership python:context.portal_membership;
-                                       user python:membership.getMemberById(userId)"
-                  tal:content="python:user.getProperty('razao_social') and 'Pessoa jurídica' or 'Pessoa física'">Cadastro</td>
+                  tal:content="python:dados[int(repeat.pergunta.number) -1][-7]">Cadastro</td>
               <td tal:attributes="class python:'pergunta reclamacao_buscar'"
-                  tal:content="python:dados[int(repeat.pergunta.number) -1][-6]">00998821888</td>
+                  tal:content="python:dados[int(repeat.pergunta.number) -1][-10]">00998821888</td>
               <td tal:attributes="class python:'usuario reclamacao_buscar'"
-                  tal:define="userId python:dados[int(repeat.pergunta.number) -1][0];
-                                       membership python:context.portal_membership;
-                                       user python:membership.getMemberById(userId)"
-                  tal:content="python:user.getProperty('razao_social') or user.getProperty('fullname') or user">Admin</td>
-              <td tal:define="lido python:dados[int(repeat.pergunta.number) -1][-4];
-                              lido python:lido and 'Sim' or 'Não';"
-                  tal:content="lido"></td>
+                  tal:content="python:dados[int(repeat.pergunta.number) -1][-8]">Admin</td>
+              <td tal:content="python:dados[int(repeat.pergunta.number) -1][-9]"></td>
               <td tal:define="FA python:dados[int(repeat.pergunta.number) -1][-5];
                               FA python:FA and FA or '';"
                   tal:content="FA"></td>
@@ -105,7 +100,7 @@
               <td>
                 <div class="respostaConsumidor">
                   <select id="reclamacao_status"
-                          tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-6];
+                          tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-10];
                                           disabled string:true">
                       <tal:block tal:define="retorno
                                              python:dados[int(repeat.pergunta.number) -1][-4]"
@@ -131,7 +126,7 @@
                       <div class="detalhesDuvida">
                         <strong class="tituloConsumidor">Data da reclamação</strong>
                           <div class="respostaConsumidor">
-                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][-7]"></span>
+                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][-10]"></span>
                           </div>
                       </div>
 
@@ -187,7 +182,7 @@
                       </div>
 
                       <div class="detalhesDuvida">
-                        <strong class="tituloConsumidor">Nome da empresa/fornecedor</strong>
+                        <strong class="tituloConsumidor">Nome da empresa/fornecedor:</strong>
                           <div class="respostaConsumidor">
                             <span tal:content="python:dados[int(repeat.pergunta.number) -1][1]"></span>
                           </div>
@@ -264,23 +259,16 @@
                       </div>
 
                       <div class="detalhesDuvida">
-                        <strong class="tituloConsumidor">Você procurou a empresa para solucionar o problema?</strong>
+                        <strong class="tituloConsumidor">Quando você comprou o produto ou contratou o serviço reclamado?</strong>
                           <div class="respostaConsumidor">
-                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][37]"></span>
+                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][14]">python:dados[int(repeat.pergunta.number) -1][30]</span>
                           </div>
                       </div>
 
-                      <div class="detalhesDuvida" tal:condition="python:dados[int(repeat.pergunta.number) -1][37] == 'Sim'">
-                        <strong class="tituloConsumidor">Informe como foi o seu contato com a empresa. indique o(s) número(s) de protocolo(s), caso o(s) possua:</strong>
+                      <div class="detalhesDuvida">
+                        <strong class="tituloConsumidor">Qual o valor total do produto/serviço reclamado?</strong>
                           <div class="respostaConsumidor">
-                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][38]"></span>
-                          </div>
-                      </div>
-
-                      <div class="detalhesDuvida" tal:condition="python:dados[int(repeat.pergunta.number) -1][37] == 'Não'">
-                        <strong class="tituloConsumidor">Informe por que você não procurou a empresa para resolver o seu problema:</strong>
-                          <div class="respostaConsumidor">
-                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][39]"></span>
+                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][15]"></span>
                           </div>
                       </div>
 
@@ -291,27 +279,141 @@
                           </div>
                       </div>
 
+                      <div class="detalhesDuvida" tal:condition="python:dados[int(repeat.pergunta.number) -1][17]">
+                        <strong class="tituloConsumidor">Quantidade de parcelas:</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][17]"></span>
+                          </div>
+                      </div>
+
+                      <div class="detalhesDuvida" tal:condition="python:dados[int(repeat.pergunta.number) -1][18]">
+                        <strong class="tituloConsumidor">Valor da parcela:</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][18]"></span>
+                          </div>
+                      </div>
+
 
                       <div class="detalhesDuvida">
-                        <strong class="tituloConsumidor">Área relativa ao produto/serviço reclamado</strong>
+                        <strong class="tituloConsumidor">Como você pagou o produto/serviço reclamado?</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][19]"></span>
+                          </div>
+                      </div>
+
+                      <div class="detalhesDuvida">
+                        <strong class="tituloConsumidor">O produto ou serviço foi pago por você, no seu CPF ?</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][20]"></span>
+                          </div>
+                      </div>
+
+                      <div class="detalhesDuvida" tal:condition="python:dados[int(repeat.pergunta.number) -1][21]">
+                        <strong class="tituloConsumidor">Indique o CPF da pessoa que pagou o produto/serviço:</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][21]"></span>
+                          </div>
+                      </div>
+
+                      <div class="detalhesDuvida">
+                        <strong class="tituloConsumidor">Como você comprou/contratou o produto/serviço reclamado?</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][22]"></span>
+                          </div>
+                      </div>
+
+                      <div class="detalhesDuvida">
+                        <strong class="tituloConsumidor">Indique a área relativa ao produto/serviço reclamado:</strong>
                           <div class="respostaConsumidor">
                             <span tal:content="python:dados[int(repeat.pergunta.number) -1][23]"></span>
                           </div>
                       </div>
 
-                      <div class="detalhesDuvida" tal:condition="python:dados[int(repeat.pergunta.number) -1][19] == 'Alimentos'">
-                        <strong class="tituloConsumidor">Assinale o tipo de problema apresentado:</strong>
+                      <div class="detalhesDuvida">
+                        <strong class="tituloConsumidor">Informe abaixo o maior número de dados possíveis relativos à compra do produto ou contratação do serviço reclamado:</strong>
                           <div class="respostaConsumidor">
-                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][29]"></span>
+                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][24]"></span>
                           </div>
                       </div>
 
-                      <div class="detalhesDuvida" tal:condition="python:dados[int(repeat.pergunta.number) -1][29] == 'Assuntos Financeiros'">
-                        <strong class="tituloConsumidor">Assinale o tipo de problema apresentado:</strong>
+                      <div class="detalhesDuvida">
+                        <strong class="tituloConsumidor">Quando o produto ou serviço apresentou problema?</strong>
                           <div class="respostaConsumidor">
-                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][30]"></span>
+                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][25]"></span>
                           </div>
                       </div>
+
+
+                      <div class="detalhesDuvida">
+                        <strong class="tituloConsumidor">Especifique o tipo de problema apresentado pelo produto/serviço reclamado:</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][28]"></span>
+                          </div>
+                      </div>
+
+
+                      <div class="detalhesDuvida">
+                        <strong class="tituloConsumidor">Você procurou a empresa para solucionar o problema?</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][37]"></span>
+                          </div>
+                      </div>
+
+
+                      <div class="detalhesDuvida" tal:condition="python:dados[int(repeat.pergunta.number) -1][37] == 'Não'">
+                        <strong class="tituloConsumidor">Informe por que você não procurou a empresa para resolver o seu problema:</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][39]"></span>
+                          </div>
+                      </div>
+
+                      <div class="detalhesDuvida" tal:condition="python:dados[int(repeat.pergunta.number) -1][37] == 'Sim'">
+                        <strong class="tituloConsumidor">Informe como foi o seu contato com a empresa. indique o(s) número(s) de protocolo(s), caso o(s) possua:</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][38]"></span>
+                          </div>
+                      </div>
+
+                      <div class="detalhesDuvida">
+                        <strong class="tituloConsumidor">Descreva sua reclamação no campo abaixo</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][40]"></span>
+                          </div>
+                      </div>
+
+
+                      <div class="detalhesDuvida">
+                        <strong class="tituloConsumidor">No campo abaixo, descreva de forma objetiva o seu pedido à empresa.</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][41]"></span>
+                          </div>
+                      </div>
+
+                      <div class="detalhesDuvida">
+                        <strong class="tituloConsumidor">Arquivos anexados</strong>
+                           <div class="respostaConsumidor" tal:condition="python:dados[int(repeat.pergunta.number) -1][42][0] == 'NO UPLOAD'">Sem arquivos anexos
+                          </div>
+                          <div class="respostaConsumidor" tal:condition="python:dados[int(repeat.pergunta.number) -1][42][0] != 'NO UPLOAD'">
+                            <a href="#" class="fileDownload" tal:content="python:dados[int(repeat.pergunta.number) -1][42][1]" tal:attributes="data-binary python:dados[int(repeat.pergunta.number) -1][42][0]; data-mimetype python:dados[int(repeat.pergunta.number) -1][42][2]"></a>
+                          </div>
+                      </div>
+
+
+
+
+
+<!--
+
+
+
+
+                      <div class="detalhesDuvida" tal:condition="python:dados[int(repeat.pergunta.number) -1][37] == 'Sim'">
+                        <strong class="tituloConsumidor">Informe abaixo o maior número de dados possíveis relativos à compra do produto ou contratação do serviço reclamado:</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][38]"></span>
+                          </div>
+                      </div>
+
 
                       <div class="detalhesDuvida" tal:condition="python:dados[int(repeat.pergunta.number) -1][29] == 'Habitação'">
                         <strong class="tituloConsumidor">Assinale o tipo de problema apresentado:</strong>
@@ -346,29 +448,8 @@
                           <div class="respostaConsumidor">
                             <span tal:content="python:dados[int(repeat.pergunta.number) -1][35]"></span>
                           </div>
-                      </div>
+                      </div> -->
 
-                      <div class="detalhesDuvida">
-                        <strong class="tituloConsumidor">Quando você comprou o produto ou contratou o serviço?</strong>
-                          <div class="respostaConsumidor">
-                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][14]">python:dados[int(repeat.pergunta.number) -1][30]</span>
-                          </div>
-                      </div>
-
-                      <div class="detalhesDuvida">
-                        <strong class="tituloConsumidor">Dados relativos à compra do produto ou contratação de serviço</strong>
-                          <div class="respostaConsumidor">
-                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][24]"></span>
-                          </div>
-                      </div>
-
-
-                      <div class="detalhesDuvida">
-                        <strong class="tituloConsumidor">Qual o valor total do produto/serviço?</strong>
-                          <div class="respostaConsumidor">
-                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][15]"></span>
-                          </div>
-                      </div>
 <!--
                       <div class="detalhesDuvida">
                         <strong class="tituloConsumidor">Qual a condição de pagamento do produto ou serviço contratado?</strong>
@@ -377,78 +458,16 @@
                           </div>
                       </div>
  -->
-                      <div class="detalhesDuvida" tal:condition="python:dados[int(repeat.pergunta.number) -1][17]">
-                        <strong class="tituloConsumidor">Quantidade de parcelas:</strong>
-                          <div class="respostaConsumidor">
-                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][17]"></span>
-                          </div>
-                      </div>
-
-                      <div class="detalhesDuvida" tal:condition="python:dados[int(repeat.pergunta.number) -1][18]">
-                        <strong class="tituloConsumidor">Valor da parcela:</strong>
-                          <div class="respostaConsumidor">
-                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][18]"></span>
-                          </div>
-                      </div>
-
+<!--
                       <div class="detalhesDuvida">
                         <strong class="tituloConsumidor">Indique o meio de pagamento do produto/serviço reclamado</strong>
                           <div class="respostaConsumidor">
                             <span tal:content="python:dados[int(repeat.pergunta.number) -1][19]"></span>
                           </div>
-                      </div>
-
-                      <div class="detalhesDuvida">
-                        <strong class="tituloConsumidor">O produto ou serviço foi pago por você, no seu CPF ?</strong>
-                          <div class="respostaConsumidor">
-                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][20]"></span>
-                          </div>
-                      </div>
-
-                      <div class="detalhesDuvida" tal:condition="python:dados[int(repeat.pergunta.number) -1][21]">
-                        <strong class="tituloConsumidor">Indique o CPF da pessoa que pagou o produto/serviço:</strong>
-                          <div class="respostaConsumidor">
-                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][21]"></span>
-                          </div>
-                      </div>
+                      </div> -->
 
 
-                      <div class="detalhesDuvida">
-                        <strong class="tituloConsumidor">Como você comprou/contratou o produto/serviço reclamado?</strong>
-                          <div class="respostaConsumidor">
-                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][22]"></span>
-                          </div>
-                      </div>
 
-                      <div class="detalhesDuvida">
-                        <strong class="tituloConsumidor">Quando o produto ou serviço apresentou problema?</strong>
-                          <div class="respostaConsumidor">
-                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][25]"></span>
-                          </div>
-                      </div>
-
-                      <div class="detalhesDuvida">
-                        <strong class="tituloConsumidor">Descreva sua reclamação no campo abaixo</strong>
-                          <div class="respostaConsumidor">
-                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][40]"></span>
-                          </div>
-                      </div>
-
-                      <div class="detalhesDuvida">
-                        <strong class="tituloConsumidor">No campo abaixo, descreva de forma objetiva o seu pedido à empresa.</strong>
-                          <div class="respostaConsumidor">
-                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][41]"></span>
-                          </div>
-                      </div>
-
-                      <div class="detalhesDuvida">
-                        <strong class="tituloConsumidor">Arquivos anexados</strong>
-                           <div class="respostaConsumidor" tal:condition="python:dados[int(repeat.pergunta.number) -1][42] == 'NO UPLOAD'">Sem arquivos anexos
-                          </div>
-                          <div class="respostaConsumidor" tal:condition="python:dados[int(repeat.pergunta.number) -1][42] != 'NO UPLOAD'">
-                            <a href="#" class="fileDownload" tal:content="python:dados[int(repeat.pergunta.number) -1][43]" tal:attributes="data-binary python:dados[int(repeat.pergunta.number) -1][42]; data-mimetype python:dados[int(repeat.pergunta.number) -1][44]"></a>
-                          </div>
-                      </div>
 
                       <div class="detalhesDuvida" tal:condition="python:str(dados[int(repeat.pergunta.number) -1][-13]) != 'Selecione'">
                         <strong class="tituloConsumidor">Campos de uso exclusivo para conveniados e ações estratégicas</strong>
@@ -464,17 +483,17 @@
                           </div>
                       </div>
 
-                      <div class="detalhesDuvida" tal:condition="python:dados[int(repeat.pergunta.number) -1][-8]">
+                      <div class="detalhesDuvida" tal:condition="python:dados[int(repeat.pergunta.number) -1][-10]">
                         <strong class="tituloConsumidor">Protocolo CONSUMIDOR.GOV.BR</strong>
                           <div class="respostaConsumidor">
-                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][-8]"></span>
+                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][-12]"></span>
                           </div>
                       </div>
 
                       <div class="detalhesDuvida">
                         <strong class="tituloConsumidor">Protocolo</strong>
                           <div class="respostaConsumidor">
-                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][-6]"></span>
+                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][-10]"></span>
                           </div>
                       </div>
 
@@ -482,7 +501,7 @@
                         <strong class="tituloConsumidor">Atualizar status</strong>
                           <div class="respostaConsumidor">
                             <select id="reclamacao_status"
-                                    tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-6]">
+                                    tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-10]">
                                 <tal:block tal:define="retorno
                                                        python:dados[int(repeat.pergunta.number) -1][-4]"
                                            tal:repeat="record view/reclamacaoStatus">
@@ -505,7 +524,7 @@
                             condition="python:not dados[int(repeat.pergunta.number) -1][-3]">
 
                           <div class="respostaConsumidor">
-                            <input tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-6]" class='lido_reclamacoes' type='checkbox' value='cadastro' />
+                            <input tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-10]" class='lido_reclamacoes' type='checkbox' value='cadastro' />
                           </div>
 
                           </tal:hasChecked>
@@ -522,7 +541,7 @@
                       <div class="detalhesDuvida">
                         <strong class="tituloConsumidor">FA</strong>
                           <div class="respostaConsumidor">
-                            <input tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-6];
+                            <input tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-10];
                                                    value python:dados[int(repeat.pergunta.number) -1][-5] or '';
                                                    disabled python:dados[int(repeat.pergunta.number) -1][-5] or False" class='FA_reclamacoes' type='text' value='' />
                           </div>
@@ -586,4 +605,3 @@
 
 </body>
 </html>
-

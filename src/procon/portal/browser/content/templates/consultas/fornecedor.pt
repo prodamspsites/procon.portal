@@ -58,9 +58,9 @@
             </tr>
           </thead>
           <tbody>
-            <tr tal:condition="dados" tal:define="dados view/buscaFornecedor" tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-6]" tal:repeat="pergunta dados">
+            <tr tal:condition="dados" tal:define="dados view/buscaFornecedor" tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-7]" tal:repeat="pergunta dados">
               <td tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-1]" class="reclamacao_buscar _id"
-                  tal:content="python:dados[int(repeat.pergunta.number) -1][-6]">07/06/2016</td>
+                  tal:content="python:dados[int(repeat.pergunta.number) -1][-7]">07/06/2016</td>
               <td tal:attributes="class python:'categoria'"
                   tal:content="python:dados[int(repeat.pergunta.number) -1][1]">Cadastro</td>
               <td tal:attributes="class python:'pergunta'"
@@ -78,7 +78,7 @@
                               atualizacao python:atualizacao and atualizacao or '';"
                   tal:content="atualizacao"></td>
               <td style="background-color:white !important; border: 0px; display: none">
-                <div class="detalhesDuvida" tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-6]" style="display:none" tal:define="labels
+                <div class="detalhesDuvida" tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-7]" style="display:none" tal:define="labels
                   python:['Razão Social',
                           'CNPJ',
                           'Nome fantasia',
@@ -113,10 +113,10 @@
                     <div class="detalhesDuvida" tal:condition="repeat/label/end"
                                                 tal:define="count python:int(repeat.label.number) -1;">
                       <strong class="tituloConsumidor" tal:content="label">Pergunta:</strong>
-                          <div class="respostaConsumidor" tal:condition="python:dados[int(repeat.pergunta.number) -1][21] == 'NO UPLOAD'">Sem arquivos anexos
+                          <div class="respostaConsumidor" tal:condition="python:dados[int(repeat.pergunta.number) -1][20][0] == 'NO UPLOAD'">Sem arquivos anexos
                           </div>
-                          <div class="respostaConsumidor"  tal:condition="python:dados[int(repeat.pergunta.number) -1][21] != 'NO UPLOAD'">
-                            <a href="#" class="fileDownload" tal:content="python:dados[int(repeat.pergunta.number) -1][21]" tal:attributes="data-binary python:dados[int(repeat.pergunta.number) -1][20]; data-mimetype python:dados[int(repeat.pergunta.number) -1][22]"></a>
+                          <div class="respostaConsumidor"  tal:condition="python:dados[int(repeat.pergunta.number) -1][20][0] != 'NO UPLOAD'">
+                            <a href="#" class="fileDownload" tal:content="python:dados[int(repeat.pergunta.number) -1][20][1]" tal:attributes="data-binary python:dados[int(repeat.pergunta.number) -1][20][0]; data-mimetype python:dados[int(repeat.pergunta.number) -1][20][2]"></a>
                           </div>
                     </div>
                   </tal:labels>
@@ -157,6 +157,7 @@
                     </div>
                   </div>
 
+
                   <div class="detalhesDuvida"
                         tal:define="operadorId python:dados[int(repeat.pergunta.number) -1][-2];
                                     membership python:context.portal_membership;
@@ -176,6 +177,17 @@
                       </div>
                   </div>
                   </tal:hasChecked>
+
+
+                  <div class="detalhesDuvida">
+                    <strong class="tituloConsumidor">Tratativas</strong>
+                    <div class="respostaConsumidor">
+                      <textarea tal:content="python:dados[int(repeat.pergunta.number) -1][-5] or ''"
+                                tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-7]"
+                        id="enviarTratativas" rows=6 />
+                    </div>
+                  </div>
+
 
                   <input type="button" id="enviarComentario" value="Enviar" />
               </div>

@@ -3,6 +3,7 @@ from Products.Five import BrowserView
 from plone import api
 from pymongo import MongoClient
 from datetime import datetime
+from Products.CMFCore.utils import getToolByName
 
 
 class SelecionarReclamacao(BrowserView):
@@ -66,9 +67,10 @@ class AtualizarReclamacao(BrowserView):
         find = db.reclamacoes.find({"protocolo": {"$regex": self.getProtocolo()}})
         data = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
         coluna = self.getStatus() and 'status' or self.getFA() and 'FA'
+        status = self.getStatus() or 'Selecione uma opção'
         valor = self.getStatus() or self.getFA()
         if find.count() == 0:
-            db.reclamacoes.insert_one({"status": self.getStatus(),
+            db.reclamacoes.insert_one({"status": status,
                                        "protocolo": self.getProtocolo(),
                                        "lido": False,
                                        "FA": self.getFA(),
@@ -123,6 +125,7 @@ class AtualizaForms(BrowserView):
         data = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
         lido = column == 'lido' and value or False
         observacao = column == 'observacao' and value or False
+        tratativas = column == 'tratativas' and value or False
         FA = column == 'FA' and value or False
 
         find_one = db[table].find_one({'data': {"$regex": objId}})
@@ -131,6 +134,7 @@ class AtualizaForms(BrowserView):
                                   'observacao': observacao,
                                   "lido": lido,
                                   "FA": FA,
+                                  "tratativas": tratativas,
                                   "operador": userID,
                                   "data_atualizacao": data})
         else:
@@ -155,18 +159,30 @@ class Reclamacao(BrowserView):
         dados = [x for x in dados if type(x) is list and self.filterInputs(x)]
 
         for dado in dados:
-            print len(dado)
-            if (len(dado) == 53 and dado[42] != 'NO UPLOAD') or (len(dado) == 50 and dado[42] == 'NO UPLOAD'):
+            if len(dado) == 58:
                 dado.insert(len(dado), '')
                 dado.insert(len(dado) + 1, '')
                 dado.insert(len(dado) + 2, '')
                 dado.insert(len(dado) + 3, '')
                 dado.insert(len(dado) + 4, '')
-            protocolo = dado[-6]
+                dado.insert(len(dado) + 5, '')
+                dado.insert(len(dado) + 6, '')
+                dado.insert(len(dado) + 7, '')
+                dado.insert(len(dado) + 8, '')
+            protocolo = dado[-10]
             query = self.db.reclamacoes.find_one({"protocolo": {"$regex": str(protocolo)}})
             try:
+                mt = getToolByName(self.context, 'portal_membership')
+                user = mt.getMemberById(dado[0])
+                idade = user.getProperty('adicional_um')
+                deficiencia = user.getProperty('adicional_tres')
+                doenca = user.getProperty('doenca_grave')
+                dado[-9] = dado[-4] and 'Sim' or 'Não'
+                dado[-8] = user.getProperty('razao_social') or user.getProperty('fullname') or user
+                dado[-7] = user.getProperty('razao_social') and 'Pessoa jurídica' or 'Pessoa física'
+                dado[-6] = (idade == deficiencia and deficiencia == doenca and 'Não') or 'Sim'
                 dado[-5] = query['FA']
-                dado[-4] = query['status'].encode('utf-8')
+                dado[-4] = query['status']
                 dado[-3] = query['lido']
                 dado[-2] = query['operador']
                 dado[-1] = query['data']
@@ -182,6 +198,14 @@ class Reclamacao(BrowserView):
         except:
             return False
 
+    def filtraColuna(self):
+        try:
+            coluna = self.request.form['coluna']
+            coluna = coluna
+            return coluna
+        except:
+            return False
+
     def buscaDenuncia(self):
         portal = api.portal.get()
         folderConsumidor = portal['consumidor']
@@ -191,13 +215,28 @@ class Reclamacao(BrowserView):
         dados = [x for x in dados if type(x) is list and self.filterInputs(x)]
 
         for dado in dados:
-            if (len(dado) == 21 and dado[15] != 'NO UPLOAD') or (len(dado) == 18 and dado[15] == 'NO UPLOAD'):
+            if len(dado) == 24:
                 dado.insert(len(dado), '')
                 dado.insert(len(dado) + 1, '')
                 dado.insert(len(dado) + 2, '')
                 dado.insert(len(dado) + 3, '')
-            query = self.db.denuncias.find_one({"data": {"$regex": str(dado[-6])}})
+                dado.insert(len(dado) + 4, '')
+                dado.insert(len(dado) + 5, '')
+                dado.insert(len(dado) + 6, '')
+                dado.insert(len(dado) + 7, '')
+                dado.insert(len(dado) + 8, '')
+            query = self.db.denuncias.find_one({"data": {"$regex": str(dado[-11])}})
             try:
+                mt = getToolByName(self.context, 'portal_membership')
+                user = mt.getMemberById(dado[0])
+                idade = user.getProperty('adicional_um')
+                deficiencia = user.getProperty('adicional_tres')
+                doenca = user.getProperty('doenca_grave')
+                dado[-9] = dado[-4] and 'Sim' or 'Não'
+                dado[-8] = user.getProperty('razao_social') or user.getProperty('fullname') or user
+                dado[-7] = user.getProperty('razao_social') and 'Pessoa jurídica' or 'Pessoa física'
+                dado[-6] = (idade == deficiencia and deficiencia == doenca and 'Não') or 'Sim'
+                dado[-5] = user
                 dado[-4] = query['lido']
                 dado[-3] = query['observacao']
                 dado[-2] = query['operador']
@@ -208,12 +247,18 @@ class Reclamacao(BrowserView):
         return dados
 
     def filterInputs(self, lista):
+        if self.filtraColuna():
+            novaLista = []
+            novaLista.append(lista[int(self.filtraColuna())])
         filtro = self.filtraForm()
         if filtro:
             verifica = False
+            lista = novaLista or lista
             for items in lista:
                 item = str(items).lower().split(' ')
                 if any(i in filtro for i in item):
+                    verifica = True
+                elif filtro in item:
                     verifica = True
             return verifica
         else:
@@ -228,14 +273,16 @@ class Reclamacao(BrowserView):
         dados = [x for x in dados if type(x) is list and self.filterInputs(x)]
 
         for dado in dados:
-            if (len(dado) == 25 and dado[21] != 'NO UPLOAD') or (len(dado) == 22 and dado[21] == 'NO UPLOAD'):
+            if len(dado) == 29:
                 dado.insert(len(dado), '')
                 dado.insert(len(dado) + 1, '')
                 dado.insert(len(dado) + 2, '')
                 dado.insert(len(dado) + 3, '')
-            query = self.db.fornecedores.find_one({"data": {"$regex": str(dado[-6])}})
+                dado.insert(len(dado) + 4, '')
+            query = self.db.fornecedores.find_one({"data": {"$regex": str(dado[-7])}})
 
             try:
+                dado[-5] = query['tratativas']
                 dado[-4] = query['lido']
                 dado[-3] = query['observacao']
                 dado[-2] = query['operador']
