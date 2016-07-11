@@ -186,14 +186,18 @@
                     <tal:inputs tal:content="structure python:pergunta['lido']">
                   </span>
 
-                  <span style="display:none"
-                        tal:attributes="class python:str(pergunta['_id'])+'_cpf'"
-                        tal:condition="python:pergunta['usuario']">
-                      <tal:inputs tal:define="operadorID python:pergunta['usuario'];
-                                              membership python:context.portal_membership;
-                                              operador python:membership.getMemberById(operadorID)"
-                                  tal:content="python:operador.getProperty('cpf')" />
-                  </span>
+                  <!-- cpf  -->
+                  <tal:cpf define="operadorID python:pergunta['usuario'];
+                                      membership python:context.portal_membership;
+                                      operador python:membership.getMemberById(operadorID);
+                                      "
+                              condition="operadorID">
+                       <span style="display:none" tal:content="python:user.getProperty('cpf') or operador"
+                                                  tal:attributes="class python:str(pergunta['_id'])+'_cpf'">
+                       </span>
+                  </tal:cpf>
+
+
                   <span style="display:none"
                         tal:attributes="class python:str(pergunta['_id'])+'_status'">
                       <tal:inputs tal:define="status python:pergunta['status']"
