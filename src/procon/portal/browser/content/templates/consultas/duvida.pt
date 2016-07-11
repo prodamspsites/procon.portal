@@ -133,6 +133,21 @@
                                                    <td tal:condition="python:not pergunta.get('data_atualizacao')">
                                                      -- -- --
                                                    </td>
+              <tal:mother define="operadorID python:pergunta['usuario'];
+                                  membership python:context.portal_membership;
+                                  operador python:membership.getMemberById(operadorID);
+                                  "
+                          condition="operadorID">
+                   <span style="display:none" tal:content="python:operador.getProperty('razao_social') or operador.getProperty('fullname') or 'admin'"></span>
+              </tal:mother>
+
+
+              <span style="display:none" tal:define="membership python:context.portal_membership;
+                              user python:membership.getMemberById(pergunta['usuario']);
+                              email python:user.getProperty('email') and user.getProperty('email') or '-- --' "
+                  tal:content="email"
+                  tal:attributes="class python:str(pergunta['_id'])+'_email'">
+              </span>
 
               <span style="display:none" tal:define="membership python:context.portal_membership;
                               user python:membership.getMemberById(pergunta['usuario'])"
