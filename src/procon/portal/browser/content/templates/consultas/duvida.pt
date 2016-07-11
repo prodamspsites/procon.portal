@@ -156,6 +156,25 @@
                       tal:content="email"
                       tal:attributes="class python:str(pergunta['_id'])+'_email'">
                   </span>
+
+                  <!-- email  -->
+                  <tal:rsocial define="operadorID python:pergunta['usuario'];
+                                      membership python:context.portal_membership;
+                                      operador python:membership.getMemberById(operadorID);
+                                      "
+                              condition="operadorID">
+                       <span style="display:none" tal:content="python:user.getProperty('email') or '-- --'"
+                                                  tal:attributes="class python:str(pergunta['_id'])+'_email'">
+                       </span>
+                  </tal:rsocial>
+
+
+
+
+
+
+
+
                   <span style="display:none" tal:define="membership python:context.portal_membership;
                                   user python:membership.getMemberById(pergunta['usuario'])"
                       tal:content="user"
