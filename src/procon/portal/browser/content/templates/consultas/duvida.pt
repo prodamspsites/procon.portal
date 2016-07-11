@@ -332,13 +332,20 @@
             </tr>
             <tal:result tal:condition="perguntas" tal:define="perguntas view/buscarPerguntaResposta">
               <tr>
-                <td id="tbl1"></td>
+                <!-- <td id="tbl1"></td>
                 <td id="nome"></td>
                 <td id="email"></td>
                 <td id="cpf"></td>
                 <td id="pr1"></td>
                 <td id="pr2"></td>
-                <td id="pr3"></td>
+                <td id="pr3"></td> -->
+                <td id="column1"></td>
+                <td id="column2"></td>
+                <td id="column3"></td>
+                <td id="column4"></td>
+                <td id="column5"></td>
+                <td id="column6"></td>
+                <td id="column7"></td>
               </tr>
             </tal:result>
           </table>
