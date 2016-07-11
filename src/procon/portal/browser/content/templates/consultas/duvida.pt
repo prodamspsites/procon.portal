@@ -205,22 +205,28 @@
                   </span>
 
 
-                  <span style="display:none"
-                        tal:attributes="class python:str(pergunta['_id'])+'_municipio'"
-                        tal:condition="python:pergunta['usuario']">
-                      <tal:inputs tal:define="operadorID python:pergunta['usuario'];
-                                              membership python:context.portal_membership;
-                                              operador python:membership.getMemberById(operadorID)"
-                                  tal:content="python:operador.getProperty('cidade')" />
-                  </span>
-                  <span style="display:none"
-                        tal:attributes="class python:str(pergunta['_id'])+'_uf'"
-                        tal:condition="python:pergunta['usuario']">
-                      <tal:inputs tal:define="operadorID python:pergunta['usuario'];
-                                              membership python:context.portal_membership;
-                                              operador python:membership.getMemberById(operadorID)"
-                                  tal:content="python:operador.getProperty('unidade_federativa')" />
-                  </span>
+                  <!-- cidade  -->
+                  <tal:cidade define="operadorID python:pergunta['usuario'];
+                                      membership python:context.portal_membership;
+                                      operador python:membership.getMemberById(operadorID);
+                                      "
+                              condition="operadorID">
+                       <span style="display:none" tal:content="python:user.getProperty('cidade') or operador"
+                                                  tal:attributes="class python:str(pergunta['_id'])+'_municipio'">
+                       </span>
+                  </tal:cidade>
+
+                  <!-- UF  -->
+                  <tal:pr1 define="operadorID python:pergunta['usuario'];
+                                      membership python:context.portal_membership;
+                                      operador python:membership.getMemberById(operadorID);
+                                      "
+                              condition="operadorID">
+                       <span style="display:none" tal:content="python:user.getProperty('unidade_federativa') or operador"
+                                                  tal:attributes="class python:str(pergunta['_id'])+'_uf'">
+                       </span>
+                  </tal:pr1>
+
 
                   <!-- adicional 1  -->
                   <tal:pr1 define="operadorID python:pergunta['usuario'];
