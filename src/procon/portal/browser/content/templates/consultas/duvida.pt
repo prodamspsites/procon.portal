@@ -100,13 +100,13 @@
 
                         <!-- nome -->
                         <td tal:attributes="class python:str(pergunta['_id'])+'_usuario'">
-                          <tal:usuario define="operadorID python:pergunta['usuario'];
+                          <tal:fulln define="operadorID python:pergunta['usuario'];
                                               membership python:context.portal_membership;
                                               operador python:membership.getMemberById(operadorID);
                                               "
                                       condition="operadorID">
-                               <span style="display:none" tal:content="python:user.getProperty('fullname') or operador"></span>
-                          </tal:usuario>
+                               <span tal:content="python:operador.getProperty('fullname') or 'admin'"></span>
+                          </tal:fulln>
                         </td>
 
 
@@ -118,7 +118,7 @@
                                                                operador python:membership.getMemberById(operadorID)"
                                                    tal:content="python:operador.getProperty('fullname') or operador" />
                                      </td>
-                                     <td tal:attributes="class python:str(pergunta['_id'])+'_usuario'"
+                                     <td tal:attributes="class python:str(pergunta['_id'])+'_lido'"
                                          tal:condition="python:not pergunta['operador']"> </td>
                                      <td tal:attributes="class python:str(pergunta['_id'])+'_pergunta duvidas_buscar'">
                                        <tal:inputs tal:define="lido python:pergunta['lido'] and 'Sim' or 'Não'"
@@ -155,7 +155,7 @@
                                       operador python:membership.getMemberById(operadorID);
                                       "
                               condition="operadorID">
-                       <span style="display:none" tal:content="python:user.getProperty('email') or '-- -- --'"
+                       <span style="display:none" tal:content="python:operador.getProperty('email') or '-- -- --'"
                                                   tal:attributes="class python:str(pergunta['_id'])+'_email'">
                        </span>
                   </tal:email>
