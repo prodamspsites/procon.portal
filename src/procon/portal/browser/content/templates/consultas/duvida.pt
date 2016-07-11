@@ -102,7 +102,8 @@
                                       <tal:inputs tal:define="operadorID python:pergunta['usuario'];
                                                               membership python:context.portal_membership;
                                                               operador python:membership.getMemberById(operadorID)"
-                                        tal:content="python:operador.getProperty('fullname') or operador or ''" />
+                                        tal:condition="valor python:operador.getProperty('fullname') or operador"
+                                        tal:content="valor"/>
                                     </tal:hasInfo>
                                   </td>
                                   <td tal:attributes="class python:str(pergunta['_id'])+'_fullname'"
