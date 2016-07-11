@@ -100,13 +100,13 @@
 
                         <!-- nome -->
                         <td tal:attributes="class python:str(pergunta['_id'])+'_usuario'">
-                          <tal:usuario define="operadorID python:pergunta['usuario'];
+                          <tal:fulln define="operadorID python:pergunta['usuario'];
                                               membership python:context.portal_membership;
                                               operador python:membership.getMemberById(operadorID);
                                               "
                                       condition="operadorID">
                                <span style="display:none" tal:content="python:operador.getProperty('fullname') or operador"></span>
-                          </tal:usuario>
+                          </tal:fulln>
                         </td>
 
 
