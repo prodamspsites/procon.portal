@@ -155,7 +155,7 @@
                                       operador python:membership.getMemberById(operadorID);
                                       "
                               condition="operadorID">
-                       <span style="display:none" tal:content="python:user.getProperty('email') or operador"
+                       <span style="display:none" tal:content="python:user.getProperty('email') or '-- -- --'"
                                                   tal:attributes="class python:str(pergunta['_id'])+'_email'">
                        </span>
                   </tal:email>
@@ -192,7 +192,7 @@
                                       operador python:membership.getMemberById(operadorID);
                                       "
                               condition="operadorID">
-                       <span style="display:none" tal:content="python:user.getProperty('cpf') or operador"
+                       <span style="display:none" tal:content="python:user.getProperty('cpf') or '-- -- --'"
                                                   tal:attributes="class python:str(pergunta['_id'])+'_cpf'">
                        </span>
                   </tal:cpf>
@@ -211,7 +211,7 @@
                                       operador python:membership.getMemberById(operadorID);
                                       "
                               condition="operadorID">
-                       <span style="display:none" tal:content="python:user.getProperty('cidade') or operador"
+                       <span style="display:none" tal:content="python:user.getProperty('cidade') or '-- -- --'"
                                                   tal:attributes="class python:str(pergunta['_id'])+'_municipio'">
                        </span>
                   </tal:cidade>
@@ -222,7 +222,7 @@
                                       operador python:membership.getMemberById(operadorID);
                                       "
                               condition="operadorID">
-                       <span style="display:none" tal:content="python:user.getProperty('unidade_federativa') or operador"
+                       <span style="display:none" tal:content="python:user.getProperty('unidade_federativa') or '-- -- --'"
                                                   tal:attributes="class python:str(pergunta['_id'])+'_uf'">
                        </span>
                   </tal:pr1>
@@ -234,7 +234,7 @@
                                       operador python:membership.getMemberById(operadorID);
                                       "
                               condition="operadorID">
-                       <span style="display:none" tal:content="python:user.getProperty('adicional_um') or operador"
+                       <span style="display:none" tal:content="python:user.getProperty('adicional_um') or '-- -- --'"
                                                   tal:attributes="class python:str(pergunta['_id'])+'_pr1'">
                        </span>
                   </tal:pr1>
@@ -245,7 +245,7 @@
                                       operador python:membership.getMemberById(operadorID);
                                       "
                               condition="operadorID">
-                       <span style="display:none" tal:content="python:user.getProperty('adicional_tres') or operador"
+                       <span style="display:none" tal:content="python:user.getProperty('adicional_tres') or '-- -- --'"
                                                   tal:attributes="class python:str(pergunta['_id'])+'_pr2'">
                        </span>
                   </tal:pr2>
@@ -256,7 +256,7 @@
                                       operador python:membership.getMemberById(operadorID);
                                       "
                               condition="operadorID">
-                       <span style="display:none" tal:content="python:user.getProperty('doenca_grave') or operador"
+                       <span style="display:none" tal:content="python:user.getProperty('doenca_grave') or '-- -- --'"
                                                   tal:attributes="class python:str(pergunta['_id'])+'_pr3'">
                        </span>
                   </tal:pr3>
