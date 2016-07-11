@@ -102,7 +102,7 @@
                                                membership python:context.portal_membership;
                                                operador python:membership.getMemberById(operadorID)"
                                        condition="operadorID">
-                             <tal:hasInfo condition="operador.getProperty('fullname')">
+                             <tal:hasInfo condition="python:operador.getProperty('fullname')">
                                 <span tal:content="python:operador.getProperty('fullname')"></span>
                              </tal:hasInfo>
                              <tal:hasNoInfo condition="python:not operador.getProperty('fullname')">
