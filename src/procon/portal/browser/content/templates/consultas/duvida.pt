@@ -155,7 +155,7 @@
                                       operador python:membership.getMemberById(operadorID);
                                       "
                               condition="operadorID">
-                       <span style="display:none" tal:content="python:user.getProperty('email') or '-- --'"
+                       <span style="display:none" tal:content="python:user.getProperty('email') or operador"
                                                   tal:attributes="class python:str(pergunta['_id'])+'_email'">
                        </span>
                   </tal:email>
