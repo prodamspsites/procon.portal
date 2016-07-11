@@ -187,14 +187,6 @@
                   </span>
 
                   <span style="display:none"
-                        tal:attributes="class python:str(pergunta['_id'])+'_email'"
-                        tal:condition="python:pergunta['usuario']">
-                      <tal:inputs tal:define="operadorID python:pergunta['usuario'];
-                                              membership python:context.portal_membership;
-                                              operador python:membership.getMemberById(operadorID)"
-                                  tal:content="python:operador.getProperty('email')" />
-                  </span>
-                  <span style="display:none"
                         tal:attributes="class python:str(pergunta['_id'])+'_cpf'"
                         tal:condition="python:pergunta['usuario']">
                       <tal:inputs tal:define="operadorID python:pergunta['usuario'];
