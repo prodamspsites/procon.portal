@@ -98,258 +98,253 @@
                          </td>
 
                          <td tal:attributes="class python:str(pergunta['_id'])+'_usuario'">
-                                    <tal:hasInfo condition="python:pergunta['usuario']">
-                                      <tal:inputs define="operadorID python:pergunta['usuario'];
-                                                              membership python:context.portal_membership;
-                                                              operador python:membership.getMemberById(operadorID)"
-                                        condition="python:operador.getProperty('fullname')">
-                                        <span tal:content="python:operador.getProperty('fullname')"></span>
-                                      </tal:inputs>
-                                    </tal:hasInfo>
-                                    <tal:hasNoInfo condition="python:pergunta['usuario']">
-                                      <tal:inputs define="operadorID python:pergunta['usuario'];
-                                                              membership python:context.portal_membership;
-                                                              operador python:membership.getMemberById(operadorID)"
-                                        condition="python:not operador.getProperty('fullname')">
-                                        <span define="operadorID python:pergunta['usuario'];
-                                                                membership python:context.portal_membership;
-                                                                operador python:membership.getMemberById(operadorID)" tal:content="python:operador"></span>
-                                      <tal:inputs>
-                                    </tal:hasNoInfo>
-                                  </td>
-                                  <td tal:attributes="class python:str(pergunta['_id'])+'_fullname'"
-                                         tal:condition="python:pergunta['operador']">
-                                       <tal:inputs tal:define="operadorID python:pergunta['operador'];
-                                                               membership python:context.portal_membership;
-                                                               operador python:membership.getMemberById(operadorID)"
-                                                   tal:content="python:operador.getProperty('fullname') or operador" />
-                                     </td>
-                                     <td tal:attributes="class python:str(pergunta['_id'])+'_usuario'"
-                                         tal:condition="python:not pergunta['operador']"> </td>
-                                     <td tal:attributes="class python:str(pergunta['_id'])+'_pergunta duvidas_buscar'">
-                                       <tal:inputs tal:define="lido python:pergunta['lido'] and 'Sim' or 'Não'"
-                                                   tal:content="lido"></tal:inputs>
-                                     </td>
-
-                                                       <td tal:attributes="class python:str(pergunta['_id'])+'_pergunta duvidas_buscar'">
-                                                         <tal:inputs tal:define="status python:pergunta['status']"
-                                                                     tal:content="status"></tal:inputs>
-                                                       </td>
-
-                                                       <td tal:condition="python:pergunta.get('data_atualizacao')">
-                                                         <span tal:content="python:pergunta.get('data_atualizacao')"></span>
-                                                       </td>
-                                                       <td tal:condition="python:not pergunta.get('data_atualizacao')">
-                                                         -- -- --
-                                                       </td>
-
-                  <span style="display:none" tal:define="membership python:context.portal_membership;
-                                  user python:membership.getMemberById(pergunta['usuario']);
-                                  nome python:user.getProperty('razao_social') or user.getProperty('fullname') or user"
-                      tal:content="nome"
-                      tal:attributes="class python:str(pergunta['_id'])+'_nome'">
-                  </span>
-                  <span style="display:none" tal:define="membership python:context.portal_membership;
-                                  user python:membership.getMemberById(pergunta['usuario']);
-                                  email python:user.getProperty('email') and user.getProperty('email') or '-- --' "
-                      tal:content="email"
-                      tal:attributes="class python:str(pergunta['_id'])+'_email'">
-                  </span>
-                  <span style="display:none" tal:define="membership python:context.portal_membership;
-                                  user python:membership.getMemberById(pergunta['usuario'])"
-                      tal:content="user"
-                      tal:attributes="class python:str(pergunta['_id'])+'_cpf'"></span>
-
-                  <span style="display:none" tal:attributes="class python:str(pergunta['_id'])+'_mensagem'">
-                    <tal:inputs tal:content="structure python:pergunta['mensagem']">
-                  </span>
-                  <span style="display:none" tal:attributes="class python:str(pergunta['_id'])+'_resposta'">
-                    <tal:inputs tal:content="structure python:pergunta['resposta']">
-                  </span>
-                  <span style="display:none" tal:attributes="class python:str(pergunta['_id'])+'_datas'">
-                    <tal:inputs tal:content="structure python:pergunta['data']">
-                  </span>
-                  <span style="display:none" tal:condition="python:pergunta['operador']" tal:attributes="class python:str(pergunta['_id'])+'_data_atualizacao'">
-                    <tal:inputs tal:content="structure python:pergunta['data_atualizacao']">
-                  </span>
-                  <span style="display:none" tal:attributes="class python:str(pergunta['_id'])+'_assunto'">
-                    <tal:inputs tal:content="structure python:pergunta['assunto']">
-                  </span>
-                  <span style="display:none" tal:attributes="class python:str(pergunta['_id'])+'_lido'">
-                    <tal:inputs tal:content="structure python:pergunta['lido']">
-                  </span>
-
-                  <span style="display:none"
-                        tal:attributes="class python:str(pergunta['_id'])+'_email'"
-                        tal:condition="python:pergunta['usuario']">
-                      <tal:inputs tal:define="operadorID python:pergunta['usuario'];
-                                              membership python:context.portal_membership;
-                                              operador python:membership.getMemberById(operadorID)"
-                                  tal:content="python:operador.getProperty('email')" />
-                  </span>
-                  <span style="display:none"
-                        tal:attributes="class python:str(pergunta['_id'])+'_cpf'"
-                        tal:condition="python:pergunta['usuario']">
-                      <tal:inputs tal:define="operadorID python:pergunta['usuario'];
-                                              membership python:context.portal_membership;
-                                              operador python:membership.getMemberById(operadorID)"
-                                  tal:content="python:operador.getProperty('cpf')" />
-                  </span>
-                  <span style="display:none"
-                        tal:attributes="class python:str(pergunta['_id'])+'_status'">
-                      <tal:inputs tal:define="status python:pergunta['status']"
-                                  tal:content="status" />
-                  </span>
+                           <tal:mother define="operadorID python:pergunta['usuario'];
+                                               membership python:context.portal_membership;
+                                               operador python:membership.getMemberById(operadorID)"
+                                       condition="operadorID">
+                             <tal:hasInfo condition="operador.getProperty('fullname')">
+                                <span tal:content="python:operador.getProperty('fullname')"></span>
+                             </tal:hasInfo>
+                             <tal:hasNoInfo condition="python:not operador.getProperty('fullname')">
+                                <span tal:content="python:operador"></span>
+                             </tal:hasInfo>
+                           </tal:mother>
+                         </td>
 
 
-                  <span style="display:none"
-                        tal:attributes="class python:str(pergunta['_id'])+'_municipio'"
-                        tal:condition="python:pergunta['usuario']">
-                      <tal:inputs tal:define="operadorID python:pergunta['usuario'];
-                                              membership python:context.portal_membership;
-                                              operador python:membership.getMemberById(operadorID)"
-                                  tal:content="python:operador.getProperty('cidade')" />
-                  </span>
-                  <span style="display:none"
-                        tal:attributes="class python:str(pergunta['_id'])+'_uf'"
-                        tal:condition="python:pergunta['usuario']">
-                      <tal:inputs tal:define="operadorID python:pergunta['usuario'];
-                                              membership python:context.portal_membership;
-                                              operador python:membership.getMemberById(operadorID)"
-                                  tal:content="python:operador.getProperty('unidade_federativa')" />
-                  </span>
+                              <td tal:attributes="class python:str(pergunta['_id'])+'_fullname'"
+                                     tal:condition="python:pergunta['operador']">
+                                   <tal:inputs tal:define="operadorID python:pergunta['operador'];
+                                                           membership python:context.portal_membership;
+                                                           operador python:membership.getMemberById(operadorID)"
+                                               tal:content="python:operador.getProperty('fullname') or operador" />
+                                 </td>
+                                 <td tal:attributes="class python:str(pergunta['_id'])+'_usuario'"
+                                     tal:condition="python:not pergunta['operador']"> </td>
+                                 <td tal:attributes="class python:str(pergunta['_id'])+'_pergunta duvidas_buscar'">
+                                   <tal:inputs tal:define="lido python:pergunta['lido'] and 'Sim' or 'Não'"
+                                               tal:content="lido"></tal:inputs>
+                                 </td>
 
-                  <tal:prioridade define="membership python:context.portal_membership;
-                                  user python:membership.getMemberById(pergunta['usuario'])">
-                      <span tal:define="prioridade python:user.getProperty('adicional_um') and user.getProperty('adicional_um') or '-' "
-                          tal:content="prioridade"
-                          tal:attributes="class python:str(pergunta['_id'])+'_pr1'">
-                      </span>
-                      <span tal:define="prioridade python:user.getProperty('adicional_tres') and user.getProperty('adicional_tres') or '-' "
-                          tal:content="prioridade"
-                          tal:attributes="class python:str(pergunta['_id'])+'_pr2'">
-                      </span>
-                      <span tal:define="prioridade python:user.getProperty('doenca_grave') and user.getProperty('doenca_grave') or '-' "
-                          tal:content="prioridade"
-                          tal:attributes="class python:str(pergunta['_id'])+'_pr3'">
-                      </span>
-                  </tal:prioridade>
+                                                   <td tal:attributes="class python:str(pergunta['_id'])+'_pergunta duvidas_buscar'">
+                                                     <tal:inputs tal:define="status python:pergunta['status']"
+                                                                 tal:content="status"></tal:inputs>
+                                                   </td>
 
-                </tr>
-              </tbody>
-              <!-- bower:js -->
-              <!-- endbower -->
-            </table>
-          </div>
-          <tal:result tal:condition="perguntas" tal:define="perguntas view/buscarPerguntaResposta">
-            <div class="paginationReclamacoes">
-            </div>
-          </tal:result>
-        </div>
-      </div>
-      <!--RECLAMACOES-->
-      <div class="DuvidaDivInterno" style="display:none;">
-        <div class="tableReclamacoes">
-          <table style="margin-left:0px">
-            <tr>
-              <th width="18%">
-                <span>Data</span>
-                <a href="#" title="ordenar mais recente" class="setaDown active"></a>
-                <a href="#" title="ordenar mais recente" class="setaUp"></a>
-              </th>
-              <th width="18%">
-                <span>Nome</span>
-                <a href="#" title="ordenar mais recente" class="setaDown active"></a>
-                <a href="#" title="ordenar mais recente" class="setaUp"></a>
-              </th>
-              <th width="18%">
-                <span>E-mail</span>
-                <a href="#" title="ordenar mais recente" class="setaDown active"></a>
-                <a href="#" title="ordenar mais recente" class="setaUp"></a>
-              </th>
-              <th width="18%">
-                <span>CPF/CNPJ</span>
-                <a href="#" title="ordenar mais recente" class="setaDown active"></a>
-                <a href="#" title="ordenar mais recente" class="setaUp"></a>
-              </th>
-              <th width="18%">
-                <span>Possui mais de 60 anos?</span>
-                <a href="#" title="ordenar mais recente" class="setaDown active"></a>
-                <a href="#" title="ordenar mais recente" class="setaUp"></a>
-              </th>
-              <th width="18%">
-                <span>Possui alguma deficiência?</span>
-                <a href="#" title="ordenar mais recente" class="setaDown active"></a>
-                <a href="#" title="ordenar mais recente" class="setaUp"></a>
-              </th>
-              <th width="18%">
-                <span>Portador de alguma doença grave, atestada por declaração/laudo médico?</span>
-                <a href="#" title="ordenar mais recente" class="setaDown active"></a>
-                <a href="#" title="ordenar mais recente" class="setaUp"></a>
-              </th>
+                                                   <td tal:condition="python:pergunta.get('data_atualizacao')">
+                                                     <span tal:content="python:pergunta.get('data_atualizacao')"></span>
+                                                   </td>
+                                                   <td tal:condition="python:not pergunta.get('data_atualizacao')">
+                                                     -- -- --
+                                                   </td>
+
+              <span style="display:none" tal:define="membership python:context.portal_membership;
+                              user python:membership.getMemberById(pergunta['usuario']);
+                              nome python:user.getProperty('razao_social') or user.getProperty('fullname') or user"
+                  tal:content="nome"
+                  tal:attributes="class python:str(pergunta['_id'])+'_nome'">
+              </span>
+              <span style="display:none" tal:define="membership python:context.portal_membership;
+                              user python:membership.getMemberById(pergunta['usuario']);
+                              email python:user.getProperty('email') and user.getProperty('email') or '-- --' "
+                  tal:content="email"
+                  tal:attributes="class python:str(pergunta['_id'])+'_email'">
+              </span>
+              <span style="display:none" tal:define="membership python:context.portal_membership;
+                              user python:membership.getMemberById(pergunta['usuario'])"
+                  tal:content="user"
+                  tal:attributes="class python:str(pergunta['_id'])+'_cpf'"></span>
+
+              <span style="display:none" tal:attributes="class python:str(pergunta['_id'])+'_mensagem'">
+                <tal:inputs tal:content="structure python:pergunta['mensagem']">
+              </span>
+              <span style="display:none" tal:attributes="class python:str(pergunta['_id'])+'_resposta'">
+                <tal:inputs tal:content="structure python:pergunta['resposta']">
+              </span>
+              <span style="display:none" tal:attributes="class python:str(pergunta['_id'])+'_datas'">
+                <tal:inputs tal:content="structure python:pergunta['data']">
+              </span>
+              <span style="display:none" tal:condition="python:pergunta['operador']" tal:attributes="class python:str(pergunta['_id'])+'_data_atualizacao'">
+                <tal:inputs tal:content="structure python:pergunta['data_atualizacao']">
+              </span>
+              <span style="display:none" tal:attributes="class python:str(pergunta['_id'])+'_assunto'">
+                <tal:inputs tal:content="structure python:pergunta['assunto']">
+              </span>
+              <span style="display:none" tal:attributes="class python:str(pergunta['_id'])+'_lido'">
+                <tal:inputs tal:content="structure python:pergunta['lido']">
+              </span>
+
+              <span style="display:none"
+                    tal:attributes="class python:str(pergunta['_id'])+'_email'"
+                    tal:condition="python:pergunta['usuario']">
+                  <tal:inputs tal:define="operadorID python:pergunta['usuario'];
+                                          membership python:context.portal_membership;
+                                          operador python:membership.getMemberById(operadorID)"
+                              tal:content="python:operador.getProperty('email')" />
+              </span>
+              <span style="display:none"
+                    tal:attributes="class python:str(pergunta['_id'])+'_cpf'"
+                    tal:condition="python:pergunta['usuario']">
+                  <tal:inputs tal:define="operadorID python:pergunta['usuario'];
+                                          membership python:context.portal_membership;
+                                          operador python:membership.getMemberById(operadorID)"
+                              tal:content="python:operador.getProperty('cpf')" />
+              </span>
+              <span style="display:none"
+                    tal:attributes="class python:str(pergunta['_id'])+'_status'">
+                  <tal:inputs tal:define="status python:pergunta['status']"
+                              tal:content="status" />
+              </span>
+
+
+              <span style="display:none"
+                    tal:attributes="class python:str(pergunta['_id'])+'_municipio'"
+                    tal:condition="python:pergunta['usuario']">
+                  <tal:inputs tal:define="operadorID python:pergunta['usuario'];
+                                          membership python:context.portal_membership;
+                                          operador python:membership.getMemberById(operadorID)"
+                              tal:content="python:operador.getProperty('cidade')" />
+              </span>
+              <span style="display:none"
+                    tal:attributes="class python:str(pergunta['_id'])+'_uf'"
+                    tal:condition="python:pergunta['usuario']">
+                  <tal:inputs tal:define="operadorID python:pergunta['usuario'];
+                                          membership python:context.portal_membership;
+                                          operador python:membership.getMemberById(operadorID)"
+                              tal:content="python:operador.getProperty('unidade_federativa')" />
+              </span>
+
+              <tal:prioridade define="membership python:context.portal_membership;
+                              user python:membership.getMemberById(pergunta['usuario'])">
+                  <span tal:define="prioridade python:user.getProperty('adicional_um') and user.getProperty('adicional_um') or '-' "
+                      tal:content="prioridade"
+                      tal:attributes="class python:str(pergunta['_id'])+'_pr1'">
+                  </span>
+                  <span tal:define="prioridade python:user.getProperty('adicional_tres') and user.getProperty('adicional_tres') or '-' "
+                      tal:content="prioridade"
+                      tal:attributes="class python:str(pergunta['_id'])+'_pr2'">
+                  </span>
+                  <span tal:define="prioridade python:user.getProperty('doenca_grave') and user.getProperty('doenca_grave') or '-' "
+                      tal:content="prioridade"
+                      tal:attributes="class python:str(pergunta['_id'])+'_pr3'">
+                  </span>
+              </tal:prioridade>
+
             </tr>
-            <tal:result tal:condition="perguntas" tal:define="perguntas view/buscarPerguntaResposta">
-              <tr>
-                <td id="tbl1"></td>
-                <td id="nome"></td>
-                <td id="email"></td>
-                <td id="cpf"></td>
-                <td id="pr1"></td>
-                <td id="pr2"></td>
-                <td id="pr3"></td>
-              </tr>
-            </tal:result>
-          </table>
-          <div class="detalhesDuvida">
-            <strong class="tituloConsumidor">Pergunta:</strong>
-            <div class="respostaConsumidor">
-              <span id="pergunta"></span>
-            </div>
-            <strong class="tituloConsumidor">Resposta:</strong>
-            <div class="respostaConsumidor">
-              <span id="resposta"></span>
-            </div>
-            <strong class="tituloConsumidor">Comentários Usuário</strong>
-            <div class="comentarioConsumidor">
-              <strong>Motivo: </strong> <span id="assunto" /> <br>
-              Comentários adicionais: <span id="mensagem"></span>
-            </div>
-            <br>
-            <span class="marcarLido">
-              <input class="lido" id="lido_check" type="checkbox"/> <span id="texto"></span>
-            </span>
-            <br>
-            <strong class="tituloConsumidor">Inserir FA, data de envio da resposta ao consumidor e texto da resposta:</strong>
-            <br>
-          <textarea id="observacao" rows=6>
+          </tbody>
+          <!-- bower:js -->
+          <!-- endbower -->
+        </table>
+      </div>
+      <tal:result tal:condition="perguntas" tal:define="perguntas view/buscarPerguntaResposta">
+        <div class="paginationReclamacoes">
+        </div>
+      </tal:result>
+    </div>
+  </div>
+  <!--RECLAMACOES-->
+  <div class="DuvidaDivInterno" style="display:none;">
+    <div class="tableReclamacoes">
+      <table style="margin-left:0px">
+        <tr>
+          <th width="18%">
+            <span>Data</span>
+            <a href="#" title="ordenar mais recente" class="setaDown active"></a>
+            <a href="#" title="ordenar mais recente" class="setaUp"></a>
+          </th>
+          <th width="18%">
+            <span>Nome</span>
+            <a href="#" title="ordenar mais recente" class="setaDown active"></a>
+            <a href="#" title="ordenar mais recente" class="setaUp"></a>
+          </th>
+          <th width="18%">
+            <span>E-mail</span>
+            <a href="#" title="ordenar mais recente" class="setaDown active"></a>
+            <a href="#" title="ordenar mais recente" class="setaUp"></a>
+          </th>
+          <th width="18%">
+            <span>CPF/CNPJ</span>
+            <a href="#" title="ordenar mais recente" class="setaDown active"></a>
+            <a href="#" title="ordenar mais recente" class="setaUp"></a>
+          </th>
+          <th width="18%">
+            <span>Possui mais de 60 anos?</span>
+            <a href="#" title="ordenar mais recente" class="setaDown active"></a>
+            <a href="#" title="ordenar mais recente" class="setaUp"></a>
+          </th>
+          <th width="18%">
+            <span>Possui alguma deficiência?</span>
+            <a href="#" title="ordenar mais recente" class="setaDown active"></a>
+            <a href="#" title="ordenar mais recente" class="setaUp"></a>
+          </th>
+          <th width="18%">
+            <span>Portador de alguma doença grave, atestada por declaração/laudo médico?</span>
+            <a href="#" title="ordenar mais recente" class="setaDown active"></a>
+            <a href="#" title="ordenar mais recente" class="setaUp"></a>
+          </th>
+        </tr>
+        <tal:result tal:condition="perguntas" tal:define="perguntas view/buscarPerguntaResposta">
+          <tr>
+            <td id="tbl1"></td>
+            <td id="nome"></td>
+            <td id="email"></td>
+            <td id="cpf"></td>
+            <td id="pr1"></td>
+            <td id="pr2"></td>
+            <td id="pr3"></td>
+          </tr>
+        </tal:result>
+      </table>
+      <div class="detalhesDuvida">
+        <strong class="tituloConsumidor">Pergunta:</strong>
+        <div class="respostaConsumidor">
+          <span id="pergunta"></span>
+        </div>
+        <strong class="tituloConsumidor">Resposta:</strong>
+        <div class="respostaConsumidor">
+          <span id="resposta"></span>
+        </div>
+        <strong class="tituloConsumidor">Comentários Usuário</strong>
+        <div class="comentarioConsumidor">
+          <strong>Motivo: </strong> <span id="assunto" /> <br>
+          Comentários adicionais: <span id="mensagem"></span>
+        </div>
+        <br>
+        <span class="marcarLido">
+          <input class="lido" id="lido_check" type="checkbox"/> <span id="texto"></span>
+        </span>
+        <br>
+        <strong class="tituloConsumidor">Inserir FA, data de envio da resposta ao consumidor e texto da resposta:</strong>
+        <br>
+      <textarea id="observacao" rows=6>
 
-          </textarea>
-            <br>
-            <strong class="tituloConsumidor">Status</strong>
-            <select id="duvidas_status">
-                <option value="Não Processada">Não Processada</option>
-                <option value="Em Análise">Em Análise</option>
-                <option value="Analisada">Analisada</option>
-            </select>
-            <br>
-            <div class="atualizacao">
-              <strong class="tituloConsumidor">Operador:</strong>
-              <div class="respostaConsumidor">
-                <span id="operador"></span>
-              </div>
-              <strong class="tituloConsumidor">Data da última atualização:</strong>
-              <div class="respostaConsumidor">
-                <span id="data_atualizacao"></span>
-              </div>
-            </div>
-            <span style="display:none;" id="idObservacao"></span>
-            <br>
-            <a style="color: white !important" href="" class="context" name="form_submit"
-               tal:attributes="href string:${context/portal_url}/@@buscar_reclamacoes">Enviar</a>
-            <br>
+      </textarea>
+        <br>
+        <strong class="tituloConsumidor">Status</strong>
+        <select id="duvidas_status">
+            <option value="Não Processada">Não Processada</option>
+            <option value="Em Análise">Em Análise</option>
+            <option value="Analisada">Analisada</option>
+        </select>
+        <br>
+        <div class="atualizacao">
+          <strong class="tituloConsumidor">Operador:</strong>
+          <div class="respostaConsumidor">
+            <span id="operador"></span>
+          </div>
+          <strong class="tituloConsumidor">Data da última atualização:</strong>
+          <div class="respostaConsumidor">
+            <span id="data_atualizacao"></span>
           </div>
         </div>
+        <span style="display:none;" id="idObservacao"></span>
+        <br>
+        <a style="color: white !important" href="" class="context" name="form_submit"
+           tal:attributes="href string:${context/portal_url}/@@buscar_reclamacoes">Enviar</a>
+        <br>
       </div>
     </div>
-  </body>
+  </div>
+</div>
+</body>
 </html>
