@@ -141,7 +141,7 @@
 
                         <strong class="tituloConsumidor">CPF</strong>
                           <div class="respostaConsumidor">
-                            <span tal:content="python:user.getProperty('cpf')"></span>
+                            <span tal:content="python:user"></span>
                           </div>
 
                         <strong class="tituloConsumidor">CEP</strong>
