@@ -101,12 +101,12 @@
                            <tal:mother define="operadorID python:pergunta['usuario'];
                                                membership python:context.portal_membership;
                                                operador python:membership.getMemberById(operadorID);
-                                               fullname python:operador.getProperty('fullname')"
+                                               "
                                        condition="operadorID">
-                             <tal:hasInfo condition="python:fullname is None">
+                             <tal:hasInfo condition="python:operador.hasProperty('fullname')">
                                 <span tal:content="python:operador.getProperty('fullname')"></span>
                              </tal:hasInfo>
-                             <tal:hasNoInfo condition="python:fullname is not None">
+                             <tal:hasNoInfo condition="python:not operador.hasProperty('fullname')">
                                 <span tal:content="python:operador"></span>
                              </tal:hasNoInfo>
                            </tal:mother>
