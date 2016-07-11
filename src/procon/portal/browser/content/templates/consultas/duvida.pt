@@ -107,7 +107,7 @@
                              </tal:hasInfo>
                              <tal:hasNoInfo condition="python:not operador.getProperty('fullname')">
                                 <span tal:content="python:operador"></span>
-                             </tal:hasInfo>
+                             </tal:hasNoInfo>
                            </tal:mother>
                          </td>
 
