@@ -99,12 +99,19 @@
 
                          <td tal:attributes="class python:str(pergunta['_id'])+'_usuario'">
                                     <tal:hasInfo condition="python:pergunta['usuario']">
-                                      <tal:inputs tal:define="operadorID python:pergunta['usuario'];
+                                      <tal:inputs define="operadorID python:pergunta['usuario'];
                                                               membership python:context.portal_membership;
                                                               operador python:membership.getMemberById(operadorID)"
-                                        tal:condition="valor python:operador.getProperty('fullname') or operador"
-                                        tal:content="valor"/>
+                                        condition="python:operador.getProperty('fullname')"
+                                        content="python:operador.getProperty('fullname')"/>
                                     </tal:hasInfo>
+                                    <tal:hasNoInfo condition="python:pergunta['usuario']">
+                                      <tal:inputs define="operadorID python:pergunta['usuario'];
+                                                              membership python:context.portal_membership;
+                                                              operador python:membership.getMemberById(operadorID)"
+                                        condition="python:not operador.getProperty('fullname')"
+                                        content="operador"/>
+                                    </tal:hasNoInfo>
                                   </td>
                                   <td tal:attributes="class python:str(pergunta['_id'])+'_fullname'"
                                          tal:condition="python:pergunta['operador']">
