@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# flake8: noqa
 from Products.Five import BrowserView
 from pymongo import MongoClient
 from datetime import datetime
@@ -11,7 +12,7 @@ class BuscarDuvidas(BrowserView):
     def buscarPerguntaResposta(self):
         """ buscar registros mongodb do tire suas dúvidas """
         try:
-            client = MongoClient()
+            client = MongoClient(MONGODB_HOSTS["host"], MONGODB_HOSTS["port"])
             db = client.consumidor
             perguntas = {}
             if self.getFiltro():
@@ -52,7 +53,7 @@ class SalvarDuvidas(BrowserView):
         """ salvar registros mongodb do tire suas duvidas """
         data = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
         try:
-            client = MongoClient()
+            client = MongoClient(MONGODB_HOSTS["host"], MONGODB_HOSTS["port"])
             db = client.consumidor
 
             if self.getIdentificacao() and not self.getObservacao() and not self.getStatus():

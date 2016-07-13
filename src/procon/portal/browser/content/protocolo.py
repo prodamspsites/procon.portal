@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# flake8: noqa
 from procon.portal.config import MONGODB_HOSTS
 from datetime import datetime
 from Products.Five import BrowserView
@@ -34,7 +35,7 @@ class ProtocoloView(BrowserView):
             self.current_year = datetime.now().year
 
             # Here the MONGODB_HOSTS need to be changed based on site environment!
-            self.conn = pymongo.MongoClient(MONGODB_HOSTS['local'], 27017)
+            self.conn = pymongo.MongoClient(MONGODB_HOSTS["host"], MONGODB_HOSTS["port"])
             self.db = self.conn.procon
             self.collection = self.db.protocolo
 

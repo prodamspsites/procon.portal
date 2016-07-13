@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# flake8: noqa
 from Products.Five import BrowserView
 from plone import api
 from pymongo import MongoClient
@@ -11,7 +12,7 @@ class SelecionarReclamacao(BrowserView):
     def __call__(self):
         user = api.user.get_current()
         userID = user.id
-        mongodb = MongoClient()
+        mongodb = MongoClient(MONGODB_HOSTS["host"], MONGODB_HOSTS["port"])
         db = mongodb.procon
         protocolo = self.getProtocolo()
         questionarios = db.reclamacoes.find({"protocolo": {"$regex": protocolo}})
@@ -62,7 +63,7 @@ class AtualizarReclamacao(BrowserView):
     def AtualizarReclamacao(self):
         user = api.user.get_current()
         userID = user.id
-        mongodb = MongoClient()
+        mongodb = MongoClient(MONGODB_HOSTS["host"], MONGODB_HOSTS["port"])
         db = mongodb.procon
         find = db.reclamacoes.find({"protocolo": {"$regex": self.getProtocolo()}})
         data = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
@@ -113,7 +114,7 @@ class AtualizaForms(BrowserView):
             return None
 
     def atualizaFormularios(self):
-        mongodb = MongoClient()
+        mongodb = MongoClient(MONGODB_HOSTS["host"], MONGODB_HOSTS["port"])
         db = mongodb.procon
 
         table = self.getTable()
@@ -147,7 +148,7 @@ class Reclamacao(BrowserView):
         self.request = request
         self.context = context
 
-        mongodb = MongoClient()
+        mongodb = MongoClient(MONGODB_HOSTS["host"], MONGODB_HOSTS["port"])
         self.db = mongodb.procon
 
     def buscaReclamacao(self):

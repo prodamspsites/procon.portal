@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import socket
 
 PROJECTNAME = 'procon.portal'
 
@@ -9,10 +10,14 @@ TINYMCE_JSON_FORMATS = {'strikethrough': {'inline': 'span',
                         'underline': {'inline': 'span',
                                       'classes': 'underline',
                                       'exact': 'true'}}
+# configuração ambientes MongoDB
+MONGODB_HOSTS = {}
+hostname = socket.gethostbyname(socket.gethostname())
 
-MONGODB_HOSTS = {
-    'local': 'localhost',
-    'dev': '10.20.26.12',
-    'hom': '10.20.26.12',
-    'prod': '10.20.26.12'
-}
+if hostname == "127.0.0.1" or "10.20.26.20":
+    MONGODB_HOSTS["host"] = "localhost"
+    MONGODB_HOSTS["port"] = "27017"
+
+elif hostname == "10.20.25.200":
+    MONGODB_HOSTS["host"] = "mongo0.prodam"
+    MONGODB_HOSTS["port"] = "27017"

@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
+# flake8: noqa
+
 import json
 from Products.Five import BrowserView
 from plone import api
 from plone.dexterity.utils import createContentInContainer
 from pymongo import MongoClient
-
 
 class Consumidor(BrowserView):
     diretorio = "categoria"
@@ -48,7 +49,7 @@ class Consumidor(BrowserView):
         """ categorias do site consumidor.gov.br """
         try:
             # client = MongoClient('prodam.mongodb')
-            client = MongoClient()
+            client = MongoClient(MONGODB_HOSTS["host"], MONGODB_HOSTS["port"]) # nopep8
             db = client.procon
             categorias = db.empresas.find()
         except Exception, ex:
