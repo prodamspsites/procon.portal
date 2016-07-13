@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-# flake8: noqa
 from Products.Five import BrowserView
 from pymongo import MongoClient
 from datetime import datetime
 from bson.objectid import ObjectId
 from plone import api
-from lib import *
+from procon.portal import MONGODB_HOSTS
+
 
 class BuscarDuvidas(BrowserView):
 

@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
-# flake8: noqa
-from procon.portal.config import MONGODB_HOSTS
 from datetime import datetime
 from Products.Five import BrowserView
-from lib import *
+from procon.portal import MONGODB_HOSTS
 import pymongo
 
 

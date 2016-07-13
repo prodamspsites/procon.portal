@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-# flake8: noqa
 from Products.Five import BrowserView
 from plone import api
 from pymongo import MongoClient
 from datetime import datetime
 from Products.CMFCore.utils import getToolByName
-from lib import *
+from procon.portal import MONGODB_HOSTS
+
 
 class SelecionarReclamacao(BrowserView):
 
