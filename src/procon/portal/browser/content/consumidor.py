@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 # flake8: noqa
-
 import json
 from Products.Five import BrowserView
 from plone import api
 from plone.dexterity.utils import createContentInContainer
 from pymongo import MongoClient
+from lib import *
 
 class Consumidor(BrowserView):
     diretorio = "categoria"

@@ -5,7 +5,7 @@ from pymongo import MongoClient
 from datetime import datetime
 from bson.objectid import ObjectId
 from plone import api
-
+from lib import *
 
 class BuscarDuvidas(BrowserView):
 
