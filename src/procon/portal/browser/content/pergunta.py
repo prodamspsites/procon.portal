@@ -55,26 +55,30 @@ class SalvarDuvidas(BrowserView):
         try:
             client = MongoClient(MONGODB_HOSTS["host"], MONGODB_HOSTS["port"])
             db = client.consumidor
-
+            print self.request.form
             if self.getIdentificacao() and not self.getObservacao() and not self.getStatus():
+                print ' n ok'
                 identificacao = self.getIdentificacao()
 
                 db.tbl_replica.update_one({"_id": ObjectId(identificacao)},
                                           {"$set": {"lido": True, "operador": userID, "data_atualizacao": data}},
                                           upsert=False)
-            elif self.getIdentificacao() and self.getObservacao():
+            elif self.getIdentificacao() and self.getObservacao() and not self.getStatus():
+                print 'n ok'
                 identificacao = self.getIdentificacao()
                 observacao = self.getObservacao()
                 db.tbl_replica.update_one({"_id": ObjectId(identificacao)},
                                           {"$set": {"observacao": observacao, "operador": userID, "data_atualizacao": data}},
                                           upsert=False)
             elif self.getIdentificacao() and self.getStatus():
+                print 'ok'
                 identificacao = self.getIdentificacao()
                 status = self.getStatus()
                 db.tbl_replica.update_one({"_id": ObjectId(identificacao)},
                                           {"$set": {"status": status, "operador": userID, "data_atualizacao": data}},
                                           upsert=False)
             else:
+                print 'nao ok'
                 db.tbl_replica.insert_one({"id_plone": id_plone,
                                            "util": util,
                                            "lido": False,
