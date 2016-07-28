@@ -160,12 +160,6 @@ class Reclamacao(BrowserView):
         dados = [x for x in dados if type(x) is list and self.filterInputs(x)]
 
         for dado in dados:
-            for d in dado:
-                if type(d) is list:
-                    d = ['']
-
-            print dado
-
             if len(dado) == 58:
                 dado.insert(len(dado), '')
                 dado.insert(len(dado) + 1, '')
