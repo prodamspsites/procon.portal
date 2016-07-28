@@ -495,14 +495,14 @@
 
 
 
-                      <div class="detalhesDuvida" tal:condition="python:str(dados[int(repeat.pergunta.number) -1][-13]) != 'Selecione'">
+                      <div class="detalhesDuvida" tal:condition="python:str(dados[int(repeat.pergunta.number) -1][50]) != 'Selecione'">
                         <strong class="tituloConsumidor">Campos de uso exclusivo para conveniados e ações estratégicas</strong>
                           <div class="respostaConsumidor">
                             <span tal:content="python:dados[int(repeat.pergunta.number) -1][50]"></span>
                           </div>
                       </div>
 
-                      <div class="detalhesDuvida" tal:condition="python:dados[int(repeat.pergunta.number) -1][-12]">
+                      <div class="detalhesDuvida" tal:condition="python:dados[int(repeat.pergunta.number) -1][51]">
                         <strong class="tituloConsumidor">Matrícula/Código</strong>
                           <div class="respostaConsumidor">
                             <span tal:content="python:dados[int(repeat.pergunta.number) -1][51]"></span>
