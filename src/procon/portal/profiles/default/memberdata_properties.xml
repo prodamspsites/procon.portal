@@ -11,6 +11,7 @@
  <property name="expeditor" type="string"></property>
  <property name="deficiencia_especificar" type="string"></property>
  <property name="doenca_especificar" type="string"></property>
+ <property name="campo_doenca_grave" type="string"></property>
  <property name="doenca_grave" type="string"></property>
  <property name="genero" type="string"></property>
  <property name="estadocivil" type="string"></property>
@@ -28,9 +29,11 @@
  <property name="site" type="string"></property>
  <property name="mail" type="string"></property>
  <property name="confirmacao" type="string"></property>
+ <property name="campo_adicional_um" type="string"></property>
  <property name="adicional_um" type="string"></property>
  <property name="adicional_dois" type="string"></property>
  <property name="adicional_tres" type="string"></property>
+ <property name="campo_adicional_tres" type="string"></property>
  <property name="termos_uso" type="string"></property>
  <property name="tipo_societario" type="string"></property>
  <property name="enquadramento" type="string"></property>

@@ -27,7 +27,7 @@
   <div id="content-core" metal:fill-slot="main">
 
     <form name="search"
-          action="@@busca"
+          action="@@procon-busca"
           class="searchPage enableAutoFocus"
           tal:define="portal context/@@plone_portal_state/portal;
                       first_call not:request/advanced_search|nothing;
@@ -97,7 +97,7 @@
                                                    show_about python:not isAnon or allowAnonymousViewAbout;">
                           <dl class="searchResults">
                               <tal:results repeat="item batch">
-                                <div class="blocoBusca">
+                                <div class="blocoBusca" tal:condition="python:item.portal_type != 'pergunta'">
                                     <span class="categoria"><p class="parent" tal:content="python:item.getObject().aq_parent.Title()"></p>
                                     <tal:newsItem tal:condition="python:item.portal_type == 'News Item'">
                                                                               <span tal:define="publication_date item/EffectiveDate;
@@ -120,7 +120,23 @@
                                                          class string:state-${item/review_state}"
                                          tal:content="python:item.getDataOrigin().pretty_title_or_id()" />
                                     </dt>
-                                  </div>
+                                </div>
+
+                                <div class="blocoBusca" tal:condition="python:item.portal_type == 'pergunta'">
+                                    <span class="categoria">
+                                      <p class="parent" tal:content="python:item.getObject().aq_parent.Title()"></p>
+                                    </span>
+                                      <div class="divAccordeon">
+                                        <h3>
+                                          <span tal:content="structure python:item.getObject().pergunta.output" />
+                                        </h3>
+                                        <div class="textoAccordeon">
+                                          <span class="resposta_duvida" tal:content="structure python:item.getObject().resposta.output" />
+                                        </div>
+                                      </div>
+                                </div>
+
+
                               </tal:results>
                           </dl>
                           <div metal:use-macro="context/procon_macros/macros/navigation" />

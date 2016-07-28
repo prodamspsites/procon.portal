@@ -136,7 +136,7 @@ class IEnhancedUserDataSchema(model.Schema):
     #     required=False,
     #     value_type=schema.Choice(vocabulary=termos))
 
-    adicional_um = schema.Choice(
+    campo_adicional_um = schema.Choice(
         title=_(u'Possui mais de 60 anos ? *'),
         description=_(u'Possui mais de 60 anos ? *'),
         vocabulary=adicionais_escolha_um,
@@ -146,6 +146,12 @@ class IEnhancedUserDataSchema(model.Schema):
         title=_(u'Possui mais de 60 anos ? *'),
         description=_(u'Possui mais de 60 anos ? *'),
         vocabulary=adicionais_escolha_um,
+        required=False,)
+
+    campo_adicional_tres = schema.Choice(
+        title=_(u'Possui alguma deficiência? *'),
+        description=_(u'Possui alguma deficiência? *'),
+        vocabulary=adicionais_escolha_tres,
         required=False,)
 
     adicional_tres = schema.Choice(
@@ -161,6 +167,12 @@ class IEnhancedUserDataSchema(model.Schema):
         required=False,)
 
     doenca_grave = schema.Choice(
+        title=_(u'Portador de alguma doença grave, atestada por declaração/laudo médico ? *'),
+        description=_(u'Possui alguma deficiência ? *'),
+        vocabulary=doenca_grave_options,
+        required=False,)
+
+    campo_doenca_grave = schema.Choice(
         title=_(u'Portador de alguma doença grave, atestada por declaração/laudo médico ? *'),
         description=_(u'Possui alguma deficiência ? *'),
         vocabulary=doenca_grave_options,

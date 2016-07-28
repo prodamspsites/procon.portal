@@ -4,15 +4,6 @@
   i18n_domain="procon.portal">
 
   <browser:page
-    name="emails"
-    for="*"
-    permission="cmf.ReviewPortalContent"
-    class=".mail.DisparaEmail"
-    layer="procon.portal.interfaces.IProdamPortal"
-    template="templates/mail.pt"
-    />
-
-  <browser:page
     name="consumidorjson"
     for="*"
     permission="zope2.View"

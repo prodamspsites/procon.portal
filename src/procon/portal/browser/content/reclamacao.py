@@ -160,6 +160,12 @@ class Reclamacao(BrowserView):
         dados = [x for x in dados if type(x) is list and self.filterInputs(x)]
 
         for dado in dados:
+            for d in dado:
+                if type(d) is list:
+                    d = ['']
+
+            print dado
+
             if len(dado) == 58:
                 dado.insert(len(dado), '')
                 dado.insert(len(dado) + 1, '')
@@ -296,6 +302,7 @@ class Reclamacao(BrowserView):
     def reclamacaoStatus(self):
         return ['Selecione uma opção',
                 'Em processamento',
+                'Em prospecção do fornecedor',
                 'Concluído – Extra-Procon',
                 'Concluído – Simples consulta',
                 'Encerrado por domicílio inconsistente',

@@ -166,17 +166,17 @@
 
                         <strong class="tituloConsumidor">Possui mais de 60 anos?</strong>
                           <div class="respostaConsumidor">
-                            <span tal:content="python:user.getProperty('adicional_um')"></span>
+                            <span tal:content="python:user.getProperty('campo_adicional_um')"></span>
                           </div>
 
                         <strong class="tituloConsumidor">Possui alguma deficiência?</strong>
                           <div class="respostaConsumidor">
-                            <span tal:content="python:user.getProperty('adicional_tres')"></span>
+                            <span tal:content="python:user.getProperty('campo_adicional_tres')"></span>
                           </div>
 
                         <strong class="tituloConsumidor">Portador de alguma doença grave, atestada por declaração/laudo médico?</strong>
                           <div class="respostaConsumidor">
-                            <span tal:content="python:user.getProperty('doenca_grave')"></span>
+                            <span tal:content="python:user.getProperty('campo_doenca_grave')"></span>
                           </div>
 
                       </div>
