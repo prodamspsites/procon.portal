@@ -15,20 +15,40 @@ class BuscarDuvidas(BrowserView):
             client = MongoClient(MONGODB_HOSTS["host"], MONGODB_HOSTS["port"])
             db = client.consumidor
             perguntas = {}
-            if self.getFiltro():
-                questionarios = db.tbl_replica.find({"usuario": {"$regex": self.getFiltro()}})
-                perguntas = {'perguntas': questionarios, 'filtro': self.getFiltro(), 'total': questionarios.count()}
+            filtro = self.getFiltro()
+            dropdown = self.getDropDown()
+            if filtro and dropdown:
+                if dropdown == "lido" and filtro == "sim":
+                    filtro_real = 'sim'
+                    questionarios = db.tbl_replica.find({dropdown: True})
+                    perguntas = {'perguntas': questionarios, 'status': dropdown, 'filtro': filtro_real, 'total': questionarios.count()}
+                elif dropdown == "lido" and filtro != "sim":
+                    filtro_real = 'não'
+                    questionarios = db.tbl_replica.find({dropdown: False})
+                    perguntas = {'perguntas': questionarios, 'status': dropdown, 'filtro': filtro_real, 'total': questionarios.count()}
+                else:
+                    questionarios = db.tbl_replica.find({dropdown: {"$regex": filtro}})
+                    perguntas = {'perguntas': questionarios, 'status': dropdown, 'filtro': filtro, 'total': questionarios.count()}
+
                 return perguntas
             else:
                 questionarios = db.tbl_replica.find()
                 if questionarios.count() < 1:
-                    return False
+                    perguntas = {'perguntas': None, 'filtro': None, 'status': None, 'total': None}
+                    return perguntas
                 else:
-                    perguntas = {'perguntas': questionarios, 'filtro': None, 'total': questionarios.count()}
+                    perguntas = {'perguntas': questionarios, 'filtro': None, 'status': None, 'total': questionarios.count()}
                     return perguntas
 
         except Exception:
             return False
+
+    def getDropDown(self):
+        try:
+            req = self.request.form['dropdown_ftr']
+        except:
+            req = None
+        return req
 
     def getFiltro(self):
         try:
