@@ -70,33 +70,33 @@ enquadramento_options = SimpleVocabulary([
     SimpleTerm(value='Microempreendedor individual - MEI', title=_(u'Microempreendedor individual - MEI')),
     SimpleTerm(value='Microempresa - ME', title=_(u'Microempresa - ME')),
     SimpleTerm(value='Empresa de pequeno porte - EPP', title=_(u'Empresa de pequeno porte - EPP')),
-    SimpleTerm(value='Empresa de médio porte', title=_(u'Empresa de médio porte')),
+    SimpleTerm(value='Empresa de medio porte', title=_(u'Empresa de médio porte')),
     SimpleTerm(value='Empresa de grande porte', title=_(u'Empresa de grande porte')),
     SimpleTerm(value='Outro', title=_(u'Outro')), ])
 
 tipo_societario_options = SimpleVocabulary([
-    SimpleTerm(value='Empresário individual', title=_(u'Empresário individual')),
+    SimpleTerm(value='Empresario individual', title=_(u'Empresário individual')),
     SimpleTerm(value='Empresa individual de responsabilidade limitada', title=_(u'Empresa individual de responsabilidade limitada')),
     SimpleTerm(value='Sociedade limitada', title=_(u'Sociedade limitada')),
-    SimpleTerm(value='Sociedade anônima', title=_(u'Sociedade anônima')),
-    SimpleTerm(value='Outro tipo societário', title=_(u'Outro tipo societário')), ])
+    SimpleTerm(value='Sociedade anonima', title=_(u'Sociedade anônima')),
+    SimpleTerm(value='Outro tipo societario', title=_(u'Outro tipo societário')), ])
 
 doenca_grave_options = SimpleVocabulary([
-    SimpleTerm(value='Não', title=_(u'Não')),
+    SimpleTerm(value='não', title=_(u'Não')),
     SimpleTerm(value='Tuberculose ativa', title=_(u'Tuberculose ativa')),
     SimpleTerm(value='Esclerose múltipla', title=_(u'Esclerose múltipla')),
-    SimpleTerm(value='Neoplasia maligna (câncer)', title=_(u'Neoplasia maligna (câncer)')),
-    SimpleTerm(value='Hanseníase (Lepra)', title=_(u'Hanseníase (Lepra)')),
-    SimpleTerm(value='Paralisia irreversível e incapacitante', title=_(u'Paralisia irreversível e incapacitante')),
+    SimpleTerm(value='Neoplasia maligna - câncer', title=_(u'Neoplasia maligna (câncer)')),
+    SimpleTerm(value='Hanseniase - Lepra', title=_(u'Hanseníase (Lepra)')),
+    SimpleTerm(value='Paralisia irreversivel e incapacitante', title=_(u'Paralisia irreversível e incapacitante')),
     SimpleTerm(value='Cardiopatia grave', title=_(u'Cardiopatia grave')),
-    SimpleTerm(value='Doença de Parkinson', title=_(u'Doença de Parkinson')),
+    SimpleTerm(value='Doenca de Parkinson', title=_(u'Doença de Parkinson')),
     SimpleTerm(value='Espondiloartrose anquilosante', title=_(u'Espondiloartrose anquilosante')),
     SimpleTerm(value='Nefropatia grave', title=_(u'Nefropatia grave')),
     SimpleTerm(value='Hepatopatia grave', title=_(u'Hepatopatia grave')),
-    SimpleTerm(value='Doença de Paget (osteíte deformante) em grau avançado', title=_(u'Doença de Paget (osteíte deformante) em grau avançado')),
-    SimpleTerm(value='Contaminação por radiação', title=_(u'Contaminação por radiação')),
-    SimpleTerm(value='Síndrome de imunodeficiência adquirida (AIDS)', title=_(u'Síndrome de imunodeficiência adquirida (AIDS)')),
-    SimpleTerm(value='Outra doença considerada grave por atestado/laudo médico', title=_(u'Outra doença considerada grave por atestado/laudo médico')), ])
+    SimpleTerm(value='Doenca de Paget - osteite deformante - em grau avançado', title=_(u'Doença de Paget (osteíte deformante) em grau avançado')),
+    SimpleTerm(value='Contaminacao por radiacao', title=_(u'Contaminação por radiação')),
+    SimpleTerm(value='Síndrome de imunodeficiencia adquirida - AIDS', title=_(u'Síndrome de imunodeficiência adquirida (AIDS)')),
+    SimpleTerm(value='Outra doença considerada grave por atestado - laudo médico', title=_(u'Outra doença considerada grave por atestado/laudo médico')), ])
 
 adicionais_escolha_um = SimpleVocabulary([
     SimpleTerm(value='sim', title=_(u'Sim')),
@@ -108,12 +108,12 @@ adicionais_escolha_dois = SimpleVocabulary([
 
 
 adicionais_campo_escolha_tres = SimpleVocabulary([
-    SimpleTerm(value='Não', title=_(u'Não')),
+    SimpleTerm(value='não', title=_(u'Não')),
     SimpleTerm(value='Deficiencia Visual', title=_(u'Deficiência Visual')),
-    SimpleTerm(value='Deficiencia Auditiva/Surdez', title=_(u'Deficiência Auditiva/Surdez')),
+    SimpleTerm(value='Deficiencia Auditiva - Surdez', title=_(u'Deficiência Auditiva/Surdez')),
     SimpleTerm(value='Deficiencia intelectual', title=_(u'Deficiência intelectual')),
-    SimpleTerm(value='Deficiencia física', title=_(u'Deficiência física')),
-    SimpleTerm(value='Transtorno do Espectro Autista - Lei n 12.764/12', title=_(u'Transtorno do Espectro Autista - Lei nº 12.764/12')),
+    SimpleTerm(value='Deficiencia fisica', title=_(u'Deficiência física')),
+    SimpleTerm(value='Transtorno do Espectro Autista - Lei n 12.764 12', title=_(u'Transtorno do Espectro Autista - Lei nº 12.764/12')),
     SimpleTerm(value='Surdocegueira', title=_(u'Surdocegueira')), ])
 
 
