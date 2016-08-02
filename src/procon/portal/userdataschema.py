@@ -106,6 +106,17 @@ adicionais_escolha_dois = SimpleVocabulary([
     SimpleTerm(value='sim', title=_(u'Sim')),
     SimpleTerm(value='nao', title=_(u'Não')), ])
 
+
+adicionais_campo_escolha_tres = SimpleVocabulary([
+    SimpleTerm(value='Não', title=_(u'Não')),
+    SimpleTerm(value='Deficiencia Visual', title=_(u'Deficiência Visual')),
+    SimpleTerm(value='Deficiencia Auditiva/Surdez', title=_(u'Deficiência Auditiva/Surdez')),
+    SimpleTerm(value='Deficiencia intelectual', title=_(u'Deficiência intelectual')),
+    SimpleTerm(value='Deficiencia física', title=_(u'Deficiência física')),
+    SimpleTerm(value='Transtorno do Espectro Autista - Lei n 12.764/12', title=_(u'Transtorno do Espectro Autista - Lei nº 12.764/12')),
+    SimpleTerm(value='Surdocegueira', title=_(u'Surdocegueira')), ])
+
+
 adicionais_escolha_tres = SimpleVocabulary([
     SimpleTerm(value='Não', title=_(u'Não')),
     SimpleTerm(value='Deficiência Visual', title=_(u'Deficiência Visual')),
@@ -151,7 +162,13 @@ class IEnhancedUserDataSchema(model.Schema):
     campo_adicional_tres = schema.Choice(
         title=_(u'Possui alguma deficiência? *'),
         description=_(u'Possui alguma deficiência? *'),
-        vocabulary=adicionais_escolha_tres,
+        vocabulary=adicionais_campo_escolha_tres,
+        required=False,)
+
+    campoadicional_tres = schema.Choice(
+        title=_(u'Possui alguma deficiência? *'),
+        description=_(u'Possui alguma deficiência? *'),
+        vocabulary=adicionais_campo_escolha_tres,
         required=False,)
 
     adicional_tres = schema.Choice(

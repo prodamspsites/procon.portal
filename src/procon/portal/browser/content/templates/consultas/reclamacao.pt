@@ -36,6 +36,8 @@
           <option value="-5">FA</option>
           <option value="-4">Status</option>
           <option value="-1">Data de atualização</option>
+          <option value="0">CPF/CNPJ do consumidor</option>
+          <option value="-2">CPF/CNPJ do operador</option>
         <select>
         <input type="text"  name="filtro" placeholder="Digite um valor para filtrar" class="inputFilter"/>
         <input type="submit" value="FILTRAR" class="btnFiltrar" />
@@ -77,6 +79,9 @@
               </th>
               <th width="10%">
                 <span>Data Atualização</span>
+              </th>
+              <th width="10%">
+                <span>Operador</span>
               </th>
             </tr>
           </thead>
@@ -120,6 +125,7 @@
               <td tal:define="atualizacao python:dados[int(repeat.pergunta.number) -1][-1];
                               atualizacao python:atualizacao and atualizacao or '';"
                   tal:content="atualizacao"></td>
+              <td tal:content="python:dados[int(repeat.pergunta.number) -1][-2]"></td>
               <td class="td_interno" style="display:none">
               <div class="detalhesDuvida" style="display:none">
 
@@ -166,7 +172,7 @@
 
                         <strong class="tituloConsumidor">Possui mais de 60 anos?</strong>
                           <div class="respostaConsumidor">
-                            <span tal:content="python:user.getProperty('campo_adicional_um')"></span>
+                            <span tal:content="python:user.getProperty('adicional_um')"></span>
                           </div>
 
                         <strong class="tituloConsumidor">Possui alguma deficiência?</strong>

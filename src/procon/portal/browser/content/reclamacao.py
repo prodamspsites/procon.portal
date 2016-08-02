@@ -175,7 +175,7 @@ class Reclamacao(BrowserView):
             try:
                 mt = getToolByName(self.context, 'portal_membership')
                 user = mt.getMemberById(dado[0])
-                idade = user.getProperty('campo_adicional_um')
+                idade = user.getProperty('adicional_um')
                 deficiencia = user.getProperty('campo_adicional_tres')
                 doenca = user.getProperty('campo_doenca_grave')
                 dado[-9] = dado[-4] and 'Sim' or 'Não'
@@ -294,7 +294,8 @@ class Reclamacao(BrowserView):
         return dados
 
     def reclamacaoStatus(self):
-        return ['Selecione uma opção',
+        return ['Não processada',
+                'Aguarda prospecção do fornecedor',
                 'Em processamento',
                 'Em prospecção do fornecedor',
                 'Concluído – Extra-Procon',
