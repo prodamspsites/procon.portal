@@ -4,6 +4,7 @@ from plone.app.layout.viewlets import ViewletBase
 from plone import api
 from plone.dexterity.utils import createContentInContainer
 from pymongo import MongoClient
+from procon.portal import MONGODB_HOSTS
 
 
 class Duvidas(ViewletBase):
@@ -45,7 +46,7 @@ class Duvidas(ViewletBase):
 
     def categorias(self):
         """ categorias do site consumidor.gov.br """
-        client = MongoClient()
+        client = MongoClient(MONGODB_HOSTS["host"], MONGODB_HOSTS["port"])
         db = client.consumidor
         categorias = db.empresas.find()
         return categorias
