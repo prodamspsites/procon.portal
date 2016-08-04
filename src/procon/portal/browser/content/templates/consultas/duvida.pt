@@ -16,14 +16,36 @@
                <div class="filtrarPor">
                   <strong>Filtrar por:</strong>
                   <form tal:attributes="action string:${context/portal_url}/buscar_duvidas" method="POST" name="filtro">
-                     <select class="selectFilter">
-                        <option>Nome</option>
-                     <select>
+
+                         <select class="selectFilter"
+                                 name="dropdown_ftr">
+                                 <tal:block tal:define="options python:{
+                                                       'Data da dúvida':'data',
+                                                       'Nome':'usuario',
+                                                       'Operador procon responsável pela operação':'operador',
+                                                       'CPF/CNPJ do Consumidor':'usuario',
+                                                       'Status':'status',
+                                                       'Concluído (sim/não)':'lido',
+                                                       'Data da atualização':'data_atualizacao'};
+                                                       perguntas view/buscarPerguntaResposta"
+                                            tal:repeat="option options">
+                                      <option tal:condition="python: options[option] != str(perguntas['status'])"
+                                              tal:content="option"
+                                              tal:attributes="value python:options[option]">
+                                      </option>
+                                      <option tal:condition="python: options[option] == str(perguntas['status'])"
+                                              tal:attributes="value python:options[option]"
+                                              tal:content="option"
+                                              selected>
+                                      </option>
+                                  </tal:block>
+                         <select>
+
                         <tal:hasFiltro define="perguntas view/buscarPerguntaResposta" condition="perguntas">
-                           <input type="text" tal:define="filtro python:perguntas['filtro']" tal:attributes="value python:filtro and filtro or ''"  name="filtro_nome" placeholder="Digite o nome" class="inputFilter"/>
+                           <input type="text" tal:define="filtro python:perguntas['filtro']" tal:attributes="value python:filtro and filtro or ''"  name="filtro_nome" placeholder="Digite um filtro" class="inputFilter"/>
                         </tal:hasFiltro>
                         <tal:hasFiltro define="perguntas view/buscarPerguntaResposta" condition="not:perguntas">
-                           <input type="text" name="filtro_nome" placeholder="Digite o nome" class="inputFilter"/>
+                           <input type="text" name="filtro_nome" placeholder="Digite um filtro" class="inputFilter"/>
                         </tal:hasFiltro>
                         <input type="submit" value="FILTRAR" class="btnFiltrar" />
                   </form>
