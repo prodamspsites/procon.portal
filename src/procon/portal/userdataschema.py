@@ -82,10 +82,10 @@ tipo_societario_options = SimpleVocabulary([
     SimpleTerm(value='Outro tipo societario', title=_(u'Outro tipo societário')), ])
 
 doenca_grave_options = SimpleVocabulary([
-    SimpleTerm(value='não', title=_(u'Não')),
+    SimpleTerm(value='nao', title=_(u'Não')),
     SimpleTerm(value='Tuberculose ativa', title=_(u'Tuberculose ativa')),
     SimpleTerm(value='Esclerose múltipla', title=_(u'Esclerose múltipla')),
-    SimpleTerm(value='Neoplasia maligna - câncer', title=_(u'Neoplasia maligna (câncer)')),
+    SimpleTerm(value='Neoplasia maligna - cancer', title=_(u'Neoplasia maligna (câncer)')),
     SimpleTerm(value='Hanseniase - Lepra', title=_(u'Hanseníase (Lepra)')),
     SimpleTerm(value='Paralisia irreversivel e incapacitante', title=_(u'Paralisia irreversível e incapacitante')),
     SimpleTerm(value='Cardiopatia grave', title=_(u'Cardiopatia grave')),
@@ -93,10 +93,10 @@ doenca_grave_options = SimpleVocabulary([
     SimpleTerm(value='Espondiloartrose anquilosante', title=_(u'Espondiloartrose anquilosante')),
     SimpleTerm(value='Nefropatia grave', title=_(u'Nefropatia grave')),
     SimpleTerm(value='Hepatopatia grave', title=_(u'Hepatopatia grave')),
-    SimpleTerm(value='Doenca de Paget - osteite deformante - em grau avançado', title=_(u'Doença de Paget (osteíte deformante) em grau avançado')),
+    SimpleTerm(value='Doenca de Paget - osteite deformante - em grau avancado', title=_(u'Doença de Paget (osteíte deformante) em grau avançado')),
     SimpleTerm(value='Contaminacao por radiacao', title=_(u'Contaminação por radiação')),
-    SimpleTerm(value='Síndrome de imunodeficiencia adquirida - AIDS', title=_(u'Síndrome de imunodeficiência adquirida (AIDS)')),
-    SimpleTerm(value='Outra doença considerada grave por atestado - laudo médico', title=_(u'Outra doença considerada grave por atestado/laudo médico')), ])
+    SimpleTerm(value='Sindrome de imunodeficiencia adquirida - AIDS', title=_(u'Síndrome de imunodeficiência adquirida (AIDS)')),
+    SimpleTerm(value='Outra doenca considerada grave por atestado - laudo medico', title=_(u'Outra doença considerada grave por atestado/laudo médico')), ])
 
 adicionais_escolha_um = SimpleVocabulary([
     SimpleTerm(value='sim', title=_(u'Sim')),
@@ -108,7 +108,7 @@ adicionais_escolha_dois = SimpleVocabulary([
 
 
 adicionais_campo_escolha_tres = SimpleVocabulary([
-    SimpleTerm(value='não', title=_(u'Não')),
+    SimpleTerm(value='nao', title=_(u'Não')),
     SimpleTerm(value='Deficiencia Visual', title=_(u'Deficiência Visual')),
     SimpleTerm(value='Deficiencia Auditiva - Surdez', title=_(u'Deficiência Auditiva/Surdez')),
     SimpleTerm(value='Deficiencia intelectual', title=_(u'Deficiência intelectual')),
@@ -118,7 +118,7 @@ adicionais_campo_escolha_tres = SimpleVocabulary([
 
 
 adicionais_escolha_tres = SimpleVocabulary([
-    SimpleTerm(value='Não', title=_(u'Não')),
+    SimpleTerm(value='não', title=_(u'Não')),
     SimpleTerm(value='Deficiência Visual', title=_(u'Deficiência Visual')),
     SimpleTerm(value='Deficiência Auditiva/Surdez ', title=_(u'Deficiência Auditiva/Surdez ')),
     SimpleTerm(value='Deficiência intelectual', title=_(u'Deficiência intelectual')),
