@@ -55,7 +55,7 @@
                           &nbsp;<span class="mensagem_enviada" style="margin-top:40px;display: block">  </span>
                         </fieldset>
                       </form>
-                      <p class="agradece">O Procon Paulistano agradece sua colaboração. <strong>Você pode enviar uma dúvida usando o formulário no final da página.</strong></p>
+                      <p class="agradece">O Procon Paulistano agradece sua colaboração.</p>
 
                     </tal:anonymous>
 
