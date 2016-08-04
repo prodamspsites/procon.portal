@@ -132,7 +132,7 @@
                       <div class="detalhesDuvida">
                         <strong class="tituloConsumidor">Data da reclamação</strong>
                           <div class="respostaConsumidor">
-                            <span tal:content="python:dados[int(repeat.pergunta.number) -2][-10]"></span>
+                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][-11]"></span>
                           </div>
                       </div>
 
