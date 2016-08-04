@@ -84,7 +84,7 @@ tipo_societario_options = SimpleVocabulary([
 doenca_grave_options = SimpleVocabulary([
     SimpleTerm(value='nao', title=_(u'Não')),
     SimpleTerm(value='Tuberculose ativa', title=_(u'Tuberculose ativa')),
-    SimpleTerm(value='Esclerose múltipla', title=_(u'Esclerose múltipla')),
+    SimpleTerm(value='Esclerose multipla', title=_(u'Esclerose múltipla')),
     SimpleTerm(value='Neoplasia maligna - cancer', title=_(u'Neoplasia maligna (câncer)')),
     SimpleTerm(value='Hanseniase - Lepra', title=_(u'Hanseníase (Lepra)')),
     SimpleTerm(value='Paralisia irreversivel e incapacitante', title=_(u'Paralisia irreversível e incapacitante')),
@@ -118,7 +118,7 @@ adicionais_campo_escolha_tres = SimpleVocabulary([
 
 
 adicionais_escolha_tres = SimpleVocabulary([
-    SimpleTerm(value='não', title=_(u'Não')),
+    SimpleTerm(value='nao', title=_(u'Não')),
     SimpleTerm(value='Deficiência Visual', title=_(u'Deficiência Visual')),
     SimpleTerm(value='Deficiência Auditiva/Surdez ', title=_(u'Deficiência Auditiva/Surdez ')),
     SimpleTerm(value='Deficiência intelectual', title=_(u'Deficiência intelectual')),
