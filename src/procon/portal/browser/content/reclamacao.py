@@ -231,8 +231,8 @@ class Reclamacao(BrowserView):
                 mt = getToolByName(self.context, 'portal_membership')
                 user = mt.getMemberById(dado[0])
                 idade = user.getProperty('adicional_um')
-                deficiencia = user.getProperty('adicional_tres')
-                doenca = user.getProperty('doenca_grave')
+                deficiencia = user.getProperty('campo_adicional_tres')
+                doenca = user.getProperty('campo_doenca_grave')
                 dado[-9] = dado[-4] and 'Sim' or 'Não'
                 dado[-8] = user.getProperty('razao_social') or user.getProperty('fullname') or user
                 dado[-7] = user.getProperty('razao_social') and 'Pessoa jurídica' or 'Pessoa física'

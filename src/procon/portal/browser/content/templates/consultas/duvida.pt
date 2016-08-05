@@ -103,7 +103,7 @@
                <td tal:attributes="class python:str(pergunta['_id'])+'_data duvidas_buscar'">
                <tal:inputs tal:content="structure python:pergunta['data'][:10]">
                </td>
-               <td tal:define="idade python:user.getProperty('campo_adicional_um');
+               <td tal:define="idade python:user.getProperty('adicional_um');
                   deficiencia python:user.getProperty('campo_adicional_tres');
                   doenca python:user.getProperty('campo_doenca_grave');
                   prioridade python:(idade == deficiencia and deficiencia == doenca and 'Não') or 'Sim'"
