@@ -202,7 +202,7 @@
                   operador python:membership.getMemberById(operadorID);
                   "
                   condition="operadorID">
-               <span style="display:none" tal:content="python:user.getProperty('cpf') or '-- -- --'"
+               <span style="display:none" tal:content="python:operador.getProperty('cpf') or '-- -- --'"
                   tal:attributes="class python:str(pergunta['_id'])+'_cpf'">
                </span>
                </tal:cpf>
@@ -217,7 +217,7 @@
                   operador python:membership.getMemberById(operadorID);
                   "
                   condition="operadorID">
-               <span style="display:none" tal:content="python:user.getProperty('cidade') or '-- -- --'"
+               <span style="display:none" tal:content="python:operador.getProperty('cidade') or '-- -- --'"
                   tal:attributes="class python:str(pergunta['_id'])+'_municipio'">
                </span>
                </tal:cidade>
@@ -227,7 +227,7 @@
                   operador python:membership.getMemberById(operadorID);
                   "
                   condition="operadorID">
-               <span style="display:none" tal:content="python:user.getProperty('unidade_federativa') or '-- -- --'"
+               <span style="display:none" tal:content="python:operador.getProperty('unidade_federativa') or '-- -- --'"
                   tal:attributes="class python:str(pergunta['_id'])+'_uf'">
                </span>
                </tal:pr1>
