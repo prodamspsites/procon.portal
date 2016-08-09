@@ -151,6 +151,22 @@ class Reclamacao(BrowserView):
         mongodb = MongoClient(MONGODB_HOSTS["host"], MONGODB_HOSTS["port"])
         self.db = mongodb.procon
 
+    def getDetailNumber(self):
+        try:
+            return self.request.form['detailNumber']
+        except Exception:
+            return None
+
+    def buscaReclamacaoDetalhes(self):
+        numero = self.getDetailNumber()
+        portal = api.portal.get()
+        folderConsumidor = portal['consumidor']
+        form = folderConsumidor['formularios']
+        sendDataAdapter = form['dados']
+        dados = sendDataAdapter.getSavedFormInput()
+
+        return dados[int(numero)]
+
     def buscaReclamacao(self):
         portal = api.portal.get()
         folderConsumidor = portal['consumidor']

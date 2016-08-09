@@ -1,0 +1,462 @@
+<!-- <tal:dados tal:define="reclamacoes view/buscaReclamacao" tal:repeat="reclamacao reclamacoes">
+  <tal:inputs tal:content="structure python:reclamacao[0]">
+  <tal:inputs tal:content="structure python:reclamacao[1]">
+  <tal:inputs tal:content="structure python:reclamacao[2]">
+  <tal:inputs tal:content="structure python:reclamacao[3]">
+  <tal:inputs tal:content="structure python:reclamacao[4]">
+</tal:dados> -->
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="plone">
+<body>
+  <div id="content-core" metal:fill-slot="main">
+  <span class="currentUser" tal:content="user/getUserName" />
+  <!--RECLAMACOES-->
+  <div class="wrapAdmin">
+    <div class="divReclamacoes">
+      <h1>Reclamações recebidas</h1>
+
+      <div class="tableReclamacoes">
+
+            <tr tal:condition="dado" tal:define="dado view/buscaReclamacaoDetalhes">
+
+              <div class="detalhesDuvida">
+
+                      <div class="detalhesDuvida">
+                        <strong class="tituloConsumidor">Data da reclamação</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:dado[-11]"></span>
+                          </div>
+                      </div>
+
+                      <div class="detalhesDuvida userInfo"
+                           tal:define="userId python:dado[0];
+                                       membership python:context.portal_membership;
+                                       user python:membership.getMemberById(userId)">
+                        <strong class="tituloConsumidor">Nome / Razão Social</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:user.getProperty('razao_social') or user.getProperty('fullname') or user"></span>
+                          </div>
+
+                        <strong class="tituloConsumidor">CPF / CNPJ</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:user"></span>
+                          </div>
+
+                        <strong class="tituloConsumidor">CEP</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:user.getProperty('codigo_enderecamento_postal')"></span>
+                          </div>
+
+                        <strong class="tituloConsumidor">Complemento</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:user.getProperty('complemento')"></span>
+                          </div>
+
+                        <strong class="tituloConsumidor">Telefone</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:user.getProperty('contato_telefone')"></span>
+                          </div>
+
+                        <strong class="tituloConsumidor">E-mail</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:user.getProperty('email')"></span>
+                          </div>
+
+                        <strong class="tituloConsumidor">Possui mais de 60 anos?</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:user.getProperty('adicional_um')"></span>
+                          </div>
+
+                        <strong class="tituloConsumidor">Possui alguma deficiência?</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:user.getProperty('campo_adicional_tres')"></span>
+                          </div>
+
+                        <strong class="tituloConsumidor">Portador de alguma doença grave, atestada por declaração/laudo médico?</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:user.getProperty('campo_doenca_grave')"></span>
+                          </div>
+
+                      </div>
+
+                      <div class="detalhesDuvida">
+                        <strong class="tituloConsumidor">Nome da empresa/fornecedor:</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:dado[1]"></span>
+                          </div>
+                      </div>
+
+                      <div class="detalhesDuvida">
+                        <strong class="tituloConsumidor">CNPJ/CPF:</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:dado[3]"></span>
+                          </div>
+                      </div>
+
+                      <div class="detalhesDuvida">
+                        <strong class="tituloConsumidor">CEP:</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:dado[5]"></span>
+                          </div>
+                      </div>
+
+                      <div class="detalhesDuvida">
+                        <strong class="tituloConsumidor">Logradouro:</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:dado[6]"></span>
+                          </div>
+                      </div>
+
+                      <div class="detalhesDuvida">
+                        <strong class="tituloConsumidor">Número/Complemento:</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:dado[7]"></span>
+                          </div>
+                      </div>
+
+                      <div class="detalhesDuvida">
+                        <strong class="tituloConsumidor">Bairro:</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:dado[8]"></span>
+                          </div>
+                      </div>
+
+                      <div class="detalhesDuvida">
+                        <strong class="tituloConsumidor">Cidade:</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:dado[9]"></span>
+                          </div>
+                      </div>
+
+                      <div class="detalhesDuvida">
+                        <strong class="tituloConsumidor">UF:</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:dado[10]"></span>
+                          </div>
+                      </div>
+
+                      <div class="detalhesDuvida">
+                        <strong class="tituloConsumidor">DDD + Telefone:</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:dado[11]"></span>
+                          </div>
+                      </div>
+
+                      <div class="detalhesDuvida">
+                        <strong class="tituloConsumidor">Site:</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:dado[12]"></span>
+                          </div>
+                      </div>
+
+                      <div class="detalhesDuvida">
+                        <strong class="tituloConsumidor">E-mail:</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:dado[13]"></span>
+                          </div>
+                      </div>
+
+                      <div class="detalhesDuvida">
+                        <strong class="tituloConsumidor">Quando você comprou o produto ou contratou o serviço reclamado?</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:dado[14]">python:dado[30]</span>
+                          </div>
+                      </div>
+
+                      <div class="detalhesDuvida">
+                        <strong class="tituloConsumidor">Qual o valor total do produto/serviço reclamado?</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:dado[15]"></span>
+                          </div>
+                      </div>
+
+                      <div class="detalhesDuvida">
+                        <strong class="tituloConsumidor">Qual foi a condição de pagamento do produto ou serviço contratado?</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:dado[16]">python:dado[17]</span>
+                          </div>
+                      </div>
+
+                      <div class="detalhesDuvida" tal:condition="python:dado[17]">
+                        <strong class="tituloConsumidor">Quantidade de parcelas:</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:dado[17]"></span>
+                          </div>
+                      </div>
+
+                      <div class="detalhesDuvida" tal:condition="python:dado[18]">
+                        <strong class="tituloConsumidor">Valor da parcela:</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:dado[18]"></span>
+                          </div>
+                      </div>
+
+
+                      <div class="detalhesDuvida">
+                        <strong class="tituloConsumidor">Como você pagou o produto/serviço reclamado?</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:dado[19]"></span>
+                          </div>
+                      </div>
+
+                      <div class="detalhesDuvida">
+                        <strong class="tituloConsumidor">O produto ou serviço foi pago por você, no seu CPF ?</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:dado[20]"></span>
+                          </div>
+                      </div>
+
+                      <div class="detalhesDuvida" tal:condition="python:dado[21]">
+                        <strong class="tituloConsumidor">Indique o CPF da pessoa que pagou o produto/serviço:</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:dado[21]"></span>
+                          </div>
+                      </div>
+
+                      <div class="detalhesDuvida">
+                        <strong class="tituloConsumidor">Como você comprou/contratou o produto/serviço reclamado?</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:dado[22]"></span>
+                          </div>
+                      </div>
+
+                      <div class="detalhesDuvida">
+                        <strong class="tituloConsumidor">Indique a área relativa ao produto/serviço reclamado:</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:dado[23]"></span>
+                          </div>
+                      </div>
+
+                      <div class="detalhesDuvida">
+                        <strong class="tituloConsumidor">Informe abaixo o maior número de dados possíveis relativos à compra do produto ou contratação do serviço reclamado:</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:dado[24]"></span>
+                          </div>
+                      </div>
+
+                      <div class="detalhesDuvida">
+                        <strong class="tituloConsumidor">Quando o produto ou serviço apresentou problema?</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:dado[25]"></span>
+                          </div>
+                      </div>
+
+
+                      <div class="detalhesDuvida">
+                        <strong class="tituloConsumidor">Especifique o tipo de problema apresentado pelo produto/serviço reclamado:</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:dado[28]"></span>
+                          </div>
+                      </div>
+
+
+                      <div class="detalhesDuvida">
+                        <strong class="tituloConsumidor">Você procurou a empresa para solucionar o problema?</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:dado[37]"></span>
+                          </div>
+                      </div>
+
+
+                      <div class="detalhesDuvida" tal:condition="python:dado[37] == 'Não'">
+                        <strong class="tituloConsumidor">Informe por que você não procurou a empresa para resolver o seu problema:</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:dado[39]"></span>
+                          </div>
+                      </div>
+
+                      <div class="detalhesDuvida" tal:condition="python:dado[37] == 'Sim'">
+                        <strong class="tituloConsumidor">Informe como foi o seu contato com a empresa. indique o(s) número(s) de protocolo(s), caso o(s) possua:</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:dado[38]"></span>
+                          </div>
+                      </div>
+
+                      <div class="detalhesDuvida">
+                        <strong class="tituloConsumidor">Descreva sua reclamação no campo abaixo</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:dado[40]"></span>
+                          </div>
+                      </div>
+
+
+                      <div class="detalhesDuvida">
+                        <strong class="tituloConsumidor">No campo abaixo, descreva de forma objetiva o seu pedido à empresa.</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:dado[41]"></span>
+                          </div>
+                      </div>
+
+                      <div class="detalhesDuvida">
+                        <strong class="tituloConsumidor">Arquivos anexados</strong>
+                           <div class="respostaConsumidor" tal:condition="python:dado[42][0] == 'NO UPLOAD'">Sem arquivos anexos
+                          </div>
+                          <div class="respostaConsumidor" tal:condition="python:dado[42][0] != 'NO UPLOAD'">
+                            <a href="#" class="fileDownload" tal:content="python:dado[42][1]" tal:attributes="data-binary python:dado[42][0]; data-mimetype python:dado[42][2]"></a>
+                          </div>
+
+                          <div class="respostaConsumidor" tal:condition="python:dado[43][0] != 'NO UPLOAD'">
+                            <a href="#" class="fileDownload" tal:content="python:dado[43][1]" tal:attributes="data-binary python:dado[43][0]; data-mimetype python:dado[43][2]"></a>
+                          </div>
+
+                          <div class="respostaConsumidor" tal:condition="python:dado[44][0] != 'NO UPLOAD'">
+                            <a href="#" class="fileDownload" tal:content="python:dado[44][1]" tal:attributes="data-binary python:dado[44][0]; data-mimetype python:dado[44][2]"></a>
+                          </div>
+
+                          <div class="respostaConsumidor" tal:condition="python:dado[45][0] != 'NO UPLOAD'">
+                            <a href="#" class="fileDownload" tal:content="python:dado[45][1]" tal:attributes="data-binary python:dado[45][0]; data-mimetype python:dado[45][2]"></a>
+                          </div>
+
+                          <div class="respostaConsumidor" tal:condition="python:dado[46][0] != 'NO UPLOAD'">
+                            <a href="#" class="fileDownload" tal:content="python:dado[46][1]" tal:attributes="data-binary python:dado[46][0]; data-mimetype python:dado[46][2]"></a>
+                          </div>
+
+                          <div class="respostaConsumidor" tal:condition="python:dado[47][0] != 'NO UPLOAD'">
+                            <a href="#" class="fileDownload" tal:content="python:dado[47][1]" tal:attributes="data-binary python:dado[47][0]; data-mimetype python:dado[47][2]"></a>
+                          </div>
+
+                          <div class="respostaConsumidor" tal:condition="python:dado[48][0] != 'NO UPLOAD'">
+                            <a href="#" class="fileDownload" tal:content="python:dado[48][1]" tal:attributes="data-binary python:dado[48][0]; data-mimetype python:dado[48][2]"></a>
+                          </div>
+
+                          <div class="respostaConsumidor" tal:condition="python:dado[49][0] != 'NO UPLOAD'">
+                            <a href="#" class="fileDownload" tal:content="python:dado[49][1]" tal:attributes="data-binary python:dado[49][0]; data-mimetype python:dado[49][2]"></a>
+                          </div>
+
+                      </div>
+
+                      <div class="detalhesDuvida" tal:condition="python:str(dado[50]) != 'Selecione'">
+                        <strong class="tituloConsumidor">Campos de uso exclusivo para conveniados e ações estratégicas</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:dado[50]"></span>
+                          </div>
+                      </div>
+
+                      <div class="detalhesDuvida" tal:condition="python:dado[51]">
+                        <strong class="tituloConsumidor">Matrícula/Código</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:dado[51]"></span>
+                          </div>
+                      </div>
+
+                      <div class="detalhesDuvida" tal:condition="python:dado[-10]">
+                        <strong class="tituloConsumidor">Protocolo CONSUMIDOR.GOV.BR</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:dado[-12]"></span>
+                          </div>
+                      </div>
+
+                      <div class="detalhesDuvida">
+                        <strong class="tituloConsumidor">Protocolo</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:dado[-10]"></span>
+                          </div>
+                      </div>
+
+                      <div class="detalhesDuvida">
+                        <strong class="tituloConsumidor">Atualizar status</strong>
+                          <div class="respostaConsumidor">
+                            <select id="reclamacao_status"
+                                    tal:attributes="rel python:dado[-10]">
+                                <tal:block tal:define="retorno
+                                                       python:dado[-4]"
+                                           tal:repeat="record view/reclamacaoStatus">
+                                    <option tal:condition="python: record != retorno"
+                                            tal:attributes="value record"
+                                            tal:content="record"></option>
+                                    <option tal:condition="python: record == retorno"
+                                            tal:attributes="value record"
+                                            tal:content="record"
+                                            selected="selected">
+                                    </option>
+                                </tal:block>
+                            </select>
+                          </div>
+                      </div>
+
+                      <div class="detalhesDuvida">
+                        <strong class="tituloConsumidor">SINDEC (Cadastro)</strong>
+                          <tal:hasChecked
+                            condition="python:not dado[-3]">
+
+                          <div class="respostaConsumidor">
+                            <input tal:attributes="rel python:dado[-10]" class='lido_reclamacoes' type='checkbox' value='cadastro' />
+                          </div>
+
+                          </tal:hasChecked>
+                          <tal:Checked
+                            condition="python:dado[-3]">
+                          <div class="respostaConsumidor">
+                            <input class='lido_reclamacoes' type='checkbox' disabled="disabled" value='cadastro' checked="checked" /> <b>Cadastrado</b>
+                          </div>
+
+          </tal:Checked>
+                      </div>
+
+
+                      <div class="detalhesDuvida">
+                        <strong class="tituloConsumidor">FA</strong>
+                          <div class="respostaConsumidor">
+                            <input tal:attributes="rel python:dado[-10];
+                                                   value python:dado[-5] or '';
+                                                   disabled python:dado[-5] or False" class='FA_reclamacoes' type='text' value='' />
+                          </div>
+                      </div>
+
+                      <div class="detalhesDuvida"
+                            tal:define="operadorId python:dado[-2];
+                                        membership python:context.portal_membership;
+                                        operador python:membership.getMemberById(operadorId);"
+                            tal:condition="python:dado[-2]">
+                        <strong class="tituloConsumidor">Operador</strong>
+
+                          <tal:exists condition="python:operador.getProperty('fullname')">
+                            <div class="respostaConsumidor">
+                              <span tal:content="python:operador.getProperty('fullname')"></span>
+                            </div>
+                          </tal:exists>
+
+                          <tal:notexists condition="python:not operador.getProperty('fullname')">
+                            <div class="respostaConsumidor">
+                              <span tal:content="operador"></span>
+                            </div>
+                          </tal:notexists>
+
+                        <strong class="tituloConsumidor">CPF do operador</strong>
+                            <div class="respostaConsumidor">
+                              <span tal:content="python:operador"></span>
+                            </div>
+                      </div>
+
+                      <div class="detalhesDuvida">
+                        <strong class="tituloConsumidor">Data de atualização</strong>
+                          <div class="respostaConsumidor">
+                            <span tal:content="python:dado[-1]"></span>
+                          </div>
+                      </div>
+                      <a style="color: white !important" href="" class="context" name="form_submit"
+                         tal:attributes="href string:${context/portal_url}/@@buscar_reclamacoes">Enviar</a>
+
+              </div>
+            </tr>
+      </div>
+
+      <tal:result tal:condition="perguntas" tal:define="perguntas view/buscaReclamacao">
+      <div class="paginationReclamacoes">
+      </div>
+      </tal:result>
+    </div>
+  </div>
+
+  </div>
+
+</body>
+</html>
