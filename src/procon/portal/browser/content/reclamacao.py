@@ -285,7 +285,7 @@ class Reclamacao(BrowserView):
                 item = str(items).lower().split(' ')
                 for i in item:
                     if filtro in i:
-                            verifica = True
+                        verifica = True
                 return verifica
         else:
             return True
