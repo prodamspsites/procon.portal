@@ -72,197 +72,33 @@
           </thead>
           <tbody>
             <tr tal:condition="dados" tal:define="dados view/buscaDenuncia" tal:repeat="pergunta dados">
-              <td tal:attributes="class python:'usuario'"
+              <td tal:attributes="id python:int(repeat.pergunta.number) -1;
+                                  class python:'categoria denuncias_buscar';"
                   tal:content="python:dados[int(repeat.pergunta.number) -1][-8]">Admin</td>
-              <td tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-10]" class="reclamacao_buscar _id"
+              <td tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-10];
+                                  id python:int(repeat.pergunta.number) -1;
+                                  class python:'categoria denuncias_buscar';" class="denuncias_buscar _id"
                   tal:content="python:dados[int(repeat.pergunta.number) -1][-5]">CPF/CNPJ do consumidor</td>
-              <td tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-10]" class="reclamacao_buscar _id"
+              <td tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-10];
+                                  id python:int(repeat.pergunta.number) -1;
+                                  class python:'categoria denuncias_buscar';" class="denuncias_buscar _id"
                   tal:content="python:dados[int(repeat.pergunta.number) -1][1]">Fornecedor</td>
-              <td tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-10]" class="reclamacao_buscar _id"
+              <td tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-10];
+                                  id python:int(repeat.pergunta.number) -1;
+                                  class python:'categoria denuncias_buscar';" class="denuncias_buscar _id"
                   tal:content="python:dados[int(repeat.pergunta.number) -1][3]">CPF/CNPJ do fornecedor</td>
               <td tal:define="lido python:dados[int(repeat.pergunta.number) -1][-4];
                               lido python:lido and 'Sim' or 'Não';"
                   tal:content="lido"></td>
-              <td tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-10]" class="reclamacao_buscar _id"
+              <td tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-10];
+                                  id python:int(repeat.pergunta.number) -1;
+                                  class python:'categoria denuncias_buscar';" class="denuncias_buscar _id"
                   tal:content="python:dados[int(repeat.pergunta.number) -1][-11]">Data da denúncia</td>
-              <td tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-10]" class="reclamacao_buscar _id"
+              <td tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-10];
+                                  id python:int(repeat.pergunta.number) -1;
+                                  class python:'categoria denuncias_buscar';" class="denuncias_buscar _id"
                   tal:content="python:dados[int(repeat.pergunta.number) -1][-1]">CPF/CNPJ do fornecedor</td>
-              <td style="background-color:white !important; border: 0px; display: none">
-              <div class="detalhesDuvida" style="display:none" tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-11]" tal:define="labels
-                  python:['usuário',
-                          'Nome da empresa/fornecedor denunciado',
-                          'Razão social:',
-                          'CNPJ/CPF:',
-                          'DDD + Telefone:',
-                          'CEP:',
-                          'Logradouro:',
-                          'Número/Complemento:',
-                          'Bairro:',
-                          'Cidade:',
-                          'UF:',
-                          'Site:',
-                          'E-mail:',
-                          'Relato da denúncia:',
-                          'Arquivos anexados'
-                         ]">
-
-                  <tal:labels repeat="label labels">
-
-                      <div class="detalhesDuvida userInfo"
-                           tal:define="userId python:dados[int(repeat.pergunta.number) -1][0];
-                                       membership python:context.portal_membership;
-                                       user python:membership.getMemberById(userId)"
-                           tal:condition="repeat/label/start">
-
-                        <strong class="tituloConsumidor">Data e horário da denúncia</strong>
-                          <div class="respostaConsumidor">
-                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][-11]"></span>
-                          </div>
-
-                        <strong class="tituloConsumidor">Nome</strong>
-                          <div class="respostaConsumidor">
-                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][-8]"></span>
-                          </div>
-
-                        <strong class="tituloConsumidor">CPF/CNPJ</strong>
-                          <div class="respostaConsumidor">
-                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][-5]"></span>
-                          </div>
-
-                        <strong class="tituloConsumidor">CEP</strong>
-                          <div class="respostaConsumidor">
-                            <span tal:content="python:user.getProperty('codigo_enderecamento_postal')"></span>
-                          </div>
-
-                        <strong class="tituloConsumidor">Complemento</strong>
-                          <div class="respostaConsumidor">
-                            <span tal:content="python:user.getProperty('complemento')"></span>
-                          </div>
-
-                        <strong class="tituloConsumidor">Telefone</strong>
-                          <div class="respostaConsumidor">
-                            <span tal:content="python:user.getProperty('contato_telefone')"></span>
-                          </div>
-
-                        <strong class="tituloConsumidor">E-mail</strong>
-                          <div class="respostaConsumidor">
-                            <span tal:content="python:user.getProperty('email')"></span>
-                          </div>
-
-                      </div>
-
-                    <div class="detalhesDuvida" tal:condition="python: not repeat.label.end and not repeat.label.start">
-                      <strong class="tituloConsumidor" tal:content="label">Pergunta:</strong>
-                      <div class="respostaConsumidor">
-                        <span tal:define="count python:int(repeat.label.number) -1;" tal:content="python:dados[int(repeat.pergunta.number) -1][count]"></span>
-                      </div>
-                    </div>
-
-                    <div class="detalhesDuvida" tal:condition="repeat/label/end"
-                                                tal:define="count python:int(repeat.label.number) -1;">
-                      <strong class="tituloConsumidor" tal:content="label">Pergunta:</strong>
-                          <div class="respostaConsumidor" tal:condition="python:dados[int(repeat.pergunta.number) -1][14][0] == 'NO UPLOAD'">Sem arquivos anexos
-                          </div>
-                          <div class="respostaConsumidor" tal:condition="python:dados[int(repeat.pergunta.number) -1][14][0] != 'NO UPLOAD'">
-                            <a href="#" class="fileDownload" tal:content="python:dados[int(repeat.pergunta.number) -1][count][1]" tal:attributes="data-binary python:dados[int(repeat.pergunta.number) -1][count][0]; data-mimetype python:dados[int(repeat.pergunta.number) -1][count][2]"></a>
-                          </div>
-
-                          <div class="respostaConsumidor" tal:condition="python:dados[int(repeat.pergunta.number) -1][15][0] != 'NO UPLOAD'">
-                            <a href="#" class="fileDownload" tal:content="python:dados[int(repeat.pergunta.number) -1][count +1][1]" tal:attributes="data-binary python:dados[int(repeat.pergunta.number) -1][count +1][0]; data-mimetype python:dados[int(repeat.pergunta.number) -1][count +1][2]"></a>
-                          </div>
-
-                          <div class="respostaConsumidor" tal:condition="python:dados[int(repeat.pergunta.number) -1][16][0] != 'NO UPLOAD'">
-                            <a href="#" class="fileDownload" tal:content="python:dados[int(repeat.pergunta.number) -1][count +2][1]" tal:attributes="data-binary python:dados[int(repeat.pergunta.number) -1][count +2][0]; data-mimetype python:dados[int(repeat.pergunta.number) -1][count +2][2]"></a>
-                          </div>
-
-                          <div class="respostaConsumidor" tal:condition="python:dados[int(repeat.pergunta.number) -1][17][0] != 'NO UPLOAD'">
-                            <a href="#" class="fileDownload" tal:content="python:dados[int(repeat.pergunta.number) -1][count +3][1]" tal:attributes="data-binary python:dados[int(repeat.pergunta.number) -1][count +3][0]; data-mimetype python:dados[int(repeat.pergunta.number) -1][count +3][2]"></a>
-                          </div>
-
-                          <div class="respostaConsumidor" tal:condition="python:dados[int(repeat.pergunta.number) -1][18][0] != 'NO UPLOAD'">
-                            <a href="#" class="fileDownload" tal:content="python:dados[int(repeat.pergunta.number) -1][count +4][1]" tal:attributes="data-binary python:dados[int(repeat.pergunta.number) -1][count +4][0]; data-mimetype python:dados[int(repeat.pergunta.number) -1][count +4][2]"></a>
-                          </div>
-
-                          <div class="respostaConsumidor" tal:condition="python:dados[int(repeat.pergunta.number) -1][19][0] != 'NO UPLOAD'">
-                            <a href="#" class="fileDownload" tal:content="python:dados[int(repeat.pergunta.number) -1][count +5][1]" tal:attributes="data-binary python:dados[int(repeat.pergunta.number) -1][count +5][0]; data-mimetype python:dados[int(repeat.pergunta.number) -1][count +5][2]"></a>
-                          </div>
-
-                          <div class="respostaConsumidor" tal:condition="python:dados[int(repeat.pergunta.number) -1][20][0] != 'NO UPLOAD'">
-                            <a href="#" class="fileDownload" tal:content="python:dados[int(repeat.pergunta.number) -1][count +6][1]" tal:attributes="data-binary python:dados[int(repeat.pergunta.number) -1][count +6][0]; data-mimetype python:dados[int(repeat.pergunta.number) -1][count +6][2]"></a>
-                          </div>
-
-                          <div class="respostaConsumidor" tal:condition="python:dados[int(repeat.pergunta.number) -1][21][0] != 'NO UPLOAD'">
-                            <a href="#" class="fileDownload" tal:content="python:dados[int(repeat.pergunta.number) -1][count +7][1]" tal:attributes="data-binary python:dados[int(repeat.pergunta.number) -1][count +7][0]; data-mimetype python:dados[int(repeat.pergunta.number) -1][count +7][2]"></a>
-                          </div>
-                    </div>
-                  </tal:labels>
-
-                  <div class="detalhesDuvida">
-                    <strong class="tituloConsumidor">Lido:</strong>
-                    <div class="respostaConsumidor">
-                          <tal:hasChecked
-                            condition="python:not dados[int(repeat.pergunta.number) -1][-4]">
-                          <div class="respostaConsumidor">
-                            <input id='lido' type='checkbox' value='cadastro' />
-                          </div>
-                          </tal:hasChecked>
-                          <tal:Checked
-                            condition="python:dados[int(repeat.pergunta.number) -1][-4]">
-                          <div class="respostaConsumidor">
-                            <input type='checkbox'
-                                   disabled="disabled"
-                                   value='cadastro'
-                                   checked="checked" />
-                                   <b>Lido</b>
-                          </div>
-                          </tal:Checked>
-                    </div>
-                  </div>
-
-                  <div class="detalhesDuvida">
-                    <strong class="tituloConsumidor">Observação</strong>
-                    <div class="respostaConsumidor">
-                      <tal:hasChecked
-                        tal:condition="python:dados[int(repeat.pergunta.number) -1][-3]">
-                        <textarea disabled="disabled" tal:content="python:dados[int(repeat.pergunta.number) -1][-3]" rows=6>
-                      </tal:hasChecked>
-                      <tal:hasChecked
-                        tal:condition="python:not dados[int(repeat.pergunta.number) -1][-3]">
-                        <textarea id="enviarObservacao" rows=6>
-                      </tal:hasChecked>
-                    </div>
-                  </div>
-
-
-                      <div class="detalhesDuvida"
-                           tal:condition="python:dados[int(repeat.pergunta.number) -1][-2]">
-                        <strong class="tituloConsumidor">Operador</strong>
-                          <div class="respostaConsumidor"
-                               tal:define="operadorId python:dados[int(repeat.pergunta.number) -1][-2];
-                                           membership python:context.portal_membership;
-                                           operador python:membership.getMemberById(operadorId);">
-                            <span tal:content="python:operador.getProperty('fullname') or operador"></span>
-                          </div>
-
-                        <strong class="tituloConsumidor">CPF do operador</strong>
-                          <div class="respostaConsumidor"
-                               tal:define="operadorId python:dados[int(repeat.pergunta.number) -1][-2];
-                                           membership python:context.portal_membership;
-                                           operador python:membership.getMemberById(operadorId);">
-                            <span tal:content="python:operador"></span>
-                          </div>
-                      </div>
-                      <tal:hasChecked condition="python:dados[int(repeat.pergunta.number) -1][-1]">
-                      <div class="detalhesDuvida">
-                        <strong class="tituloConsumidor">Data de atualização</strong>
-                          <div class="respostaConsumidor">
-                            <span tal:content="python:dados[int(repeat.pergunta.number) -1][-1]"></span>
-                          </div>
-                      </div>
-                      </tal:hasChecked>
-                  <input type="button" id="enviarComentario" value="Enviar">
-
-              </div>
+              <td style="background-color:white !important; border: 0px; display: none"></td>
             </tr>
           </tbody>
           <!-- bower:js -->

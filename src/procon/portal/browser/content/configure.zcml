@@ -71,6 +71,25 @@
     class=".reclamacao.Reclamacao"
     />
 
+
+  <browser:page
+    name="buscar_fornecedores_detalhe"
+    permission="cmf.ReviewPortalContent"
+    for="*"
+    layer="procon.portal.interfaces.IProdamPortal"
+    template="templates/consultas/fornecedor_detalhe.pt"
+    class=".reclamacao.Reclamacao"
+    />
+
+  <browser:page
+    name="buscar_denuncias_detalhe"
+    permission="cmf.ReviewPortalContent"
+    for="*"
+    layer="procon.portal.interfaces.IProdamPortal"
+    template="templates/consultas/denuncia_detalhe.pt"
+    class=".reclamacao.Reclamacao"
+    />
+
   <browser:page
     name="atualiza_forms"
     permission="cmf.ReviewPortalContent"

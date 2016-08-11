@@ -210,7 +210,7 @@ class Reclamacao(BrowserView):
     def filtraForm(self):
         try:
             filtro = self.request.form['filtro']
-            filtro = filtro.lower().split(' ')
+            filtro = filtro.lower()
             return filtro
         except:
             return False
@@ -222,6 +222,15 @@ class Reclamacao(BrowserView):
             return coluna
         except:
             return False
+
+    def buscaDenunciaDetalhe(self):
+        numero = self.getDetailNumber()
+        portal = api.portal.get()
+        folderConsumidor = portal['consumidor']
+        form = folderConsumidor['formulario-de-denuncia']
+        sendDataAdapter = form['dados']
+        dados = sendDataAdapter.getSavedFormInput()
+        return dados[int(numero)]
 
     def buscaDenuncia(self):
         portal = api.portal.get()
@@ -264,6 +273,7 @@ class Reclamacao(BrowserView):
         return dados
 
     def filterInputs(self, lista):
+        novaLista = []
         if self.filtraColuna():
             novaLista = []
             novaLista.append(lista[int(self.filtraColuna())])
@@ -273,13 +283,21 @@ class Reclamacao(BrowserView):
             lista = novaLista or lista
             for items in lista:
                 item = str(items).lower().split(' ')
-                if any(i in filtro for i in item):
-                    verifica = True
-                elif filtro in item:
-                    verifica = True
-            return verifica
+                for i in item:
+                    if filtro in i:
+                            verifica = True
+                return verifica
         else:
             return True
+
+    def buscaFornecedorDetalhe(self):
+        numero = self.getDetailNumber()
+        portal = api.portal.get()
+        folderConsumidor = portal['fornecedor']
+        form = folderConsumidor['adesao-ao-procon-paulistano']
+        sendDataAdapter = form['dados']
+        dados = sendDataAdapter.getSavedFormInput()
+        return dados[int(numero)]
 
     def buscaFornecedor(self):
         portal = api.portal.get()
