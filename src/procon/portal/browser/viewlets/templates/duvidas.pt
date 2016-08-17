@@ -1,10 +1,10 @@
 <tal:Form condition="python:context.portal_type=='FormFolder'">
-<div class="form-group">
+<div class="form-group" style="display:none">
   <input id="project" placeholder="Digite o nome da empresa que deseja reclamar">
   <input type="hidden" id="project-id">
   <input type="submit" class="btnBuscar disabled" value="BUSCAR"  disabled />
 </div>
-<div class="divRedireciona">
+<div class="divRedireciona" style="display:none">
    <p>O fornecedor que você buscou está cadastrado no consumidor.gov.br, uma plataforma mantida pelo Governo Federal e monitorada pelo Procon Paulistano, para a solução alternativa de conflitos de consumo.<br /><br />As empresas que aderiram à plataforma consumidor.gov.br se comprometeram a receber, analisar e responder as reclamações de consumidores em até 10 dias corridos. Em média, oito de cada dez reclamações feitas na plataforma consumidor.gov.br são resolvidas!<br /><br />
    Para acessar a plataforma consumidor.gov.br e prosseguir com sua reclamação, clique no botão abaixo.
    <a href="#" target="_blank" class="linkRedireciona">CLIQUE AQUI</a>

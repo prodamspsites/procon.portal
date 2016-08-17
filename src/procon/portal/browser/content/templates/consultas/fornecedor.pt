@@ -25,7 +25,13 @@
 
       <div class="filtrarPor"><strong>Filtrar por:</strong>
       <form tal:attributes="action string:${context/portal_url}/buscar_fornecedores" method="GET" name="filtro">
-        <select class="selectFilter"><option>Nome</option><select>
+        <select name="coluna" class="selectFilter">
+          <option value="-7">Data</option>
+          <option value="2">CNPJ</option>
+          <option value="-4">SINDEC</option>
+          <option value="-1">Data de atualização</option>
+          <option value="-2">CPF/CNPJ do operador</option>
+        <select>
         <input type="text"  name="filtro" placeholder="Digite um valor para filtrar" class="inputFilter"/>
         <input type="submit" value="FILTRAR" class="btnFiltrar" />
       </form>

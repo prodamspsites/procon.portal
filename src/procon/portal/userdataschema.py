@@ -147,12 +147,6 @@ class IEnhancedUserDataSchema(model.Schema):
     #     required=False,
     #     value_type=schema.Choice(vocabulary=termos))
 
-    campo_adicional_um = schema.Choice(
-        title=_(u'Possui mais de 60 anos ? *'),
-        description=_(u'Possui mais de 60 anos ? *'),
-        vocabulary=adicionais_escolha_um,
-        required=False,)
-
     adicional_um = schema.Choice(
         title=_(u'Possui mais de 60 anos ? *'),
         description=_(u'Possui mais de 60 anos ? *'),
@@ -163,30 +157,6 @@ class IEnhancedUserDataSchema(model.Schema):
         title=_(u'Possui alguma deficiência? *'),
         description=_(u'Possui alguma deficiência? *'),
         vocabulary=adicionais_campo_escolha_tres,
-        required=False,)
-
-    campoadicional_tres = schema.Choice(
-        title=_(u'Possui alguma deficiência? *'),
-        description=_(u'Possui alguma deficiência? *'),
-        vocabulary=adicionais_campo_escolha_tres,
-        required=False,)
-
-    adicional_tres = schema.Choice(
-        title=_(u'Possui alguma deficiência? *'),
-        description=_(u'Possui alguma deficiência? *'),
-        vocabulary=adicionais_escolha_tres,
-        required=False,)
-
-    adicional_dois = schema.Choice(
-        title=_(u'Portador de alguma doença grave prevista na Lei nº 12.008/09, atestada por declaração/laudo médico ? *'),
-        description=_(u'Portador de alguma doença grave prevista na Lei nº 12.008/09, atestada por declaração/laudo médico ? *'),
-        vocabulary=adicionais_escolha_dois,
-        required=False,)
-
-    doenca_grave = schema.Choice(
-        title=_(u'Portador de alguma doença grave, atestada por declaração/laudo médico ? *'),
-        description=_(u'Possui alguma deficiência ? *'),
-        vocabulary=doenca_grave_options,
         required=False,)
 
     campo_doenca_grave = schema.Choice(
@@ -202,12 +172,6 @@ class IEnhancedUserDataSchema(model.Schema):
         vocabulary=municipio_options,
         required=False,)
     cadastro = schema.Choice(
-        title=_(u'Tipo de consumidor *', default=u'Tipo de consumidor *'),
-        description=_(u'',
-                      default=u""),
-        vocabulary=tipo_options,
-        required=False,)
-    tipo = schema.Choice(
         title=_(u'Tipo de consumidor *', default=u'Tipo de consumidor *'),
         description=_(u'',
                       default=u""),
@@ -368,11 +332,9 @@ class UserDataPanelExtender(extensible.FormExtender):
         fields = field.Fields(IEnhancedUserDataSchema)
         fields = fields.omit('accept')  # Users have already accepted.
         fields['cadastro'].widgetFactory = RadioFieldWidget
-        fields['tipo'].widgetFactory = RadioFieldWidget
         fields['municipio'].widgetFactory = RadioFieldWidget
         fields['genero'].widgetFactory = RadioFieldWidget
         fields['adicional_um'].widgetFactory = RadioFieldWidget
-        fields['adicional_dois'].widgetFactory = RadioFieldWidget
         self.add(fields)
 
 
@@ -382,11 +344,9 @@ class RegistrationPanelExtender(extensible.FormExtender):
     def update(self):
         fields = field.Fields(IEnhancedUserDataSchema)
         fields['cadastro'].widgetFactory = RadioFieldWidget
-        fields['tipo'].widgetFactory = RadioFieldWidget
         fields['municipio'].widgetFactory = RadioFieldWidget
         fields['genero'].widgetFactory = RadioFieldWidget
         fields['adicional_um'].widgetFactory = RadioFieldWidget
-        fields['adicional_dois'].widgetFactory = RadioFieldWidget
         self.add(fields)
 
 
@@ -396,11 +356,9 @@ class AddUserFormExtender(extensible.FormExtender):
     def update(self):
         fields = field.Fields(IEnhancedUserDataSchema)
         fields['cadastro'].widgetFactory = RadioFieldWidget
-        fields['tipo'].widgetFactory = RadioFieldWidget
         fields['municipio'].widgetFactory = RadioFieldWidget
         fields['genero'].widgetFactory = RadioFieldWidget
         fields['adicional_um'].widgetFactory = RadioFieldWidget
-        fields['adicional_dois'].widgetFactory = RadioFieldWidget
 
         # management form doesn't need this field
         fields = fields.omit('accept')
