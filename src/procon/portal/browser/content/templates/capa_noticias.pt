@@ -26,7 +26,7 @@
       <div class="destaqueNoticias"
                tal:define="obj item/getObject"
                tal:condition="python:item.portal_type=='News Item'">
-                  <time tal:define="date obj/EffectiveDate;
+                  <time tal:define="date obj/Date;
                                     data python:view.getDate(date)"
                         tal:content="data" />
               <h2 metal:define-macro="listitem">
