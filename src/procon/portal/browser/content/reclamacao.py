@@ -5,7 +5,7 @@ from pymongo import MongoClient
 from datetime import datetime
 from Products.CMFCore.utils import getToolByName
 from procon.portal import MONGODB_HOSTS
-
+import logging
 
 class SelecionarReclamacao(BrowserView):
 
@@ -65,20 +65,20 @@ class AtualizarReclamacao(BrowserView):
         userID = user.id
         mongodb = MongoClient(MONGODB_HOSTS["host"], MONGODB_HOSTS["port"])
         db = mongodb.procon
-        find = db.reclamacoes.find({"protocolo": {"$regex": self.getProtocolo()}})
+        find = db.reclamacoes.find({"dataId": {"$regex": self.getProtocolo()}})
         data = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
         coluna = self.getStatus() and 'status' or self.getFA() and 'FA'
         status = self.getStatus() or 'Selecione uma opção'
         valor = self.getStatus() or self.getFA()
         if find.count() == 0:
             db.reclamacoes.insert_one({"status": status,
-                                       "protocolo": self.getProtocolo(),
+                                       "dataId": self.getProtocolo(),
                                        "lido": False,
                                        "FA": self.getFA(),
                                        "operador": userID,
                                        "data": data})
         else:
-            db.reclamacoes.update_one({"protocolo": self.getProtocolo()},
+            db.reclamacoes.update_one({"dataId": self.getProtocolo()},
                                       {"$set": {coluna: valor, "data": data, "operador": userID}},
                                       upsert=False)
 
@@ -186,8 +186,9 @@ class Reclamacao(BrowserView):
                 dado.insert(len(dado) + 6, '')
                 dado.insert(len(dado) + 7, '')
                 dado.insert(len(dado) + 8, '')
-            protocolo = dado[-10]
-            query = self.db.reclamacoes.find_one({"protocolo": {"$regex": str(protocolo)}})
+            protocolo = dado[-11]
+            query = self.db.reclamacoes.find_one({"dataId": {"$regex": str(protocolo)}})
+
             try:
                 mt = getToolByName(self.context, 'portal_membership')
                 user = mt.getMemberById(dado[0])
@@ -268,7 +269,7 @@ class Reclamacao(BrowserView):
                 dado[-2] = query['operador']
                 dado[-1] = query['data_atualizacao']
             except:
-                pass
+               pass
 
         return dados
 

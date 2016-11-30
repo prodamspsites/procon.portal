@@ -148,6 +148,176 @@
       <div class="paginationReclamacoes">
       </div>
       </tal:result>
+
+<script  type="text/javascript" >
+
+    
+
+//vars globais
+
+    var numero = 0;
+
+    var redirect = '';
+
+    var objsClick = document.getElementsByClassName('reclamacao_buscar');
+
+    var eventType = window.attachEvent ? 'onclick' : 'click';
+
+
+
+    //loop pelos tds 
+
+    for(var i=0; i<objsClick.length; i++){
+
+
+
+         //adiciona clicks   
+
+         if(window.addEventListener){
+
+
+
+            var obj=objsClick[i];
+
+            
+
+            obj.addEventListener(eventType ,function(){
+
+               // console.log(this.getAttribute("rel"))
+
+                numero = this.getAttribute('rel');
+
+                redirect = portal_url  + '/@@buscar_reclamacoes_detalhe';
+
+                redirectPost(redirect, {detailNumber: numero});
+
+            })
+
+
+
+
+
+         }else{
+
+            
+
+            // se IE <9
+
+            var obj=objsClick[i];
+
+            
+
+            obj.attachEvent(eventType ,function(){
+
+                numero = this.getAttribute('rel');
+
+                redirect = '/@@buscar_reclamacoes_detalhe';
+
+                redirectPost(redirect, {detailNumber: numero});
+
+            })
+
+         }
+
+        
+
+
+
+    }
+
+
+
+
+
+
+
+    function redirectPost(location, args){
+
+
+
+        var oArg = args;
+
+        var chave;
+
+        var inputs = '';
+
+        //cria os inputs
+
+        for (chave in oArg ){
+
+            inputs+='<input type="hidden" name="'+chave+'" value="'+oArg[chave]+'">';
+
+        } 
+
+
+
+        //cria o form
+
+        var strForm = '<form action="'+location+'" method="POST" id="'+(chave + oArg[chave])+'">'+inputs+'</form>';
+
+
+
+        var child = document.createElement('div');
+
+        child.innerHTML = strForm;
+
+
+
+        //adiciona ao body
+
+        document.body.appendChild(child);
+
+
+
+        var form = document.getElementById((chave + oArg[chave]));
+
+            form.submit();
+
+    }
+
+
+
+
+
+/*
+
+$(document).on('click',"td.reclamacao_buscar",function(){
+
+    numero = $(this).attr('rel')
+
+    redirect = portal_url + '/@@buscar_reclamacoes_detalhe';
+
+$.extend(
+
+{
+
+    redirectPost: function(location, args)
+
+    {
+
+        var form = '';
+
+        $.each( args, function( key, value ) {
+
+            form += '<input type="hidden" name="'+key+'" value="'+value+'">';
+
+        });
+
+        $('<form action="'+location+'" method="POST">'+form+'</form>').appendTo('body').submit();
+
+    }
+
+});
+
+$.redirectPost(redirect, {detailNumber: numero});
+
+});
+
+
+
+*/
+</script>
+
     </div>
   </div>
 

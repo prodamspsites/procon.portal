@@ -365,7 +365,7 @@
                         <strong class="tituloConsumidor">Atualizar status</strong>
                           <div class="respostaConsumidor">
                             <select id="reclamacao_status"
-                                    tal:attributes="rel python:dado[-10]">
+                                    tal:attributes="rel python:dado[-11]">
                                 <tal:block tal:define="retorno
                                                        python:dado[-4]"
                                            tal:repeat="record view/reclamacaoStatus">
@@ -405,7 +405,7 @@
                       <div class="detalhesDuvida">
                         <strong class="tituloConsumidor">FA</strong>
                           <div class="respostaConsumidor">
-                            <input tal:attributes="rel python:dado[-10];
+                            <input tal:attributes="rel python:dado[-11];
                                                    value python:dado[-5] or '';
                                                    disabled python:dado[-5] or False" class='FA_reclamacoes' type='text' value='' />
                           </div>
