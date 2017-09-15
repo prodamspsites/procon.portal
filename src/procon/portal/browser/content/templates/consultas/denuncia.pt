@@ -71,48 +71,80 @@
             </tr>
           </thead>
           <tbody>
-            <tr tal:condition="dados" tal:define="dados view/buscaDenuncia" tal:repeat="pergunta dados">
-              <td tal:attributes="id python:int(repeat.pergunta.number) -1;
-                                  class python:'categoria denuncias_buscar';"
-                  tal:content="python:dados[int(repeat.pergunta.number) -1][-8]">Admin</td>
-              <td tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-10];
-                                  id python:int(repeat.pergunta.number) -1;
-                                  class python:'categoria denuncias_buscar';" class="denuncias_buscar _id"
-                  tal:content="python:dados[int(repeat.pergunta.number) -1][-5]">CPF/CNPJ do consumidor</td>
-              <td tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-10];
-                                  id python:int(repeat.pergunta.number) -1;
-                                  class python:'categoria denuncias_buscar';" class="denuncias_buscar _id"
-                  tal:content="python:dados[int(repeat.pergunta.number) -1][1]">Fornecedor</td>
-              <td tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-10];
-                                  id python:int(repeat.pergunta.number) -1;
-                                  class python:'categoria denuncias_buscar';" class="denuncias_buscar _id"
-                  tal:content="python:dados[int(repeat.pergunta.number) -1][3]">CPF/CNPJ do fornecedor</td>
-              <td tal:define="lido python:dados[int(repeat.pergunta.number) -1][-4];
-                              lido python:lido and 'Sim' or 'Não';"
-                  tal:content="lido"></td>
-              <td tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-10];
-                                  id python:int(repeat.pergunta.number) -1;
-                                  class python:'categoria denuncias_buscar';" class="denuncias_buscar _id"
-                  tal:content="python:dados[int(repeat.pergunta.number) -1][-11]">Data da denúncia</td>
-              <td tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-10];
-                                  id python:int(repeat.pergunta.number) -1;
-                                  class python:'categoria denuncias_buscar';" class="denuncias_buscar _id"
-                  tal:content="python:dados[int(repeat.pergunta.number) -1][-1]">CPF/CNPJ do fornecedor</td>
-              <td style="background-color:white !important; border: 0px; display: none"></td>
-            </tr>
+            <tal:row tal:condition="dados" tal:define="dados view/buscaDenuncia;
+                                                       pagination view/getPaginacao; 
+                                                       page python: pagination.page;
+                                                       offset python:(page*20) -20;
+                                                       offset python: offset -1" tal:repeat="pergunta dados"> 
+              <tr tal:condition="python:view.showDenuncias(pergunta)">
+                <td tal:attributes="id python:int(repeat.pergunta.number) +offset;
+                                    class python:'categoria denuncias_buscar';"
+                    tal:content="python:dados[int(repeat.pergunta.number) -1][-8]">Admin</td>
+                <td tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-10];
+                                    id python:int(repeat.pergunta.number) +offset;
+                                    class python:'categoria denuncias_buscar';" class="denuncias_buscar _id"
+                    tal:content="python:dados[int(repeat.pergunta.number) -1][-5]">CPF/CNPJ do consumidor</td>
+                <td tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-10];
+                                    id python:int(repeat.pergunta.number) +offset;
+                                    class python:'categoria denuncias_buscar';" class="denuncias_buscar _id"
+                    tal:content="python:dados[int(repeat.pergunta.number) -1][1]">Fornecedor</td>
+                <td tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-10];
+                                    id python:int(repeat.pergunta.number) +offset;
+                                    class python:'categoria denuncias_buscar';" class="denuncias_buscar _id"
+                    tal:content="python:dados[int(repeat.pergunta.number) -1][3]">CPF/CNPJ do fornecedor</td>
+                <td tal:define="lido python:dados[int(repeat.pergunta.number) -1][-4];
+                                lido python:lido and 'Sim' or 'Não';"
+                    tal:content="lido"></td>
+                <td tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-10];
+                                    id python:int(repeat.pergunta.number) +offset;
+                                    class python:'categoria denuncias_buscar';" class="denuncias_buscar _id"
+                    tal:content="python:dados[int(repeat.pergunta.number) -1][-11]">Data da denúncia</td>
+                <td tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-10];
+                                    id python:int(repeat.pergunta.number) +offset;
+                                    class python:'categoria denuncias_buscar';" class="denuncias_buscar _id"
+                    tal:content="python:dados[int(repeat.pergunta.number) -1][-1]">CPF/CNPJ do fornecedor</td>
+                <td style="background-color:white !important; border: 0px; display: none"></td>
+              </tr>
+            </tal:row>
           </tbody>
           <!-- bower:js -->
           <!-- endbower -->
       </table>
       </div>
 
-<!--       <tal:result tal:condition="perguntas" tal:define="perguntas view/buscaDenuncia">
-      <div class="paginationReclamacoes">
-      </div>
-      </tal:result> -->
+
+<tal:result tal:condition="perguntas" tal:define="perguntas view/buscaDenuncia">
+<div class="paginationReclamacoes">
+
+    <div class="col s12 center-align">
+        <ul class="paginacao" tal:define="pagination view/getPaginacao">
+            <tal:paginacao condition="python:pagination.pages">
+              <span style="float: left">Página <tal:page tal:content="python:pagination.page">1</tal:page> de <tal:pages tal:content="python:pagination.pages">100</tal:pages></span>
+            </tal:paginacao>
+            <tal:paginas tal:repeat="page python:pagination.iter_pages()">
+                <tal:page condition="page">
+                    <li class="waves-effect show-page" style="float: left; margin-bottom: 20px; list-style-type: none;"><a href="#" tal:attributes="href python: portal_url + '/buscar_denuncias/' + '?pg=' + str(page)" tal:content="page">1</a></li>
+                </tal:page>
+                <tal:notPage condition="python: not page">
+                  <li style="float: left; margin-bottom: 20px; list-style-type: none;"><span>...</span></li>
+                </tal:notPage>
+               <tal:pagina>
+            </tal:paginas>
+            <tal:hasNext condition="python:pagination.has_next">
+              <li class="pag-prox waves-effect show-page" style="float: left; margin-bottom: 20px; list-style-type: none;"><a href="#" tal:attributes="href python: portal_url + '/buscar_denuncias/' + '?pg=' + str(pagination.page +1)">></a></li>
+            </tal:hasNext>
+
+        </ul>
+    </div>
+
+
+</div>
+</tal:result>
+
     </div>
   </div>
   </div>
 
 </body>
 </html>
+

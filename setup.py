@@ -65,8 +65,10 @@ setup(
         'collective.transmogrifier',
         'beautifulsoup4',
         'collective.geolocationbehavior',
+        'collective.recaptcha',
         'collective.twitter.portlets',
         'python-oauth2',
+        'Products.PDBDebugMode',
         'z3c.unconfigure',
     ],
     extras_require={

@@ -86,72 +86,129 @@
             </tr>
           </thead>
           <tbody style="border:0px">
-            <tr tal:condition="dados" tal:define="dados view/buscaReclamacao" tal:repeat="pergunta dados">
-              <td class="reclamacao_buscar _id"
-                  tal:content="python:dados[int(repeat.pergunta.number) -1][-11]"
-                  tal:attributes="rel python:int(repeat.pergunta.number) -1;
-                                  class python:'categoria reclamacao_buscar';">07/06/2016</td>
+            <tal:row tal:condition="dados" tal:define="dados view/buscaReclamacao;
+                                                  pagination view/getPaginacao; 
+                                                  page python: pagination.page;
+                                                  offset python:(page*20) -20;
+                                                  offset python: offset -1" tal:repeat="pergunta_full dados">
+              <tal:pergunta tal:define="pergunta python:pergunta_full[1];
+                                        pergunta_index python:pergunta_full[0]">
+              <tr tal:condition="python:view.show(pergunta)">
+                <td class="reclamacao_buscar _id"
+                    tal:content="python:pergunta[-11]"
+                    tal:attributes="rel python:int(pergunta_index);
+                                    class python:'categoria reclamacao_buscar';">07/06/2016</td>
 
-              <td tal:content="python:dados[int(repeat.pergunta.number) -1][-6]"
-                  tal:attributes="rel python:int(repeat.pergunta.number) -1;
-                                  class python:'categoria reclamacao_buscar';">
-              </td>
-              <td tal:attributes="class python:'categoria reclamacao_buscar';
-                                  rel python:int(repeat.pergunta.number) -1"
-                  tal:content="python:dados[int(repeat.pergunta.number) -1][-7]">Cadastro</td>
-              <td tal:attributes="class python:'pergunta reclamacao_buscar';
-                                  rel python:int(repeat.pergunta.number) -1"
-                  tal:content="python:dados[int(repeat.pergunta.number) -1][-10]">00998821888</td>
-              <td tal:attributes="class python:'usuario reclamacao_buscar';
-                                  rel python:int(repeat.pergunta.number) -1"
-                  tal:content="python:dados[int(repeat.pergunta.number) -1][-8]">Admin</td>
-              <td tal:content="python:dados[int(repeat.pergunta.number) -1][-9]"></td>
-              <td tal:define="FA python:dados[int(repeat.pergunta.number) -1][-5];
-                              FA python:FA and FA or '';"
-                  tal:content="FA"
-                  tal:attributes="rel python:int(repeat.pergunta.number) -1"></td>
+                <td tal:content="python:pergunta[-6]"
+                    tal:attributes="rel python:int(pergunta_index);
+                                    class python:'categoria reclamacao_buscar';">
+                </td>
+                <td tal:attributes="class python:'categoria reclamacao_buscar';
+                                    rel python:int(pergunta_index)"
+                    tal:content="python:pergunta[-7]">Cadastro</td>
+                <td tal:attributes="class python:'pergunta reclamacao_buscar';
+                                    rel python:int(pergunta_index)"
+                    tal:content="python: view.getCProtocolo(pergunta)">00998821888</td>
+                <td tal:attributes="class python:'usuario reclamacao_buscar';
+                                    rel python:int(pergunta_index)"
+                    tal:content="python:pergunta[-8]">Admin</td>
+                <td tal:content="python:pergunta[-9]"></td>
+                <td tal:define="FA python:pergunta[-5];
+                                FA python:FA and FA or '';"
+                    tal:content="FA"
+                    tal:attributes="rel python:int(pergunta_index)"></td>
 
 
-              <td>
-                <div class="respostaConsumidor">
-                  <select id="reclamacao_status"
-                          tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-10];
-                                          disabled string:true">
-                      <tal:block tal:define="retorno
-                                             python:dados[int(repeat.pergunta.number) -1][-4]"
-                                 tal:repeat="record view/reclamacaoStatus">
-                          <option tal:condition="python: record != retorno"
-                                  tal:attributes="value record"
-                                  tal:content="record"></option>
-                          <option tal:condition="python: record == retorno"
-                                  tal:attributes="value record"
-                                  tal:content="record"
-                                  selected="selected">
-                          </option>
-                      </tal:block>
-                  </select>
+                <td>
+                  <div class="respostaConsumidor">
+                    <select id="reclamacao_status"
+                            tal:attributes="rel python:pergunta[-10];
+                                            disabled string:true">
+                        <tal:block tal:define="retorno
+                                               python:pergunta[-4]"
+                                   tal:repeat="record view/reclamacaoStatus">
+                            <option tal:condition="python: record != retorno"
+                                    tal:attributes="value record"
+                                    tal:content="record"></option>
+                            <option tal:condition="python: record == retorno"
+                                    tal:attributes="value record"
+                                    tal:content="record"
+                                    selected="selected">
+                            </option>
+                        </tal:block>
+                    </select>
 
-              </td>
-              <td tal:define="atualizacao python:dados[int(repeat.pergunta.number) -1][-1];
-                              atualizacao python:atualizacao and atualizacao or '';"
-                  tal:content="atualizacao"></td>
-              <td tal:content="python:dados[int(repeat.pergunta.number) -1][-2]"></td>
-              <td class="td_interno" style="display:none"></td>
-            </tr>
+                </td>
+                <td tal:define="atualizacao python:pergunta[-1];
+                                atualizacao python:atualizacao and atualizacao or '';"
+                    tal:content="atualizacao"></td>
+                <td tal:content="python:pergunta[-2]"></td>
+                <td class="td_interno" style="display:none"></td>
+              </tr>
+              </tal:pergunta>
+            </tal:row>
           </tbody>
           <!-- bower:js -->
           <!-- endbower -->
       </table>
       </div>
 
-      <tal:result tal:condition="perguntas" tal:define="perguntas view/buscaReclamacao">
-      <div class="paginationReclamacoes">
-      </div>
-      </tal:result>
+<tal:result tal:condition="perguntas" tal:define="perguntas view/buscaReclamacao">
+<div class="paginationReclamacoes">
+
+<h1 tal:content="python:context.absolute_url()" style="display:none">
+
+    <div class="col s12 center-align">
+        <ul class="paginacao" tal:define="pagination view/getPaginacao">
+            <tal:paginacao condition="python:pagination.pages">
+              <span style="float: left">Página <tal:page tal:content="python:pagination.page">1</tal:page> de <tal:pages tal:content="python:pagination.pages">100</tal:pages></span>
+            </tal:paginacao>
+            <tal:paginas tal:repeat="page python:pagination.iter_pages()">
+                <tal:page condition="page">
+                    <li class="waves-effect show-page" style="float: left; margin-bottom: 20px; list-style-type: none;"><a href="#" tal:attributes="href python: portal_url + '/buscar_reclamacoes/' + '?pg=' + str(page); rel python:str(page)" tal:content="page">1</a></li>
+                </tal:page>
+                <tal:notPage condition="python: not page">
+                  <li style="float: left; margin-bottom: 20px; list-style-type: none;"><span>...</span></li>
+                </tal:notPage>
+               <tal:pagina>
+            </tal:paginas>
+            <tal:hasNext condition="python:pagination.has_next">
+              <li class="pag-prox waves-effect show-page" style="float: left; margin-bottom: 20px; list-style-type: none;"><a href="#" tal:attributes="href python: portal_url + '/buscar_reclamacoes/' + '?pg=' + str(pagination.page +1); rel python:str(pagination.page +1)">></a></li>
+            </tal:hasNext>
+
+        </ul>
+    </div>
+
+
+</div>
+</tal:result>
 
 <script  type="text/javascript" >
+    function addParam(key, value) {
+           new_url = "";
+           var regex = new RegExp(key + "=\\w*\\d*");
+           var valor = key + "=" + value
 
-    
+           if(window.location.search && window.location.search.indexOf(key) != -1)
+              new_url = window.location.href.replace( regex, valor);
+           else if(window.location.search)
+              new_url = window.location.href + "&" + key +"=" + value;
+           else
+              new_url = window.location.href + "?" + key + "=" + value;
+
+           window.location.href = new_url;
+
+
+    }
+
+
+
+    $('.paginationReclamacoes a').on('click', function(e) {
+          console.log('ok');
+          addParam('pg', $(this).attr("rel"));
+          e.preventDefault();
+          return false;
+    }) 
 
 //vars globais
 

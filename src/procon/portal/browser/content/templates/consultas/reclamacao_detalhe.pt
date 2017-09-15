@@ -1,13 +1,3 @@
-<!-- <tal:dados tal:define="reclamacoes view/buscaReclamacao" tal:repeat="reclamacao reclamacoes">
-  <tal:inputs tal:content="structure python:reclamacao[0]">
-  <tal:inputs tal:content="structure python:reclamacao[1]">
-  <tal:inputs tal:content="structure python:reclamacao[2]">
-  <tal:inputs tal:content="structure python:reclamacao[3]">
-  <tal:inputs tal:content="structure python:reclamacao[4]">
-</tal:dados> -->
-
-
-
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
@@ -25,7 +15,8 @@
 
       <div class="tableReclamacoes">
 
-            <tr tal:condition="dado" tal:define="dado view/buscaReclamacaoDetalhes">
+            <tr tal:condition="dado_full" tal:define="dado_full view/buscaReclamacaoDetalhes">
+              <tal:dado tal:define="dado python:dado_full[1]">
 
               <div class="detalhesDuvida">
 
@@ -357,9 +348,22 @@
                       <div class="detalhesDuvida">
                         <strong class="tituloConsumidor">Protocolo</strong>
                           <div class="respostaConsumidor">
-                            <span tal:content="python:dado[-10]"></span>
+                            <span tal:content="python:view.getCProtocolo(dado)"></span>
                           </div>
                       </div>
+
+                      <tal:admin tal:define="roles python:context.portal_membership.getAuthenticatedMember().getRoles()"
+                                 tal:condition="python: 'Manager' in roles">
+                      <div class="detalhesDuvida">
+                        <strong class="tituloConsumidor">Editar protocolo</strong>
+                          <div class="respostaConsumidor">
+                            <input tal:attributes="rel python:dado[-11];
+                                                   value python:view.getCProtocolo(dado) or ''" class='PROTOCOLO_reclamacoes' type='text' value='' />
+                          </div>
+                      </div>
+
+                      </tal:admin>
+
 
                       <div class="detalhesDuvida">
                         <strong class="tituloConsumidor">Atualizar status</strong>
@@ -442,10 +446,26 @@
                             <span tal:content="python:dado[-1]"></span>
                           </div>
                       </div>
+
+                      <div class="logBackOffice detalhesDuvida">
+                        <strong class="tituloConsumidor">Log de alterações</strong>
+                          <div class="respostaConsumidor">
+                            <tal:log tal:define="log python:view.getLog(dado[-11])" tal:repeat="entrada log">
+				       <p><strong>Campo alterado:</strong> <span tal:content="python:entrada['alteracao_campo']" /></p>
+				       <p><strong>Valor atualizado:</strong> <span tal:content="python:entrada['alteracao_valor']" /></p>
+				       <p><strong>Data da atualização:</strong> <span tal:content="python:entrada['data']" /></p>
+				       <p><strong>Operador:</strong> <span tal:content="python:entrada['operador']" /></p>
+                                       <hr /><br />
+                            </tal:log>
+                          </div>
+                      </div>
+
                       <a style="color: white !important" href="" class="context" name="form_submit"
                          tal:attributes="href string:${context/portal_url}/@@buscar_reclamacoes">Enviar</a>
 
+
               </div>
+              </tal:dado>
             </tr>
       </div>
 

@@ -1,1 +1,1 @@
-<tal:enviaEmail tal:content="view/enviaEmail" />
+<tal:enviaEmail tal:content="view/send_mail" />

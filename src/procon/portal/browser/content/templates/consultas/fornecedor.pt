@@ -1,13 +1,3 @@
-<!-- <tal:dados tal:define="reclamacoes view/buscaFornecedor" tal:repeat="reclamacao reclamacoes">
-  <tal:inputs tal:content="structure python:reclamacao[0]">
-  <tal:inputs tal:content="structure python:reclamacao[1]">
-  <tal:inputs tal:content="structure python:reclamacao[2]">
-  <tal:inputs tal:content="structure python:reclamacao[3]">
-  <tal:inputs tal:content="structure python:reclamacao[4]">
-</tal:dados> -->
-
-
-
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
@@ -64,21 +54,29 @@
             </tr>
           </thead>
           <tbody>
-            <tr tal:condition="dados" tal:define="dados view/buscaFornecedor" tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-7]" tal:repeat="pergunta dados">
-              <td tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-1];
-                                  id python:int(repeat.pergunta.number) -1;
+            <tr tal:condition="dados" tal:define="dados view/buscaFornecedor;
+                                                  pagination view/getPaginacao; 
+                                                  page python: pagination.page;
+                                                  offset python:(page*20)-20;
+                                                  offset python: offset - 1;  
+                                                  "
+                                      tal:attributes="rel python:dados[int(repeat.pergunta.number) -1][-7];
+                                                      title offset"
+                                      tal:repeat="pergunta dados">
+              <td tal:attributes="
+                                  id python:int(repeat.pergunta.number) +offset;
                                   class python:'categoria fornecedores_buscar';" class="reclamacao_buscar _id"
                   tal:content="python:dados[int(repeat.pergunta.number) -1][-7]">07/06/2016</td>
-              <td tal:attributes="id python:int(repeat.pergunta.number) -1;
+              <td tal:attributes="id python:int(repeat.pergunta.number) +offset;
                                   class python:'categoria fornecedores_buscar';"
                   tal:content="python:dados[int(repeat.pergunta.number) -1][1]">Cadastro</td>
-              <td tal:attributes="id python:int(repeat.pergunta.number) -1;
+              <td tal:attributes="id python:int(repeat.pergunta.number) +offset;
                                   class python:'categoria fornecedores_buscar';"
                   tal:content="python:dados[int(repeat.pergunta.number) -1][2]">00998821888</td>
               <td tal:define="lido python:dados[int(repeat.pergunta.number) -1][-4];
                               lido python:lido and 'Sim' or 'Não';"
                   tal:content="lido"></td>
-              <td tal:attributes="id python:int(repeat.pergunta.number) -1;
+              <td tal:attributes="id python:int(repeat.pergunta.number) +offset;
                                   class python:'categoria fornecedores_buscar';"
                   tal:define="userId python:dados[int(repeat.pergunta.number) -1][-2];
                               membership python:context.portal_membership;
@@ -86,7 +84,7 @@
                   <span tal:condition="user" tal:content="python:user.getProperty('fullname') or user" />
 
               </td>
-              <td tal:attributes="id python:int(repeat.pergunta.number) -1;
+              <td tal:attributes="id python:int(repeat.pergunta.number) +offset;
                                   class python:'categoria fornecedores_buscar';"
                   tal:define="atualizacao python:dados[int(repeat.pergunta.number) -1][-1];
                               atualizacao python:atualizacao and atualizacao or '';"
@@ -100,6 +98,34 @@
       </table>
       </div>
 
+<tal:result tal:condition="perguntas" tal:define="perguntas view/buscaFornecedor">
+<div class="paginationReclamacoes">
+
+    <div class="col s12 center-align">
+        <ul class="paginacao" tal:define="pagination view/getPaginacao">
+            <tal:paginacao condition="python:pagination.pages">
+              <span style="float: left">Página <tal:page tal:content="python:pagination.page">1</tal:page> de <tal:pages tal:content="python:pagination.pages">100</tal:pages></span>
+            </tal:paginacao>
+            <tal:paginas tal:repeat="page python:pagination.iter_pages()">
+                <tal:page condition="page">
+                    <li class="waves-effect show-page" style="float: left; margin-bottom: 20px; list-style-type: none;"><a href="#" tal:attributes="href python: portal_url + '/buscar_fornecedores/' + '?pg=' + str(page)" tal:content="page">1</a></li>
+                </tal:page>
+                <tal:notPage condition="python: not page">
+                  <li style="float: left; margin-bottom: 20px; list-style-type: none;"><span>...</span></li>
+                </tal:notPage>
+               <tal:pagina>
+            </tal:paginas>
+            <tal:hasNext condition="python:pagination.has_next">
+              <li class="pag-prox waves-effect show-page" style="float: left; margin-bottom: 20px; list-style-type: none;"><a href="#" tal:attributes="href python: portal_url + '/buscar_fornecedores/' + '?pg=' + str(pagination.page +1)">></a></li>
+            </tal:hasNext>
+
+        </ul>
+    </div>
+
+
+</div>
+</tal:result>
+
     </div>
   </div>
   <!--RECLAMACOES-->
@@ -107,4 +133,3 @@
 
 </body>
 </html>
-

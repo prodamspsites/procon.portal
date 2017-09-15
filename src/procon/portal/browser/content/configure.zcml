@@ -63,6 +63,15 @@
     />
 
   <browser:page
+    name="envia_email"
+    permission="cmf.ReviewPortalContent"
+    for="*"
+    layer="procon.portal.interfaces.IProdamPortal"
+    template="templates/mail.pt"
+    class=".mail.Mail"
+    />
+
+  <browser:page
     name="buscar_reclamacoes_detalhe"
     permission="cmf.ReviewPortalContent"
     for="*"
@@ -78,7 +87,7 @@
     for="*"
     layer="procon.portal.interfaces.IProdamPortal"
     template="templates/consultas/fornecedor_detalhe.pt"
-    class=".reclamacao.Reclamacao"
+    class=".reclamacao.Fornecedor"
     />
 
   <browser:page
@@ -87,7 +96,7 @@
     for="*"
     layer="procon.portal.interfaces.IProdamPortal"
     template="templates/consultas/denuncia_detalhe.pt"
-    class=".reclamacao.Reclamacao"
+    class=".reclamacao.Denuncia"
     />
 
   <browser:page
@@ -105,7 +114,7 @@
     for="*"
     layer="procon.portal.interfaces.IProdamPortal"
     template="templates/consultas/denuncia.pt"
-    class=".reclamacao.Reclamacao"
+    class=".reclamacao.Denuncia"
     />
 
   <browser:page
@@ -114,7 +123,7 @@
     for="*"
     layer="procon.portal.interfaces.IProdamPortal"
     template="templates/consultas/fornecedor.pt"
-    class=".reclamacao.Reclamacao"
+    class=".reclamacao.Fornecedor"
     />
 
   <browser:page
